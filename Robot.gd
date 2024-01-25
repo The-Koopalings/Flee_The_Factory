@@ -1,6 +1,9 @@
 extends Area2D
 
-var tile_size = 96
+onready var grid = get_node("/root/Grid")
+onready var tile_size = grid.tile_size
+onready var grid_x = grid.grid_x
+onready var grid_y = grid.grid_y
 
 # Map input action names to the appropriate vectors
 # For now, use arrow keys as input
@@ -21,3 +24,7 @@ func _unhandled_input(event):
 # Change position based on movement direction
 func move(dir):
 	position += inputs[dir] * tile_size
+	
+	# Clamp position to window
+	position.x = clamp(position.x, tile_size/2, grid_x - tile_size/2)
+	position.y = clamp(position.y, tile_size/2, grid_y - tile_size/2)
