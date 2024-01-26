@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="CodeBlockBar" type="ColorRect"]
+margin_top = 918.0
+margin_right = 1440.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1440.0
+margin_bottom = 162.0
