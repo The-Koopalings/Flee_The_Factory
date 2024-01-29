@@ -7,3 +7,4 @@
 script = ExtResource( 1 )
 
 [node name="Robot" parent="." instance=ExtResource( 2 )]
+position = Vector2( 160, 150 )

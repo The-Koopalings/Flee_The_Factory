@@ -1,7 +1,7 @@
 extends Area2D
 
 var dragging = false
-var startPos = self.position
+var startPos = self.global_position
 
 signal drag;
 
