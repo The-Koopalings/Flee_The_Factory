@@ -4,6 +4,7 @@
 margin_top = 918.0
 margin_right = 1440.0
 margin_bottom = 1080.0
+mouse_filter = 2
 __meta__ = {
 "_edit_group_": true
 }
@@ -11,3 +12,4 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 1440.0
 margin_bottom = 162.0
+mouse_filter = 2
