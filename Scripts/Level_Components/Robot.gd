@@ -1,10 +1,11 @@
 extends Area2D
 
 onready var grid = get_node("/root/Node2D/Grid")
+onready var ray = $RayCast2D
 onready var tile_size = grid.tile_size
 onready var grid_x = grid.grid_x
 onready var grid_y = grid.grid_y
-var startPosition = Vector2(192,162)
+var startPosition = Vector2(200,200)
 
 # Map input action names to the appropriate vectors
 # For now, use arrow keys as input
@@ -24,8 +25,15 @@ func _unhandled_input(event):
 
 # Change position based on movement direction
 func move(dir):
-	position += inputs[dir] * tile_size
+	var vector_position = inputs[dir] * tile_size
+	
+	# Check if there is an obstacle in the direction of the robot's movement
+	ray.cast_to = vector_position
+	ray.force_raycast_update()
+	
+	if !ray.is_colliding():
+		position += vector_position
 	
 	# Clamp position to window
-	position.x = clamp(position.x, 192 +  tile_size/2, grid_x - tile_size/2)
-	position.y = clamp(position.y, 162 + tile_size/2, grid_y - tile_size/2)
+	position.x = clamp(position.x, 200 +  tile_size/2, grid_x - tile_size/2)
+	position.y = clamp(position.y, 200 + tile_size/2, grid_y - tile_size/2)
