@@ -33,8 +33,10 @@ func _on_FunctionBlockArea_area_exited(area):
 
 
 func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
+	#If dropped codeblock onto this grid
 	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
 		var child = null
+		#Check for valid codeblock
 		match CodeBlock.name:
 			"Forward":
 				child = Forward.instance()
@@ -42,6 +44,8 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 				child = RotateLeft.instance()
 			"RotateRight":
 				child = RotateRight.instance()
-				
+		
+		#Add codeblock node to tree
 		add_child(child)
+		print(get_child(0).position)
 		print("DROPPED " + CodeBlock.name + " in " + name)

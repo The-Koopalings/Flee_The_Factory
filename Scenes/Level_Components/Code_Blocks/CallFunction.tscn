@@ -8,7 +8,6 @@
 extents = Vector2( 29.5, 28.5 )
 
 [node name="FunctionBlock" type="Area2D"]
-position = Vector2( 1235, 642 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
