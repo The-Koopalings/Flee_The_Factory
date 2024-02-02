@@ -1,20 +1,24 @@
 extends Area2D
 
 var dragging = false
-var startPos = self.global_position
+var parent
+var startPos
 
 signal drag;
 
 func _ready():
 	connect("drag",self,"set_dragging") #connects drag signal to function set_dragging
+	parent = self.get_parent()
+	startPos = parent.global_position
 	
 	
 func _process(delta):
 	if dragging:
 		var mousePos = get_viewport().get_mouse_position()
-		self.position = Vector2(mousePos.x, mousePos.y)
+		parent.global_position = Vector2(mousePos.x, mousePos.y)
 	if !dragging:
-		self.position = startPos 
+		parent.global_position = startPos 
+		
 
 		
 
