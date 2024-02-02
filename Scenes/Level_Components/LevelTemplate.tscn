@@ -15,7 +15,7 @@
 [node name="CodeBlockBar" parent="." instance=ExtResource( 5 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 4 )]
-position = Vector2( 89, 83 )
+position = Vector2( 90, 81 )
 
 [node name="RotateLeft" parent="CodeBlockBar" instance=ExtResource( 1 )]
 position = Vector2( 200, 81 )

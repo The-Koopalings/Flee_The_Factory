@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/FunctionBlockArea.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Level_Components/FunctionContainer.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 207.5, 97 )
@@ -26,11 +25,6 @@ script = ExtResource( 1 )
 position = Vector2( 210, 100 )
 shape = SubResource( 1 )
 
-[node name="FunctionContainer" type="GridContainer" parent="FunctionBlockArea"]
-margin_right = 420.0
-margin_bottom = 200.0
-script = ExtResource( 2 )
-
 [node name="ColorRect" type="ColorRect" parent="FunctionBlockArea"]
 margin_right = 420.0
 margin_bottom = 200.0
@@ -42,7 +36,4 @@ margin_right = 480.0
 margin_bottom = 275.0
 color = Color( 0.129412, 0.823529, 0.12549, 1 )
 
-[connection signal="area_entered" from="FunctionBlockArea" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionBlockArea_area_entered"]
-[connection signal="area_exited" from="FunctionBlockArea" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionBlockArea_area_exited"]
-[connection signal="input_event" from="FunctionBlockArea" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionBlockArea_input_event"]
-[connection signal="gui_input" from="FunctionBlockArea/FunctionContainer" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionContainer_gui_input"]
+[connection signal="input_event" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_input_event"]

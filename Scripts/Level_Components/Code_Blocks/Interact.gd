@@ -11,4 +11,5 @@ func _process(delta):
 
 
 func emitSignal():
+	print("INTERACTING")
 	emit_signal("interactSignal")
