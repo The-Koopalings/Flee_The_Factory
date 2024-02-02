@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Level_Components/FunctionBlockArea.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Level_Components/FunctionContainer.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 207.5, 97 )
@@ -15,18 +18,20 @@ rect_scale = Vector2( 4, 4 )
 text = "Main"
 align = 1
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="FunctionBlockArea" type="Area2D" parent="."]
 position = Vector2( 30, 70 )
+script = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FunctionBlockArea"]
 position = Vector2( 210, 100 )
 shape = SubResource( 1 )
 
-[node name="GridContainer" type="GridContainer" parent="Area2D"]
+[node name="FunctionContainer" type="GridContainer" parent="FunctionBlockArea"]
 margin_right = 420.0
 margin_bottom = 200.0
+script = ExtResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
+[node name="ColorRect" type="ColorRect" parent="FunctionBlockArea"]
 margin_right = 420.0
 margin_bottom = 200.0
 color = Color( 0.0745098, 0.729412, 0.160784, 1 )
@@ -36,3 +41,6 @@ show_behind_parent = true
 margin_right = 480.0
 margin_bottom = 275.0
 color = Color( 0.129412, 0.823529, 0.12549, 1 )
+
+[connection signal="area_entered" from="FunctionBlockArea" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionBlockArea_area_entered"]
+[connection signal="area_exited" from="FunctionBlockArea" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionBlockArea_area_exited"]

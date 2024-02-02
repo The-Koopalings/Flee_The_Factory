@@ -88,7 +88,9 @@ __meta__ = {
 
 [node name="IDE" parent="." instance=ExtResource( 8 )]
 margin_left = 1440.0
+margin_top = -3.0
 margin_right = 1920.0
+margin_bottom = 1077.0
 
 [connection signal="input_event" from="RotateLeft" to="RotateLeft" method="_on_Area2D_input_event"]
 [connection signal="input_event" from="Forward" to="Forward" method="_on_Area2D_input_event"]
