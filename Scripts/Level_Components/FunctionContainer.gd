@@ -17,6 +17,7 @@ func _ready():
 	connect("area_entered",self,"_on_FunctionBlockArea_area_entered")
 	connect("area_exited",self,"_on_FunctionBlockArea_area_exited")
 	connect("drag",self,"_on_Code_Block_drag")
+	set_columns(7)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -46,6 +47,11 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 				child = RotateRight.instance()
 		
 		#Add codeblock node to tree
+		child.position = Vector2()
 		add_child(child)
-		print(get_child(0).position)
+		
+		for c in get_children():
+			print(c.name)
+			print(c.position)
+			
 		print("DROPPED " + CodeBlock.name + " in " + name)
