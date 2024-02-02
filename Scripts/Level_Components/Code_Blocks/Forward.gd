@@ -20,6 +20,8 @@ func _process(delta):
 
 func set_dragging(): 
 	dragging=!dragging
+	#if dragging is now false, emit signal dropped with the block's current position
+	#in the IDE, if that position is within a function's area, add it to the function
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):

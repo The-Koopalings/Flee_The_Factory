@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 207.5, 97 )
+
+[node name="FunctionBlockControl" type="Control"]
+margin_right = 480.0
+margin_bottom = 275.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 140.0
+margin_right = 180.0
+margin_bottom = 20.0
+rect_scale = Vector2( 4, 4 )
+text = "Main"
+align = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 30, 70 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 210, 100 )
+shape = SubResource( 1 )
+
+[node name="GridContainer" type="GridContainer" parent="Area2D"]
+margin_right = 420.0
+margin_bottom = 200.0
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+margin_right = 420.0
+margin_bottom = 200.0
+color = Color( 0.0745098, 0.729412, 0.160784, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+margin_right = 480.0
+margin_bottom = 275.0
+color = Color( 0.129412, 0.823529, 0.12549, 1 )
