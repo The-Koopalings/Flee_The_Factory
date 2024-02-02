@@ -44,3 +44,5 @@ color = Color( 0.129412, 0.823529, 0.12549, 1 )
 
 [connection signal="area_entered" from="FunctionBlockArea" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionBlockArea_area_entered"]
 [connection signal="area_exited" from="FunctionBlockArea" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionBlockArea_area_exited"]
+[connection signal="input_event" from="FunctionBlockArea" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionBlockArea_input_event"]
+[connection signal="gui_input" from="FunctionBlockArea/FunctionContainer" to="FunctionBlockArea/FunctionContainer" method="_on_FunctionContainer_gui_input"]

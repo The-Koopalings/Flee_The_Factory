@@ -4,7 +4,13 @@ extends GridContainer
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var inFocus = false
+var CodeBlock = null
+var PathToCodeBlocks = "res://Scenes/Level_Components/Code_Blocks/"
+var Forward = load(PathToCodeBlocks + "Forward.tscn")
+var RotateLeft = load(PathToCodeBlocks + "RotateLeft.tscn")
+var RotateRight = load(PathToCodeBlocks + "RotateRight.tscn")
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,14 +24,24 @@ func _ready():
 
 
 func _on_FunctionBlockArea_area_entered(area):
-	inFocus = true
-	print("HIT")
+	if CodeBlock == null:
+		CodeBlock = area
+	print("HIT " + area.name + " in " + name)
 
 func _on_FunctionBlockArea_area_exited(area):
-	inFocus = false
-	print("BYE")
+	CodeBlock = null
 
-func _on_Code_Block_drag(area):
-	if inFocus:
-		print("HELLO " + area.name)	
-		
+
+func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
+		var child = null
+		match CodeBlock.name:
+			"Forward":
+				child = Forward.instance()
+			"RotateLeft":
+				child = RotateLeft.instance()
+			"RotateRight":
+				child = RotateRight.instance()
+				
+		add_child(child)
+		print("DROPPED " + CodeBlock.name + " in " + name)
