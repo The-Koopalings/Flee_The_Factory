@@ -1,11 +1,11 @@
 extends StaticBody2D
 
-onready var grid = get_node("/root/Node2D/Grid")
+onready var grid = get_node("/root/Node2D/Puzzle")
 onready var tile_size = grid.tile_size
 var startPosition = Vector2(500,300)
 
 func _ready():
-	position = position.snapped(startPosition)
+	position = startPosition
 	
 	# Add half a tile size to center obstacle on tile
 	position += Vector2.ONE * tile_size/2

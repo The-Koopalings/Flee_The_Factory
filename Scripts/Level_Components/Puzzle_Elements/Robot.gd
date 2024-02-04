@@ -1,6 +1,6 @@
 extends Area2D
 
-onready var grid = get_node("/root/Node2D/Grid")
+onready var grid = get_node("/root/Node2D/Puzzle")
 onready var ray = $RayCast2D
 onready var tile_size = grid.tile_size
 onready var grid_x = grid.grid_x
