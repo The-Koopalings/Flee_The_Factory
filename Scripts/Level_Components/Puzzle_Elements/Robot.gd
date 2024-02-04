@@ -1,10 +1,12 @@
-extends Area2D
+extends KinematicBody2D
 
 onready var grid = get_node("/root/Node2D/Puzzle")
 onready var ray = $RayCast2D
 onready var tile_size = grid.tile_size
 onready var grid_x = grid.grid_x
 onready var grid_y = grid.grid_y
+
+# NOTE: This may be changed depending on level
 var startPosition = Vector2(200,200)
 
 # Map input action names to the appropriate vectors
@@ -37,3 +39,4 @@ func move(dir):
 	# Clamp position to window
 	position.x = clamp(position.x, 200 +  tile_size/2, grid_x - tile_size/2)
 	position.y = clamp(position.y, 200 + tile_size/2, grid_y - tile_size/2)
+

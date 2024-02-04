@@ -18,3 +18,16 @@ position = Vector2( 242, 212 )
 position = Vector2( 443, 211 )
 
 [node name="Button" parent="." instance=ExtResource( 2 )]
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+visible = true
+margin_left = 574.0
+margin_top = 402.0
+margin_right = 680.0
+margin_bottom = 460.0
+rect_scale = Vector2( 5, 5 )
+window_title = ""
+dialog_text = "Level Cleared!"
+
+[connection signal="body_entered" from="Button" to="Robot" method="_on_Button_body_entered"]
+[connection signal="body_exited" from="Button" to="Robot" method="_on_Button_body_exited"]
