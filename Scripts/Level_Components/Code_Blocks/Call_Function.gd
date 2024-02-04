@@ -11,4 +11,5 @@ func _process(delta):
 
 
 func emitSignal():
+	print("CALLING FUNCTION")
 	emit_signal("functionSignal")

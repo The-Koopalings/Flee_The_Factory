@@ -4,7 +4,7 @@ var dragging = false
 var parent
 var startPos
 
-signal drag;
+signal drag(area);
 
 func _ready():
 	connect("drag",self,"set_dragging") #connects drag signal to function set_dragging
@@ -22,13 +22,13 @@ func _process(delta):
 
 		
 
-func set_dragging(): 
+func set_dragging(area): 
 	dragging=!dragging
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			emit_signal("drag") #set dragging to true, mouse button pressed
+			emit_signal("drag", self) #set dragging to true, mouse button pressed
 		elif event.button_index == BUTTON_LEFT and !event.pressed:
-			emit_signal("drag") #set dragging to false, mouse button released
+			emit_signal("drag", self) #set dragging to false, mouse button released
