@@ -9,6 +9,7 @@ var tileY
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#connect("interact", self, "_on_ProofOfConcept_openDoor")
 	pass # Replace with function body.
 
 
@@ -19,3 +20,4 @@ func _ready():
 
 func _on_ProofOfConcept_openDoor():
 	get_node("Sprite").set_texture(openDoorTexture)
+	print("OPEN DOOR")

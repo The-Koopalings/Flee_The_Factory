@@ -28,7 +28,7 @@ func _ready():
 func _on_FunctionBlockArea_area_entered(area):
 	if CodeBlock == null:
 		CodeBlock = area
-	print("HIT " + area.name + " in " + name)
+	#print("HIT " + area.name + " in " + name)
 
 func _on_FunctionBlockArea_area_exited(area):
 	CodeBlock = null
@@ -57,4 +57,4 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 			numBlocks += 1
 			add_child(child, true)
 
-		print("DROPPED " + CodeBlock.name + " in " + name)
+		#print("DROPPED " + CodeBlock.name + " in " + name)

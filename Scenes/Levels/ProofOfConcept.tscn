@@ -69,6 +69,10 @@ text = "F2"
 [connection signal="openDoor" from="." to="Grid/Door" method="_on_ProofOfConcept_openDoor"]
 [connection signal="interact" from="Grid/Robot" to="Grid/Button" method="_on_Robot_interact"]
 [connection signal="buttonPressed" from="Grid/Button" to="." method="_on_Button_buttonPressed"]
+[connection signal="forwardSignal" from="CodeBlockBar/Forward" to="Grid/Robot" method="_on_Forward_forwardSignal"]
+[connection signal="rotateLeftSignal" from="CodeBlockBar/RotateLeft" to="Grid/Robot" method="_on_RotateLeft_rotateLeftSignal"]
+[connection signal="rotateRightSignal" from="CodeBlockBar/RotateRight" to="Grid/Robot" method="_on_RotateRight_rotateRightSignal"]
+[connection signal="interactSignal" from="CodeBlockBar/Interact" to="Grid/Robot" method="_on_Interact_interactSignal"]
 
 [editable path="Grid/Robot"]
 [editable path="Grid/Obstacle"]
