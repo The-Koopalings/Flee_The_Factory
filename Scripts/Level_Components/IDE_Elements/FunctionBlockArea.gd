@@ -6,6 +6,7 @@ var Template = load(PathToCodeBlocks + "CodeBlock.tscn")
 var Forward = load(PathToCodeBlocks + "Forward.tscn")
 var RotateLeft = load(PathToCodeBlocks + "RotateLeft.tscn")
 var RotateRight = load(PathToCodeBlocks + "RotateRight.tscn")
+var Interact  = load(PathToCodeBlocks + "Interact.tscn")
 
 var numBlocks = 0
 var rowSize = 7
@@ -45,6 +46,8 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 				child = RotateLeft.instance()
 			"RotateRight":
 				child = RotateRight.instance()
+			"Interact":
+				child = Interact.instance()
 		
 		#Add codeblock node to tree
 		if child != null:
