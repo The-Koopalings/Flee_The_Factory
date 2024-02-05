@@ -43,6 +43,15 @@ margin_right = 1920.0
 margin_top = 513.0
 margin_bottom = 788.0
 
+[node name="Label" parent="IDE/FunctionBlockControl" index="0"]
+text = "F1"
+
 [node name="FunctionBlockControl2" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 792.0
 margin_bottom = 1067.0
+
+[node name="Label" parent="IDE/FunctionBlockControl2" index="0"]
+text = "F2"
+
+[editable path="IDE/FunctionBlockControl"]
+[editable path="IDE/FunctionBlockControl2"]

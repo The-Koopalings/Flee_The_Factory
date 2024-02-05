@@ -15,7 +15,7 @@ margin_left = 140.0
 margin_right = 180.0
 margin_bottom = 20.0
 rect_scale = Vector2( 4, 4 )
-text = "Main"
+text = "FUNCTION"
 align = 1
 
 [node name="FunctionBlockArea" type="Area2D" parent="."]
