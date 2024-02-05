@@ -28,10 +28,10 @@ var numCols = 10  #Cells per col
 #NOTE: This script assumes the children of Grid are placed in the order they will be read (left to right, top to bottom).
 #Useful for easier editing of levels and for level editors in the future
 var grid = [
-	'R','O',' ','B',' ',' ',' ',' ',' ',' ',
+	'R','O',' ',' ',' ',' ',' ',' ',' ',' ',
 	' ','O',' ',' ',' ',' ',' ',' ',' ',' ',
 	' ','O',' ',' ',' ',' ',' ',' ',' ',' ',
-	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+	' ','B',' ',' ',' ',' ',' ',' ',' ',' ',
 	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
 	' ',' ',' ',' ',' ',' ',' ',' ',' ','D',
 ]
@@ -50,7 +50,7 @@ func _ready():
 	for tile in grid:		
 		if tile != ' ':
 			node = Grid.get_child(2 + childIndex)
-			print(node.name)
+			
 			childIndex += 1
 			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			#TODO: Change the 200 to reference Grid once we add in a variable in it to tell us where the grid starts
@@ -72,6 +72,7 @@ func _process(delta):
 	#If win con, then open door
 	if B0_Pressed == true:
 		emit_signal("openDoor")
+		B0_Pressed = false #So console doesn't get spammed at the end
 		
 
 

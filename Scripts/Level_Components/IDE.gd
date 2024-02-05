@@ -28,3 +28,4 @@ func _on_Button_pressed():
 	
 	for block in code:
 		block.emitSignal()
+		yield(get_tree().create_timer(0.25, false), "timeout") 
