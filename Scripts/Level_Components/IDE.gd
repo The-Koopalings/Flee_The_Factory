@@ -18,10 +18,12 @@ func _ready():
 
 func _on_Button_pressed():
 	var code = main.get_children()
-	#Pop all the none code children
+	
+	#Pop all the non-code nodes
 	code.pop_front()
 	code.pop_front()
 	
+	#debug so we know what's running
 	print(code)
 	
 	for block in code:

@@ -1,6 +1,6 @@
 extends Area2D
 
-onready var grid = get_node("/root/Node2D/Puzzle")
+onready var grid = get_node("../") #Gets puzzle, which should be the immediate parent for any puzzle elements
 onready var tile_size = grid.tile_size
 var hit = false
 
