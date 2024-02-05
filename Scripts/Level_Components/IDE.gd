@@ -6,9 +6,9 @@ extends VBoxContainer
 # var b = "text"
 onready var main = get_node("Main/FunctionBlockArea")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	add_constant_override("separation", 5)
+	move_child(get_child(1), get_child_count() - 1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

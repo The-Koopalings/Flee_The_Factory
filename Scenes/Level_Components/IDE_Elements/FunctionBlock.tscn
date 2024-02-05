@@ -8,6 +8,7 @@ extents = Vector2( 207.5, 97 )
 [node name="FunctionBlockControl" type="Control"]
 margin_right = 480.0
 margin_bottom = 275.0
+rect_min_size = Vector2( 480, 275 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 140.0
@@ -28,6 +29,7 @@ shape = SubResource( 1 )
 [node name="ColorRect" type="ColorRect" parent="FunctionBlockArea"]
 margin_right = 420.0
 margin_bottom = 200.0
+rect_min_size = Vector2( 420, 200 )
 color = Color( 0.0745098, 0.729412, 0.160784, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

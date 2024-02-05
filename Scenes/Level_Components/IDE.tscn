@@ -9,22 +9,11 @@ margin_bottom = 1080.0
 script = ExtResource( 2 )
 
 [node name="Main" parent="." instance=ExtResource( 1 )]
-rect_min_size = Vector2( 480, 275 )
-
-[node name="FunctionBlockControl2" parent="." instance=ExtResource( 1 )]
-margin_top = 279.0
-margin_bottom = 554.0
-rect_min_size = Vector2( 480, 275 )
-
-[node name="FunctionBlockControl3" parent="." instance=ExtResource( 1 )]
-margin_top = 558.0
-margin_bottom = 833.0
-rect_min_size = Vector2( 480, 275 )
 
 [node name="Run_Button" type="Button" parent="."]
-margin_top = 837.0
+margin_top = 279.0
 margin_right = 480.0
-margin_bottom = 1067.0
+margin_bottom = 509.0
 rect_min_size = Vector2( 480, 230 )
 text = "RUN"
 
