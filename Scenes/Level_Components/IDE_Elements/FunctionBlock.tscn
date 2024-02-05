@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/Level_Components/FunctionBlockArea.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 207.5, 97 )
@@ -8,13 +8,14 @@ extents = Vector2( 207.5, 97 )
 [node name="FunctionBlockControl" type="Control"]
 margin_right = 480.0
 margin_bottom = 275.0
+rect_min_size = Vector2( 480, 275 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 140.0
 margin_right = 180.0
 margin_bottom = 20.0
 rect_scale = Vector2( 4, 4 )
-text = "Main"
+text = "FUNCTION"
 align = 1
 
 [node name="FunctionBlockArea" type="Area2D" parent="."]
@@ -28,6 +29,7 @@ shape = SubResource( 1 )
 [node name="ColorRect" type="ColorRect" parent="FunctionBlockArea"]
 margin_right = 420.0
 margin_bottom = 200.0
+rect_min_size = Vector2( 420, 200 )
 color = Color( 0.0745098, 0.729412, 0.160784, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

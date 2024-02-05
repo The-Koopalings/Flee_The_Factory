@@ -20,8 +20,6 @@ func _process(delta):
 		parent.global_position = startPos 
 		
 
-		
-
 func set_dragging(area): 
 	dragging=!dragging
 
