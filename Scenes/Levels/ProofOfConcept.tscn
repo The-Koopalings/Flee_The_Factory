@@ -24,11 +24,11 @@ script = ExtResource( 12 )
 
 [node name="Obstacle" parent="Grid" instance=ExtResource( 10 )]
 
-[node name="Button" parent="Grid" instance=ExtResource( 8 )]
-
 [node name="Obstacle2" parent="Grid" instance=ExtResource( 10 )]
 
 [node name="Obstacle3" parent="Grid" instance=ExtResource( 10 )]
+
+[node name="Button" parent="Grid" instance=ExtResource( 8 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 13 )]
 
