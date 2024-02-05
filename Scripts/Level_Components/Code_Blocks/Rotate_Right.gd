@@ -3,7 +3,8 @@ extends Area2D
 signal rotateRightSignal
 
 func _ready():
-	pass
+	var Robot = get_node("/root/ProofOfConcept/Grid/Robot")
+	connect("rotateRightSignal",Robot,"_on_RotateRight_rotateRightSignal")
 	
 
 func _process(delta):
