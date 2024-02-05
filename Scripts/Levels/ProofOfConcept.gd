@@ -36,30 +36,45 @@ var grid = [
 	' ',' ',' ',' ',' ',' ',' ',' ',' ','D',
 ]
 
+#win conditions
+signal openDoor
+var B0_Pressed
+
 # Called when the node enters the scene tree for the first time.
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
-	var tile_count = 0
-	var child_index = 0
+	var tileCount = 0
+	var childIndex = 0
 	var node
 	
 	for tile in grid:		
 		if tile != ' ':
-			node = Grid.get_child(2 + child_index)
+			node = Grid.get_child(2 + childIndex)
 			print(node.name)
-			child_index += 1
+			childIndex += 1
 			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			#TODO: Change the 200 to reference Grid once we add in a variable in it to tell us where the grid starts
 			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			var x = 200 + Grid.tile_size/2 + Grid.tile_size * (tile_count%numCols)
-			var y = 200 + Grid.tile_size/2 + Grid.tile_size * (tile_count/numCols)
-				
+			var x = 200 + Grid.tile_size/2 + Grid.tile_size * (tileCount%numCols)
+			var y = 200 + Grid.tile_size/2 + Grid.tile_size * (tileCount/numCols)
+			node.tileX = tileCount%numCols
+			node.tileY = tileCount/numCols
 			node.position = Vector2(x, y)	
 			
-		tile_count += 1
+		tileCount += 1
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	
+	#Check win con
+	#If win con, then open door
+	if B0_Pressed == true:
+		emit_signal("openDoor")
+		
+
+
+
+func _on_Button_buttonPressed(name):
+	B0_Pressed = true

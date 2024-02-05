@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/LevelControl.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Levels/ProofOfConcept.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=14]
 
 [node name="ProofOfConcept" type="Node2D"]
 script = ExtResource( 12 )
@@ -42,29 +43,36 @@ position = Vector2( 200, 81 )
 [node name="RotateRight" parent="CodeBlockBar" instance=ExtResource( 6 )]
 position = Vector2( 310, 81 )
 
+[node name="Interact" parent="CodeBlockBar" instance=ExtResource( 14 )]
+position = Vector2( 420, 81 )
+
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 margin_left = 1440.0
 margin_right = 1920.0
 
-[node name="FunctionBlockControl" parent="IDE" instance=ExtResource( 11 )]
+[node name="F1" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 513.0
 margin_bottom = 788.0
 
-[node name="Label" parent="IDE/FunctionBlockControl" index="0"]
+[node name="Label" parent="IDE/F1" index="0"]
 text = "F1"
 
-[node name="FunctionBlockControl2" parent="IDE" instance=ExtResource( 11 )]
+[node name="F2" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 792.0
 margin_bottom = 1067.0
 
-[node name="Label" parent="IDE/FunctionBlockControl2" index="0"]
+[node name="Label" parent="IDE/F2" index="0"]
 text = "F2"
+
+[connection signal="openDoor" from="." to="Grid/Door" method="_on_ProofOfConcept_openDoor"]
+[connection signal="interact" from="Grid/Robot" to="Grid/Button" method="_on_Robot_interact"]
+[connection signal="buttonPressed" from="Grid/Button" to="." method="_on_Button_buttonPressed"]
 
 [editable path="Grid/Robot"]
 [editable path="Grid/Obstacle"]
 [editable path="Grid/Obstacle2"]
 [editable path="Grid/Obstacle3"]
-[editable path="IDE/FunctionBlockControl"]
-[editable path="IDE/FunctionBlockControl2"]
+[editable path="IDE/F1"]
+[editable path="IDE/F2"]
