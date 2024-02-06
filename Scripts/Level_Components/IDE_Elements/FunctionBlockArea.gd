@@ -76,7 +76,6 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 		#print("DROPPED " + CodeBlock.name + " in " + name)
 
 func stop_drag(globalPos):
-	print("enter stop_drag")
 	if child and removeChild and child.get_child(2).startPos == globalPos:
 		child.queue_free() 
 		removeChild = false
