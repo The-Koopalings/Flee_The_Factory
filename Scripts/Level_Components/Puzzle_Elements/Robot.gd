@@ -7,8 +7,8 @@ onready var grid_x = grid.grid_x
 onready var grid_y = grid.grid_y
 var tileX
 var tileY
-var tileXMax = 10 #change once we settle on what this should be
-var tileYMax = 6  #change once we settle on what this should be
+export var tileXMax = 10 #change once we settle on what this should be
+export var tileYMax = 6  #change once we settle on what this should be
 
 signal interact(tileX, tileY)
 

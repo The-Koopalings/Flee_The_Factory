@@ -6,6 +6,7 @@
 [node name="IDE" type="VBoxContainer"]
 margin_right = 480.0
 margin_bottom = 1080.0
+mouse_filter = 2
 script = ExtResource( 2 )
 
 [node name="Main" parent="." instance=ExtResource( 1 )]

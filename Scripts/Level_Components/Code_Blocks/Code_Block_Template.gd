@@ -4,10 +4,14 @@ var dragging = false
 var parent
 var startPos
 
-signal drag(area);
+signal drag(area)
+signal stopDrag(globalPos)
 
 func _ready():
 	connect("drag",self,"set_dragging") #connects drag signal to function set_dragging
+	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/Main/FunctionBlockArea"), "stop_drag")
+	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/F1/FunctionBlockArea"), "stop_drag")
+	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/F2/FunctionBlockArea"), "stop_drag")
 	parent = self.get_parent()
 	startPos = parent.global_position
 	
@@ -16,8 +20,10 @@ func _process(delta):
 	if dragging:
 		var mousePos = get_viewport().get_mouse_position()
 		parent.global_position = Vector2(mousePos.x, mousePos.y)
+		#self.global_position = parent.global_position
 	if !dragging:
 		parent.global_position = startPos 
+		#self.global_position = startPos
 		
 
 func set_dragging(area): 
@@ -30,3 +36,5 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			emit_signal("drag", self) #set dragging to true, mouse button pressed
 		elif event.button_index == BUTTON_LEFT and !event.pressed:
 			emit_signal("drag", self) #set dragging to false, mouse button released
+			emit_signal("stopDrag", startPos)
+			

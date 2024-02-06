@@ -9,6 +9,7 @@ extents = Vector2( 207.5, 97 )
 margin_right = 480.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 480, 275 )
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="."]
 margin_left = 140.0
@@ -30,12 +31,16 @@ shape = SubResource( 1 )
 margin_right = 420.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 420, 200 )
+mouse_filter = 2
 color = Color( 0.0745098, 0.729412, 0.160784, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 show_behind_parent = true
 margin_right = 480.0
 margin_bottom = 275.0
+mouse_filter = 2
 color = Color( 0.129412, 0.823529, 0.12549, 1 )
 
+[connection signal="area_entered" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_area_entered"]
+[connection signal="area_exited" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_area_exited"]
 [connection signal="input_event" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_input_event"]
