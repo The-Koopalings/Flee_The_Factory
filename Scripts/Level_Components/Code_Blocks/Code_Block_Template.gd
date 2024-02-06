@@ -7,7 +7,9 @@ var startPos
 signal drag(area);
 
 func _ready():
-	connect("drag",self,"set_dragging") #connects drag signal to function set_dragging
+	
+	#connects drag signal to function set_dragging
+	connect("drag",self,"set_dragging") 
 	parent = self.get_parent()
 	startPos = parent.global_position
 	
