@@ -7,7 +7,9 @@ var startPos
 signal drag(area);
 
 func _ready():
-	connect("drag",self,"set_dragging") #connects drag signal to function set_dragging
+	
+	#connects drag signal to function set_dragging
+	connect("drag",self,"set_dragging") 
 	parent = self.get_parent()
 	startPos = parent.global_position
 	
@@ -18,8 +20,6 @@ func _process(delta):
 		parent.global_position = Vector2(mousePos.x, mousePos.y)
 	if !dragging:
 		parent.global_position = startPos 
-		
-
 		
 
 func set_dragging(area): 
