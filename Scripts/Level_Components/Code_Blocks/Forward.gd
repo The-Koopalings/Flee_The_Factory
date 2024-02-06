@@ -12,6 +12,6 @@ func _process(delta):
 	pass
 
 
-func emitSignal():
+func send_signal():
 	print("MOVING FORWARDS")
 	emit_signal("forwardSignal")

@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
-onready var grid = get_node("../") #Gets puzzle, which should be the immediate parent for any puzzle elements
-onready var ray = $RayCast2D
+ #Gets puzzle, which should be the immediate parent for any puzzle elements
+onready var grid = get_node("../")
+
 onready var tile_size = grid.tile_size
 onready var grid_x = grid.grid_x
 onready var grid_y = grid.grid_y
@@ -10,11 +11,14 @@ var tileY
 export var tileXMax = 10 #change once we settle on what this should be
 export var tileYMax = 6  #change once we settle on what this should be
 
+# startPosition is now set by the Level
+#var startPosition = Vector2(200, 200)
+
 signal interact(tileX, tileY)
 
-# NOTE: This may be changed depending on level
-var startPosition = Vector2(200, 200)
 
+#Used for dictating movement
+onready var ray = $RayCast2D
 
 # Map input action names to the appropriate vectors
 # For now, use arrow keys as input
@@ -28,17 +32,15 @@ enum Orientation{
 }
 
 func _ready():
-	# Round robot position to nearest tile
-	#position = startPosition
-	# Add half a tile size to center robot on tile
-	#position += Vector2.ONE * tile_size/2
 	pass
+	
+#Event handler for movement via keyboard	
 func _unhandled_input(event):
 	for dir in inputs.keys():
 		if event.is_action_pressed(dir):
 			move(dir)
 
-# Change position based on movement direction
+# Controls movement of the robot
 func move(dir):
 	var vector_position = inputs[dir] * tile_size
 	
@@ -48,55 +50,57 @@ func move(dir):
 	
 	if !ray.is_colliding():
 		position += vector_position
+		
+		#Update grid coordinates
+		match dir:
+			"ui_right":
+				tileX += 1
+			"ui_left":
+				tileX -= 1
+			"ui_down":
+				tileY += 1
+			"ui_up":
+				tileY -= 1
 	
 	# Clamp position to window
 	position.x = clamp(position.x, 200 +  tile_size/2, grid_x - tile_size/2)
 	position.y = clamp(position.y, 200 + tile_size/2, grid_y - tile_size/2)
+	tileX = clamp(tileX, 0, tileXMax)
+	tileY = clamp(tileY, 0, tileYMax)
 
 
-
+#Forward
 func _on_Forward_forwardSignal():
-	var orientation = int(rotation * 2 / PI) % 4
-	if orientation < 0:
-		orientation += 4
-	#print("Rotation: " + str(rotation) + " || Orientation: " + str(orientation))
-	if orientation == Orientation.UP:
-		#Play animation, if can't move, play animation anyways
-		
-		#Move robot
-		if tileY > 0:
-			tileY -= 1
+	#Get orientation of the robot
+	var orientation
+	if rotation >= 0:
+		orientation = int((rotation_degrees+1) / 90) % 4
+	elif rotation < 0:
+		orientation = int((rotation_degrees-1) / 90) % 4
+		orientation += 4 if orientation != 0 else 0
+	
+	#Move forwards based on robot orientation
+	match orientation:
+		Orientation.UP:
 			move("ui_up")
-
-	elif orientation == Orientation.LEFT:
-		if tileX > 0:
-			tileX -= 1
+			
+		Orientation.LEFT:
 			move("ui_left")
 			
-	elif orientation == Orientation.DOWN:
-		if tileY < tileYMax:
-			tileY += 1
+		Orientation.DOWN:
 			move("ui_down")
 			
-	elif orientation == Orientation.RIGHT:
-		if tileX < tileXMax:
-			tileX += 1
+		Orientation.RIGHT:
 			move("ui_right")
 
-
+#RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
 	rotation -= PI/2
-	var orientation = int(rotation * 2 / PI) % 4
-	if orientation < 0:
-		orientation += 4
-	print("Rotation: " + str(rotation) + " || Orientation: " + str(orientation))
 
+#RotateRight
 func _on_RotateRight_rotateRightSignal():
 	rotation += PI/2
-	var orientation = int(rotation * 2 / PI) % 4
-	if orientation < 0:
-		orientation += 4
-	print("Rotation: " + str(rotation) + " || Orientation: " + str(orientation))
 
+#Interact
 func _on_Interact_interactSignal():
 	emit_signal("interact", tileX, tileY)

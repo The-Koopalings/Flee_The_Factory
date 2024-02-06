@@ -1,6 +1,7 @@
 extends Area2D
 
 var CodeBlock = null
+#Load CodeBlock objects
 var PathToCodeBlocks = "res://Scenes/Level_Components/Code_Blocks/"
 var Template = load(PathToCodeBlocks + "CodeBlock.tscn")
 var Forward = load(PathToCodeBlocks + "Forward.tscn")
@@ -28,15 +29,15 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
+#Area2D enters a function area
 func _on_FunctionBlockArea_area_entered(area):
 	if CodeBlock == null:
 		CodeBlock = area
-	#print("HIT " + area.name + " in " + name)
-
+		
+	
+#Area2D leaves a function area
 func _on_FunctionBlockArea_area_exited(area):
 	CodeBlock = null
-	
 	#Remove code block from IDE
 	var children = get_children()
 	for childNode in children:
@@ -48,12 +49,13 @@ func _on_FunctionBlockArea_area_exited(area):
 	justCreated = false
 			#numBlocks -= 1
 	
-
+	
+#Something is dropped in function area
 func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
-	#If dropped codeblock onto this grid
+	#If event was a drop
 	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
 		child = null
-		#Check for valid codeblock
+		#Check for valid codeblock & instance code block
 		if CodeBlock:
 			match CodeBlock.name:
 				"Forward":
@@ -64,7 +66,6 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 					child = RotateRight.instance()
 				"Interact":
 					child = Interact.instance()
-		
 		#Add codeblock node to tree
 		if child:
 			var x = xOffset + blockSize * (numBlocks%rowSize)
@@ -75,6 +76,8 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 			justCreated = true
 		#print("DROPPED " + CodeBlock.name + " in " + name)
 
+
+#Remove code blocks once player releases left mouse button
 func stop_drag(globalPos):
 	if child and removeChild and child.get_child(2).startPos == globalPos:
 		child.queue_free() 

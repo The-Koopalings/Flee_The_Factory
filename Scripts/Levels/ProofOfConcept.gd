@@ -1,11 +1,6 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 #Load Puzzle Elements
 #Not currently necessary, but if we wanted to do more by script...
 """
@@ -37,8 +32,8 @@ var grid = [
 ]
 
 #win conditions
+var B0_Pressed = false
 signal openDoor
-var B0_Pressed
 
 # Called when the node enters the scene tree for the first time.
 # Automatically set the positions of each element based on where they are on the grid.
@@ -47,18 +42,24 @@ func _ready():
 	var childIndex = 0
 	var node
 	
+	#Iterate through each tile
 	for tile in grid:		
+		#If tile is not empty, get the next child of Grid and set it's position
 		if tile != ' ':
 			node = Grid.get_child(2 + childIndex)
-			
 			childIndex += 1
+			
 			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			#TODO: Change the 200 to reference Grid once we add in a variable in it to tell us where the grid starts
 			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			var x = 200 + Grid.tile_size/2 + Grid.tile_size * (tileCount%numCols)
-			var y = 200 + Grid.tile_size/2 + Grid.tile_size * (tileCount/numCols)
-			node.tileX = tileCount%numCols
-			node.tileY = tileCount/numCols
+			var col = tileCount%numCols
+			var row = tileCount/numCols
+			var x = 200 + Grid.tile_size/2 + col * Grid.tile_size
+			var y = 200 + Grid.tile_size/2 + row * Grid.tile_size
+			
+			node.tileX = col
+			node.tileY = row
+			
 			node.position = Vector2(x, y)	
 			
 		tileCount += 1

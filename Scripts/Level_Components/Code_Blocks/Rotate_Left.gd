@@ -12,6 +12,6 @@ func _process(delta):
 	pass
 
 
-func emitSignal():
+func send_signal():
 	print("ROTATING LEFT")
 	emit_signal("rotateLeftSignal")
