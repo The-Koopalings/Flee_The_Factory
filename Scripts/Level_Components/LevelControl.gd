@@ -15,7 +15,7 @@ func _on_Settings_pressed():
 
 
 func _on_Restart_pressed():
-	pass # Replace with function body.
+	get_tree().reload_current_scene()
 
 
 func _on_DoubleSpeed_pressed():

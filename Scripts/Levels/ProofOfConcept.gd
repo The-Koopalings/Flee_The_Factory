@@ -46,7 +46,7 @@ func _ready():
 	for tile in grid:		
 		#If tile is not empty, get the next child of Grid and set it's position
 		if tile != ' ':
-			node = Grid.get_child(2 + childIndex)
+			node = Grid.get_child(1 + childIndex)
 			childIndex += 1
 			
 			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
