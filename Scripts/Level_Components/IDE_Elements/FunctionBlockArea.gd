@@ -8,6 +8,7 @@ var Forward = load(PathToCodeBlocks + "Forward.tscn")
 var RotateLeft = load(PathToCodeBlocks + "RotateLeft.tscn")
 var RotateRight = load(PathToCodeBlocks + "RotateRight.tscn")
 var Interact  = load(PathToCodeBlocks + "Interact.tscn")
+onready var counter = get_node("../Counter")
 
 var numBlocks = 0
 var rowSize = 7
@@ -47,7 +48,6 @@ func _on_FunctionBlockArea_area_exited(area):
 			child = childNode
 			removeChild = true
 	justCreated = false
-			#numBlocks -= 1
 	
 	
 #Something is dropped in function area
@@ -67,13 +67,15 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 				"Interact":
 					child = Interact.instance()
 		#Add codeblock node to tree
-		if child:
+		if child and numBlocks < counter.maxBlocks:
 			var x = xOffset + blockSize * (numBlocks%rowSize)
 			var y = yOffset + blockSize * int(numBlocks/rowSize)
 			child.position = Vector2(x, y)
 			numBlocks += 1
 			add_child(child, true)
 			justCreated = true
+			counter.display(numBlocks)
+			
 		#print("DROPPED " + CodeBlock.name + " in " + name)
 
 
@@ -83,4 +85,6 @@ func stop_drag(globalPos):
 		child.queue_free() 
 		removeChild = false
 		child = null
+		numBlocks -= 1
+		counter.display(numBlocks)
 		
