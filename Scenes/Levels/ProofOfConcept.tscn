@@ -66,6 +66,16 @@ position = Vector2( 310, 81 )
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 14 )]
 position = Vector2( 420, 81 )
 
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+visible = true
+margin_left = 490.0
+margin_top = 381.0
+margin_right = 596.0
+margin_bottom = 439.0
+rect_scale = Vector2( 3, 3 )
+window_title = ""
+dialog_text = "Level Cleared!"
+
 [connection signal="openDoor" from="." to="Grid/Door" method="_on_ProofOfConcept_openDoor"]
 [connection signal="interact" from="Grid/Robot" to="Grid/Button" method="_on_Robot_interact"]
 [connection signal="buttonPressed" from="Grid/Button" to="." method="_on_Button_buttonPressed"]

@@ -73,6 +73,7 @@ func _process(delta):
 	#If win con, then open door
 	if B0_Pressed == true:
 		emit_signal("openDoor")
+		$AcceptDialog.popup()
 		B0_Pressed = false #So console doesn't get spammed at the end
 		
 

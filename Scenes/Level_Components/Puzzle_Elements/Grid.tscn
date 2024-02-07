@@ -9,11 +9,5 @@ script = ExtResource( 4 )
 format = 1
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
-visible = true
-margin_left = 574.0
-margin_top = 402.0
-margin_right = 680.0
-margin_bottom = 460.0
-rect_scale = Vector2( 5, 5 )
-window_title = ""
-dialog_text = "Level Cleared!"
+margin_right = 83.0
+margin_bottom = 58.0
