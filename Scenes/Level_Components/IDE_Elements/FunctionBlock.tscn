@@ -24,7 +24,7 @@ align = 1
 position = Vector2( 30, 70 )
 script = ExtResource( 1 )
 __meta__ = {
-"_editor_description_": "Code for this assumes it has children nodes called CollisionShape2D and  ColorRect, change area_exited() function if this is changed, as well as input_event() if number of non-code block children changes from 2. "
+"_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input if that number changes"
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FunctionBlockArea"]

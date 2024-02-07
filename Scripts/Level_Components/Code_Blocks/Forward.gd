@@ -3,9 +3,8 @@ extends Area2D
 signal forwardSignal
 
 func _ready():
-	var Robot = get_node("/root/ProofOfConcept/Grid/Robot")
+	var Robot = get_node("../../../../Grid/Robot") #Keep in mind, code blocks become FunctionBlockArea grandchild when added to IDE
 	connect("forwardSignal",Robot,"_on_Forward_forwardSignal")
-	pass
 	
 
 func _process(delta):
