@@ -8,9 +8,7 @@ signal drag(area)
 signal stopDrag(globalPos)
 
 func _ready():
-	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/Main/FunctionBlockArea"), "stop_drag")
-	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/F1/FunctionBlockArea"), "stop_drag")
-	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/F2/FunctionBlockArea"), "stop_drag")
+	connect("stopDrag", get_node("../.."), "stop_drag") #connects to FunctionBlockArea that CodeBlock is grandchild of
 	parent = self.get_parent()
 	startPos = parent.global_position
 	
