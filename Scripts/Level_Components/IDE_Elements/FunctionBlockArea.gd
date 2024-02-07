@@ -40,14 +40,18 @@ func _on_FunctionBlockArea_area_entered(area):
 func _on_FunctionBlockArea_area_exited(area):
 	CodeBlock = null
 	#Remove code block from IDE
-	var children = get_children()
-	for childNode in children:
-		if childNode.name == "ColorRect" or childNode.name == "CollisionShape2D":
-			continue
-		if childNode.name == area.name and !justCreated:
-			child = childNode
-			removeChild = true
-	justCreated = false
+	if justCreated:
+		justCreated = false
+		return
+	
+	#Check if targetNode is a child of the grid
+	var targetNode = get_node(area.name)
+	if targetNode == null:
+		return
+	
+	#If so, prepare to remove it
+	child = targetNode
+	removeChild = true
 	
 	
 #Something is dropped in function area
