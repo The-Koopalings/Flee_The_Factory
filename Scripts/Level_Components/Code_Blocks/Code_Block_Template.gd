@@ -8,7 +8,6 @@ signal drag(area)
 signal stopDrag(globalPos)
 
 func _ready():
-	connect("drag",self,"set_dragging") #connects drag signal to function set_dragging
 	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/Main/FunctionBlockArea"), "stop_drag")
 	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/F1/FunctionBlockArea"), "stop_drag")
 	connect("stopDrag", get_node("/root/ProofOfConcept/IDE/F2/FunctionBlockArea"), "stop_drag")
@@ -26,15 +25,13 @@ func _process(delta):
 		#self.global_position = startPos
 		
 
-func set_dragging(area): 
-	dragging=!dragging
-
-
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			emit_signal("drag", self) #set dragging to true, mouse button pressed
-		elif event.button_index == BUTTON_LEFT and !event.pressed:
-			emit_signal("drag", self) #set dragging to false, mouse button released
-			emit_signal("stopDrag", startPos)
+		if event.button_index == BUTTON_LEFT:
+			dragging=!dragging
+				
+			if not event.pressed:
+				emit_signal("stopDrag", startPos)
+		if event.doubleclick:
+			print("DOUBLE CLICK")
 			
