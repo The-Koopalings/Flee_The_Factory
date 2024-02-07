@@ -32,13 +32,12 @@ func _ready():
 
 #Area2D enters a function area
 func _on_FunctionBlockArea_area_entered(area):
-	if CodeBlock == null:
+	if area.name != "CodeBlock":
 		CodeBlock = area
 		
 	
 #Area2D leaves a function area
 func _on_FunctionBlockArea_area_exited(area):
-	CodeBlock = null
 	#Remove code block from IDE
 	if justCreated:
 		justCreated = false
