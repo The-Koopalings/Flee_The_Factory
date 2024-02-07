@@ -28,5 +28,5 @@ func _on_Button_pressed():
 	
 	#Run all of the code + 0.25s delay between each block
 	for block in code:
-		block.emitSignal()
+		block.send_signal()
 		yield(get_tree().create_timer(0.25, false), "timeout") 

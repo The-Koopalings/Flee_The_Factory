@@ -8,8 +8,8 @@ onready var grid_x = grid.grid_x
 onready var grid_y = grid.grid_y
 var tileX
 var tileY
-var tileXMax = 10 #change once we settle on what this should be
-var tileYMax = 6  #change once we settle on what this should be
+export var tileXMax = 10 #change once we settle on what this should be
+export var tileYMax = 6  #change once we settle on what this should be
 
 # startPosition is now set by the Level
 #var startPosition = Vector2(200, 200)

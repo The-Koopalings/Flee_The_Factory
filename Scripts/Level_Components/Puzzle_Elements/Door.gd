@@ -1,6 +1,6 @@
 extends Node2D
 
-#Gets puzzle, which should be the immediate parent for any puzzle elements
+#Gets grid, which should be the immediate parent for any puzzle elements
 onready var grid = get_node("../") 
 
 onready var tile_size = grid.tile_size

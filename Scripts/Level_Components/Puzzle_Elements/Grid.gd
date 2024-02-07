@@ -3,7 +3,6 @@ extends Area2D
 var tile_size = 100
 var grid_x = 1200
 var grid_y = 800
-var game_win = false
 
 # Draw for now, use sprites later
 func _draw():
@@ -13,7 +12,3 @@ func _draw():
 		draw_line(Vector2(200, y), Vector2(grid_x, y), Color8(0, 0, 0), 2)
 		
 
-func _process(delta):
-	if $Button.hit:
-		$AcceptDialog.popup()
-		game_win = true

@@ -10,6 +10,6 @@ func _process(delta):
 	pass
 
 
-func emitSignal():
+func send_signal():
 	print("CALLING FUNCTION")
 	emit_signal("functionSignal")
