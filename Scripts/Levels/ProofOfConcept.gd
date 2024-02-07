@@ -46,7 +46,7 @@ func _ready():
 	for tile in grid:		
 		#If tile is not empty, get the next child of Grid and set it's position
 		if tile != ' ':
-			node = Grid.get_child(2 + childIndex)
+			node = Grid.get_child(1 + childIndex)
 			childIndex += 1
 			
 			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -73,6 +73,7 @@ func _process(delta):
 	#If win con, then open door
 	if B0_Pressed == true:
 		emit_signal("openDoor")
+		$AcceptDialog.popup()
 		B0_Pressed = false #So console doesn't get spammed at the end
 		
 
