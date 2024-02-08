@@ -38,4 +38,4 @@ expand_icon = true
 
 [connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="DoubleSpeed" to="." method="_on_DoubleSpeed_pressed"]
+[connection signal="toggled" from="DoubleSpeed" to="." method="_on_DoubleSpeed_toggled"]
