@@ -3,10 +3,6 @@ extends VBoxContainer
 #Entry point for IDE code
 onready var main = get_node("Main/FunctionBlockArea")
 
-# Set code run speed for robot animations
-# 0.50 is for normal and 0.25 is for double speed
-var run_speed = 0.50
-
 func _ready():
 	#Spacing between function blocks
 	add_constant_override("separation", 5)
@@ -33,5 +29,4 @@ func _on_Button_pressed():
 	#Run all of the code + add delay between each block
 	for block in code:
 		block.send_signal()
-		print(run_speed)
-		yield(get_tree().create_timer(run_speed, false), "timeout") 
+		yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
