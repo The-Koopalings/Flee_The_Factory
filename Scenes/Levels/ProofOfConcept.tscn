@@ -45,6 +45,11 @@ margin_bottom = 788.0
 [node name="Label" parent="IDE/F1" index="0"]
 text = "F1"
 
+[node name="FunctionBlockArea" parent="IDE/F1" index="1"]
+__meta__ = {
+"_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input + shiftBlocks' range, var x, & var y if that number changes"
+}
+
 [node name="Counter" parent="IDE/F1" index="3"]
 maxBlocks = 6
 

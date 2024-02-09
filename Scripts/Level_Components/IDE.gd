@@ -26,7 +26,7 @@ func _on_Button_pressed():
 	#debug so we know what's running
 	print(code)
 	
-	#Run all of the code + 0.25s delay between each block
+	#Run all of the code + add delay between each block
 	for block in code:
 		block.send_signal()
-		yield(get_tree().create_timer(0.25, false), "timeout") 
+		yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
