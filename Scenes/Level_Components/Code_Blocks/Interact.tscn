@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Interact.gd" type="Script" id=1]
-[ext_resource path="res://Assets/icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Placeholders/Interact.PNG" type="Texture" id=2]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CodeBlock.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -20,6 +20,8 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 9.53674e-07, -7.15256e-07 )
+scale = Vector2( 0.313514, 0.18543 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

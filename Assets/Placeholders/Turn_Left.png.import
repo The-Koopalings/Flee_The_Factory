@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Turn_Right.png-4710e994371687838ddad9372c2967c3.stex"
+path="res://.import/Turn_Left.png-cd7fde22bae7a7e63f26fce450e98fea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Turn_Right.png"
-dest_files=[ "res://.import/Turn_Right.png-4710e994371687838ddad9372c2967c3.stex" ]
+source_file="res://Assets/Placeholders/Turn_Left.png"
+dest_files=[ "res://.import/Turn_Left.png-cd7fde22bae7a7e63f26fce450e98fea.stex" ]
 
 [params]
 

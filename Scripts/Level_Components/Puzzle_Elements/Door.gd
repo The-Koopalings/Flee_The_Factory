@@ -7,7 +7,7 @@ onready var tile_size = grid.tile_size
 var tileX
 var tileY
 
-var openDoorTexture = preload("res://Assets/Open_Door.png")
+var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
 
 
 func _ready():

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Open_Door.png-c97798d6bc793788cb58b5d882ae8228.stex"
+path="res://.import/Closed_Door.PNG-58a893b9edf5ff162527bd69228ea969.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Open_Door.png"
-dest_files=[ "res://.import/Open_Door.png-c97798d6bc793788cb58b5d882ae8228.stex" ]
+source_file="res://Assets/Placeholders/Closed_Door.PNG"
+dest_files=[ "res://.import/Closed_Door.PNG-58a893b9edf5ff162527bd69228ea969.stex" ]
 
 [params]
 
