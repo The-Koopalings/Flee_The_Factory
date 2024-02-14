@@ -76,10 +76,10 @@ position = Vector2( 310, 81 )
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 14 )]
 position = Vector2( 420, 81 )
 
-[node name="F1" parent="CodeBlockBar" instance=ExtResource( 15 )]
+[node name="F1_" parent="CodeBlockBar" instance=ExtResource( 15 )]
 position = Vector2( 530, 81 )
 
-[node name="F2" parent="CodeBlockBar" instance=ExtResource( 16 )]
+[node name="F2_" parent="CodeBlockBar" instance=ExtResource( 16 )]
 position = Vector2( 640, 81 )
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]

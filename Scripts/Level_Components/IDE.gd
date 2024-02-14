@@ -1,9 +1,12 @@
 extends VBoxContainer
 
+signal functionFinished
+
 #Entry point for IDE code
 onready var main = get_node("Main/FunctionBlockArea")
 onready var f1 = get_node("F1/FunctionBlockArea")
 onready var f2 = get_node("F2/FunctionBlockArea")
+var callFunction = false
 
 func _ready():
 	#Spacing between function blocks
@@ -20,20 +23,34 @@ func _ready():
 #Connected to Run_Button
 func _on_Button_pressed():
 	var code = main.get_children()
-	run_code(code)
+	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
+	code.pop_front()
+	code.pop_front()
+	
+	#debug so we know what's running
+	print(code)
+	
+	#Run all of the code + add delay between each block
+	for block in code:
+		block.send_signal()
+		if callFunction:
+			yield(self, "functionFinished")
+		yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+	#run_code(code)
+	#get_tree().create_timer(GameStats.run_speed, false)
 
 
 func _on_f1Signal():
 	var code = f1.get_children()
-	run_code(code)
+	run_func_code(code)
 	
 	
 func _on_f2Signal():
 	var code = f2.get_children()
-	run_code(code)
+	run_func_code(code)
 	
-	
-func run_code(code):
+func run_func_code(code):
+	callFunction = true
 	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
 	code.pop_front()
 	code.pop_front()
@@ -45,3 +62,7 @@ func run_code(code):
 	for block in code:
 		block.send_signal()
 		yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+	
+	callFunction = false
+	emit_signal("functionFinished")
+		

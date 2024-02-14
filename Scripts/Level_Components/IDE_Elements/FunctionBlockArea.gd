@@ -74,9 +74,9 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 					child = RotateRight.instance()
 				"Interact":
 					child = Interact.instance()
-				"F1":
+				"F1_":
 					child = F1.instance()
-				"F2":
+				"F2_":
 					child = F2.instance()
 		#Add codeblock node to tree
 		if child and numBlocks < counter.maxBlocks:
