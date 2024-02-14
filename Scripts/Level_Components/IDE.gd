@@ -2,6 +2,8 @@ extends VBoxContainer
 
 #Entry point for IDE code
 onready var main = get_node("Main/FunctionBlockArea")
+onready var f1 = get_node("F1/FunctionBlockArea")
+onready var f2 = get_node("F2/FunctionBlockArea")
 
 func _ready():
 	#Spacing between function blocks
@@ -18,7 +20,20 @@ func _ready():
 #Connected to Run_Button
 func _on_Button_pressed():
 	var code = main.get_children()
+	run_code(code)
+
+
+func _on_f1Signal():
+	var code = f1.get_children()
+	run_code(code)
 	
+	
+func _on_f2Signal():
+	var code = f2.get_children()
+	run_code(code)
+	
+	
+func run_code(code):
 	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
 	code.pop_front()
 	code.pop_front()
