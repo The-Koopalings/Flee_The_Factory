@@ -99,27 +99,4 @@ func _on_f2Signal():
 			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
 	emit_signal("function2Finished")
 	
-	
-#Helper function to run F1 & F2 code
-#func run_func_code(code):
-#	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-#	code.pop_front()
-#	code.pop_front()
-#
-#	#debug so we know what's running
-#	print(code)
-#
-#	#Run all of the code + add delay between each block
-#	for block in code:
-#		if regexF1.search(block.name):
-#			block.send_signal()
-#			yield(self, "function1Finished")
-#		elif regexF2.search(block.name):
-#			block.send_signal()
-#			yield(self, "function2Finished")
-#		else:
-#			block.send_signal()
-#		yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
-#
-
 		
