@@ -6,6 +6,7 @@ var startPos
 
 signal drag(area)
 signal stopDrag(globalPos)
+signal double_click()
 
 func _ready():
 	connect("stopDrag", get_node("../.."), "stop_drag") #connects to FunctionBlockArea that CodeBlock is grandchild of
@@ -30,8 +31,9 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 				
 			if not event.pressed:
 				emit_signal("stopDrag", startPos)
+				
 		if event.doubleclick:
-			print("DOUBLE CLICK")
+			emit_signal("double_click")
 			
 
 func _on_CodeBlock_mouse_entered():

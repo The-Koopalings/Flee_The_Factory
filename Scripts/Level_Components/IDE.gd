@@ -9,6 +9,9 @@ func _ready():
 	
 	#Moves Run_Button to the bottom
 	move_child(get_child(1), get_child_count() - 1)
+	
+	# Grab focus of Main Function
+	$Main.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,3 +33,4 @@ func _on_Button_pressed():
 	for block in code:
 		block.send_signal()
 		yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+
