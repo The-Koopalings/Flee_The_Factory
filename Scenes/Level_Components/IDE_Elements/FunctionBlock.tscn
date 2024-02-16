@@ -8,7 +8,7 @@
 extents = Vector2( 210, 84 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 245, 139.5 )
+extents = Vector2( 243, 140.5 )
 
 [node name="FunctionBlockControl" type="Control"]
 margin_right = 480.0
