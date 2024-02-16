@@ -299,9 +299,6 @@ __meta__ = {
 "_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input + shiftBlocks' range, var x, & var y if that number changes"
 }
 
-[node name="ColorRect" parent="IDE/F1/FunctionBlockArea" index="1"]
-color = Color( 0.137255, 0.423529, 0.431373, 1 )
-
 [node name="ColorRect" parent="IDE/F1" index="2"]
 color = Color( 0, 0.231373, 0.482353, 1 )
 
