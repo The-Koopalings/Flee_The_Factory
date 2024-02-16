@@ -5,7 +5,7 @@ var tile_size = 96
 # Make sure these are all divisble by the tile_size
 var start_x = 192
 var start_y = 192
-var end_x = 1152
+var end_x = 1248
 var end_y = 768
 
 # Draw bounds of grid
