@@ -70,9 +70,9 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 	
 
 
-func _on_CodeBlock_doubleClick(code_block_name):
+func _on_CodeBlock_doubleClick(code_block):
 	if highlight.visible:
-		CodeBlock.name = code_block_name
+		CodeBlock = code_block
 		add_block()
 
 
@@ -80,7 +80,7 @@ func _on_CodeBlock_doubleClick(code_block_name):
 func add_block():
 	child = null
 	#Check for valid codeblock & instance code block
-	if CodeBlock:
+	if CodeBlock and !CodeBlock.get_child(2).inFBA:
 		match CodeBlock.name:
 			"Forward":
 				child = Forward.instance()
@@ -100,6 +100,7 @@ func add_block():
 		var y = yOffset + blockSize * int(numBlocks / rowSize)
 		child.position = Vector2(x, y)
 		numBlocks += 1
+		child.get_child(2).inFBA = true
 		add_child(child, true)
 		justCreated = true
 		counter.display(numBlocks)

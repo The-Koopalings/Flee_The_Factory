@@ -3,10 +3,11 @@ extends Area2D
 var dragging = false
 var parent
 var startPos
+var inFBA = false
 
 signal drag(area)
 signal stopDrag(globalPos)
-signal doubleClick(codeBlockName)
+signal doubleClick(codeBlock)
 
 func _ready():
 	connect("stopDrag", get_node("../.."), "stop_drag") #connects to FunctionBlockArea that CodeBlock is grandchild of
@@ -43,8 +44,8 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 				emit_signal("stopDrag", startPos)
 				
 		if event.doubleclick:
-			var code_block_name = get_parent().name
-			emit_signal("doubleClick", code_block_name)
+			var code_block = get_parent()
+			emit_signal("doubleClick", code_block)
 			
 
 func _on_CodeBlock_mouse_entered():
