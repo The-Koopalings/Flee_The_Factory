@@ -24,9 +24,12 @@ var justCreated = false
 var removeChild = false
 var child = null
 
+onready var highlight = get_node("../Highlight")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	monitoring = true
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -57,39 +60,52 @@ func _on_FunctionBlockArea_area_exited(area):
 	child = targetNode
 	removeChild = true
 	
-	
+
+
 #Something is dropped in function area
 func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 	#If event was a drop
 	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
-		child = null
-		#Check for valid codeblock & instance code block
-		if CodeBlock:
-			match CodeBlock.name:
-				"Forward":
-					child = Forward.instance()
-				"RotateLeft":
-					child = RotateLeft.instance()
-				"RotateRight":
-					child = RotateRight.instance()
-				"Interact":
-					child = Interact.instance()
-				"F1_":
-					child = F1.instance()
-				"F2_":
-					child = F2.instance()
-		#Add codeblock node to tree
-		if child and numBlocks < counter.maxBlocks:
-			var x = xOffset + blockSize * (numBlocks % rowSize)
-			var y = yOffset + blockSize * int(numBlocks / rowSize)
-			child.position = Vector2(x, y)
-			numBlocks += 1
-			add_child(child, true)
-			justCreated = true
-			counter.display(numBlocks)
-			
-		#print("DROPPED " + CodeBlock.name + " in " + name)
+		add_block()
 	
+
+
+func _on_CodeBlock_doubleClick(code_block_name):
+	if highlight.visible:
+		CodeBlock.name = code_block_name
+		add_block()
+
+
+# Helper function to add a code block into FunctionBlockArea
+func add_block():
+	child = null
+	#Check for valid codeblock & instance code block
+	if CodeBlock:
+		match CodeBlock.name:
+			"Forward":
+				child = Forward.instance()
+			"RotateLeft":
+				child = RotateLeft.instance()
+			"RotateRight":
+				child = RotateRight.instance()
+			"Interact":
+				child = Interact.instance()
+			"F1_":
+				child = F1.instance()
+			"F2_":
+				child = F2.instance()
+		#Add codeblock node to tree
+	if child and numBlocks < counter.maxBlocks:
+		var x = xOffset + blockSize * (numBlocks % rowSize)
+		var y = yOffset + blockSize * int(numBlocks / rowSize)
+		child.position = Vector2(x, y)
+		numBlocks += 1
+		add_child(child, true)
+		justCreated = true
+		counter.display(numBlocks)
+		
+	#print("DROPPED " + CodeBlock.name + " in " + name)
+
 
 
 #Remove code blocks once player releases left mouse button
