@@ -279,6 +279,7 @@ script = ExtResource( 12 )
 [node name="Button" parent="Grid" instance=ExtResource( 8 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 13 )]
+scale = Vector2( 5, 5 )
 
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
@@ -299,10 +300,10 @@ __meta__ = {
 }
 
 [node name="ColorRect" parent="IDE/F1/FunctionBlockArea" index="1"]
-color = Color( 0.94902, 0.92549, 0.313726, 1 )
+color = Color( 0.137255, 0.423529, 0.431373, 1 )
 
 [node name="ColorRect" parent="IDE/F1" index="2"]
-color = Color( 0.815686, 0.792157, 0.227451, 1 )
+color = Color( 0, 0.231373, 0.482353, 1 )
 
 [node name="Counter" parent="IDE/F1" index="3"]
 maxBlocks = 6
@@ -315,31 +316,31 @@ margin_bottom = 1067.0
 text = "F2"
 
 [node name="ColorRect" parent="IDE/F2/FunctionBlockArea" index="1"]
-color = Color( 0.94902, 0.92549, 0.313726, 1 )
+color = Color( 0.137255, 0.423529, 0.431373, 1 )
 
 [node name="ColorRect" parent="IDE/F2" index="2"]
-color = Color( 0.815686, 0.792157, 0.227451, 1 )
+color = Color( 0, 0.231373, 0.482353, 1 )
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
 color = Color( 1, 1, 1, 0 )
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 7 )]
-position = Vector2( 90, 81 )
+position = Vector2( 90, 90 )
 
 [node name="RotateLeft" parent="CodeBlockBar" instance=ExtResource( 5 )]
-position = Vector2( 200, 81 )
+position = Vector2( 200, 90 )
 
 [node name="RotateRight" parent="CodeBlockBar" instance=ExtResource( 6 )]
-position = Vector2( 310, 81 )
+position = Vector2( 310, 90 )
 
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 14 )]
-position = Vector2( 420, 81 )
+position = Vector2( 420, 90 )
 
 [node name="F1_" parent="CodeBlockBar" instance=ExtResource( 15 )]
-position = Vector2( 530, 81 )
+position = Vector2( 530, 90 )
 
 [node name="F2_" parent="CodeBlockBar" instance=ExtResource( 16 )]
-position = Vector2( 640, 81 )
+position = Vector2( 640, 90 )
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
 margin_left = 490.0

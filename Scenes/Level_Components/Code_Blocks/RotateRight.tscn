@@ -1,9 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Rotate_Right.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Placeholders/Turn_Right.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Objects/rightArrow.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CodeBlock.tscn" type="PackedScene" id=3]
-
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 29.5, 28.5 )
@@ -22,6 +21,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

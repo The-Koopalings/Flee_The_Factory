@@ -15,4 +15,3 @@ func _draw():
 	draw_line(Vector2(start_y, start_y), Vector2(end_x, start_y), Color8(0, 0, 0), 4)
 	draw_line(Vector2(start_y, end_y), Vector2(end_x, end_y), Color8(0, 0, 0), 4)
 		
-
