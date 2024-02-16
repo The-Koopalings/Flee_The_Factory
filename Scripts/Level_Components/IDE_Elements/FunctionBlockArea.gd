@@ -101,7 +101,7 @@ func stop_drag(globalPos):
 		child = null
 		numBlocks -= 1
 		counter.display(numBlocks)
-		shiftBlocks(startIndex)
+		shift_blocks(startIndex)
 		CodeBlock = null
 		
 
