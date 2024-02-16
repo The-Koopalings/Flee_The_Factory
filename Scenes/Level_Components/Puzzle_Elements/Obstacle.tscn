@@ -9,6 +9,9 @@ extents = Vector2( 31, 31 )
 [node name="Obstacle" type="StaticBody2D"]
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "Use factors of 48 to center an object's position on a tile"
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.917647, 0.980392, 0.945098, 1 )

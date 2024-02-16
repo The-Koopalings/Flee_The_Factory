@@ -2,6 +2,7 @@ extends Area2D
 
 var tile_size = 96
 
+# Make sure these are all divisble by the tile_size
 var start_x = 192
 var start_y = 192
 var end_x = 1152

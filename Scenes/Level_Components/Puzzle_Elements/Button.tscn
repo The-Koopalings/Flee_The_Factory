@@ -8,6 +8,9 @@ extents = Vector2( 16, 16 )
 
 [node name="Button" type="Area2D"]
 script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "Use factors of 48 to center an object's position on a tile"
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2.001, 2.468 )
