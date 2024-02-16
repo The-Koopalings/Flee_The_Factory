@@ -42,7 +42,7 @@ margin_right = 420.0
 margin_bottom = 170.0
 rect_min_size = Vector2( 420, 170 )
 mouse_filter = 2
-color = Color( 0.0745098, 0.729412, 0.160784, 1 )
+color = Color( 0.137255, 0.423529, 0.431373, 1 )
 
 [node name="Highlight" type="ReferenceRect" parent="."]
 margin_right = 480.0
@@ -57,7 +57,7 @@ show_behind_parent = true
 margin_right = 480.0
 margin_bottom = 275.0
 mouse_filter = 2
-color = Color( 0.129412, 0.823529, 0.12549, 1 )
+color = Color( 0, 0.231373, 0.482353, 1 )
 
 [node name="Counter" type="Label" parent="."]
 margin_left = 177.5
