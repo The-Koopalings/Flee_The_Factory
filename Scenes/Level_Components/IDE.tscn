@@ -14,6 +14,12 @@ script = ExtResource( 2 )
 [node name="Label" parent="Main" index="0"]
 text = "MAIN"
 
+[node name="ColorRect" parent="Main/FunctionBlockArea" index="1"]
+color = Color( 0.94902, 0.92549, 0.313726, 1 )
+
+[node name="ColorRect" parent="Main" index="2"]
+color = Color( 0.815686, 0.792157, 0.227451, 1 )
+
 [node name="Run_Button" type="Button" parent="."]
 margin_top = 279.0
 margin_right = 480.0

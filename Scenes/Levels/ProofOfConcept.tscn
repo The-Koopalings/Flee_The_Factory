@@ -247,6 +247,12 @@ __meta__ = {
 "_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input + shiftBlocks' range, var x, & var y if that number changes"
 }
 
+[node name="ColorRect" parent="IDE/F1/FunctionBlockArea" index="1"]
+color = Color( 0.94902, 0.92549, 0.313726, 1 )
+
+[node name="ColorRect" parent="IDE/F1" index="2"]
+color = Color( 0.815686, 0.792157, 0.227451, 1 )
+
 [node name="Counter" parent="IDE/F1" index="3"]
 maxBlocks = 6
 
@@ -256,6 +262,12 @@ margin_bottom = 1067.0
 
 [node name="Label" parent="IDE/F2" index="0"]
 text = "F2"
+
+[node name="ColorRect" parent="IDE/F2/FunctionBlockArea" index="1"]
+color = Color( 0.94902, 0.92549, 0.313726, 1 )
+
+[node name="ColorRect" parent="IDE/F2" index="2"]
+color = Color( 0.815686, 0.792157, 0.227451, 1 )
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
 color = Color( 1, 1, 1, 0 )
