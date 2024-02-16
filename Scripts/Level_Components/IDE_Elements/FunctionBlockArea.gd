@@ -8,6 +8,8 @@ var Forward = load(PathToCodeBlocks + "Forward.tscn")
 var RotateLeft = load(PathToCodeBlocks + "RotateLeft.tscn")
 var RotateRight = load(PathToCodeBlocks + "RotateRight.tscn")
 var Interact  = load(PathToCodeBlocks + "Interact.tscn")
+var F1 = load(PathToCodeBlocks + "CallFunction1.tscn")
+var F2 = load(PathToCodeBlocks + "CallFunction2.tscn")
 onready var counter = get_node("../Counter")
 
 var numBlocks = 0
@@ -72,6 +74,10 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 					child = RotateRight.instance()
 				"Interact":
 					child = Interact.instance()
+				"F1_":
+					child = F1.instance()
+				"F2_":
+					child = F2.instance()
 		#Add codeblock node to tree
 		if child and numBlocks < counter.maxBlocks:
 			var x = xOffset + blockSize * (numBlocks % rowSize)
@@ -94,11 +100,11 @@ func stop_drag(globalPos):
 		child = null
 		numBlocks -= 1
 		counter.display(numBlocks)
-		shiftBlocks(startIndex)
+		shift_blocks(startIndex)
 		
 
 #Helper function to shift blocks once one is removed
-func shiftBlocks(startIndex):
+func shift_blocks(startIndex):
 	#Start shifting from block right after the removed block
 	for n in range(startIndex, numBlocks + 3): #exclusive range, doesn't include last number
 		var x = xOffset + blockSize * ((n - 3) % rowSize)
