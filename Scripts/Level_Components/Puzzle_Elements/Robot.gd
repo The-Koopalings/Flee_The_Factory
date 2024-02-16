@@ -4,8 +4,8 @@ extends KinematicBody2D
 onready var grid = get_node("../")
 
 onready var tile_size = grid.tile_size
-onready var grid_x = grid.grid_x
-onready var grid_y = grid.grid_y
+onready var grid_x = grid.end_x
+onready var grid_y = grid.end_y
 var tileX
 var tileY
 export var tileXMax = 10 #change once we settle on what this should be

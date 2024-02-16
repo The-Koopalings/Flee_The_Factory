@@ -1,14 +1,18 @@
 extends Area2D
 
-var tile_size = 100
-var grid_x = 1200
-var grid_y = 800
+var tile_size = 96
 
-# Draw for now, use sprites later
+var start_x = 192
+var start_y = 192
+var end_x = 1152
+var end_y = 768
+
+# Draw bounds of grid
 func _draw():
-	for x in range(200, grid_x + tile_size, tile_size):
-		draw_line(Vector2(x, 200), Vector2(x, grid_y), Color8(0, 0, 0), 2)
-	for y in range(200, grid_y + tile_size, tile_size):
-		draw_line(Vector2(200, y), Vector2(grid_x, y), Color8(0, 0, 0), 2)
+	draw_line(Vector2(start_x, start_x), Vector2(start_x, end_y), Color8(0, 0, 0), 4)
+	draw_line(Vector2(end_x, start_x), Vector2(end_x, end_y), Color8(0, 0, 0), 4)
+	
+	draw_line(Vector2(start_y, start_y), Vector2(end_x, start_y), Color8(0, 0, 0), 4)
+	draw_line(Vector2(start_y, end_y), Vector2(end_x, end_y), Color8(0, 0, 0), 4)
 		
 
