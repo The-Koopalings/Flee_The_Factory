@@ -10,19 +10,19 @@ margin_bottom = 40.0
 script = ExtResource( 2 )
 
 [node name="Settings" type="TextureButton" parent="."]
-margin_left = 46.0
+margin_left = 25.0
 margin_top = 20.0
-margin_right = 136.0
-margin_bottom = 110.0
+margin_right = 85.0
+margin_bottom = 80.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 expand = true
 
 [node name="Restart" type="Button" parent="."]
-margin_left = 46.0
-margin_top = 130.0
-margin_right = 136.0
-margin_bottom = 220.0
+margin_left = 25.0
+margin_top = 100.0
+margin_right = 85.0
+margin_bottom = 160.0
 mouse_default_cursor_shape = 2
 icon = ExtResource( 3 )
 icon_align = 1
