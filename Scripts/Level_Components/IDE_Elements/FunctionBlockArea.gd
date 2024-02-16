@@ -89,6 +89,7 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 			counter.display(numBlocks)
 			
 		#print("DROPPED " + CodeBlock.name + " in " + name)
+	
 
 
 #Remove code blocks once player releases left mouse button
@@ -101,6 +102,7 @@ func stop_drag(globalPos):
 		numBlocks -= 1
 		counter.display(numBlocks)
 		shift_blocks(startIndex)
+		CodeBlock = null
 		
 
 #Helper function to shift blocks once one is removed

@@ -17,6 +17,9 @@ func _ready():
 	#Moves Run_Button to the bottom
 	move_child(get_child(1), get_child_count() - 1)
 	
+	# Grab focus of Main Function
+	$Main.grab_focus()
+
 	#Regex for F1 and F2 code blocks
 	regexF1.compile("F1_")
 	regexF2.compile("F2_")
@@ -99,4 +102,4 @@ func _on_f2Signal():
 			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
 	emit_signal("function2Finished")
 	
-		
+
