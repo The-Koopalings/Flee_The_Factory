@@ -13,9 +13,9 @@ var Robot = load(PathToPuzzleElements + "Robot.tscn")
 
 onready var Grid = get_node("Grid")
 
-#Assume 6x10 grid for rn
-var numRows = 6 #Cells per row
-var numCols = 10  #Cells per col
+# Max walkable grid size is 7x11
+var numRows = 7 #Cells per row
+var numCols = 11  #Cells per col
 
 #Define what's on the grid
 #This is one array, read by tile, starting from the first tile of the first row and moving right.
@@ -23,12 +23,13 @@ var numCols = 10  #Cells per col
 #NOTE: This script assumes the children of Grid are placed in the order they will be read (left to right, top to bottom).
 #Useful for easier editing of levels and for level editors in the future
 var grid = [
-	'R','O',' ',' ',' ',' ',' ',' ',' ',' ',
-	' ','O',' ',' ',' ',' ',' ',' ',' ',' ',
-	' ','O',' ',' ',' ',' ',' ',' ',' ',' ',
-	' ','B',' ',' ',' ',' ',' ',' ',' ',' ',
-	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-	' ',' ',' ',' ',' ',' ',' ',' ',' ','D',
+	'R','O',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+	' ','O',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+	' ','O',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+	' ','B',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+	' ',' ',' ',' ',' ',' ',' ',' ',' ','D',' ',
+	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
 ]
 
 #win conditions
