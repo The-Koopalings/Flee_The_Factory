@@ -80,7 +80,7 @@ func _on_CodeBlock_doubleClick(code_block):
 func add_block():
 	child = null
 	#Check for valid codeblock & instance code block
-	if CodeBlock and !CodeBlock.get_child(2).inFBA:
+	if CodeBlock and CodeBlock.get_child(2) and !CodeBlock.get_child(2).inFBA:
 		match CodeBlock.name:
 			"Forward":
 				child = Forward.instance()
