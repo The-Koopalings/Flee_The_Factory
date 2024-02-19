@@ -18,7 +18,6 @@ export var tileYMax = 6  #change once we settle on what this should be
 
 signal interact(tileX, tileY)
 
-
 #Used for dictating movement
 onready var ray = $RayCast2D
 
@@ -75,10 +74,10 @@ func move(dir):
 func _on_Forward_forwardSignal():
 	#Get orientation of the robot
 	var orientation
-	if rotation >= 0:
-		orientation = int((rotation_degrees+1) / 90) % 4
-	elif rotation < 0:
-		orientation = int((rotation_degrees-1) / 90) % 4
+	if $Sprite.rotation >= 0:
+		orientation = int(($Sprite.rotation_degrees+1) / 90) % 4
+	elif $Sprite.rotation < 0:
+		orientation = int(($Sprite.rotation_degrees-1) / 90) % 4
 		orientation += 4 if orientation != 0 else 0
 	
 	#Move forwards based on robot orientation
@@ -97,11 +96,11 @@ func _on_Forward_forwardSignal():
 
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
-	rotation -= PI/2
+	$Sprite.rotation -= PI/2
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
-	rotation += PI/2
+	$Sprite.rotation += PI/2
 
 #Interact
 func _on_Interact_interactSignal():
