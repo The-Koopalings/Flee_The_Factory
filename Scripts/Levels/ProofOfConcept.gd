@@ -11,7 +11,6 @@ var Obstacle = load(PathToPuzzleElements + "Obstacle.tscn")
 var Robot = load(PathToPuzzleElements + "Robot.tscn")
 """
 
-onready var PEP = load("res://Scripts/Levels/PuzzleElementPlacement.gd").new()
 onready var Grid = get_node("Grid")
 
 #Define what's on the grid

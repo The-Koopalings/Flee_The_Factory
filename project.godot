@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameStats="*res://Scripts/GameStats.gd"
+PEP="*res://Scripts/Levels/PuzzleElementPlacement.gd"
 
 [display]
 
