@@ -18,9 +18,7 @@ var blockSize = 60 #Replace with actual codeblock size
 var xOffset = 30
 var yOffset = 30
 
-#Issues with creating code block instances and it triggering area_exit automatically
-#This is so newly instanced code blocks won't be deleted on entering the scene tree
-var justCreated = false 
+#To prevent removing a code block if it was dragged out of FBA, but dragged and dropped back into FBA
 var removeChild = false
 var child = null
 
@@ -37,6 +35,7 @@ func _ready():
 
 #Area2D enters a function area
 func _on_FunctionBlockArea_area_entered(area):
+	print("area entered")
 	if area.name != "CodeBlock":
 		CodeBlock = area
 	#Prevent blocks from being removed when it is dropped inside IDE after briefly exiting
@@ -45,12 +44,6 @@ func _on_FunctionBlockArea_area_entered(area):
 	
 #Area2D leaves a function area
 func _on_FunctionBlockArea_area_exited(area):
-	#Remove code block from IDE
-	#Workaround for instances of code blocks triggering area_exit on creation
-	if justCreated:
-		justCreated = false
-		return
-	
 	#Check if targetNode is a child of the grid
 	var targetNode = get_node(area.name)
 	if targetNode == null:
@@ -67,10 +60,12 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 	#If event was a drop
 	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
 		add_block()
+		print("input event")
 	
 
 
 func _on_CodeBlock_doubleClick(code_block):
+	print("double click")
 	if highlight.visible:
 		CodeBlock = code_block
 		add_block()
@@ -102,7 +97,6 @@ func add_block():
 		numBlocks += 1
 		child.get_child(2).inFBA = true
 		add_child(child, true)
-		justCreated = true
 		counter.display(numBlocks)
 		
 	#print("DROPPED " + CodeBlock.name + " in " + name)
