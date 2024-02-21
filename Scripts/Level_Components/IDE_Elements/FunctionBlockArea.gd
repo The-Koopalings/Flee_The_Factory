@@ -35,7 +35,6 @@ func _ready():
 
 #Area2D enters a function area
 func _on_FunctionBlockArea_area_entered(area):
-	print("area entered")
 	if area.name != "CodeBlock":
 		CodeBlock = area
 	#Prevent blocks from being removed when it is dropped inside IDE after briefly exiting
@@ -44,6 +43,7 @@ func _on_FunctionBlockArea_area_entered(area):
 	
 #Area2D leaves a function area
 func _on_FunctionBlockArea_area_exited(area):
+	CodeBlock = null
 	#Check if targetNode is a child of the grid
 	var targetNode = get_node(area.name)
 	if targetNode == null:
@@ -60,12 +60,10 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 	#If event was a drop
 	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
 		add_block()
-		print("input event")
 	
 
 
 func _on_CodeBlock_doubleClick(code_block):
-	print("double click")
 	if highlight.visible:
 		CodeBlock = code_block
 		add_block()
