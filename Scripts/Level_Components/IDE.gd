@@ -10,6 +10,9 @@ onready var f2 = get_node("F2/FunctionBlockArea")
 var regexF1 = RegEx.new()
 var regexF2 = RegEx.new()
 
+#To allow for only 1 press of Run unless the scene is restarted
+var runPressed = false
+
 func _ready():
 	#Spacing between function blocks
 	add_constant_override("separation", 5)
@@ -31,26 +34,28 @@ func _ready():
 
 #Connected to Run_Button
 func _on_Button_pressed():
-	var code = main.get_children()
+	if !runPressed:
+		var code = main.get_children()
 	
-	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-	code.pop_front()
-	code.pop_front()
+		#Pop all the non-code nodes {CollisionShape2D, ColorRect}
+		code.pop_front()
+		code.pop_front()
 	
-	#debug so we know what's running
-	print(code)
+		#debug so we know what's running
+		print(code)
 	
-	#Run all of the code + add delay between each block
-	for block in code:
-		if regexF1.search(block.name):
-			block.send_signal()
-			yield(self, "function1Finished")
-		elif regexF2.search(block.name):
-			block.send_signal()
-			yield(self, "function2Finished")
-		else:
-			block.send_signal()
-			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+		#Run all of the code + add delay between each block
+		for block in code:
+			if regexF1.search(block.name):
+				block.send_signal()
+				yield(self, "function1Finished")
+			elif regexF2.search(block.name):
+				block.send_signal()
+				yield(self, "function2Finished")
+			else:
+				block.send_signal()
+				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+		runPressed = true
 
 
 #Run F1 code
