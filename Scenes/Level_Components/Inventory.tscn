@@ -1,9 +1,22 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Level_Components/Inventory.gd" type="Script" id=1]
 
 [node name="Inventory" type="ColorRect"]
 margin_right = 288.0
 margin_bottom = 96.0
 rect_pivot_offset = Vector2( 505, -62 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "For variable type: Stack = 0, 1 = Queue, 2 = Array"
+}
+type = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+margin_right = 288.0
+margin_bottom = 96.0
+border_width = 3.2
+editor_only = false
 
 [node name="ItemSlot1" type="RichTextLabel" parent="."]
 margin_left = 30.0
@@ -42,10 +55,10 @@ text = "3 "
 position = Vector2( 96, 0 )
 points = PoolVector2Array( 0, 0, 0, 96 )
 width = 2.0
-default_color = Color( 0, 0, 0, 1 )
+default_color = Color( 1, 0, 0, 1 )
 
 [node name="Line2D2" type="Line2D" parent="."]
 position = Vector2( 192, 0 )
 points = PoolVector2Array( 0, 0, 0, 96 )
 width = 2.0
-default_color = Color( 0, 0, 0, 1 )
+default_color = Color( 1, 0, 0, 1 )
