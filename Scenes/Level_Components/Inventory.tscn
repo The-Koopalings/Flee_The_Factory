@@ -1,0 +1,51 @@
+[gd_scene format=2]
+
+[node name="Inventory" type="ColorRect"]
+margin_right = 288.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 505, -62 )
+
+[node name="ItemSlot1" type="RichTextLabel" parent="."]
+margin_left = 30.0
+margin_top = 27.0
+margin_right = 45.0
+margin_bottom = 42.0
+rect_scale = Vector2( 3, 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]1[/center] "
+text = "1 "
+
+[node name="ItemSlot2" type="RichTextLabel" parent="."]
+margin_left = 130.0
+margin_top = 25.0
+margin_right = 145.0
+margin_bottom = 40.0
+rect_scale = Vector2( 3, 3 )
+custom_colors/default_color = Color( 0.0470588, 0.0431373, 0.0431373, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]2[/center] "
+text = "2 "
+
+[node name="ItemSlot3" type="RichTextLabel" parent="."]
+margin_left = 230.0
+margin_top = 25.0
+margin_right = 244.0
+margin_bottom = 40.0
+rect_scale = Vector2( 3, 3 )
+custom_colors/default_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]3[/center] "
+text = "3 "
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 96, 0 )
+points = PoolVector2Array( 0, 0, 0, 96 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2( 192, 0 )
+points = PoolVector2Array( 0, 0, 0, 96 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
