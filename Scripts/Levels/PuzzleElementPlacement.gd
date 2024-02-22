@@ -15,7 +15,7 @@ func init_puzzle(grid, Grid):
 	#Iterate through each tile
 	for tile in grid:		
 		#If tile is not empty, get the next child of Grid and set it's position
-		if tile != ' ':
+		if tile != ' ' and tile != 'X':
 			node = Grid.get_child(1 + childIndex)
 			childIndex += 1
 			

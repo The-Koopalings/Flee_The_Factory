@@ -13,8 +13,7 @@ signal buttonPressed(name)
 # var startPosition = Vector2(1100,700)
 
 func _ready():
-	var PEP = load("res://Scripts/Levels/PuzzleElementPlacement.gd").new()
-	connect("buttonPressed", PEP, "_on_Button_buttonPressed")
+	pass
 
 func _on_Robot_interact(x, y):
 	if x == tileX and y == tileY:

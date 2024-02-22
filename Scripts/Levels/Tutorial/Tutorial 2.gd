@@ -3,15 +3,14 @@ extends Node2D
 
 onready var Grid = get_node("Grid")
 
-
 var btn_pressed = false
 var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
 
 var grid = [
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','R',' ',' ','B','D','X','X','X',
+	'X','X','X','X','R',' ','O','X','X','X','X',
+	'X','X','X','X','O','B','D','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
