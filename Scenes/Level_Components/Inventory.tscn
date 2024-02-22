@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Level_Components/Inventory.gd" type="Script" id=1]
 
 [node name="Inventory" type="ColorRect"]
-margin_right = 288.0
+margin_right = 480.0
 margin_bottom = 96.0
 rect_pivot_offset = Vector2( 505, -62 )
 script = ExtResource( 1 )
@@ -13,16 +13,16 @@ __meta__ = {
 type = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
-margin_right = 288.0
+margin_right = 480.0
 margin_bottom = 96.0
 border_width = 3.2
 editor_only = false
 
 [node name="ItemSlot1" type="RichTextLabel" parent="."]
-margin_left = 30.0
-margin_top = 27.0
-margin_right = 45.0
-margin_bottom = 42.0
+margin_left = 13.0
+margin_top = 28.0
+margin_right = 39.0
+margin_bottom = 43.0
 rect_scale = Vector2( 3, 3 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
@@ -30,10 +30,10 @@ bbcode_text = "[center]1[/center] "
 text = "1 "
 
 [node name="ItemSlot2" type="RichTextLabel" parent="."]
-margin_left = 130.0
-margin_top = 25.0
-margin_right = 145.0
-margin_bottom = 40.0
+margin_left = 120.0
+margin_top = 27.0
+margin_right = 142.0
+margin_bottom = 42.0
 rect_scale = Vector2( 3, 3 )
 custom_colors/default_color = Color( 0.0470588, 0.0431373, 0.0431373, 1 )
 bbcode_enabled = true
@@ -41,15 +41,37 @@ bbcode_text = "[center]2[/center] "
 text = "2 "
 
 [node name="ItemSlot3" type="RichTextLabel" parent="."]
-margin_left = 230.0
-margin_top = 25.0
-margin_right = 244.0
-margin_bottom = 40.0
+margin_left = 215.0
+margin_top = 26.0
+margin_right = 238.0
+margin_bottom = 41.0
 rect_scale = Vector2( 3, 3 )
 custom_colors/default_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]3[/center] "
 text = "3 "
+
+[node name="ItemSlot4" type="RichTextLabel" parent="."]
+margin_left = 309.0
+margin_top = 24.0
+margin_right = 331.0
+margin_bottom = 39.0
+rect_scale = Vector2( 3, 3 )
+custom_colors/default_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]4[/center] "
+text = "4 "
+
+[node name="ItemSlot5" type="RichTextLabel" parent="."]
+margin_left = 401.0
+margin_top = 26.0
+margin_right = 425.0
+margin_bottom = 41.0
+rect_scale = Vector2( 3, 3 )
+custom_colors/default_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]5[/center] "
+text = "5 "
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2( 96, 0 )
@@ -59,6 +81,18 @@ default_color = Color( 1, 0, 0, 1 )
 
 [node name="Line2D2" type="Line2D" parent="."]
 position = Vector2( 192, 0 )
+points = PoolVector2Array( 0, 0, 0, 96 )
+width = 2.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Line2D3" type="Line2D" parent="."]
+position = Vector2( 288, 0 )
+points = PoolVector2Array( 0, 0, 0, 96 )
+width = 2.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Line2D4" type="Line2D" parent="."]
+position = Vector2( 384, 0 )
 points = PoolVector2Array( 0, 0, 0, 96 )
 width = 2.0
 default_color = Color( 1, 0, 0, 1 )
