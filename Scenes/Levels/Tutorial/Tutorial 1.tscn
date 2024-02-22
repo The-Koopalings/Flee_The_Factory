@@ -31,6 +31,9 @@ script = ExtResource( 15 )
 
 [node name="IDE" parent="." instance=ExtResource( 4 )]
 
+[node name="Counter" parent="IDE/Main" index="4"]
+maxBlocks = 4
+
 [node name="CodeBlockBar" parent="." instance=ExtResource( 10 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 7 )]
@@ -57,3 +60,6 @@ dialog_text = "Level Cleared!"
 [connection signal="interact" from="Grid/Robot" to="." method="_on_Robot_interact"]
 [connection signal="interact" from="Grid/Robot" to="Grid/Button" method="_on_Robot_interact"]
 [connection signal="buttonPressed" from="Grid/Button" to="." method="_on_Button_buttonPressed"]
+
+[editable path="IDE"]
+[editable path="IDE/Main"]

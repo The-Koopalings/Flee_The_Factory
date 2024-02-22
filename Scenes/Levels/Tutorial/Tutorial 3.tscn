@@ -39,6 +39,9 @@ script = ExtResource( 1 )
 
 [node name="IDE" parent="." instance=ExtResource( 6 )]
 
+[node name="Counter" parent="IDE/Main" index="4"]
+maxBlocks = 11
+
 [node name="CodeBlockBar" parent="." instance=ExtResource( 3 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 11 )]
@@ -59,3 +62,6 @@ position = Vector2( 420, 90 )
 [connection signal="interact" from="Grid/Robot" to="Grid/Button2" method="_on_Robot_interact"]
 [connection signal="buttonPressed" from="Grid/Button1" to="." method="_on_Button1_buttonPressed"]
 [connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button2_buttonPressed"]
+
+[editable path="IDE"]
+[editable path="IDE/Main"]
