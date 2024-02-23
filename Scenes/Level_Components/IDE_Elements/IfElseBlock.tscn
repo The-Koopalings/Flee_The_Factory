@@ -27,11 +27,10 @@ mouse_filter = 2
 script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="If"]
-margin_left = 30.0
-margin_right = 134.0
+margin_right = 104.0
 margin_bottom = 16.0
 rect_scale = Vector2( 4, 4 )
-text = "If"
+text = "If2"
 
 [node name="FunctionBlockArea" type="Area2D" parent="If"]
 position = Vector2( 30, 50 )

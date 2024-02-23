@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Level_Components/IDE_Elements/ControlFlowBlock.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/Counter.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
