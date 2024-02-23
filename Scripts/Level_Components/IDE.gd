@@ -108,3 +108,9 @@ func _on_f2Signal():
 	emit_signal("function2Finished")
 	
 
+func _on_if1_signal():
+	pass
+
+
+func _on_if2_signal():
+	pass

@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Level_Components/Code_Blocks/Call_Control_Flow.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Level_Components/Code_Blocks/Loop.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CodeBlock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Placeholders/ControlFlow1.PNG" type="Texture" id=3]
+[ext_resource path="res://Assets/Placeholders/Loop1.PNG" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.5, 28.5 )
 
-[node name="CallControlFlow1_" type="Area2D"]
+[node name="Loop1_" type="Area2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Changes in sprite texture is in the code"
@@ -18,8 +18,8 @@ position = Vector2( 0.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -6.79493e-06, 4.47035e-07 )
-scale = Vector2( 0.232558, 0.291667 )
+position = Vector2( 8.9407e-07, 4.47035e-07 )
+scale = Vector2( 0.220588, 0.291667 )
 texture = ExtResource( 3 )
 
 [node name="CodeBlock" parent="." instance=ExtResource( 2 )]

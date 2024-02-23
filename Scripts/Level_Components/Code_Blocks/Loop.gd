@@ -1,13 +1,11 @@
 extends Area2D
 
-signal ifStatement1
 signal whileLoop1
 signal forLoop1
-signal ifStatement2
 signal whileLoop2
 signal forLoop2
 
-#Which option is chosen, -1 = none, 0 = If, 1 = While, 2 = For
+#Which option is chosen, -1 = none, 0 = While, 1 = For
 var option = -1 
 #Regex results to be used in send_signal() & on_option_selected()
 var result1
@@ -23,15 +21,14 @@ func _ready():
 	$MenuButton.get_popup().connect("id_pressed", self, "on_option_selected")
 	
 	#Add options into dropdown
-	$MenuButton.get_popup().add_item("If")
 	$MenuButton.get_popup().add_item("While")
 	$MenuButton.get_popup().add_item("For")
 	
 	#Get regex ready
 	var regexF1 = RegEx.new()
 	var regexF2 = RegEx.new()
-	regexF1.compile("CallControlFlow1_")
-	regexF2.compile("CallControlFlow2_")
+	regexF1.compile("Loop1_")
+	regexF2.compile("Loop2_")
 	result1 = regexF1.search(name)
 	result2 = regexF2.search(name) 
 	
@@ -44,15 +41,10 @@ func on_option_selected(id):
 	match id:
 		0:
 			if result1:
-				$Sprite.texture = load("res://Assets/Placeholders/If1.PNG")
-			elif result2:
-				$Sprite.texture = load("res://Assets/Placeholders/If2.PNG")
-		1:
-			if result1:
 				$Sprite.texture = load("res://Assets/Placeholders/While1.PNG")
 			elif result2:
 				$Sprite.texture = load("res://Assets/Placeholders/While2.PNG")
-		2:
+		1:
 			if result1:
 				$Sprite.texture = load("res://Assets/Placeholders/For1.PNG")
 			if result2:
@@ -64,15 +56,10 @@ func send_signal():
 	match option:
 		0:
 			if result1:
-				emit_signal("ifStatement1")
-			if result2:
-				emit_signal("ifStatement2")
-		1:
-			if result1:
 				emit_signal("whileLoop1")
 			if result2:
 				emit_signal("whileLoop2")
-		2: 
+		1: 
 			if result1:
 				emit_signal("forLoop1")
 			if result2:
