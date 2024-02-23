@@ -31,3 +31,16 @@ func init_puzzle(grid, Grid):
 			
 		tileCount += 1
 
+func init_code_blocks(CodeBlockBar):
+	var x = 90
+	var y = 1008
+	
+	var blocks = CodeBlockBar.get_children()
+	
+	# Ignore first child of CodeBlockBar (TextureRect, not code block)
+	for i in range(1, blocks.size()):
+		var code_block_template = blocks[i].get_child(2)
+		
+		code_block_template.startPos = Vector2(x, y)
+		
+		x += 110

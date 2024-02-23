@@ -12,6 +12,7 @@ var Robot = load(PathToPuzzleElements + "Robot.tscn")
 """
 
 onready var Grid = get_node("Grid")
+onready var CodeBlockBar = get_node("CodeBlockBar")
 
 #Define what's on the grid
 #This is one array, read by tile, starting from the first tile of the first row and moving right.
@@ -36,6 +37,7 @@ signal openDoor
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.init_puzzle(grid, Grid)
+	PEP.init_code_blocks(CodeBlockBar)
 
 
 
