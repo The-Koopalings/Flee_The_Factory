@@ -3,10 +3,14 @@ extends VBoxContainer
 signal function1Finished
 signal function2Finished
 
-#Entry point for IDE code
+#Entry point for IDE code, called to get children
 onready var main = get_node("Main/FunctionBlockArea")
-onready var f1 = get_node("F1/FunctionBlockArea")
-onready var f2 = get_node("F2/FunctionBlockArea")
+onready var f1 = get_node("F1/FunctionBlockArea") #only called in _on_f1signal()
+onready var f2 = get_node("F2/FunctionBlockArea") #only called in _on_f2signal()
+onready var if1 = get_node("IfElse1/If/FunctionBlockArea")
+onready var else1 = get_node("IfElse1/Else/FunctionBlockArea")
+onready var if2 = get_node("IfElse2/If/FunctionBlockArea")
+onready var else2 = get_node("IfElse2/Else/FunctionBlockArea")
 var regexF1 = RegEx.new()
 var regexF2 = RegEx.new()
 
@@ -108,9 +112,23 @@ func _on_f2Signal():
 	emit_signal("function2Finished")
 	
 
-func _on_if1_signal():
-	pass
+func _on_if1Signal():
+	print("if1Signal received")
+	var LHS = get_node("IfElse1/If/LHS/Label").text
+	var Operator = get_node("IfElse1/If/Operator/Label").text
+	var RHS = get_node("IfElse1/If/RHS/Label").text
+	
 
 
-func _on_if2_signal():
-	pass
+func _on_if2Signal():
+	print("if2Signal received")
+	var LHS = get_node("IfElse1/If/LHS/Label").text
+	var Operator = get_node("IfElse1/If/Operator/Label").text
+	var RHS = get_node("IfElse1/If/RHS/Label").text
+	
+	
+	
+	
+#Parameters are strings, condtions sent in signal because there's too many nodes in  
+#func _on_ifCond_signal(LHS, Operator, RHS):
+#	print("If condtions received: ", LHS, " + ", Operator, " + ", RHS)

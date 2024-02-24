@@ -10,6 +10,8 @@ var RotateRight = load(PathToCodeBlocks + "RotateRight.tscn")
 var Interact  = load(PathToCodeBlocks + "Interact.tscn")
 var F1 = load(PathToCodeBlocks + "CallFunction1.tscn")
 var F2 = load(PathToCodeBlocks + "CallFunction2.tscn")
+var If1 = load(PathToCodeBlocks + "If1.tscn")
+var If2 = load(PathToCodeBlocks + "If2.tscn")
 onready var counter = get_node("../Counter")
 
 var numBlocks = 0
@@ -87,6 +89,10 @@ func add_block():
 				child = F1.instance()
 			"F2_":
 				child = F2.instance()
+			"If1_":
+				child = If1.instance()
+			"If2_":
+				child = If2.instance()
 		#Add codeblock node to tree
 	if child and numBlocks < counter.maxBlocks:
 		var x = xOffset + blockSize * (numBlocks % rowSize)

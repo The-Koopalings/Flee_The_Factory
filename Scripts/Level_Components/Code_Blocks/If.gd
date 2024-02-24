@@ -7,8 +7,11 @@ var result1
 var result2
 
 func _ready():
-	var IDE = get_node("../../../../IDE")
-	connect("if1Signal", IDE, "_on_if1Signal")
+	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else
+	var IDE = get_node("../../../../IDE") #For code blocks NOT in If-Else
+	connect("if1Signal", IDEIf, "_on_if1Signal")
+	connect("if2Signal", IDEIf, "_on_if2Signal")
+	connect("if1Signal", IDE, "_on_if1Signal") 
 	connect("if2Signal", IDE, "_on_if2Signal")
 	
 	#Get the regex ready for use in send_signal()

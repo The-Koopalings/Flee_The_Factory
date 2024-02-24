@@ -1,5 +1,7 @@
 extends Control
 
+#signal ifCondSignal
+
 onready var LHS = get_node("If/LHS")
 onready var LHSLabel = get_node("If/LHS/Label")
 onready var Operator = get_node("If/Operator")
@@ -8,6 +10,10 @@ onready var RHS = get_node("If/RHS")
 onready var RHSLabel = get_node("If/RHS/Label")
 
 func _ready():
+	#Connect signals to IDE, will send If conditions
+#	var IDE = get_node("../../IDE")
+#	connect("ifCondSignal", IDE, "_on_ifCond_signal")
+	
 	#Connect pressing of a dropdown option to this node
 	LHS.get_popup().connect("id_pressed", self, "on_LHS_option_selected")
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
@@ -55,3 +61,11 @@ func on_RHS_option_selected(id):
 			RHSLabel.text = "Front"
 		1:
 			RHSLabel.text = "Pressed"
+
+#func _on_if1Signal():
+#	print("if1Signal received")
+#	emit_signal("ifCondSignal", LHSLabel.text, OperatorLabel.text, RHSLabel.text)
+#
+#func _on_if2Signal():
+#	print("if2Signal received")
+#	emit_signal("ifCondSignal", LHSLabel.text, OperatorLabel.text, RHSLabel.text)
