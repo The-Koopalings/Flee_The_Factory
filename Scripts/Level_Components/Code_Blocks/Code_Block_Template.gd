@@ -24,6 +24,16 @@ func _ready():
 	var F2 = get_node("../../../IDE/F2/FunctionBlockArea")
 	connect("doubleClick", F2, "_on_CodeBlock_doubleClick")
 	
+	var If1 = get_node("../../../IDE/IfElse1/If/FunctionBlockArea")
+	connect("doubleClick", If1, "_on_CodeBlock_doubleClick")
+	var Else1 = get_node("../../../IDE/IfElse1/Else/FunctionBlockArea")
+	connect("doubleClick", Else1, "_on_CodeBlock_doubleClick")
+	
+	var If2 = get_node("../../../IDE/IfElse2/If/FunctionBlockArea")
+	connect("doubleClick", If2, "_on_CodeBlock_doubleClick")
+	var Else2 = get_node("../../../IDE/IfElse2/Else/FunctionBlockArea")
+	connect("doubleClick", Else2, "_on_CodeBlock_doubleClick")
+	
 	
 func _process(delta):
 	if dragging:

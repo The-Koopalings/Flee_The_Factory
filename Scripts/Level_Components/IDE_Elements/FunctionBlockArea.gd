@@ -64,7 +64,6 @@ func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 
 
 func _on_CodeBlock_doubleClick(code_block):
-	print(highlight.visible)
 	if highlight.visible:
 		CodeBlock = code_block
 		add_block()
