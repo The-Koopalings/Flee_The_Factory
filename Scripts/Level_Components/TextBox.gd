@@ -19,15 +19,7 @@ var text_queue = []
 
 
 func _ready():
-	print("Starting at State.READY")
 	hide_textbox()
-	queue_text("ur mom is a lovely lady")
-	queue_text("kraen is homophobic frfr")
-	queue_text("lamy wants to go on a date with yeah sia at huey berries")
-	queue_text("helener disabled herself for the 69th time")
-	queue_text("brayan is expecting a little boy")
-	queue_text("henrussy wants boom boom koopa's chode")
-	queue_text("gace has been eating cucumis melo all day every day")
 
 
 func _process(delta):
@@ -88,10 +80,3 @@ func _on_Tween_tween_all_completed():
 
 func change_state(state):
 	current_state = state
-	match current_state:
-		State.READY:
-			print("Changing state to State.READY")
-		State.READING:
-			print("Changing state to State.READING")
-		State.END:
-			print("Changing state to State.END")
