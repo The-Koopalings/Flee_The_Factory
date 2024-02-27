@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Level_Components/LevelControl.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Level_Components/IDE.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Level_Components/TextBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Forward.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateLeft.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateRight.tscn" type="PackedScene" id=9]
@@ -37,16 +38,12 @@ maxBlocks = 4
 [node name="CodeBlockBar" parent="." instance=ExtResource( 10 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 7 )]
-position = Vector2( 90, 90 )
 
 [node name="RotateLeft" parent="CodeBlockBar" instance=ExtResource( 8 )]
-position = Vector2( 200, 90 )
 
 [node name="RotateRight" parent="CodeBlockBar" instance=ExtResource( 9 )]
-position = Vector2( 310, 90 )
 
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 11 )]
-position = Vector2( 420, 90 )
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
 margin_left = 490.0
@@ -56,6 +53,8 @@ margin_bottom = 439.0
 rect_scale = Vector2( 3, 3 )
 window_title = ""
 dialog_text = "Level Cleared!"
+
+[node name="TextBox" parent="." instance=ExtResource( 5 )]
 
 [connection signal="interact" from="Grid/Robot" to="." method="_on_Robot_interact"]
 [connection signal="interact" from="Grid/Robot" to="Grid/Button" method="_on_Robot_interact"]

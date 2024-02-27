@@ -2,6 +2,7 @@ extends Node2D
 
 
 onready var Grid = get_node("Grid")
+onready var CodeBlockBar = get_node("CodeBlockBar")
 
 
 var btn_pressed = false
@@ -20,6 +21,7 @@ var grid = [
 
 func _ready():
 	PEP.init_puzzle(grid, Grid)
+	PEP.init_code_blocks(CodeBlockBar)
 
 
 
