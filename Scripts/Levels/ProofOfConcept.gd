@@ -19,7 +19,7 @@ onready var CodeBlockBar = get_node("CodeBlockBar")
 #Size of the grid is curently determined by the above variables, but probably should be determined by variables of the Grid scene
 #NOTE: This script assumes the children of Grid are placed in the order they will be read (left to right, top to bottom).
 #Useful for easier editing of levels and for level editors in the future
-var grid = [
+var tiles = [
 	'R','O',' ',' ',' ',' ',' ',' ',' ',' ',' ',
 	' ','O',' ',' ',' ',' ',' ',' ',' ',' ',' ',
 	' ','O',' ',' ',' ',' ',' ',' ',' ',' ',' ',
@@ -36,7 +36,7 @@ signal openDoor
 # Called when the node enters the scene tree for the first time.
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
-	PEP.init_puzzle(grid, Grid)
+	PEP.init_puzzle(tiles, Grid)
 	PEP.init_code_blocks(CodeBlockBar)
 
 
