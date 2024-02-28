@@ -8,7 +8,7 @@ var b1_pressed = false
 var b2_pressed = false
 var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
 
-var grid = [
+var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','R','O','D','X','X','X','X',
@@ -20,7 +20,7 @@ var grid = [
 
 
 func _ready():
-	PEP.init_puzzle(grid, Grid)
+	PEP.init_puzzle(tiles, Grid)
 	PEP.init_code_blocks(CodeBlockBar)
 
 func _process(delta):
