@@ -49,13 +49,10 @@ func _ready():
 			node = Grid.get_child(1 + childIndex)
 			childIndex += 1
 			
-			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			#TODO: Change the 200 to reference Grid once we add in a variable in it to tell us where the grid starts
-			#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			var col = tileCount%numCols
 			var row = tileCount/numCols
-			var x = 200 + Grid.tile_size/2 + col * Grid.tile_size
-			var y = 200 + Grid.tile_size/2 + row * Grid.tile_size
+			var x = Grid.start_x + Grid.tile_size/2 + col * Grid.tile_size
+			var y = Grid.start_y + Grid.tile_size/2 + row * Grid.tile_size
 			
 			node.tileX = col
 			node.tileY = row

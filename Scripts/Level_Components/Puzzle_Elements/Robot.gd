@@ -4,8 +4,10 @@ extends KinematicBody2D
 onready var grid = get_node("../")
 
 onready var tile_size = grid.tile_size
-onready var grid_x = grid.grid_x
-onready var grid_y = grid.grid_y
+onready var start_x = grid.start_x
+onready var start_y = grid.start_y
+onready var end_x = grid.end_x
+onready var end_y = grid.end_y
 var tileX
 var tileY
 export var tileXMax = 10 #change once we settle on what this should be
@@ -15,7 +17,6 @@ export var tileYMax = 6  #change once we settle on what this should be
 #var startPosition = Vector2(200, 200)
 
 signal interact(tileX, tileY)
-
 
 #Used for dictating movement
 onready var ray = $RayCast2D
@@ -63,8 +64,8 @@ func move(dir):
 				tileY -= 1
 	
 	# Clamp position to window
-	position.x = clamp(position.x, 200 +  tile_size/2, grid_x - tile_size/2)
-	position.y = clamp(position.y, 200 + tile_size/2, grid_y - tile_size/2)
+	position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
+	position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
 	tileX = clamp(tileX, 0, tileXMax)
 	tileY = clamp(tileY, 0, tileYMax)
 
@@ -73,10 +74,10 @@ func move(dir):
 func _on_Forward_forwardSignal():
 	#Get orientation of the robot
 	var orientation
-	if rotation >= 0:
-		orientation = int((rotation_degrees+1) / 90) % 4
-	elif rotation < 0:
-		orientation = int((rotation_degrees-1) / 90) % 4
+	if $Sprite.rotation >= 0:
+		orientation = int(($Sprite.rotation_degrees+1) / 90) % 4
+	elif $Sprite.rotation < 0:
+		orientation = int(($Sprite.rotation_degrees-1) / 90) % 4
 		orientation += 4 if orientation != 0 else 0
 	
 	#Move forwards based on robot orientation
@@ -95,11 +96,11 @@ func _on_Forward_forwardSignal():
 
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
-	rotation -= PI/2
+	$Sprite.rotation -= PI/2
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
-	rotation += PI/2
+	$Sprite.rotation += PI/2
 
 #Interact
 func _on_Interact_interactSignal():

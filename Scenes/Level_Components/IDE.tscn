@@ -12,13 +12,19 @@ script = ExtResource( 2 )
 [node name="Main" parent="." instance=ExtResource( 1 )]
 
 [node name="Label" parent="Main" index="0"]
+margin_top = 13.0
+margin_right = 186.0
+margin_bottom = 31.0
 text = "MAIN"
 
 [node name="Run_Button" type="Button" parent="."]
+modulate = Color( 0.0784314, 1, 0, 1 )
+self_modulate = Color( 0.290196, 1, 0, 1 )
 margin_top = 279.0
 margin_right = 480.0
 margin_bottom = 509.0
 rect_min_size = Vector2( 480, 230 )
+focus_mode = 0
 mouse_default_cursor_shape = 2
 text = "RUN"
 
