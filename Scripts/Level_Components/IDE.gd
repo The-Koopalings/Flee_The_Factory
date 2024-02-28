@@ -46,94 +46,20 @@ func _ready():
 func _on_Button_pressed():
 	if !runPressed:
 		var code = main.get_children()
-	
-		#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-		code.pop_front()
-		code.pop_front()
-	
-		#debug so we know what's running
-		print(code)
-	
-		#Run all of the code + add delay between each block
-		for block in code:
-			if regexF1.search(block.name):
-				block.send_signal()
-				yield(self, "function1Finished")
-			elif regexF2.search(block.name):
-				block.send_signal()
-				yield(self, "function2Finished")
-			elif regexIf1.search(block.name):
-				block.send_signal()
-				yield(self, "if1Finished")
-			elif regexIf2.search(block.name):
-				block.send_signal()
-				yield(self, "if2Finished")
-			else:
-				block.send_signal()
-				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+		run_code(code, "Main")
 		runPressed = true
 
 
 #Run F1 code
 func _on_f1Signal():
 	var code = f1.get_children()
-	
-	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-	code.pop_front()
-	code.pop_front()
-	
-	#debug so we know what's running
-	print(code)
-	
-	#Run all of the code + add delay between each block
-	for block in code:
-		if regexF1.search(block.name):
-			block.send_signal()
-			yield(self, "function1Finished")
-		elif regexF2.search(block.name):
-			block.send_signal()
-			yield(self, "function2Finished")
-		elif regexIf1.search(block.name):
-			block.send_signal()
-			yield(self, "if1Finished")
-		elif regexIf2.search(block.name):
-			block.send_signal()
-			yield(self, "if2Finished")
-		else:
-			block.send_signal()
-			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
-	emit_signal("function1Finished")
+	run_code(code , "F1")
 	
 	
 #Run F2 code
 func _on_f2Signal():
 	var code = f2.get_children()
-	
-	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-	code.pop_front()
-	code.pop_front()
-	
-	#debug so we know what's running
-	print(code)
-	
-	#Run all of the code + add delay between each block
-	for block in code:
-		if regexF1.search(block.name):
-			block.send_signal()
-			yield(self, "function1Finished")
-		elif regexF2.search(block.name):
-			block.send_signal()
-			yield(self, "function2Finished")
-		elif regexIf1.search(block.name):
-			block.send_signal()
-			yield(self, "if1Finished")
-		elif regexIf2.search(block.name):
-			block.send_signal()
-			yield(self, "if2Finished")
-		else:
-			block.send_signal()
-			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
-	emit_signal("function2Finished")
+	run_code(code, "F2")
 	
 
 func _on_if1Signal():
@@ -148,31 +74,8 @@ func _on_if1Signal():
 	else:
 		code = else1.get_children()
 	
-	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-	code.pop_front()
-	code.pop_front()
-	
-	#debug so we know what's running
-	print(code)
-	
-	#Run all of the code + add delay between each block
-	for block in code:
-		if regexF1.search(block.name):
-			block.send_signal()
-			yield(self, "function1Finished")
-		elif regexF2.search(block.name):
-			block.send_signal()
-			yield(self, "function2Finished")
-		elif regexIf1.search(block.name):
-			block.send_signal()
-			yield(self, "if1Finished")
-		elif regexIf2.search(block.name):
-			block.send_signal()
-			yield(self, "if2Finished")
-		else:
-			block.send_signal()
-			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
-	emit_signal("if1Finished")
+	run_code(code, "If1")
+
 
 func _on_if2Signal():
 	print("if2Signal received")
@@ -186,6 +89,16 @@ func _on_if2Signal():
 	else:
 		code = else2.get_children()
 	
+	run_code(code, "If2")
+
+#Check conditions in If statement IDE block
+func check_conditions(LHS, Operator, RHS) -> bool:
+	return false
+#Parameters are strings, condtions sent in signal because there's too many nodes in  
+#func _on_ifCond_signal(LHS, Operator, RHS):
+#	print("If condtions received: ", LHS, " + ", Operator, " + ", RHS)
+
+func run_code(code, type: String):
 	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
 	code.pop_front()
 	code.pop_front()
@@ -210,11 +123,12 @@ func _on_if2Signal():
 		else:
 			block.send_signal()
 			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
-	emit_signal("if2Finished")
-
-#Check conditions in If statement IDE block
-func check_conditions(LHS, Operator, RHS) -> bool:
-	return false
-#Parameters are strings, condtions sent in signal because there's too many nodes in  
-#func _on_ifCond_signal(LHS, Operator, RHS):
-#	print("If condtions received: ", LHS, " + ", Operator, " + ", RHS)
+	match type:
+		"F1":
+			emit_signal("function1Finished")
+		"F2":
+			emit_signal("function2Finished")
+		"If1":
+			emit_signal("if1Finished")
+		"If2":
+			emit_signal("if2Finished")
