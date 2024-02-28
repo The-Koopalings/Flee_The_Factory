@@ -4,6 +4,7 @@
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CodeBlock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Placeholders/Loop1.PNG" type="Texture" id=3]
 
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.5, 28.5 )
 
