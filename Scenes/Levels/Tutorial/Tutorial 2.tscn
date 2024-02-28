@@ -43,16 +43,12 @@ maxBlocks = 5
 [node name="CodeBlockBar" parent="." instance=ExtResource( 9 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 6 )]
-position = Vector2( 90, 90 )
 
 [node name="RotateLeft" parent="CodeBlockBar" instance=ExtResource( 4 )]
-position = Vector2( 200, 90 )
 
 [node name="RotateRight" parent="CodeBlockBar" instance=ExtResource( 7 )]
-position = Vector2( 310, 90 )
 
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 5 )]
-position = Vector2( 420, 90 )
 
 [node name="AcceptDialog" parent="." instance=ExtResource( 15 )]
 

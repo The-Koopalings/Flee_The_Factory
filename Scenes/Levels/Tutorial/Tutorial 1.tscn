@@ -37,6 +37,10 @@ maxBlocks = 4
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 7 )]
 
+[node name="RotateLeft" parent="CodeBlockBar" instance=ExtResource( 8 )]
+
+[node name="RotateRight" parent="CodeBlockBar" instance=ExtResource( 9 )]
+
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 11 )]
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
