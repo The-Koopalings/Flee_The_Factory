@@ -50,7 +50,5 @@ func _process(delta):
 		B0_Pressed = false #So console doesn't get spammed at the end
 		
 
-
-
 func _on_Button_buttonPressed(name):
 	B0_Pressed = true
