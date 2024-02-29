@@ -8,6 +8,8 @@ var Grid
 var halftile 
 var CodeBlockBar
 var robotStartOrientation
+var level
+signal buttonPressed(name)
 
 var TileToTypeMapping = {
 	'R': "Robot",
@@ -23,11 +25,12 @@ enum Orientation{
 	LEFT = 3
 }
 
-func loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar):
+func loadLevel(level, tiles, robotStartOrientation, Grid, CodeBlockBar):
 	self.tiles = tiles
 	self.robotStartOrientation = robotStartOrientation
 	self.Grid = Grid
 	self.CodeBlockBar = CodeBlockBar
+	self.level = level
 	self.halftile = Grid.tile_size/2
 	self.init_elements()
 	self.init_code_blocks()
@@ -68,10 +71,9 @@ func _draw():
 			elif col == maxCols-1:
 				draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
 			
-			
-			
 		tileCount += 1
-	
+
+#Set positions/orientation of puzzle elements
 func init_elements():
 	var tileCount = 0
 	var node
@@ -94,19 +96,25 @@ func init_elements():
 				assert(!elements[type].empty())
 				return
 			node = elements[type].pop_front()
+			
 			node.tileX = col
 			node.tileY = row
-			
 			node.position = Vector2(x, y)	
+			
+			#If it's a special element, do special thing to it
 			if type == "Robot":
 				node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
-			
+			elif type == "Button":
+				node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+			elif type == "Door":
+				level.connect("openDoor", node, "_on_level_openDoor")
 		#error handling goes here??
 		else:
 			pass
 			
 		tileCount += 1
 
+#Helper function of init_elements. Creates dict to track all available elements
 func generate_elements_dict():
 	var nodes = Grid.get_children()
 	
@@ -127,7 +135,7 @@ func generate_elements_dict():
 			
 	return elements
 
-
+#Set position of code blocks on CodeBlockBar
 func init_code_blocks():
 	var x = 90
 	var y = 1008
@@ -137,7 +145,5 @@ func init_code_blocks():
 	# Ignore first child of CodeBlockBar (TextureRect, not code block)
 	for i in range(1, blocks.size()):
 		var code_block_template = blocks[i].get_child(2)
-		
 		code_block_template.startPos = Vector2(x, y)
-		
-		x += 110
+		x += 110	

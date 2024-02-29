@@ -1,12 +1,16 @@
 extends Node2D
 
-
+##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
+signal openDoor
+##UNIVERSAL LEVEL VARIABLES 
 
+##UNIQUE LEVEL VARIABLES
 var btn_pressed = false
-var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
+##UNIQUE LEVEL VARIABLES
 
+##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
@@ -17,17 +21,18 @@ var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
 ]
 var robotStartOrientation = PEP.Orientation.RIGHT
+##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
-	PEP.loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar)
+	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
 
 
 func _process(delta):
 	if btn_pressed:
-		get_node("Grid/Door/Sprite").set_texture(openDoorTexture)
+		emit_signal("openDoor")
 		$AcceptDialog.popup()
 		btn_pressed = false
 
-
+#Handles all button presses
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
