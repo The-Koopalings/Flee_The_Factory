@@ -36,10 +36,7 @@ signal openDoor
 # Called when the node enters the scene tree for the first time.
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
-	PEP.init_puzzle(tiles, Grid)
-	PEP.init_code_blocks(CodeBlockBar)
-
-
+	PEP.loadLevel(tiles, Grid, CodeBlockBar)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

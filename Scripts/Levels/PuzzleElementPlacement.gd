@@ -1,8 +1,12 @@
-extends Node
+extends Node2D
 
 
-var maxRows = 7 #Cells per row
-var maxCols = 11  #Cells per col
+var maxRows = 7 #Number of Rows (Cells per Column)
+var maxCols = 11  #Numbers of Columns (Cells per Row)
+var tiles = []
+var Grid 
+var halftile 
+var CodeBlockBar
 
 var TileToTypeMapping = {
 	'R': "Robot",
@@ -11,71 +15,117 @@ var TileToTypeMapping = {
 	'D': "Door",
 }
 
+func loadLevel(tiles, Grid, CodeBlockBar):
+	self.tiles = tiles
+	self.Grid = Grid
+	self.CodeBlockBar = CodeBlockBar
+	self.halftile = Grid.tile_size/2
+	self.init_elements()
+	self.init_code_blocks()
+	self.update()
 
-
-
-# TODO: should probably make the naming more intuitive
-# For now, grid is the array and Grid is the node
-func init_puzzle(tiles, Grid):
+func _draw():
+	if tiles.size() == 0:
+		return
+	var i = 0
+	var tileCount = 0
+	for tile in tiles:
+		var col = tileCount%maxCols
+		var row = tileCount/maxCols
+		var x = Grid.start_x + halftile + col * Grid.tile_size
+		var y = Grid.start_y + halftile + row * Grid.tile_size
+		
+		if tile == 'X':
+			#Check all edges to see if it's a border
+			var top = 'X' if (row == 0) else tiles[tileCount - maxCols]
+			var bottom = 'X' if (row == maxRows-1) else tiles[tileCount + maxCols]
+			var left = 'X' if (col == 0) else tiles[tileCount - 1]
+			var right = 'X' if (col == maxCols-1) else tiles[tileCount + 1]
+			
+			if top != 'X':
+				draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
+			if bottom != 'X':
+				draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+			if left != 'X':
+				draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
+			if right != 'X':
+				draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+		else:
+			if row == 0:
+				draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
+			elif row == maxRows-1:
+				draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+			
+			if col == 0:
+				draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
+			elif col == maxCols-1:
+				draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+			
+			
+			
+		tileCount += 1
+	
+func init_elements():
 	var tileCount = 0
 	var childIndex = 0
 	var node
-	var elements = generate_elements_dict(Grid)
+	var elements = generate_elements_dict()
 	
 	#Iterate through each tile
 	for tile in tiles:		
-		
-		#If tile is off limits 
-		if tile == 'X':
-			#Generate grid boundaries here
-			pass
+		var col = tileCount%maxCols
+		var row = tileCount/maxCols
+		var x = Grid.start_x + halftile + col * Grid.tile_size
+		var y = Grid.start_y + halftile + row * Grid.tile_size
+			
+
 		#If tile is an element, find that node in elements and set its position
-		elif TileToTypeMapping.has(tile):
+		if TileToTypeMapping.has(tile):
 			var type = TileToTypeMapping[tile]
 			
 			if elements[type].empty():
 				printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(type) + "> to the level")
 				assert(!elements[type].empty())
 				return
-			node = elements[type].pop_back()			
+			node = elements[type].pop_front()
 			
-			var col = tileCount%maxCols
-			var row = tileCount/maxCols
-			var x = Grid.start_x + Grid.tile_size/2 + col * Grid.tile_size
-			var y = Grid.start_y + Grid.tile_size/2 + row * Grid.tile_size
+
+			
 			
 			node.tileX = col
 			node.tileY = row
 			
 			node.position = Vector2(x, y)	
 			print(node.name, ": ", node.position)
+			
 		#error handling goes here??
 		else:
 			pass
 			
 		tileCount += 1
 
-func generate_elements_dict(Grid):
+func generate_elements_dict():
 	var nodes = Grid.get_children()
 	
-	nodes.pop_front() #Get rid of first node b/c that's the tilemap
+	#Get rid of first node b/c that's the tilemap
+	nodes.pop_front() 
 	
 	var elements = {}
 	for node in nodes:
-		var type = node.name.rstrip("0123456789") #Get the name, but remove any numbers from the end
+		#Get the name, but remove all digits from the end
+		var type = node.name.rstrip("0123456789") 
 		
 		#For each unique element type, make a list of all instances 
 		#For Example: elements["Obstacle"] has a list of all Obstacle Nodes
 		if elements.keys().has(type):
-			#NOTE: each list is a queue, but stored at the front and retreived at the back (for optimization purposes)
-			elements[type].push_front(node) 
+			elements[type].push_back(node) 
 		else:
 			elements[type] = [node]
 			
 	return elements
 
 
-func init_code_blocks(CodeBlockBar):
+func init_code_blocks():
 	var x = 90
 	var y = 1008
 	
