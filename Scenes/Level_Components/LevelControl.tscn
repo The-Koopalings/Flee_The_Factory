@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Objects/13/Skillicon13_17.png" type="Texture" id=3]
 
 
-[node name="Control" type="Control"]
+[node name="Level Control" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 2 )
