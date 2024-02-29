@@ -42,13 +42,13 @@ func _process(delta):
 					change_state(State.READING)
 		State.READING:
 			# Press space to display all text right away
-			if Input.is_action_just_pressed("ui_select") or Input.is_action_just_released("left_mouse_click"):
+			if Input.is_action_just_pressed("ui_select"):
 				text.percent_visible = 1.0
 				$Tween.remove_all()
-				end_symbol.text = "(Press SPACEBAR or CLICK to continue)"
+				end_symbol.text = "(Press SPACEBAR to continue)"
 				change_state(State.END)
 		State.END:
-			if Input.is_action_just_pressed("ui_select") or Input.is_action_just_released("left_mouse_click"):
+			if Input.is_action_just_pressed("ui_select"):
 				end_symbol.text = ""
 				if text_queue.empty():
 					hide_textbox()
@@ -85,7 +85,7 @@ func display_text():
 
 
 func _on_Tween_tween_all_completed():
-	end_symbol.text = "(Press SPACEBAR or CLICK to continue)"
+	end_symbol.text = "(Press SPACEBAR to continue)"
 	change_state(State.END)
 
 
