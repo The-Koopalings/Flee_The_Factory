@@ -16,10 +16,10 @@ var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
 ]
-
+var robotStartOrientation = PEP.Orientation.RIGHT
 
 func _ready():
-	PEP.loadLevel(tiles, Grid, CodeBlockBar)
+	PEP.loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar)
 
 
 func _process(delta):

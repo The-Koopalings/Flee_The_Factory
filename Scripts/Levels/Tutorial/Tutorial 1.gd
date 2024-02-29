@@ -18,13 +18,13 @@ var tiles = [
 	'X','X','X',' ',' ',' ','X','X',' ',' ',' ',
 	'X','X','X',' ','X','X','X','X','X','X','X',
 ]
-
+var robotStartOrientation = PEP.Orientation.RIGHT
 
 func _ready():
-	PEP.loadLevel(tiles, Grid, CodeBlockBar)
+	PEP.loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar)
 	
 	# Set Robot orientation
-	$Grid/Robot/Sprite.rotation_degrees += 90
+	#$Grid/Robot/Sprite.rotation_degrees += 90
 	
 	# Add tutorial dialogue
 	display_dialogue()
