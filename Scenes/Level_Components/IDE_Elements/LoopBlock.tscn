@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/Counter.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/LoopBlock.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 210, 84 )
@@ -10,7 +11,15 @@ extents = Vector2( 210, 84 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 243, 140.5 )
 
-[node name="Loop" type="Control"]
+[node name="Loop1" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": "Name this either Loop1 or Loop2"
+}
+
+[node name="HighlightControl" type="Control" parent="."]
 margin_right = 480.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 480, 275 )
@@ -18,33 +27,25 @@ focus_mode = 1
 mouse_filter = 2
 script = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = 30.0
-margin_right = 134.0
-margin_bottom = 16.0
-rect_scale = Vector2( 4, 4 )
-text = "LOOP"
-align = 1
-
-[node name="FunctionBlockArea" type="Area2D" parent="."]
+[node name="FunctionBlockArea" type="Area2D" parent="HighlightControl"]
 position = Vector2( 30, 70 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input if that number changes"
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FunctionBlockArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HighlightControl/FunctionBlockArea"]
 position = Vector2( 210, 85 )
 shape = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="FunctionBlockArea"]
+[node name="ColorRect" type="ColorRect" parent="HighlightControl/FunctionBlockArea"]
 margin_right = 420.0
 margin_bottom = 170.0
 rect_min_size = Vector2( 420, 170 )
 mouse_filter = 2
 color = Color( 0.137255, 0.423529, 0.431373, 1 )
 
-[node name="Highlight" type="ReferenceRect" parent="."]
+[node name="Highlight" type="ReferenceRect" parent="HighlightControl"]
 margin_right = 480.0
 margin_bottom = 275.0
 mouse_filter = 2
@@ -52,14 +53,14 @@ border_color = Color( 1, 0.937255, 0, 1 )
 border_width = 5.0
 editor_only = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="HighlightControl"]
 show_behind_parent = true
 margin_right = 480.0
 margin_bottom = 275.0
 mouse_filter = 2
 color = Color( 0, 0.231373, 0.482353, 1 )
 
-[node name="Counter" type="Label" parent="."]
+[node name="Counter" type="Label" parent="HighlightControl"]
 margin_left = 177.5
 margin_top = 244.0
 margin_right = 227.5
@@ -70,20 +71,131 @@ text = "0/7"
 align = 1
 script = ExtResource( 3 )
 
-[node name="Clickable" type="Area2D" parent="."]
+[node name="Clickable" type="Area2D" parent="HighlightControl"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Clickable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HighlightControl/Clickable"]
 position = Vector2( 240, 137.5 )
 shape = SubResource( 2 )
 
-[node name="ChooseLoopType" type="MenuButton" parent="."]
-margin_right = 12.0
-margin_bottom = 20.0
+[node name="ChooseLoopType" type="MenuButton" parent="HighlightControl"]
+margin_left = 173.0
+margin_right = 307.0
+margin_bottom = 50.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": "x = 150, y = 0 at start. After choosing pos = (5, 18), size = (134, 50)"
+}
 
-[connection signal="focus_entered" from="." to="." method="_on_FunctionBlockControl_focus_entered"]
-[connection signal="focus_exited" from="." to="." method="_on_FunctionBlockControl_focus_exited"]
-[connection signal="area_entered" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_area_entered"]
-[connection signal="area_exited" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_area_exited"]
-[connection signal="input_event" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_input_event"]
-[connection signal="input_event" from="Clickable" to="." method="_on_Clickable_input_event"]
-[connection signal="mouse_entered" from="Clickable" to="." method="_on_Clickable_mouse_entered"]
+[node name="Label" type="Label" parent="HighlightControl/ChooseLoopType"]
+margin_right = 45.0
+margin_bottom = 18.0
+rect_scale = Vector2( 3, 3 )
+text = "Loop1"
+align = 1
+valign = 2
+__meta__ = {
+"_editor_description_": "after choose: pos = (0,0), size = (45, 18), scale = 3"
+}
+
+[node name="LHS" type="MenuButton" parent="HighlightControl"]
+margin_left = 150.0
+margin_top = 19.0
+margin_right = 297.0
+margin_bottom = 69.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": "pos = (150, 19), size = (147, 50)"
+}
+
+[node name="Label" type="Label" parent="HighlightControl/LHS"]
+margin_top = 10.0
+margin_right = 57.0
+margin_bottom = 27.0
+rect_scale = Vector2( 2.5, 2.5 )
+text = "Obstacle"
+align = 2
+valign = 2
+__meta__ = {
+"_editor_description_": "pos = (0, 10), size = (57, 17), scale = 2.5"
+}
+
+[node name="Operator" type="MenuButton" parent="HighlightControl"]
+margin_left = 300.0
+margin_top = 19.0
+margin_right = 342.0
+margin_bottom = 69.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": "pos = (300, 19), size = (42, 50)"
+}
+
+[node name="Label" type="Label" parent="HighlightControl/Operator"]
+margin_top = 10.0
+margin_right = 17.0
+margin_bottom = 27.0
+rect_scale = Vector2( 2.5, 2.5 )
+text = "=="
+align = 1
+valign = 2
+__meta__ = {
+"_editor_description_": "pos = (0,10), size = (17,17), scale = 2.5"
+}
+
+[node name="RHS" type="MenuButton" parent="HighlightControl"]
+margin_left = 342.0
+margin_top = 19.0
+margin_right = 471.0
+margin_bottom = 69.0
+focus_mode = 2
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": "pos = (342, 19), size = (129, 50)"
+}
+
+[node name="Label" type="Label" parent="HighlightControl/RHS"]
+margin_top = 10.0
+margin_right = 51.0
+margin_bottom = 27.0
+rect_scale = Vector2( 2.5, 2.5 )
+text = "Pressed"
+valign = 2
+__meta__ = {
+"_editor_description_": "pos = (0,10), size = (51, 17), scale = 2.5"
+}
+
+[node name="StartValue" type="Label" parent="HighlightControl"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="Input" type="LineEdit" parent="HighlightControl/StartValue"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="StopValue" type="Label" parent="HighlightControl"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="Input" type="LineEdit" parent="HighlightControl/StopValue"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="Step" type="Label" parent="HighlightControl"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="Input" type="LineEdit" parent="HighlightControl/Step"]
+margin_right = 58.0
+margin_bottom = 24.0
+
+[node name="LoopCounter" type="Label" parent="HighlightControl"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "i:"
+
+[connection signal="focus_entered" from="HighlightControl" to="HighlightControl" method="_on_FunctionBlockControl_focus_entered"]
+[connection signal="focus_exited" from="HighlightControl" to="HighlightControl" method="_on_FunctionBlockControl_focus_exited"]
+[connection signal="area_entered" from="HighlightControl/FunctionBlockArea" to="HighlightControl/FunctionBlockArea" method="_on_FunctionBlockArea_area_entered"]
+[connection signal="area_exited" from="HighlightControl/FunctionBlockArea" to="HighlightControl/FunctionBlockArea" method="_on_FunctionBlockArea_area_exited"]
+[connection signal="input_event" from="HighlightControl/FunctionBlockArea" to="HighlightControl/FunctionBlockArea" method="_on_FunctionBlockArea_input_event"]
+[connection signal="input_event" from="HighlightControl/Clickable" to="HighlightControl" method="_on_Clickable_input_event"]
+[connection signal="mouse_entered" from="HighlightControl/Clickable" to="HighlightControl" method="_on_Clickable_mouse_entered"]

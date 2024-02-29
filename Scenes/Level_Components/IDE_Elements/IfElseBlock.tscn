@@ -5,7 +5,6 @@
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/IfElseBlock.gd" type="Script" id=4]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 210, 27.5 )
 
@@ -18,6 +17,9 @@ margin_bottom = 275.0
 rect_min_size = Vector2( 480, 275 )
 mouse_filter = 2
 script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="If" type="Control" parent="."]
 margin_right = 480.0

@@ -1,6 +1,5 @@
 extends Control
 
-#signal ifCondSignal
 
 onready var LHS = get_node("If/LHS")
 onready var LHSLabel = get_node("If/LHS/Label")
