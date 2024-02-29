@@ -29,11 +29,7 @@ onready var highlight = get_node("../Highlight")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	monitoring = true
-	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 #Area2D enters a function area
 func _on_FunctionBlockArea_area_entered(area):
@@ -74,7 +70,7 @@ func _on_CodeBlock_doubleClick(code_block):
 # Helper function to add a code block into FunctionBlockArea
 func add_block():
 	child = null
-	#Check for valid codeblock & instance code block
+	#Check for valid code block + that it's not in FBA, then instance code block
 	if CodeBlock and CodeBlock.get_child(2) and !CodeBlock.get_child(2).inFBA:
 		match CodeBlock.name:
 			"Forward":
@@ -102,12 +98,10 @@ func add_block():
 		child.get_child(2).inFBA = true
 		add_child(child, true)
 		counter.display(numBlocks)
-		
-	#print("DROPPED " + CodeBlock.name + " in " + name)
 
 
-
-#Remove code blocks once player releases left mouse button
+#Remove code blocks once player releases left mouse button outside of FBA
+#parameter is the startPos variable of the CodeBlock that sent a stopDrag signal
 func stop_drag(globalPos):
 	if child and removeChild and child.get_child(2).startPos == globalPos:
 		var startIndex = child.get_index()
