@@ -1,19 +1,16 @@
 extends Node2D
 
-
-#Load Puzzle Elements
-#Not currently necessary, but if we wanted to do more by script...
-"""
-var PathToPuzzleElements = "res://Scenes/Level_Components/Puzzle_Elements/"
-var Btn = load(PathToPuzzleElements + "Button.tscn")
-var Door = load(PathToPuzzleElements + "Door.tscn")
-var Obstacle = load(PathToPuzzleElements + "Obstacle.tscn")
-var Robot = load(PathToPuzzleElements + "Robot.tscn")
-"""
-
+##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
+signal openDoor
+##UNIVERSAL LEVEL VARIABLES 
 
+##UNIQUE LEVEL VARIABLES
+var B0_Pressed = false
+##UNIQUE LEVEL VARIABLES
+
+##LEVEL CONFIGURATION VARIABLES
 #Define what's on the grid
 #This is one array, read by tile, starting from the first tile of the first row and moving right.
 #Size of the grid is curently determined by the above variables, but probably should be determined by variables of the Grid scene
@@ -28,18 +25,13 @@ var tiles = [
 	' ',' ',' ',' ',' ',' ',' ',' ',' ','D',' ',
 	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
 ]
-
-#win conditions
-var B0_Pressed = false
-signal openDoor
+var robotStartOrientation = PEP.Orientation.DOWN
+##LEVEL CONFIGURATION VARIABLES
 
 # Called when the node enters the scene tree for the first time.
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
-	PEP.init_puzzle(tiles, Grid)
-	PEP.init_code_blocks(CodeBlockBar)
-
-
+	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -50,8 +42,6 @@ func _process(delta):
 		$AcceptDialog.popup()
 		B0_Pressed = false #So console doesn't get spammed at the end
 		
-
-
 
 func _on_Button_buttonPressed(name):
 	B0_Pressed = true
