@@ -3,6 +3,13 @@ extends Node2D
 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
+onready var TextBox = get_node("TextBox")
+onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+
+var dialogue_queue = []
+
+signal tutorial_progress
+var progress_check = [false, false, false]
 
 var b1_pressed = false
 var b2_pressed = false
@@ -21,6 +28,8 @@ var robotStartOrientation = PEP.Orientation.DOWN
 
 func _ready():
 	PEP.loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar)
+	
+	Dialogue.load_dialogue("Tutorial/Tutorial 3.txt", dialogue_queue)
 
 func _process(delta):
 	if b1_pressed and b2_pressed:

@@ -1,0 +1,13 @@
+Not all floors will contain a straight path to the door! Robby will only move forward in the direction that he is facing.
+Explain obstacle
+CODE_BLOCK
+Explain Rotate left/right code blocks
+Let's rotate Robby to the left so that he no longer faces the obstacle.
+;
+Great! Now that he's facing the right direction, he can move forward one tile. Let's place a forward code block into Main.
+;
+Oh no! Robby will be facing another obstacle now. Let's rotate him to the right to solve this problem.
+;
+Hooray! Robby can move forward and interact with the button now. Please place the appropriate code blocks into Main and press Run.
+;
+Congrats! Robby is another step closer to fleeing the factory (roll credits x2).

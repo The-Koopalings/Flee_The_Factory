@@ -1,0 +1,6 @@
+Some floors will have multiple buttons to press before Robby can open the door.
+CODE_BLOCK
+Let's guide Robby to the first button by moving forward 2 tiles and interacting with it.
+;
+Now see if you can guide Robby to the next button using what you have learned so far. Remember to press run when you're ready!
+;
