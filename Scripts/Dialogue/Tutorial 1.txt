@@ -8,4 +8,5 @@ These are code blocks. This is what you use to control Robby's movements.
 Explain forward code block
 Explain interact code block
 To place the code blocks into the IDE, you can drag and drop them.
+;
 This is a test line to see if the next piece of dialogue doesn't appear until the user drops the code block in.

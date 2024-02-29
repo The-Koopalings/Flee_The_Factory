@@ -64,3 +64,6 @@ func display_dialogue():
 	for dialogue in dialogue_queue:
 		line_counter += 1
 		TextBox.queue_text(dialogue)
+		
+		if line_counter == 10:
+			yield(MainFBA, "input_event")
