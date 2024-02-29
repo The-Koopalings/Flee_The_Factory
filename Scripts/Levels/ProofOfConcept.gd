@@ -14,6 +14,10 @@ var Robot = load(PathToPuzzleElements + "Robot.tscn")
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
 
+#win conditions
+var B0_Pressed = false
+signal openDoor
+
 #Define what's on the grid
 #This is one array, read by tile, starting from the first tile of the first row and moving right.
 #Size of the grid is curently determined by the above variables, but probably should be determined by variables of the Grid scene
@@ -28,18 +32,13 @@ var tiles = [
 	' ',' ',' ',' ',' ',' ',' ',' ',' ','D',' ',
 	' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
 ]
+var robotStartOrientation = PEP.Orientation.DOWN
 
-#win conditions
-var B0_Pressed = false
-signal openDoor
 
 # Called when the node enters the scene tree for the first time.
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
-	PEP.init_puzzle(tiles, Grid)
-	PEP.init_code_blocks(CodeBlockBar)
-
-
+	PEP.loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -50,8 +49,6 @@ func _process(delta):
 		$AcceptDialog.popup()
 		B0_Pressed = false #So console doesn't get spammed at the end
 		
-
-
 
 func _on_Button_buttonPressed(name):
 	B0_Pressed = true

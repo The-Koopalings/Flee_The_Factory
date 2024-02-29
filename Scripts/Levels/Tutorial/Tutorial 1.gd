@@ -16,21 +16,20 @@ var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
 
 var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','R',' ',' ','B','D','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
+	'X',' ',' ',' ',' ',' ',' ','X','X','X','X',
+	'X',' ',' ','X',' ','X',' ','X','X',' ','X',
+	'X','X','X','R',' ',' ','B','D','X',' ','X',
+	'X','X','X',' ','X',' ','X','X','X',' ','X',
+	'X','X','X',' ',' ',' ','X','X',' ',' ',' ',
+	'X','X','X',' ','X','X','X','X','X','X','X',
 ]
-
+var robotStartOrientation = PEP.Orientation.RIGHT
 
 func _ready():
-	PEP.init_puzzle(tiles, Grid)
-	PEP.init_code_blocks(CodeBlockBar)
+	PEP.loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar)
 	
 	# Set Robot orientation
-	$Grid/Robot/Sprite.rotation_degrees += 90
+	#$Grid/Robot/Sprite.rotation_degrees += 90
 	
 	# Add tutorial dialogue
 	load_dialogue()

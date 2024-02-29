@@ -25,13 +25,6 @@ onready var ray = $RayCast2D
 # For now, use arrow keys as input
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 
-enum Orientation{
-	UP = 0,
-	RIGHT = 1,
-	DOWN = 2,
-	LEFT = 3
-}
-
 func _ready():
 	pass
 	
@@ -82,16 +75,16 @@ func _on_Forward_forwardSignal():
 	
 	#Move forwards based on robot orientation
 	match orientation:
-		Orientation.UP:
+		PEP.Orientation.UP:
 			move("ui_up")
 			
-		Orientation.LEFT:
+		PEP.Orientation.LEFT:
 			move("ui_left")
 			
-		Orientation.DOWN:
+		PEP.Orientation.DOWN:
 			move("ui_down")
 			
-		Orientation.RIGHT:
+		PEP.Orientation.RIGHT:
 			move("ui_right")
 
 #RotateLeft
