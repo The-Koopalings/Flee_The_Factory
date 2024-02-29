@@ -7,6 +7,7 @@ var tiles = []
 var Grid 
 var halftile 
 var CodeBlockBar
+var robotStartOrientation
 
 var TileToTypeMapping = {
 	'R': "Robot",
@@ -15,8 +16,16 @@ var TileToTypeMapping = {
 	'D': "Door",
 }
 
-func loadLevel(tiles, Grid, CodeBlockBar):
+enum Orientation{
+	UP = 0,
+	RIGHT = 1,
+	DOWN = 2,
+	LEFT = 3
+}
+
+func loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar):
 	self.tiles = tiles
+	self.robotStartOrientation = robotStartOrientation
 	self.Grid = Grid
 	self.CodeBlockBar = CodeBlockBar
 	self.halftile = Grid.tile_size/2
@@ -24,10 +33,8 @@ func loadLevel(tiles, Grid, CodeBlockBar):
 	self.init_code_blocks()
 	self.update()
 
+#Draws the borders of the grid+
 func _draw():
-	if tiles.size() == 0:
-		return
-	var i = 0
 	var tileCount = 0
 	for tile in tiles:
 		var col = tileCount%maxCols
@@ -67,7 +74,6 @@ func _draw():
 	
 func init_elements():
 	var tileCount = 0
-	var childIndex = 0
 	var node
 	var elements = generate_elements_dict()
 	
@@ -88,15 +94,12 @@ func init_elements():
 				assert(!elements[type].empty())
 				return
 			node = elements[type].pop_front()
-			
-
-			
-			
 			node.tileX = col
 			node.tileY = row
 			
 			node.position = Vector2(x, y)	
-			print(node.name, ": ", node.position)
+			if type == "Robot":
+				node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
 			
 		#error handling goes here??
 		else:
