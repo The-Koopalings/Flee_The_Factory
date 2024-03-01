@@ -1,34 +1,32 @@
 extends Node2D
 
-
+##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
+signal openDoor
+##UNIVERSAL LEVEL VARIABLES 
+
+##UNIQUE LEVEL VARIABLES
 onready var TextBox = get_node("TextBox")
-onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
-
-var dialogue_queue = []
-
 var btn_pressed = false
-var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
+##UNIQUE LEVEL VARIABLES
 
+##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','R',' ',' ','B','D','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
+	'X',' ',' ',' ',' ',' ',' ','X','X','X','X',
+	'X',' ',' ','X',' ','X',' ','X','X',' ','X',
+	'X','X','X','R',' ',' ','B','D','X',' ','X',
+	'X','X','X',' ','X',' ','X','X','X',' ','X',
+	'X','X','X',' ',' ',' ','X','X',' ',' ',' ',
+	'X','X','X',' ','X','X','X','X','X','X','X',
 ]
-
+var robotStartOrientation = PEP.Orientation.RIGHT
+##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
-	PEP.init_puzzle(tiles, Grid)
-	PEP.init_code_blocks(CodeBlockBar)
-	
-	# Set Robot orientation
-	$Grid/Robot/Sprite.rotation_degrees += 90
-	
+	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
+  
 	# Add tutorial dialogue
 	load_dialogue()
 	display_dialogue()
@@ -36,11 +34,11 @@ func _ready():
 
 func _process(delta):
 	if btn_pressed:
-		get_node("Grid/Door/Sprite").set_texture(openDoorTexture)
+		emit_signal("openDoor")
 		$AcceptDialog.popup()
 		btn_pressed = false
 
-
+#Handles all button presses
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
 
