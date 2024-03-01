@@ -11,14 +11,14 @@ extents = Vector2( 210, 27.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 243, 71.5 )
 
-[node name="IfElse" type="Control"]
+[node name="IfElse1" type="Control"]
 margin_right = 480.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 480, 275 )
 mouse_filter = 2
 script = ExtResource( 4 )
 __meta__ = {
-"_editor_description_": ""
+"_editor_description_": "Name this either IfElse1 or IfElse2"
 }
 
 [node name="If" type="Control" parent="."]

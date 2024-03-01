@@ -89,13 +89,17 @@ func add_block():
 			"F2_":
 				child = F2.instance()
 			"If1_":
-				child = If1.instance()
+				if get_parent().get_parent().name != "IfElse1":
+					child = If1.instance()
 			"If2_":
-				child = If2.instance()
+				if get_parent().get_parent().name != "IfElse2":
+					child = If2.instance()
 			"Loop1_":
-				child = Loop1.instance()
+				if get_parent().get_parent().name != "Loop1":
+					child = Loop1.instance()
 			"Loop2_":
-				child = Loop2.instance()
+				if get_parent().get_parent().name != "Loop2":
+					child = Loop2.instance()
 	#Add codeblock node to tree
 	if child and numBlocks < counter.maxBlocks:
 		var x = xOffset + blockSize * (numBlocks % rowSize)
