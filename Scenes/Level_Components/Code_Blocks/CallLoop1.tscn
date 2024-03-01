@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Level_Components/Code_Blocks/Loop.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Level_Components/Code_Blocks/CallLoop.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CodeBlock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Placeholders/Loop1.PNG" type="Texture" id=3]
 

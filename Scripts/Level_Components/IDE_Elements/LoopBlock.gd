@@ -24,16 +24,7 @@ onready var StepOperator = get_node(forConditionalPath + "/StepOperator")
 onready var StepOperatorLabel = get_node(forConditionalPath + "/StepOperator/Label")
 onready var LoopCounter = get_node(forConditionalPath + "/LoopCounter")
 
-#Pathing
-var mainPath = "../Main/FunctionBlockArea/"
-var F1Path = "../F1/FunctionBlockArea/"
-var F2Path = "../F2/FunctionBlockArea/"
-var If1Path = "../IfElse1/If/FunctionBlockArea/"
-var Else1Path = "../IfElse1/Else/FunctionBlockArea/"
-var If2Path = "../IfElse2/If/FunctionBlockArea/"
-var Else2Path = "../IfElse2/Else/FunctionBlockArea/"
-var Loop1Path = "../Loop1/HighlightControl/FunctionBlockArea/"
-var Loop2Path = "../Loop2/HighlightControl/FunctionBlockArea/"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connections()
@@ -44,6 +35,7 @@ func _ready():
 	ForConditional.set_visible(false)
 
 
+#NOTE: ChosenLoop connections are located in Loop.gd
 func connections():
 	#Connect selection of dropdown menu option to this node
 	ChooseLoopType.get_popup().connect("id_pressed", self, "on_CLT_option_selected")
@@ -51,59 +43,6 @@ func connections():
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	StepOperator.get_popup().connect("id_pressed", self, "on_StepOperator_option_selected")
-	
-	#Connect signals for when type of loop is chosen
-	connect_loop_blocks()
-	#Account for all possible Loop code blocks in each IDE section
-	connect_all_possible_loop_blocks()
-
-func connect_loop_blocks():
-	connect("ChosenLoop", get_node("../../CodeBlockBar/Loop1_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node("../../CodeBlockBar/Loop2_"), "on_loop_type_selected")
-	#Connect to code blocks in main
-	connect("ChosenLoop", get_node(mainPath + "Loop1_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(mainPath + "Loop2_"), "on_loop_type_selected")
-	#Connect to code blocks in F1 & F2
-	connect("ChosenLoop", get_node(F1Path + "Loop1_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(F1Path + "Loop2_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(F2Path + "Loop1_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(F2Path + "Loop2_"), "on_loop_type_selected")
-	#Connect to If-Else 
-	connect("ChosenLoop", get_node(If1Path + "Loop1_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(If1Path + "Loop2_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(Else1Path + "Loop1_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(Else1Path + "Loop2_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(If2Path + "Loop1_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(If2Path + "Loop2_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(Else2Path + "Loop1_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(Else2Path + "Loop2_"), "on_loop_type_selected")
-	#Connect to Loops (Loop1 can contain Loop2 code block & vice versa)
-	connect("ChosenLoop", get_node(Loop1Path + "Loop2_"), "on_loop_type_selected")
-	connect("ChosenLoop", get_node(Loop2Path + "Loop1_"), "on_loop_type_selected")
-	
-	
-func connect_all_possible_loop_blocks():
-	for i in range(1, 22):
-		#Connect to code blocks in main
-		connect("ChosenLoop", get_node(mainPath + "Loop1_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(mainPath + "Loop2_" + str(i)), "on_loop_type_selected")
-		#Connect to code blocks in F1 & F2
-		connect("ChosenLoop", get_node(F1Path + "Loop1_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(F1Path + "Loop2_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(F2Path + "Loop1_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(F2Path + "Loop2_" + str(i)), "on_loop_type_selected")
-		#Connect to If-Else 
-		connect("ChosenLoop", get_node(If1Path + "Loop1_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(If1Path + "Loop2_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(Else1Path + "Loop1_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(Else1Path + "Loop2_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(If2Path + "Loop1_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(If2Path + "Loop2_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(Else2Path + "Loop1_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(Else2Path + "Loop2_" + str(i)), "on_loop_type_selected")
-		#Connect to Loops (Loop1 can contain Loop2 code block & vice versa)
-		connect("ChosenLoop", get_node(Loop1Path + "Loop2_" + str(i)), "on_loop_type_selected")
-		connect("ChosenLoop", get_node(Loop2Path + "Loop1_" + str(i)), "on_loop_type_selected")
 
 
 func add_dropdown_options():
@@ -140,23 +79,21 @@ func on_CLT_option_selected(id):
 		0:
 			if self.name == "Loop1":
 				ChooseLoopTypeLabel.text = "While1"
-				emit_signal("ChosenLoop", "While", 1)
 			elif self.name == "Loop2":
 				ChooseLoopTypeLabel.text = "While2"
-				emit_signal("ChosenLoop", "While", 2)
 			Counter.set_position(Vector2(177.5, 244)) #Move the code block counter to the middle
 			WhileConditional.set_visible(true)
 			ForConditional.set_visible(false)
+			emit_signal("ChosenLoop", "While")
 		1:
 			if self.name == "Loop1":
 				ChooseLoopTypeLabel.text = "For1"
-				emit_signal("ChosenLoop", "For", 1)
 			elif self.name == "Loop2":
 				ChooseLoopTypeLabel.text = "For2"
-				emit_signal("ChosenLoop", "For", 2)
 			Counter.set_position(Vector2(130, 244)) #Move the code block counter slightly left
 			ForConditional.set_visible(true)
 			WhileConditional.set_visible(false)
+			emit_signal("ChosenLoop", "For")
 			
 
 func on_LHS_option_selected(id):

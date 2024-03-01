@@ -10,10 +10,10 @@ var RotateRight = load(PathToCodeBlocks + "RotateRight.tscn")
 var Interact  = load(PathToCodeBlocks + "Interact.tscn")
 var F1 = load(PathToCodeBlocks + "CallFunction1.tscn")
 var F2 = load(PathToCodeBlocks + "CallFunction2.tscn")
-var If1 = load(PathToCodeBlocks + "If1.tscn")
-var If2 = load(PathToCodeBlocks + "If2.tscn")
-var Loop1 = load(PathToCodeBlocks + "Loop1.tscn")
-var Loop2 = load(PathToCodeBlocks + "Loop2.tscn")
+var If1 = load(PathToCodeBlocks + "CallIf1.tscn")
+var If2 = load(PathToCodeBlocks + "CallIf2.tscn")
+var Loop1 = load(PathToCodeBlocks + "CallLoop1.tscn")
+var Loop2 = load(PathToCodeBlocks + "CallLoop2.tscn")
 onready var counter = get_node("../Counter")
 
 var numBlocks = 0
@@ -31,6 +31,7 @@ onready var highlight = get_node("../Highlight")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	monitoring = true
+	
 
 
 #Area2D enters a function area
@@ -95,7 +96,7 @@ func add_block():
 				child = Loop1.instance()
 			"Loop2_":
 				child = Loop2.instance()
-		#Add codeblock node to tree
+	#Add codeblock node to tree
 	if child and numBlocks < counter.maxBlocks:
 		var x = xOffset + blockSize * (numBlocks % rowSize)
 		var y = yOffset + blockSize * int(numBlocks / rowSize)
