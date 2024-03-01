@@ -18,15 +18,16 @@ var blockSize = 60 #Replace with actual codeblock size
 var xOffset = 30
 var yOffset = 30
 
-#Issues with creating code block instances and it triggering area_exit automatically
-#This is so newly instanced code blocks won't be deleted on entering the scene tree
-var justCreated = false 
+#To prevent removing a code block if it was dragged out of FBA, but dragged and dropped back into FBA
 var removeChild = false
 var child = null
+
+onready var highlight = get_node("../Highlight")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	monitoring = true
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -42,12 +43,7 @@ func _on_FunctionBlockArea_area_entered(area):
 	
 #Area2D leaves a function area
 func _on_FunctionBlockArea_area_exited(area):
-	#Remove code block from IDE
-	#Workaround for instances of code blocks triggering area_exit on creation
-	if justCreated:
-		justCreated = false
-		return
-	
+	CodeBlock = null
 	#Check if targetNode is a child of the grid
 	var targetNode = get_node(area.name)
 	if targetNode == null:
@@ -57,39 +53,52 @@ func _on_FunctionBlockArea_area_exited(area):
 	child = targetNode
 	removeChild = true
 	
-	
+
+
 #Something is dropped in function area
 func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
 	#If event was a drop
 	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
-		child = null
-		#Check for valid codeblock & instance code block
-		if CodeBlock:
-			match CodeBlock.name:
-				"Forward":
-					child = Forward.instance()
-				"RotateLeft":
-					child = RotateLeft.instance()
-				"RotateRight":
-					child = RotateRight.instance()
-				"Interact":
-					child = Interact.instance()
-				"F1_":
-					child = F1.instance()
-				"F2_":
-					child = F2.instance()
-		#Add codeblock node to tree
-		if child and numBlocks < counter.maxBlocks:
-			var x = xOffset + blockSize * (numBlocks % rowSize)
-			var y = yOffset + blockSize * int(numBlocks / rowSize)
-			child.position = Vector2(x, y)
-			numBlocks += 1
-			add_child(child, true)
-			justCreated = true
-			counter.display(numBlocks)
-			
-		#print("DROPPED " + CodeBlock.name + " in " + name)
+		add_block()
 	
+
+
+func _on_CodeBlock_doubleClick(code_block):
+	if highlight.visible:
+		CodeBlock = code_block
+		add_block()
+
+
+# Helper function to add a code block into FunctionBlockArea
+func add_block():
+	child = null
+	#Check for valid codeblock & instance code block
+	if CodeBlock and CodeBlock.get_child(2) and !CodeBlock.get_child(2).inFBA:
+		match CodeBlock.name:
+			"Forward":
+				child = Forward.instance()
+			"RotateLeft":
+				child = RotateLeft.instance()
+			"RotateRight":
+				child = RotateRight.instance()
+			"Interact":
+				child = Interact.instance()
+			"F1_":
+				child = F1.instance()
+			"F2_":
+				child = F2.instance()
+		#Add codeblock node to tree
+	if child and numBlocks < counter.maxBlocks:
+		var x = xOffset + blockSize * (numBlocks % rowSize)
+		var y = yOffset + blockSize * int(numBlocks / rowSize)
+		child.position = Vector2(x, y)
+		numBlocks += 1
+		child.get_child(2).inFBA = true
+		add_child(child, true)
+		counter.display(numBlocks)
+		
+	#print("DROPPED " + CodeBlock.name + " in " + name)
+
 
 
 #Remove code blocks once player releases left mouse button

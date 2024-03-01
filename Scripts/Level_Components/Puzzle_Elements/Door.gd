@@ -19,5 +19,5 @@ func _ready():
 #	pass
 
 
-func _on_ProofOfConcept_openDoor():
+func _on_level_openDoor():
 	get_node("Sprite").set_texture(openDoorTexture)

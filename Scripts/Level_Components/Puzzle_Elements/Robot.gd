@@ -18,20 +18,12 @@ export var tileYMax = 6  #change once we settle on what this should be
 
 signal interact(tileX, tileY)
 
-
 #Used for dictating movement
 onready var ray = $RayCast2D
 
 # Map input action names to the appropriate vectors
 # For now, use arrow keys as input
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
-
-enum Orientation{
-	UP = 0,
-	RIGHT = 1,
-	DOWN = 2,
-	LEFT = 3
-}
 
 func _ready():
 	pass
@@ -75,33 +67,33 @@ func move(dir):
 func _on_Forward_forwardSignal():
 	#Get orientation of the robot
 	var orientation
-	if rotation >= 0:
-		orientation = int((rotation_degrees+1) / 90) % 4
-	elif rotation < 0:
-		orientation = int((rotation_degrees-1) / 90) % 4
+	if $Sprite.rotation >= 0:
+		orientation = int(($Sprite.rotation_degrees+1) / 90) % 4
+	elif $Sprite.rotation < 0:
+		orientation = int(($Sprite.rotation_degrees-1) / 90) % 4
 		orientation += 4 if orientation != 0 else 0
 	
 	#Move forwards based on robot orientation
 	match orientation:
-		Orientation.UP:
+		PEP.Orientation.UP:
 			move("ui_up")
 			
-		Orientation.LEFT:
+		PEP.Orientation.LEFT:
 			move("ui_left")
 			
-		Orientation.DOWN:
+		PEP.Orientation.DOWN:
 			move("ui_down")
 			
-		Orientation.RIGHT:
+		PEP.Orientation.RIGHT:
 			move("ui_right")
 
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
-	rotation -= PI/2
+	$Sprite.rotation -= PI/2
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
-	rotation += PI/2
+	$Sprite.rotation += PI/2
 
 #Interact
 func _on_Interact_interactSignal():

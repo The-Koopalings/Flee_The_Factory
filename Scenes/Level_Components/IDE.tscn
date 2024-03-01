@@ -4,6 +4,7 @@
 [ext_resource path="res://Scripts/Level_Components/IDE.gd" type="Script" id=2]
 
 [node name="IDE" type="VBoxContainer"]
+margin_left = 1440.0
 margin_right = 480.0
 margin_bottom = 1080.0
 mouse_filter = 2
@@ -16,12 +17,6 @@ margin_top = 13.0
 margin_right = 186.0
 margin_bottom = 31.0
 text = "MAIN"
-
-[node name="ColorRect" parent="Main/FunctionBlockArea" index="1"]
-color = Color( 0.137255, 0.423529, 0.431373, 1 )
-
-[node name="ColorRect" parent="Main" index="2"]
-color = Color( 0, 0.231373, 0.482353, 1 )
 
 [node name="Run_Button" type="Button" parent="."]
 modulate = Color( 0.0784314, 1, 0, 1 )
