@@ -10,6 +10,7 @@ signal openDoor
 var btn_pressed = false
 ##UNIQUE LEVEL VARIABLES
 
+
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',

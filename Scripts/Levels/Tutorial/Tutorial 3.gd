@@ -28,6 +28,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 func _ready():
 	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
 
+
 func _process(delta):
 	if b1_pressed and b2_pressed:
 		emit_signal("openDoor")

@@ -26,8 +26,9 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 
 func _ready():
 	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
-		
+  
 	# Add tutorial dialogue
+	load_dialogue()
 	display_dialogue()
 
 
@@ -42,16 +43,22 @@ func _on_Button_buttonPressed(name):
 	btn_pressed = true
 
 
-func display_dialogue():
-	TextBox.queue_text("Welcome to Flee the Factory! Robby the Robot is trapped in our elaborate factory and it is your job to help him escape.")
-	TextBox.queue_text("To help Robby, you must program him to move across the factory floor and reach the exit.")
-
-	TextBox.queue_text("IDE")    # Change position
-	TextBox.queue_text("This is the IDE.")
-	TextBox.queue_text("Explain Main function")
+# Loads dialogue from a text file
+func load_dialogue():
+	var file = File.new()
+	file.open("res://Scripts/Dialogue/Tutorial 1.txt", file.READ)
 	
-	TextBox.queue_text("CODE_BLOCK")    # Change position
-	TextBox.queue_text("These are code blocks. This is what you use to control Robby's movements.")
-	TextBox.queue_text("Explain forward code block")
-	TextBox.queue_text("Explain interact code block")
-	TextBox.queue_text("To place the code blocks into the IDE, you can drag and drop them.")
+	while !file.eof_reached():
+		var line = file.get_line()
+		dialogue_queue.push_back(line)
+	
+	file.close()
+
+# Displays dialogue on the screen
+# We may need to hardcode when to have the user do an action before triggering the next line of dialogue
+func display_dialogue():
+	var line_counter = 0
+	
+	for dialogue in dialogue_queue:
+		line_counter += 1
+		TextBox.queue_text(dialogue)
