@@ -1,28 +1,23 @@
 extends Area2D
 
-signal whileLoop1
-signal forLoop1
-signal whileLoop2
-signal forLoop2
+signal whileSignal
+signal forSignal
 
-#Which option is chosen, -1 = none, 0 = While, 1 = For
+
+#Which option is chosen, none = -1, While = 0, For = 1
 var option = -1 
-#Regex results to be used in send_signal() & on_option_selected()
+#Regex results to be used in send_signal()
 var result1
 var result2 
 
 func _ready():
 	#Connect signals to IDE
-	var IDE = get_node("../../../../IDE")
-	connect("ifStatement1", IDE, "_on_ifStatement1")
-	connect("f2Signal", IDE, "_on_f2Signal")
-	#Connect signals to ControlFlowBlock in IDE
-	#Connect pressing of a dropdown option to this node
-	$MenuButton.get_popup().connect("id_pressed", self, "on_option_selected")
-	
-	#Add options into dropdown
-	$MenuButton.get_popup().add_item("While")
-	$MenuButton.get_popup().add_item("For")
+	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else or Loop
+	var IDE = get_node("../../../../IDE") #For code blocks NOT in If-Else or Loop
+	connect("whileSignal", IDEIf, "_on_whileSignal")
+	connect("forSignal", IDEIf, "_on_forSignal")
+	connect("whileSignal", IDE, "_on_whileSignal")
+	connect("forSignal", IDE, "_on_forSignal")
 	
 	#Get regex ready
 	var regexF1 = RegEx.new()
@@ -32,35 +27,33 @@ func _ready():
 	result1 = regexF1.search(name)
 	result2 = regexF2.search(name) 
 	
-#func _process(delta):
-#	pass
 
+#Changes Sprite texture to match the loop type of the Loop IDE section it represents
+#type is either For or While, num is either 1 or 2
+func on_loop_type_selected(type: String, num: int):
+	if type == "While":
+		option = 0
+		if self.name == "Loop1_" and num == 1:
+			$Sprite.texture = load("res://Assets/Placeholders/While1.png")
+		elif self.name == "Loop2_" and num == 2:
+			$Sprite.texture = load("res://Assets/Placeholders/While2.png")
+	elif type == "For":
+		option = 1
+		if self.name == "Loop1_" and num == 1:
+			$Sprite.texture = load("res://Assets/Placeholders/For1.png")
+		elif self.name == "Loop2_" and num == 2:
+			$Sprite.texture = load("res://Assets/Placeholders/For2.png")
 
-func on_option_selected(id):
-	option = id
-	match id:
-		0:
-			if result1:
-				$Sprite.texture = load("res://Assets/Placeholders/While1.PNG")
-			elif result2:
-				$Sprite.texture = load("res://Assets/Placeholders/While2.PNG")
-		1:
-			if result1:
-				$Sprite.texture = load("res://Assets/Placeholders/For1.PNG")
-			if result2:
-				$Sprite.texture = load("res://Assets/Placeholders/For2.PNG")
-	send_signal() #will change the type of section in the IDE
-	
 
 func send_signal():
 	match option:
 		0:
 			if result1:
-				emit_signal("whileLoop1")
+				emit_signal("whileSignal", 1)
 			if result2:
-				emit_signal("whileLoop2")
+				emit_signal("whileSignal", 2)
 		1: 
 			if result1:
-				emit_signal("forLoop1")
+				emit_signal("forSignal", 1)
 			if result2:
-				emit_signal("forLoop2")
+				emit_signal("forSignal", 2)

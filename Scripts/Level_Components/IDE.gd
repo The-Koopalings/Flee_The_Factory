@@ -93,6 +93,14 @@ func _on_if2Signal():
 	run_code(code, "If2")
 
 
+#num denotes which While IDE block it is (While1 = 1, While2 = 2)
+func _on_whileSignal(num: int):
+	pass
+
+#num denotes which For IDE block it is (For1 = 1, For2 = 2)
+func _on_forSignal(num: int):
+	pass
+
 #Check conditions in If statement IDE block
 func check_conditions(LHS, Operator, RHS) -> bool:
 	return false

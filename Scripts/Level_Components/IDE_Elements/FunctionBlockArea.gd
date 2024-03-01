@@ -12,6 +12,8 @@ var F1 = load(PathToCodeBlocks + "CallFunction1.tscn")
 var F2 = load(PathToCodeBlocks + "CallFunction2.tscn")
 var If1 = load(PathToCodeBlocks + "If1.tscn")
 var If2 = load(PathToCodeBlocks + "If2.tscn")
+var Loop1 = load(PathToCodeBlocks + "Loop1.tscn")
+var Loop2 = load(PathToCodeBlocks + "Loop2.tscn")
 onready var counter = get_node("../Counter")
 
 var numBlocks = 0
@@ -89,6 +91,10 @@ func add_block():
 				child = If1.instance()
 			"If2_":
 				child = If2.instance()
+			"Loop1_":
+				child = Loop1.instance()
+			"Loop2_":
+				child = Loop2.instance()
 		#Add codeblock node to tree
 	if child and numBlocks < counter.maxBlocks:
 		var x = xOffset + blockSize * (numBlocks % rowSize)

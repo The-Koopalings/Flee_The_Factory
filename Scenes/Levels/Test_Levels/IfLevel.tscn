@@ -279,12 +279,10 @@ script = ExtResource( 12 )
 [node name="Button" parent="Grid" instance=ExtResource( 8 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 13 )]
-scale = Vector2( 5, 5 )
 
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
-margin_left = 1440.0
 margin_right = 1920.0
 
 [node name="IfElse1" parent="IDE" instance=ExtResource( 11 )]
@@ -305,7 +303,6 @@ margin_bottom = 1067.0
 text = "Else2"
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
-color = Color( 1, 1, 1, 0 )
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 7 )]
 position = Vector2( 90, 90 )

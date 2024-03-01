@@ -2,13 +2,12 @@
 
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Loop.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CodeBlock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Placeholders/Loop1.PNG" type="Texture" id=3]
-
+[ext_resource path="res://Assets/Placeholders/Loop2.PNG" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.5, 28.5 )
 
-[node name="Loop1_" type="Area2D"]
+[node name="Loop2_" type="Area2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Changes in sprite texture is in the code"
@@ -19,17 +18,10 @@ position = Vector2( 0.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 8.9407e-07, 4.47035e-07 )
-scale = Vector2( 0.220588, 0.291667 )
+position = Vector2( -1.90735e-06, -0.499997 )
+scale = Vector2( 0.212014, 0.253333 )
 texture = ExtResource( 3 )
 
 [node name="CodeBlock" parent="." instance=ExtResource( 2 )]
-
-[node name="MenuButton" type="MenuButton" parent="."]
-margin_left = -9.0
-margin_top = -4.0
-margin_right = 18.0
-margin_bottom = 16.0
-mouse_default_cursor_shape = 2
 
 [connection signal="input_event" from="." to="." method="_on_Area2D_input_event"]

@@ -34,6 +34,11 @@ func _ready():
 	var Else2 = get_node("../../../IDE/IfElse2/Else/FunctionBlockArea")
 	connect("doubleClick", Else2, "_on_CodeBlock_doubleClick")
 	
+	var Loop1 = get_node("../../../IDE/Loop1/HighlightControl/FunctionBlockArea")
+	connect("doubleClick", Loop1, "_on_CodeBlock_doubleClick")
+	var Loop2 = get_node("../../../IDE/Loop2/HighlightControl/FunctionBlockArea")
+	connect("doubleClick", Loop2, "_on_CodeBlock_doubleClick")
+	
 	
 func _process(delta):
 	if dragging:

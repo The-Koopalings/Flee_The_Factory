@@ -7,7 +7,7 @@ var resultF1
 var resultF2
 
 func _ready():
-	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else
+	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else or Loop
 	var IDE = get_node("../../../../IDE") #For code blocks NOT in If-Else
 	connect("f1Signal", IDEIf, "_on_f1Signal")
 	connect("f2Signal", IDEIf, "_on_f2Signal")
