@@ -70,6 +70,10 @@ rect_scale = Vector2( 2.5, 2.5 )
 text = "0/7"
 align = 1
 script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": "pos = (177,5, 244)
+for loop pos = (130, 244)"
+}
 
 [node name="Clickable" type="Area2D" parent="HighlightControl"]
 
@@ -80,15 +84,15 @@ shape = SubResource( 2 )
 [node name="ChooseLoopType" type="MenuButton" parent="HighlightControl"]
 margin_left = 173.0
 margin_right = 307.0
-margin_bottom = 50.0
+margin_bottom = 36.0
 mouse_default_cursor_shape = 2
 __meta__ = {
-"_editor_description_": "x = 150, y = 0 at start. After choosing pos = (5, 18), size = (134, 50)"
+"_editor_description_": "x = 173, y = 0 at start. After choosing pos = (5, 18), size = (134, 50)"
 }
 
 [node name="Label" type="Label" parent="HighlightControl/ChooseLoopType"]
 margin_right = 45.0
-margin_bottom = 18.0
+margin_bottom = 14.0
 rect_scale = Vector2( 3, 3 )
 text = "Loop1"
 align = 1
@@ -97,100 +101,174 @@ __meta__ = {
 "_editor_description_": "after choose: pos = (0,0), size = (45, 18), scale = 3"
 }
 
-[node name="LHS" type="MenuButton" parent="HighlightControl"]
-margin_left = 150.0
-margin_top = 19.0
-margin_right = 297.0
-margin_bottom = 69.0
-mouse_default_cursor_shape = 2
+[node name="ForConditional" type="Control" parent="HighlightControl"]
+margin_left = 70.0
+margin_top = 35.0
+margin_right = 110.0
+margin_bottom = 75.0
+
+[node name="LoopCounter" type="Label" parent="HighlightControl/ForConditional"]
+margin_left = 190.0
+margin_top = 209.0
+margin_right = 226.0
+margin_bottom = 223.0
+rect_scale = Vector2( 2.5, 2.5 )
+text = "i: 0"
+valign = 2
+
+[node name="Start" type="Label" parent="HighlightControl/ForConditional"]
+margin_top = 8.0
+margin_right = 33.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+text = "Start:"
 __meta__ = {
-"_editor_description_": "pos = (150, 19), size = (147, 50)"
+"_editor_description_": "pos(0,0)"
 }
 
-[node name="Label" type="Label" parent="HighlightControl/LHS"]
-margin_top = 10.0
-margin_right = 57.0
-margin_bottom = 27.0
+[node name="StartValue" type="LineEdit" parent="HighlightControl/ForConditional"]
+margin_left = 70.0
+margin_top = 8.0
+margin_right = 101.0
+margin_bottom = 32.0
+custom_constants/minimum_spaces = 0
+max_length = 2
+__meta__ = {
+"_editor_description_": "(82,5)"
+}
+
+[node name="Stop" type="Label" parent="HighlightControl/ForConditional"]
+margin_left = 115.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+text = "Stop:"
+__meta__ = {
+"_editor_description_": "pos (115,0)"
+}
+
+[node name="StopValue" type="LineEdit" parent="HighlightControl/ForConditional"]
+margin_left = 183.0
+margin_top = 8.0
+margin_right = 214.0
+margin_bottom = 32.0
+custom_constants/minimum_spaces = 0
+max_length = 2
+__meta__ = {
+"_editor_description_": "(195,5)"
+}
+
+[node name="Step" type="Label" parent="HighlightControl/ForConditional"]
+margin_left = 227.0
+margin_top = 8.0
+margin_right = 260.0
+margin_bottom = 23.0
+rect_scale = Vector2( 2, 2 )
+text = "Step:"
+__meta__ = {
+"_editor_description_": "pos (227,0)"
+}
+
+[node name="StepOperator" type="MenuButton" parent="HighlightControl/ForConditional"]
+margin_left = 290.0
+margin_top = 5.0
+margin_right = 319.0
+margin_bottom = 35.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": "(306,0)"
+}
+
+[node name="Label" type="Label" parent="HighlightControl/ForConditional/StepOperator"]
+margin_right = 12.0
+margin_bottom = 14.0
 rect_scale = Vector2( 2.5, 2.5 )
+text = "+"
+align = 1
+valign = 2
+
+[node name="StepValue" type="LineEdit" parent="HighlightControl/ForConditional"]
+margin_left = 320.0
+margin_top = 8.0
+margin_right = 351.0
+margin_bottom = 32.0
+custom_constants/minimum_spaces = 0
+max_length = 1
+__meta__ = {
+"_editor_description_": "(335,5)"
+}
+
+[node name="WhileConditional" type="Control" parent="HighlightControl"]
+margin_left = 100.0
+margin_top = 25.0
+margin_right = 140.0
+margin_bottom = 65.0
+
+[node name="LHS" type="MenuButton" parent="HighlightControl/WhileConditional"]
+margin_top = 17.0
+margin_right = 114.0
+margin_bottom = 45.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="HighlightControl/WhileConditional/LHS"]
+margin_right = 57.0
+margin_bottom = 17.0
+rect_scale = Vector2( 2, 2 )
 text = "Obstacle"
 align = 2
-valign = 2
+valign = 1
 __meta__ = {
-"_editor_description_": "pos = (0, 10), size = (57, 17), scale = 2.5"
+"_editor_description_": ""
 }
 
-[node name="Operator" type="MenuButton" parent="HighlightControl"]
-margin_left = 300.0
-margin_top = 19.0
-margin_right = 342.0
-margin_bottom = 69.0
+[node name="Operator" type="MenuButton" parent="HighlightControl/WhileConditional"]
+margin_left = 117.0
+margin_top = 17.0
+margin_right = 167.0
+margin_bottom = 45.0
 mouse_default_cursor_shape = 2
 __meta__ = {
-"_editor_description_": "pos = (300, 19), size = (42, 50)"
+"_editor_description_": ""
 }
 
-[node name="Label" type="Label" parent="HighlightControl/Operator"]
-margin_top = 10.0
-margin_right = 17.0
-margin_bottom = 27.0
-rect_scale = Vector2( 2.5, 2.5 )
+[node name="Label" type="Label" parent="HighlightControl/WhileConditional/Operator"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 22.0
+margin_bottom = 17.0
+rect_scale = Vector2( 2, 2 )
 text = "=="
 align = 1
 valign = 2
 __meta__ = {
-"_editor_description_": "pos = (0,10), size = (17,17), scale = 2.5"
+"_editor_description_": ""
 }
 
-[node name="RHS" type="MenuButton" parent="HighlightControl"]
-margin_left = 342.0
-margin_top = 19.0
-margin_right = 471.0
-margin_bottom = 69.0
+[node name="RHS" type="MenuButton" parent="HighlightControl/WhileConditional"]
+margin_left = 170.0
+margin_top = 17.0
+margin_right = 299.0
+margin_bottom = 45.0
 focus_mode = 2
 mouse_default_cursor_shape = 2
 __meta__ = {
-"_editor_description_": "pos = (342, 19), size = (129, 50)"
+"_editor_description_": ""
 }
 
-[node name="Label" type="Label" parent="HighlightControl/RHS"]
-margin_top = 10.0
+[node name="Label" type="Label" parent="HighlightControl/WhileConditional/RHS"]
+margin_top = -5.0
 margin_right = 51.0
-margin_bottom = 27.0
-rect_scale = Vector2( 2.5, 2.5 )
+margin_bottom = 12.0
+rect_scale = Vector2( 2, 2 )
 text = "Pressed"
 valign = 2
 __meta__ = {
-"_editor_description_": "pos = (0,10), size = (51, 17), scale = 2.5"
+"_editor_description_": ""
 }
-
-[node name="StartValue" type="Label" parent="HighlightControl"]
-margin_right = 58.0
-margin_bottom = 24.0
-
-[node name="Input" type="LineEdit" parent="HighlightControl/StartValue"]
-margin_right = 58.0
-margin_bottom = 24.0
-
-[node name="StopValue" type="Label" parent="HighlightControl"]
-margin_right = 58.0
-margin_bottom = 24.0
-
-[node name="Input" type="LineEdit" parent="HighlightControl/StopValue"]
-margin_right = 58.0
-margin_bottom = 24.0
-
-[node name="Step" type="Label" parent="HighlightControl"]
-margin_right = 58.0
-margin_bottom = 24.0
-
-[node name="Input" type="LineEdit" parent="HighlightControl/Step"]
-margin_right = 58.0
-margin_bottom = 24.0
-
-[node name="LoopCounter" type="Label" parent="HighlightControl"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "i:"
 
 [connection signal="focus_entered" from="HighlightControl" to="HighlightControl" method="_on_FunctionBlockControl_focus_entered"]
 [connection signal="focus_exited" from="HighlightControl" to="HighlightControl" method="_on_FunctionBlockControl_focus_exited"]
