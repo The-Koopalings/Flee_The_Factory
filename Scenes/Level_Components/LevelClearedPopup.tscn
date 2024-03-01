@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="AcceptDialog" type="AcceptDialog"]
+margin_left = 490.0
+margin_top = 381.0
+margin_right = 596.0
+margin_bottom = 439.0
+rect_scale = Vector2( 3, 3 )
+window_title = ""
+dialog_text = "Level Cleared!"
