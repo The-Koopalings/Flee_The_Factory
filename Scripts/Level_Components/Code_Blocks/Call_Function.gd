@@ -2,9 +2,10 @@ extends Area2D
 
 signal f1Signal
 signal f2Signal
-
+signal callFunction
 var resultF1
 var resultF2
+const BLOCK_TYPE = "CALL"
 
 func _ready():
 	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else
@@ -27,9 +28,14 @@ func _ready():
 
 
 func send_signal():
+	print("CALLING FUNCTION ", name)
+	emit_signal("callFunction", name)
+	
+	"""
 	if resultF1:
-		print("CALLING FUNCTION1")
+		
 		emit_signal("f1Signal")
 	elif resultF2:
 		print("CALLING FUNCTION2")
 		emit_signal("f2Signal")
+	"""

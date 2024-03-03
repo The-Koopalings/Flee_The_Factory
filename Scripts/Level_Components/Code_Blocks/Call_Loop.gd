@@ -4,7 +4,7 @@ signal whileLoop1
 signal forLoop1
 signal whileLoop2
 signal forLoop2
-
+const BLOCK_TYPE = "CALL"
 #Which option is chosen, -1 = none, 0 = While, 1 = For
 var option = -1 
 #Regex results to be used in send_signal() & on_option_selected()

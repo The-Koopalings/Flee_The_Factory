@@ -5,7 +5,7 @@ signal if2Signal
 
 var result1
 var result2
-
+const BLOCK_TYPE = "CALL"
 func _ready():
 	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else
 	var IDE = get_node("../../../../IDE") #For code blocks NOT in If-Else
