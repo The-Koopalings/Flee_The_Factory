@@ -76,7 +76,8 @@ func add_block():
 	child = null
 	#Check for valid codeblock & instance code block
 	if CodeBlock and CodeBlock.get_child(2) and !CodeBlock.get_child(2).inFBA:
-		match CodeBlock.name:
+		var type = CodeBlock.name.rstrip("0123456789")
+		match type:
 			"Forward":
 				child = Forward.instance()
 			"RotateLeft":
@@ -85,10 +86,8 @@ func add_block():
 				child = RotateRight.instance()
 			"Interact":
 				child = Interact.instance()
-			"F1_":
+			"Call_F":
 				child = F1.instance()
-			"F2_":
-				child = F2.instance()
 			"If1_":
 				child = If1.instance()
 			"If2_":

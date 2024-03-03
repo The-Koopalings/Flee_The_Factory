@@ -1,6 +1,7 @@
 extends Area2D
 
 signal rotateRightSignal
+const BLOCK_TYPE = "CODE"
 
 func _ready():
 	var Robot = get_node("../../../../Grid/Robot") #Keep in mind, code blocks become FunctionBlockArea grandchild when added to IDE
