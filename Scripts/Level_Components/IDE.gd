@@ -49,6 +49,12 @@ func enter_scope(node):
 	#print(code)
 	
 	#print("Context: ", context)
+	print("SIZE: ", context.size())
+	"""
+	if context.size() >= 1000:
+		printerr("Too many scopes called. Possibly an inifinite loop. Terminating early")
+		assert(context.size() < 1000)
+	"""
 	#Will execute from back to front, so invert
 	code.invert()
 	yield(get_tree().create_timer(0, false), "timeout") 
