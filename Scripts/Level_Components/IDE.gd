@@ -5,18 +5,12 @@ signal function2Finished
 signal if1Finished
 signal if2Finished
 
-#Entry point for IDE code, called to get children
-onready var main = get_node("Main/FunctionBlockArea")
-onready var f1 = get_node("F1/FunctionBlockArea") #only called in _on_f1signal()
-onready var f2 = get_node("F2/FunctionBlockArea") #only called in _on_f2signal()
-onready var if1 = get_node("IfElse1/If/FunctionBlockArea")
-onready var else1 = get_node("IfElse1/Else/FunctionBlockArea")
-onready var if2 = get_node("IfElse2/If/FunctionBlockArea")
-onready var else2 = get_node("IfElse2/Else/FunctionBlockArea")
-var regexF1 = RegEx.new()
-var regexF2 = RegEx.new()
-var regexIf1 = RegEx.new()
-var regexIf2 = RegEx.new()
+
+var functions = {} #Map of all functions using the name to index/hash
+var code = [] #List of currently executing code
+var stackFrame = [] #List of Frames (lists of code)
+
+
 
 #To allow for only 1 press of Run unless the scene is restarted
 var runPressed = false
@@ -31,12 +25,6 @@ func _ready():
 	# Grab focus of Main Function
 	$Main.grab_focus()
 
-	#Regex for F1 and F2 code blocks
-	regexF1.compile("F1_")
-	regexF2.compile("F2_")
-	regexIf1.compile("If1_")
-	regexIf2.compile("If2_")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -45,90 +33,46 @@ func _ready():
 #Connected to Run_Button
 func _on_Button_pressed():
 	if !runPressed:
-		var code = main.get_children()
-		run_code(code, "Main")
 		runPressed = true
+		print(functions)
+		call_function(functions["Main"])
+		run_code()
 
 
-#Run F1 code
-func _on_f1Signal():
-	var code = f1.get_children()
-	run_code(code , "F1")
+func call_function(node):
+	#Add currently executing code to the stack frame
+	if !code.empty():
+		stackFrame.push_back(code)
+		
+	#Get the new code to run
+	code = node.get_code()
+	#print(code)
 	
-	
-#Run F2 code
-func _on_f2Signal():
-	var code = f2.get_children()
-	run_code(code, "F2")
-	
+	#Will execute from back to front, so invert
+	code.invert()
+	yield(get_tree().create_timer(0, false), "timeout") 
 
-func _on_if1Signal():
-	print("if1Signal received")
-	var LHS = get_node("IfElse1/If/LHS/Label").text
-	var Operator = get_node("IfElse1/If/Operator/Label").text
-	var RHS = get_node("IfElse1/If/RHS/Label").text
+func run_code():
+	var block
+	#While there's still code to run
+	while !code.empty() or !stackFrame.empty(): 
+		#While this function still has code
+		while !code.empty():
+			block = code.pop_back()
+			
+			#debug so we know what's running
+			#print(block)
+			
+			#Run code + add delay between each block
+			if block.BLOCK_TYPE == "CODE":
+				block.send_signal()
+				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+			elif block.BLOCK_TYPE == "CALL":
+				var function_name = block.name.trim_prefix("Call_")
+				yield(call_function(functions[function_name]), "completed") 
+		
+		if !stackFrame.empty():
+			code = stackFrame.pop_back()
 	
-	var code = null
-	if check_conditions(LHS, Operator, RHS):
-		code = if1.get_children()
-	else:
-		code = else1.get_children()
-	
-	run_code(code, "If1")
+			
 
-
-func _on_if2Signal():
-	print("if2Signal received")
-	var LHS = get_node("IfElse2/If/LHS/Label").text
-	var Operator = get_node("IfElse2/If/Operator/Label").text
-	var RHS = get_node("IfElse2/If/RHS/Label").text
-	
-	var code = null
-	if check_conditions(LHS, Operator, RHS):
-		code = if2.get_children()
-	else:
-		code = else2.get_children()
-	
-	run_code(code, "If2")
-
-#Check conditions in If statement IDE block
-func check_conditions(LHS, Operator, RHS) -> bool:
-	return false
-#Parameters are strings, condtions sent in signal because there's too many nodes in  
-#func _on_ifCond_signal(LHS, Operator, RHS):
-#	print("If condtions received: ", LHS, " + ", Operator, " + ", RHS)
-
-func run_code(code, type: String):
-	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-	code.pop_front()
-	code.pop_front()
-	
-	#debug so we know what's running
-	print(code)
-	
-	#Run all of the code + add delay between each block
-	for block in code:
-		if regexF1.search(block.name):
-			block.send_signal()
-			yield(self, "function1Finished")
-		elif regexF2.search(block.name):
-			block.send_signal()
-			yield(self, "function2Finished")
-		elif regexIf1.search(block.name):
-			block.send_signal()
-			yield(self, "if1Finished")
-		elif regexIf2.search(block.name):
-			block.send_signal()
-			yield(self, "if2Finished")
-		else:
-			block.send_signal()
-			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
-	match type:
-		"F1":
-			emit_signal("function1Finished")
-		"F2":
-			emit_signal("function2Finished")
-		"If1":
-			emit_signal("if1Finished")
-		"If2":
-			emit_signal("if2Finished")
