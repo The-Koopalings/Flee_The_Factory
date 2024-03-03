@@ -9,6 +9,7 @@ var halftile
 var CodeBlockBar
 var robotStartOrientation
 var level
+var IDE
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -26,14 +27,17 @@ enum Orientation{
 }
 
 func loadLevel(level, tiles, robotStartOrientation, Grid, CodeBlockBar):
+	self.level = level
+	self.Grid = level.get_node("Grid")
+	self.halftile = Grid.tile_size/2
+	self.CodeBlockBar = level.get_node("CodeBlockBar")
+	self.IDE = level.get_node("IDE")
 	self.tiles = tiles
 	self.robotStartOrientation = robotStartOrientation
-	self.Grid = Grid
-	self.CodeBlockBar = CodeBlockBar
-	self.level = level
-	self.halftile = Grid.tile_size/2
+	
 	self.init_elements()
 	self.init_code_blocks()
+	self.init_IDE()
 	self.update()
 
 #Draws the borders of the grid+
@@ -141,9 +145,17 @@ func init_code_blocks():
 	var y = 1008
 	
 	var blocks = CodeBlockBar.get_children()
-	
 	# Ignore first child of CodeBlockBar (TextureRect, not code block)
-	for i in range(1, blocks.size()):
-		var code_block_template = blocks[i].get_child(2)
+	blocks.pop_front()
+	
+	for block in blocks:
+		var code_block_template = block.get_child(2)
 		code_block_template.startPos = Vector2(x, y)
-		x += 110	
+		x += 110
+		
+		#if block.name == ""
+
+func init_IDE():
+	for child in IDE.get_children():
+		if child.name != "Run_Button":
+			IDE.functions[child.name] = child
