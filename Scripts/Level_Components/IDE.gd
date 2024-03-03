@@ -6,9 +6,9 @@ signal if1Finished
 signal if2Finished
 
 
-var functions = {} #Map of all functions using the name to index/hash
+var scopes = {} #Map of all functions using the name to index/hash (Done in PEP)
 var code = [] #List of currently executing code
-var stackFrame = [] #List of Frames (lists of code)
+var context = [] #List of Frames (lists of code)
 
 
 
@@ -34,20 +34,21 @@ func _ready():
 func _on_Button_pressed():
 	if !runPressed:
 		runPressed = true
-		print(functions)
-		call_function(functions["Main"])
+		print("Scopes: ", scopes)
+		enter_scope(scopes["Main"])
 		run_code()
 
 
-func call_function(node):
+func enter_scope(node):
 	#Add currently executing code to the stack frame
 	if !code.empty():
-		stackFrame.push_back(code)
+		context.push_back(code)
 		
 	#Get the new code to run
 	code = node.get_code()
 	#print(code)
 	
+	#print("Context: ", context)
 	#Will execute from back to front, so invert
 	code.invert()
 	yield(get_tree().create_timer(0, false), "timeout") 
@@ -55,7 +56,7 @@ func call_function(node):
 func run_code():
 	var block
 	#While there's still code to run
-	while !code.empty() or !stackFrame.empty(): 
+	while !code.empty() or !context.empty(): 
 		#While this function still has code
 		while !code.empty():
 			block = code.pop_back()
@@ -68,11 +69,12 @@ func run_code():
 				block.send_signal()
 				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
 			elif block.BLOCK_TYPE == "CALL":
-				var function_name = block.name.trim_prefix("Call_")
-				yield(call_function(functions[function_name]), "completed") 
+				var call_name = block.name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
+				#print("CALLING FUNCTION ", call_name)
+				yield(enter_scope(scopes[call_name]), "completed") 
 		
-		if !stackFrame.empty():
-			code = stackFrame.pop_back()
+		if !context.empty():
+			code = context.pop_back()
 	
 			
 
