@@ -126,12 +126,14 @@ func generate_elements_dict():
 	nodes.pop_front() 
 	
 	var elements = {}
+	
+	#For each unique element type, make a list of all instances 
+	#Example: elements["Obstacle"] has a list of all Obstacle Nodes
 	for node in nodes:
 		#Get the name, but remove all digits from the end
 		var type = node.name.rstrip("0123456789") 
 		
-		#For each unique element type, make a list of all instances 
-		#For Example: elements["Obstacle"] has a list of all Obstacle Nodes
+		#If it exists, push into list. Else, make a new list
 		if elements.keys().has(type):
 			elements[type].push_back(node) 
 		else:
@@ -151,6 +153,11 @@ func init_code_blocks():
 	for block in blocks:
 		var code_block_template = block.get_child(2)
 		code_block_template.startPos = Vector2(x, y)
+		if block.BLOCK_TYPE == "CALL":
+			var call_name = block.name.trim_prefix("Call_")
+			var texture = load("res://Assets/Objects/" + call_name + ".png")
+			block.get_node("Sprite").set_texture(texture)
+		
 		x += 110
 		
 		#if block.name == ""
@@ -158,4 +165,4 @@ func init_code_blocks():
 func init_IDE():
 	for child in IDE.get_children():
 		if child.name != "Run_Button":
-			IDE.functions[child.name] = child
+			IDE.scopes[child.name] = child

@@ -88,6 +88,8 @@ func add_block():
 				child = Interact.instance()
 			"Call_F":
 				child = F1.instance()
+				child.get_node("Sprite").set_texture(CodeBlock.get_node("Sprite").get_texture())
+				child.name = CodeBlock.name + "_1"
 			"If1_":
 				child = If1.instance()
 			"If2_":
