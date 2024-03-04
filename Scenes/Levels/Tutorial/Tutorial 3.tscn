@@ -56,8 +56,8 @@ maxBlocks = 11
 
 [connection signal="interact" from="Grid/Robot" to="Grid/Button1" method="_on_Robot_interact"]
 [connection signal="interact" from="Grid/Robot" to="Grid/Button2" method="_on_Robot_interact"]
-[connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button2_buttonPressed"]
 [connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button1_buttonPressed"]
+[connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button2_buttonPressed"]
 
 [editable path="IDE"]
 [editable path="IDE/Main"]

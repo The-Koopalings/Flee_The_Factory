@@ -90,10 +90,18 @@ func add_block(block):
 				child = CallFunction.instance()
 				child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
 				child.name = block.name + "_1"
-			"CallIF":
-				child = CallIF.instance()
-			"CallLoop":
-				child = CallLoop.instance()
+			"Call_If":
+				#Prevent an If statement from calling itself
+				if (block.name == "Call_If1" and get_node("../..").name != "If1") or (block.name == "Call_If2" and get_node("../..").name != "If2"):
+					child = CallIF.instance()
+					child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
+					child.name = block.name + "_1"
+			"Call_Loop":
+				#Prevent a Loop from calling itself
+				if (block.name == "Call_Loop1" and get_node("../..").name != "Loop1") or (block.name == "Call_Loop2" and get_node("../..").name != "Loop2"):
+					child = CallLoop.instance()
+					child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
+					child.name = block.name + "_1"
 				
 	#Add codeblock node to tree
 	if child and numBlocks < counter.maxBlocks:

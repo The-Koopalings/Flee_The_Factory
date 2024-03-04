@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Level_Components/IDE_Elements/IfElseBlock.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/IfBlock.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Levels/ProofOfConcept.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=14]
@@ -284,27 +284,27 @@ script = ExtResource( 12 )
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 margin_right = 1920.0
 
-[node name="IfElse1" parent="IDE" instance=ExtResource( 11 )]
+[node name="If1" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 513.0
 margin_bottom = 788.0
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Label" parent="IDE/IfElse1/If" index="0"]
+[node name="Label" parent="IDE/If1/If" index="0"]
 text = "If1"
 
-[node name="Label" parent="IDE/IfElse1/Else" index="0"]
+[node name="Label" parent="IDE/If1/Else" index="0"]
 text = "Else1"
 
-[node name="IfElse2" parent="IDE" instance=ExtResource( 11 )]
+[node name="If2" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 792.0
 margin_bottom = 1067.0
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Label" parent="IDE/IfElse2/Else" index="0"]
+[node name="Label" parent="IDE/If2/Else" index="0"]
 text = "Else2"
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
@@ -321,8 +321,9 @@ position = Vector2( 310, 90 )
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 14 )]
 position = Vector2( 420, 90 )
 
-[node name="If1_" parent="CodeBlockBar" instance=ExtResource( 15 )]
-position = Vector2( 530, 90 )
+[node name="Call_If1" parent="CodeBlockBar" instance=ExtResource( 15 )]
+
+[node name="Call_If2" parent="CodeBlockBar" instance=ExtResource( 15 )]
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
 margin_left = 490.0
@@ -369,5 +370,5 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [editable path="Grid/Obstacle"]
 [editable path="Grid/Obstacle2"]
 [editable path="Grid/Obstacle3"]
-[editable path="IDE/IfElse1"]
-[editable path="IDE/IfElse2"]
+[editable path="IDE/If1"]
+[editable path="IDE/If2"]

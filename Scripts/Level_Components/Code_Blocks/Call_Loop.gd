@@ -1,75 +1,97 @@
 extends Area2D
 
-signal whileLoop1
-signal forLoop1
-signal whileLoop2
-signal forLoop2
+signal loopSignal
 const BLOCK_TYPE = "CALL"
-#Which option is chosen, -1 = none, 0 = While, 1 = For
-var option = -1 
-#Regex results to be used in send_signal() & on_option_selected()
+
+#Which loop type is chosen
+var type = "none" 
+
+#Regex results to be used in send_signal()
 var result1
 var result2 
 
 func _ready():
 	#Connect signals to IDE
-	var IDE = get_node("../../../../IDE")
-	var status = 0
-	status += connect("ifStatement1", IDE, "_on_ifStatement1")
-	status += connect("f2Signal", IDE, "_on_f2Signal")
-	
-	if status != 0:
-		printerr("Something went wrong trying to connect signals in ", name)
-	
-	#Connect signals to ControlFlowBlock in IDE
-	#Connect pressing of a dropdown option to this node
-	$MenuButton.get_popup().connect("id_pressed", self, "on_option_selected")
-	
-	#Add options into dropdown
-	$MenuButton.get_popup().add_item("While")
-	$MenuButton.get_popup().add_item("For")
+	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else or Loop
+	var IDE = get_node("../../../../IDE") #For code blocks NOT in If-Else or Loop
+	connect("loopSignal", IDEIf, "_on_LoopSignal")
+	connect("loopSignal", IDE, "_on_LoopSignal")
+#	connect("loop2Signal", IDEIf, "_on_Loop2Signal")
+#	connect("loop2Signal", IDE, "_on_Loop2Signal")
 	
 	#Get regex ready
-	var regexF1 = RegEx.new()
-	var regexF2 = RegEx.new()
-	regexF1.compile("Loop1_")
-	regexF2.compile("Loop2_")
-	result1 = regexF1.search(name)
-	result2 = regexF2.search(name) 
+	var regexL1 = RegEx.new()
+	var regexL2 = RegEx.new()
+	regexL1.compile("Loop1_")
+	regexL2.compile("Loop2_")
+	result1 = regexL1.search(name)
+	result2 = regexL2.search(name) 
 	
-#func _process(delta):
-#	pass
+	connect_to_LoopBlock()
 
 
-func on_option_selected(id):
-	option = id
-	match id:
-		0:
-			if result1:
-				$Sprite.texture = load("res://Assets/Placeholders/While1.PNG")
-			elif result2:
-				$Sprite.texture = load("res://Assets/Placeholders/While2.PNG")
-		1:
-			if result1:
-				$Sprite.texture = load("res://Assets/Placeholders/For1.PNG")
-			if result2:
-				$Sprite.texture = load("res://Assets/Placeholders/For2.PNG")
-	send_signal() #will change the type of section in the IDE
+#Connect LoopBlock's signal "ChosenLoop" to this Loop code block, change textures if loop type has already been chosen
+func connect_to_LoopBlock():
+	var fromFuncMainFBA = null
+	var fromIfLoopFBA = null
+	var fromCodeBlockBar = null
+	var loopTitle = ""
 	
+	#Get path to Loop1
+	if result1: 
+		fromFuncMainFBA = get_node("../../../Loop1")
+		fromIfLoopFBA = get_node("../../../../Loop1")
+		fromCodeBlockBar = get_node("../../IDE/Loop1")
+	#Get path to Loop2
+	elif result2:
+		fromFuncMainFBA = get_node("../../../Loop2")
+		fromIfLoopFBA = get_node("../../../../Loop2")
+		fromCodeBlockBar = get_node("../../IDE/Loop2")
+	
+	#Check which path is correct, then connect & get Loop's title (i.e. While1, For2, etc.)
+	if fromFuncMainFBA:
+		fromFuncMainFBA.connect("ChosenLoop", self, "on_loop_type_selected")
+		loopTitle = fromFuncMainFBA.get_node("HighlightControl/ChooseLoopType/Label").text
+	elif fromIfLoopFBA:
+		fromIfLoopFBA.connect("ChosenLoop", self, "on_loop_type_selected")
+		loopTitle = fromIfLoopFBA.get_node("HighlightControl/ChooseLoopType/Label").text
+	elif fromCodeBlockBar:
+		fromCodeBlockBar.connect("ChosenLoop", self, "on_loop_type_selected")
+	
+	#Change sprite texture if Loop type has already been selected
+	if loopTitle == "While1" or loopTitle == "While2":
+		on_loop_type_selected("While")
+	elif loopTitle == "For1" or loopTitle == "For2":
+		on_loop_type_selected("For")
+
+
+#Changes Sprite texture to match the loop type of the Loop IDE section it represents
+#type is either For or While, num is either 1 or 2
+func on_loop_type_selected(type: String):
+	self.type = type
+	#Loop1
+	if result1:
+		if type == "While":
+			$Sprite.texture = load("res://Assets/Placeholders/While1.png")
+		elif type == "For":
+			$Sprite.texture = load("res://Assets/Placeholders/For1.png")
+	#Loop2
+	elif result2:
+		if type == "While":
+			$Sprite.texture = load("res://Assets/Placeholders/While2.png")
+		elif type == "For":
+			$Sprite.texture = load("res://Assets/Placeholders/For2.png")
+
 
 func send_signal():
 	$CodeBlock/Highlight.visible = true
-	match option:
-		0:
-			if result1:
-				emit_signal("whileLoop1")
-			if result2:
-				emit_signal("whileLoop2")
-		1: 
-			if result1:
-				emit_signal("forLoop1")
-			if result2:
-				emit_signal("forLoop2")
+	if result1:
+		print("CALLING " + type + "1")
+		emit_signal("loop1Signal", type, 1)
+	elif result2:
+		print("CALLING " + type + "2")
+		emit_signal("loop2Signal", type, 2)
+
 
 #Just here to supress errors during debugging
 func _on_Area2D_input_event(_viewport, _event, _shape_idx):

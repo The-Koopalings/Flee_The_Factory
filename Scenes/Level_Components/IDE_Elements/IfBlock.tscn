@@ -11,7 +11,7 @@ extents = Vector2( 210, 27.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 243, 71.5 )
 
-[node name="IfElse1" type="Control"]
+[node name="If1" type="Control"]
 margin_right = 480.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 480, 275 )
