@@ -1,6 +1,5 @@
 extends Area2D
 
-var CodeBlock = null
 #Load CodeBlock objects
 var PathToCodeBlocks = "res://Scenes/Level_Components/Code_Blocks/"
 var Template = load(PathToCodeBlocks + "CodeBlock.tscn")
@@ -8,12 +7,9 @@ var Forward = load(PathToCodeBlocks + "Forward.tscn")
 var RotateLeft = load(PathToCodeBlocks + "RotateLeft.tscn")
 var RotateRight = load(PathToCodeBlocks + "RotateRight.tscn")
 var Interact  = load(PathToCodeBlocks + "Interact.tscn")
-var F1 = load(PathToCodeBlocks + "CallFunction1.tscn")
-var F2 = load(PathToCodeBlocks + "CallFunction2.tscn")
-var If1 = load(PathToCodeBlocks + "CallIf1.tscn")
-var If2 = load(PathToCodeBlocks + "CallIf2.tscn")
-var Loop1 = load(PathToCodeBlocks + "CallLoop1.tscn")
-var Loop2 = load(PathToCodeBlocks + "CallLoop2.tscn")
+var CallFunction = load(PathToCodeBlocks + "CallFunction.tscn")
+var CallIF = load(PathToCodeBlocks + "CallIf.tscn")
+var CallLoop = load(PathToCodeBlocks + "CallLoop.tscn")
 onready var counter = get_node("../Counter")
 
 var numBlocks = 0
@@ -23,8 +19,9 @@ var xOffset = 30
 var yOffset = 30
 
 #To prevent removing a code block if it was dragged out of FBA, but dragged and dropped back into FBA
-var removeChild = false
-var child = null
+var blockToAdd = null
+var blockToRemove = null
+var isDeletingBlock = false
 
 onready var highlight = get_node("../Highlight")
 
@@ -36,46 +33,51 @@ func _ready():
 
 #Area2D enters a function area
 func _on_FunctionBlockArea_area_entered(area):
-	if area.name != "CodeBlock":
-		CodeBlock = area
-	#Prevent blocks from being removed when it is dropped inside IDE after briefly exiting
-	removeChild = false
-		
+	#Avoid duplicate adds since both CodeBlockTemplate and all Code Blocks trigger this
+	if area.name != "CodeBlock" and !is_a_parent_of(area):
+		blockToAdd = area
+	
+	#If block enters the FBA, it shouldn't be deleted
+	#Prevents blocks from being removed when it is dropped inside IDE after briefly exiting
+	isDeletingBlock = false
 	
 #Area2D leaves a function area
 func _on_FunctionBlockArea_area_exited(area):
-	CodeBlock = null
-	#Check if targetNode is a child of the grid
-	var targetNode = get_node(area.name)
-	if targetNode == null:
-		return
+	blockToAdd = null
 	
-	#If so, prepare to remove it
-	child = targetNode
-	removeChild = true
+	#If block used to be in FBA, prepare to remove it
+	if area.name != "CodeBlock" and is_a_parent_of(area):
+		blockToRemove = area
+		isDeletingBlock = true
 	
 
 
 #Something is dropped in function area
-func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
+func _on_FunctionBlockArea_input_event(_viewport, event, _shape_idx):
 	#If event was a drop
 	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
-		add_block()
+		add_block(blockToAdd)
 	
 
 
 func _on_CodeBlock_doubleClick(code_block):
-	if highlight.visible:
-		CodeBlock = code_block
-		add_block()
+	if !highlight.visible:
+		return 
+
+	if is_a_parent_of(code_block):
+		remove_block(code_block)
+	else:
+		add_block(code_block)
 
 
 # Helper function to add a code block into FunctionBlockArea
-func add_block():
-	child = null
-	#Check for valid code block + that it's not in FBA, then instance code block
-	if CodeBlock and CodeBlock.get_child(2) and !CodeBlock.get_child(2).inFBA:
-		match CodeBlock.name:
+func add_block(block):
+	var child = null
+	
+	#If valid codeblock, then instantiate a new code block to be added
+	if block and block.get_child(2):
+		var type = block.name.rstrip("0123456789")
+		match type:
 			"Forward":
 				child = Forward.instance()
 			"RotateLeft":
@@ -84,46 +86,47 @@ func add_block():
 				child = RotateRight.instance()
 			"Interact":
 				child = Interact.instance()
-			"F1_":
-				child = F1.instance()
-			"F2_":
-				child = F2.instance()
-			"If1_":
-				if get_parent().get_parent().name != "IfElse1":
-					child = If1.instance()
-			"If2_":
-				if get_parent().get_parent().name != "IfElse2":
-					child = If2.instance()
-			"Loop1_":
-				if get_parent().get_parent().name != "Loop1":
-					child = Loop1.instance()
-			"Loop2_":
-				if get_parent().get_parent().name != "Loop2":
-					child = Loop2.instance()
+			"Call_F":
+				child = CallFunction.instance()
+				child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
+				child.name = block.name + "_1"
+			"CallIF":
+				child = CallIF.instance()
+			"CallLoop":
+				child = CallLoop.instance()
+				
 	#Add codeblock node to tree
 	if child and numBlocks < counter.maxBlocks:
 		var x = xOffset + blockSize * (numBlocks % rowSize)
 		var y = yOffset + blockSize * int(numBlocks / rowSize)
 		child.position = Vector2(x, y)
 		numBlocks += 1
-		child.get_child(2).inFBA = true
 		add_child(child, true)
 		counter.display(numBlocks)
-
-
-#Remove code blocks once player releases left mouse button outside of FBA
-#parameter is the startPos variable of the CodeBlock that sent a stopDrag signal
-func stop_drag(globalPos):
-	if child and removeChild and child.get_child(2).startPos == globalPos:
-		var startIndex = child.get_index()
-		child.queue_free() 
-		removeChild = false
-		child = null
-		numBlocks -= 1
-		counter.display(numBlocks)
-		shift_blocks(startIndex)
-		CodeBlock = null
+	
+	blockToAdd = null
 		
+	#print("DROPPED " + CodeBlock.name + " in " + name)
+
+# Helper function to remove a code block from FunctionBlockArea
+func remove_block(block):
+	var startIndex = block.get_index()
+	block.queue_free() 
+	isDeletingBlock = false
+	blockToRemove = null
+	numBlocks -= 1
+	counter.display(numBlocks)
+	shift_blocks(startIndex+1)
+	#yield(get_tree().create_timer(0.01, false), "timeout") 
+	
+	
+#Remove code blocks once player releases left mouse button
+func _on_CodeBlock_stop_drag(globalPos):
+	#If we're deleting a block, that block exists, and it's the one following the mouse, then delete
+	#print(blockToRemove.name)
+	if isDeletingBlock and blockToRemove and is_instance_valid(blockToRemove) and blockToRemove.get_child(2).startPos == globalPos:
+		remove_block(blockToRemove)
+
 
 #Helper function to shift blocks once one is removed
 func shift_blocks(startIndex):

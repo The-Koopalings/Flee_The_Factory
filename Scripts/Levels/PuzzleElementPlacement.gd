@@ -9,6 +9,7 @@ var halftile
 var CodeBlockBar
 var robotStartOrientation
 var level
+var IDE
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -25,15 +26,18 @@ enum Orientation{
 	LEFT = 3
 }
 
-func loadLevel(level, tiles, robotStartOrientation, Grid, CodeBlockBar):
-	self.tiles = tiles
-	self.robotStartOrientation = robotStartOrientation
-	self.Grid = Grid
-	self.CodeBlockBar = CodeBlockBar
-	self.level = level
+func loadLevel(_level):
+	self.level = _level
+	self.tiles = level.tiles
+	self.robotStartOrientation = level.robotStartOrientation
+	self.Grid = level.get_node("Grid")
+	self.CodeBlockBar = level.get_node("CodeBlockBar")
+	self.IDE = level.get_node("IDE")
 	self.halftile = Grid.tile_size/2
+	
 	self.init_elements()
 	self.init_code_blocks()
+	self.init_IDE()
 	self.update()
 
 #Draws the borders of the grid+
@@ -122,12 +126,14 @@ func generate_elements_dict():
 	nodes.pop_front() 
 	
 	var elements = {}
+	
+	#For each unique element type, make a list of all instances 
+	#Example: elements["Obstacle"] has a list of all Obstacle Nodes
 	for node in nodes:
 		#Get the name, but remove all digits from the end
 		var type = node.name.rstrip("0123456789") 
 		
-		#For each unique element type, make a list of all instances 
-		#For Example: elements["Obstacle"] has a list of all Obstacle Nodes
+		#If it exists, push into list. Else, make a new list
 		if elements.keys().has(type):
 			elements[type].push_back(node) 
 		else:
@@ -141,9 +147,31 @@ func init_code_blocks():
 	var y = 1008
 	
 	var blocks = CodeBlockBar.get_children()
-	
 	# Ignore first child of CodeBlockBar (TextureRect, not code block)
-	for i in range(1, blocks.size()):
-		var code_block_template = blocks[i].get_child(2)
+	blocks.pop_front()
+	
+	for block in blocks:
+		var code_block_template = block.get_child(2)
 		code_block_template.startPos = Vector2(x, y)
-		x += 110	
+		if block.BLOCK_TYPE == "CALL":
+			var call_name = block.name.trim_prefix("Call_")
+			var texture = load("res://Assets/Objects/" + call_name + ".png")
+			block.get_node("Sprite").set_texture(texture)
+		
+		x += 110
+		
+		#if block.name == ""
+
+func init_IDE():
+	for child in IDE.get_children():
+		if child.name != "Run_Button":
+			IDE.scopes[child.name] = child
+			
+
+#Get path to a node that's a relative to an ancestor of the current node
+func get_path_to_grandpibling(node, target):
+	var path = ""
+	while !node.has_node(target):
+		node = node.get_parent()
+		path += "../"
+	return path + target

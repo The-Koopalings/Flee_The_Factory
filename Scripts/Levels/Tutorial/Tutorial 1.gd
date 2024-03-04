@@ -26,7 +26,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
-	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
+	PEP.loadLevel(self)
   
 	# Add tutorial dialogue
 	load_dialogue()

@@ -61,6 +61,19 @@ func on_RHS_option_selected(id):
 		1:
 			RHSLabel.text = "Pressed"
 
+func get_code():
+	var code
+	#If condition == true:
+		#code = $If/FunctionBlockArea.get_children()
+	#Else:
+		#code = $Else/FunctionBlockArea.get_children()
+	 
+	
+	#Remove non-codeblocks [CollisionShape2D, ColorRect]
+	code.pop_front()
+	code.pop_front()
+	return code
+	
 #func _on_if1Signal():
 #	print("if1Signal received")
 #	emit_signal("ifCondSignal", LHSLabel.text, OperatorLabel.text, RHSLabel.text)
