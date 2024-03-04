@@ -31,7 +31,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 # Called when the node enters the scene tree for the first time.
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
-	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
+	PEP.loadLevel(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

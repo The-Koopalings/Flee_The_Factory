@@ -26,14 +26,14 @@ enum Orientation{
 	LEFT = 3
 }
 
-func loadLevel(level, tiles, robotStartOrientation, Grid, CodeBlockBar):
-	self.level = level
+func loadLevel(_level):
+	self.level = _level
+	self.tiles = level.tiles
+	self.robotStartOrientation = level.robotStartOrientation
 	self.Grid = level.get_node("Grid")
-	self.halftile = Grid.tile_size/2
 	self.CodeBlockBar = level.get_node("CodeBlockBar")
 	self.IDE = level.get_node("IDE")
-	self.tiles = tiles
-	self.robotStartOrientation = robotStartOrientation
+	self.halftile = Grid.tile_size/2
 	
 	self.init_elements()
 	self.init_code_blocks()
