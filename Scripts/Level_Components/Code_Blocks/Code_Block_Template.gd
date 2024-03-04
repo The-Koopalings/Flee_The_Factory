@@ -16,36 +16,20 @@ func _ready():
 	parent = self.get_parent()
 	startPos = parent.global_position
 	
-	var temp = get_parent()
-	var path = "../"
-	while !temp.has_node("IDE"):
-		temp = temp.get_parent()
-		path += "../"
-	var IDE = get_node(path + "IDE")
-	
+	#Get IDE node from PEP
+	var IDE = get_node(PEP.get_path_to_grandpibling(self, "IDE"))
 	#Signal for when IDE has finished executing this Code Block
-	IDE.connect("executed", self, "_on_IDE_executed")
+	IDE.connect("executed", self, "_on_IDE_executed") 
+	
 	
 	# Connect double click signal to all function blocks
-	var Main = IDE.get_node("Main/FunctionBlockArea")
-	connect("doubleClick", Main, "_on_CodeBlock_doubleClick")
+	for scope in IDE.get_children():
+		if scope.name == "Run_Button":
+			continue
+		status += connect("doubleClick", scope.get_node("FunctionBlockArea"), "_on_CodeBlock_doubleClick")
 	
-	var F1 = IDE.get_node("F1/FunctionBlockArea")
-	connect("doubleClick", F1, "_on_CodeBlock_doubleClick")
-	
-	var F2 = IDE.get_node("F2/FunctionBlockArea")
-	connect("doubleClick", F2, "_on_CodeBlock_doubleClick")
-	
-	var If1 = IDE.get_node("IfElse1/If/FunctionBlockArea")
-	connect("doubleClick", If1, "_on_CodeBlock_doubleClick")
-	var Else1 = IDE.get_node("IfElse1/Else/FunctionBlockArea")
-	connect("doubleClick", Else1, "_on_CodeBlock_doubleClick")
-	
-	var If2 = IDE.get_node("IfElse2/If/FunctionBlockArea")
-	connect("doubleClick", If2, "_on_CodeBlock_doubleClick")
-	var Else2 = IDE.get_node("IfElse2/Else/FunctionBlockArea")
-	connect("doubleClick", Else2, "_on_CodeBlock_doubleClick")
-	
+	if status != 0:
+		printerr("Something went wrong trying to connect signals in ", name)
 	
 func _process(delta):
 	if dragging:

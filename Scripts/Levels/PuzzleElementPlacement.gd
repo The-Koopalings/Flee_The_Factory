@@ -166,3 +166,12 @@ func init_IDE():
 	for child in IDE.get_children():
 		if child.name != "Run_Button":
 			IDE.scopes[child.name] = child
+			
+
+#Get path to a node that's a relative to an ancestor of the current node
+func get_path_to_grandpibling(node, target):
+	var path = ""
+	while !node.has_node(target):
+		node = node.get_parent()
+		path += "../"
+	return path + target

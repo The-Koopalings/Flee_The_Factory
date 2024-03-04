@@ -4,9 +4,9 @@ signal interactSignal
 const BLOCK_TYPE = "CODE"
 
 func _ready():
-	var Robot = get_node("../../../../Grid/Robot") #Keep in mind, code blocks become FunctionBlockArea grandchild when added to IDE
-	connect("interactSignal",Robot,"_on_Interact_interactSignal")
-	connect("interactSignal", get_node("../../../../../Grid/Robot"),"_on_Interact_interactSignal") #For IfElseBlocks
+	#Use PEP to get Robot node
+	var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot")) 
+	var status = connect("interactSignal",Robot,"_on_Interact_interactSignal")
 	
 
 func _process(delta):
