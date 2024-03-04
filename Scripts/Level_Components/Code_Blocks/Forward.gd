@@ -15,4 +15,5 @@ func _process(delta):
 
 func send_signal():
 	print("MOVING FORWARDS")
+	$CodeBlock/Highlight.visible = true
 	emit_signal("forwardSignal")

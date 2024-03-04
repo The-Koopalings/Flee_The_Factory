@@ -53,6 +53,7 @@ func on_option_selected(id):
 	
 
 func send_signal():
+	$CodeBlock/Highlight.visible = true
 	match option:
 		0:
 			if result1:

@@ -4,12 +4,12 @@ signal function1Finished
 signal function2Finished
 signal if1Finished
 signal if2Finished
-
+signal executed
 
 var scopes = {} #Map of all functions using the name to index/hash (Done in PEP)
 var code = [] #List of currently executing code
 var context = [] #List of Frames (lists of code)
-
+var previousCode = null
 
 
 #To allow for only 1 press of Run unless the scene is restarted
@@ -40,24 +40,25 @@ func _on_Button_pressed():
 
 
 func enter_scope(node):
-	#Add currently executing code to the stack frame
+	#Store currently executing code to the context of previous scopes
 	if !code.empty():
 		context.push_back(code)
 		
-	#Get the new code to run
+	#Swap code with the new code to run
 	code = node.get_code()
 	#print(code)
 	
 	#print("Context: ", context)
-	print("SIZE: ", context.size())
-	"""
+	#print("SIZE: ", context.size())
+	
+	#Check for potential infinite loop. If we hit here, probably want to tell player about it.
 	if context.size() >= 1000:
 		printerr("Too many scopes called. Possibly an inifinite loop. Terminating early")
 		assert(context.size() < 1000)
-	"""
+
 	#Will execute from back to front, so invert
 	code.invert()
-	yield(get_tree().create_timer(0, false), "timeout") 
+	yield(get_tree().create_timer(GameStats.run_speed/2, false), "timeout") 
 
 func run_code():
 	var block
@@ -71,16 +72,15 @@ func run_code():
 			#print(block)
 			
 			#Run code + add delay between each block
+			emit_signal("executed", previousCode)
+			block.send_signal()
+			previousCode = block
+			
 			if block.BLOCK_TYPE == "CODE":
-				block.send_signal()
 				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
 			elif block.BLOCK_TYPE == "CALL":
 				var call_name = block.name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
-				#print("CALLING FUNCTION ", call_name)
-				yield(enter_scope(scopes[call_name]), "completed") 
+				yield(enter_scope(scopes[call_name]), "completed")
 		
 		if !context.empty():
 			code = context.pop_back()
-	
-			
-

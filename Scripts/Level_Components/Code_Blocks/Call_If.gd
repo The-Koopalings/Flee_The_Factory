@@ -27,6 +27,7 @@ func _ready():
 
 
 func send_signal():
+	$CodeBlock/Highlight.visible = true
 	if result1:
 		print("CALLING IF1")
 		emit_signal("if1Signal")

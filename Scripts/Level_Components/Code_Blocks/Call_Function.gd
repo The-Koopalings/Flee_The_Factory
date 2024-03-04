@@ -29,6 +29,7 @@ func _ready():
 
 func send_signal():
 	print("CALLING FUNCTION ", name)
+	$CodeBlock/Highlight.visible = true
 	emit_signal("callFunction", name)
 	
 	"""

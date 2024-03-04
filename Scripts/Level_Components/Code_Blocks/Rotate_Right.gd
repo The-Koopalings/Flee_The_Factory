@@ -15,4 +15,5 @@ func _process(delta):
 
 func send_signal():
 	print("ROTATING RIGHT")
+	$CodeBlock/Highlight.visible = true
 	emit_signal("rotateRightSignal")

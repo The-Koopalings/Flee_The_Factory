@@ -23,6 +23,9 @@ func _ready():
 		path += "../"
 	var IDE = get_node(path + "IDE")
 	
+	#Signal for when IDE has finished executing this Code Block
+	IDE.connect("executed", self, "_on_IDE_executed")
+	
 	# Connect double click signal to all function blocks
 	var Main = IDE.get_node("Main/FunctionBlockArea")
 	connect("doubleClick", Main, "_on_CodeBlock_doubleClick")
@@ -65,7 +68,11 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			elif !event.pressed:
 				dragging = false
 				emit_signal("stopDrag", startPos)
-
+				
+func _on_IDE_executed(block):
+	if block and block.name == get_parent().name:
+		$Highlight.visible = false
+		
 func _on_CodeBlock_mouse_entered():
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
