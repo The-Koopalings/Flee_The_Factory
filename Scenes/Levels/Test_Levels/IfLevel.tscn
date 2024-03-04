@@ -288,6 +288,9 @@ margin_right = 1920.0
 [node name="IfElse1" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 513.0
 margin_bottom = 788.0
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Label" parent="IDE/IfElse1/If" index="0"]
 text = "If1"
@@ -298,6 +301,9 @@ text = "Else1"
 [node name="IfElse2" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 792.0
 margin_bottom = 1067.0
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Label" parent="IDE/IfElse2/Else" index="0"]
 text = "Else2"

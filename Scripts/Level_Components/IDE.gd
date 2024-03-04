@@ -4,6 +4,8 @@ signal function1Finished
 signal function2Finished
 signal if1Finished
 signal if2Finished
+signal loop1Finished
+signal loop2Finished
 
 #Entry point for IDE code, called to get children
 onready var main = get_node("Main/FunctionBlockArea")
@@ -13,10 +15,14 @@ onready var if1 = get_node("IfElse1/If/FunctionBlockArea")
 onready var else1 = get_node("IfElse1/Else/FunctionBlockArea")
 onready var if2 = get_node("IfElse2/If/FunctionBlockArea")
 onready var else2 = get_node("IfElse2/Else/FunctionBlockArea")
+onready var loop1 = get_node("Loop1/HighlightControl/FunctionBlockArea")
+onready var loop2 = get_node("Loop2/HighlightControl/FunctionBlockArea")
 var regexF1 = RegEx.new()
 var regexF2 = RegEx.new()
 var regexIf1 = RegEx.new()
 var regexIf2 = RegEx.new()
+var regexL1 = RegEx.new()
+var regexL2 = RegEx.new()
 
 #To allow for only 1 press of Run unless the scene is restarted
 var runPressed = false
@@ -36,6 +42,8 @@ func _ready():
 	regexF2.compile("F2_")
 	regexIf1.compile("If1_")
 	regexIf2.compile("If2_")
+	regexL1.compile("Loop1_")
+	regexL2.compile("Loop2_")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -93,21 +101,49 @@ func _on_if2Signal():
 	run_code(code, "If2")
 
 
-#num denotes which While IDE block it is (While1 = 1, While2 = 2)
-func _on_whileSignal(num: int):
-	pass
+#type is whether the Loop IDE Block is a While or For loop 
+#num denotes which Loop IDE block it is (Loop1 = 1, Loop2 = 2)
+func _on_LoopSignal(type: String, num: int):
+	print("LoopSignal: " + type + str(num))
+	var code = null
+	var loopPath = ""
+	if num == 1:
+		loop1.get_children()
+		loopPath = "Loop1"
+	elif num == 2:
+		loop2.get_children()
+		loopPath = "Loop2"
+	
+	if type == "While":
+		var LHS = get_node(loopPath + "/HighlightControl/WhileConditional/LHS/Label").text
+		var Operator = get_node(loopPath + "/HighlightControl/WhileConditional/Operator/Label").text
+		var RHS = get_node(loopPath + "/HighlightControl/WhileConditional/RHS/Label").text
+		#NOTE: might call run_code more times than it should because yield returns back to calling function
+		while check_conditions(LHS, Operator, RHS): 
+			run_code(code, loopPath)
+		run_code(null, loopPath, true) #NOTE: might have to change to smth other than null, just to send finished signal
+	elif type == "For":
+		pass
 
-#num denotes which For IDE block it is (For1 = 1, For2 = 2)
-func _on_forSignal(num: int):
-	pass
+#
+##num denotes which For IDE block it is (For1 = 1, For2 = 2)
+#func _on_Loop2Signal(type: String):
+#	print("Loop2Signal: " + type)
+#	var code = loop2.get_children()
+#	if type == "While":
+#		pass
+#	elif type == "For":
+#		pass
 
-#Check conditions in If statement IDE block
+
+#Check conditions in If statement or While loop IDE block
 func check_conditions(LHS, Operator, RHS) -> bool:
 	return false
 
 
 #Helper function to execute code blocks, pass in array of code block nodes + what IDE section they are running in
-func run_code(code, type: String):
+#loopDone optional & is used for For and While loops only
+func run_code(code, type: String, loopDone: bool = false):
 	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
 	code.pop_front()
 	code.pop_front()
@@ -117,20 +153,20 @@ func run_code(code, type: String):
 	
 	#Run all of the code + add delay between each block, pause to run other IDE sections' code blocks
 	for block in code:
+		block.send_signal()
 		if regexF1.search(block.name):
-			block.send_signal()
 			yield(self, "function1Finished")
 		elif regexF2.search(block.name):
-			block.send_signal()
 			yield(self, "function2Finished")
 		elif regexIf1.search(block.name):
-			block.send_signal()
 			yield(self, "if1Finished")
 		elif regexIf2.search(block.name):
-			block.send_signal()
 			yield(self, "if2Finished")
+		elif regexL1.search(block.name):
+			yield(self, "loop1Finished")
+		elif regexL2.search(block.name):
+			yield(self, "loop2Finished")
 		else:
-			block.send_signal()
 			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
 	
 	match type:
@@ -142,3 +178,9 @@ func run_code(code, type: String):
 			emit_signal("if1Finished")
 		"If2":
 			emit_signal("if2Finished")
+		"Loop1":
+			if loopDone:
+				emit_signal("loop1Finished")
+		"Loop2":
+			if loopDone:
+				emit_signal("loop2Finished")

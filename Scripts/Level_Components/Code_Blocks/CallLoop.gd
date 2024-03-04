@@ -1,11 +1,11 @@
 extends Area2D
 
-signal whileSignal
-signal forSignal
+signal loopSignal
+#signal loop2Signal
 
 
-#Which option is chosen, none = -1, While = 0, For = 1
-var option = -1 
+#Which loop type is chosen
+var type = "none" 
 #Regex results to be used in send_signal()
 var result1
 var result2 
@@ -14,10 +14,10 @@ func _ready():
 	#Connect signals to IDE
 	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else or Loop
 	var IDE = get_node("../../../../IDE") #For code blocks NOT in If-Else or Loop
-	connect("whileSignal", IDEIf, "_on_whileSignal")
-	connect("forSignal", IDEIf, "_on_forSignal")
-	connect("whileSignal", IDE, "_on_whileSignal")
-	connect("forSignal", IDE, "_on_forSignal")
+	connect("loopSignal", IDEIf, "_on_LoopSignal")
+	connect("loopSignal", IDE, "_on_LoopSignal")
+#	connect("loop2Signal", IDEIf, "_on_Loop2Signal")
+#	connect("loop2Signal", IDE, "_on_Loop2Signal")
 	
 	#Get regex ready
 	var regexL1 = RegEx.new()
@@ -36,6 +36,7 @@ func connect_to_LoopBlock():
 	var fromIfLoopFBA = null
 	var fromCodeBlockBar = null
 	var loopTitle = ""
+	
 	#Get path to Loop1
 	if result1: 
 		fromFuncMainFBA = get_node("../../../Loop1")
@@ -67,33 +68,25 @@ func connect_to_LoopBlock():
 #Changes Sprite texture to match the loop type of the Loop IDE section it represents
 #type is either For or While, num is either 1 or 2
 func on_loop_type_selected(type: String):
+	self.type = type
 	#Loop1
 	if result1:
 		if type == "While":
-			option = 0
 			$Sprite.texture = load("res://Assets/Placeholders/While1.png")
 		elif type == "For":
-			option = 1
 			$Sprite.texture = load("res://Assets/Placeholders/For1.png")
 	#Loop2
 	elif result2:
 		if type == "While":
-			option = 0
 			$Sprite.texture = load("res://Assets/Placeholders/While2.png")
 		elif type == "For":
-			option = 1
 			$Sprite.texture = load("res://Assets/Placeholders/For2.png")
 
 
 func send_signal():
-	match option:
-		0:
-			if result1:
-				emit_signal("whileSignal", 1)
-			if result2:
-				emit_signal("whileSignal", 2)
-		1: 
-			if result1:
-				emit_signal("forSignal", 1)
-			if result2:
-				emit_signal("forSignal", 2)
+	if result1:
+		print("CALLING " + type + "1")
+		emit_signal("loop1Signal", type, 1)
+	elif result2:
+		print("CALLING " + type + "2")
+		emit_signal("loop2Signal", type, 2)
