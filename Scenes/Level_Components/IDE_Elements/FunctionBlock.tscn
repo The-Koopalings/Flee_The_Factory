@@ -82,4 +82,3 @@ shape = SubResource( 2 )
 [connection signal="area_exited" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_area_exited"]
 [connection signal="input_event" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_input_event"]
 [connection signal="input_event" from="Clickable" to="." method="_on_Clickable_input_event"]
-[connection signal="mouse_entered" from="Clickable" to="." method="_on_Clickable_mouse_entered"]

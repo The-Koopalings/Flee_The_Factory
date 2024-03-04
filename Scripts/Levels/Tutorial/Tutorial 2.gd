@@ -1,19 +1,23 @@
 extends Node2D
 
-
+##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
 onready var TextBox = get_node("TextBox")
 onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+signal openDoor
+##UNIVERSAL LEVEL VARIABLES 
 
+##UNIQUE LEVEL VARIABLES
+var btn_pressed = false
 var dialogue_queue = []
 
 signal tutorial_progress
 var progress_check = [false, false, false]
+##UNIQUE LEVEL VARIABLES
 
-var btn_pressed = false
-var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
 
+##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
@@ -23,24 +27,22 @@ var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
 ]
-var robotStartOrientation = PEP.Orientation.DOWN
+var robotStartOrientation = PEP.Orientation.RIGHT
+##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
-	PEP.loadLevel(tiles, robotStartOrientation, Grid, CodeBlockBar)
-	
-	Dialogue.load_dialogue("Tutorial/Tutorial 2.txt", dialogue_queue)
-	display_dialogue()
+	PEP.loadLevel(self)
 
 
 func _process(delta):
 	tutorial_dialogue_check()
 	
 	if btn_pressed:
-		get_node("Grid/Door/Sprite").set_texture(openDoorTexture)
+		emit_signal("openDoor")
 		$AcceptDialog.popup()
 		btn_pressed = false
 
-
+#Handles all button presses
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
 

@@ -20,7 +20,9 @@ func _on_Settings_pressed():
 
 
 func _on_Restart_pressed():
-	get_tree().reload_current_scene()
+	var Error = get_tree().reload_current_scene()
+	if Error != 0:
+		printerr("Error encountered on pressing Restart button. Error code: ", Error)
 
 
 func _on_DoubleSpeed_toggled(button_pressed):
