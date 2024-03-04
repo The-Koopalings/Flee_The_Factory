@@ -1,9 +1,5 @@
 extends VBoxContainer
 
-signal function1Finished
-signal function2Finished
-signal if1Finished
-signal if2Finished
 signal executed
 
 var scopes = {} #Map of all functions using the name to index/hash (Done in PEP)

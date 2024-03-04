@@ -4,15 +4,19 @@ var dragging = false
 var parent
 var startPos
 
-signal drag(area)
+#signal drag(area)
 signal stopDrag(globalPos)
 signal doubleClick(code_block)
 
 func _ready():
-	
+	var status = 0
 	$Highlight.visible = false
 	
-	connect("stopDrag", get_node("../.."), "_on_CodeBlock_stop_drag") #connects to FunctionBlockArea that CodeBlock is grandchild of
+	#If codeblock is in IDE, connect to the FunctionBlockArea
+	var node = get_node("../..")
+	if node.name == "FunctionBlockArea":
+		status += connect("stopDrag", node, "_on_CodeBlock_stop_drag") 
+		
 	parent = self.get_parent()
 	startPos = parent.global_position
 	
@@ -31,7 +35,7 @@ func _ready():
 	if status != 0:
 		printerr("Something went wrong trying to connect signals in ", name)
 	
-func _process(delta):
+func _process(_delta):
 	if dragging:
 		var mousePos = get_viewport().get_mouse_position()
 		parent.global_position = Vector2(mousePos.x, mousePos.y)
@@ -41,7 +45,7 @@ func _process(delta):
 		#self.global_position = startPos
 		
 
-func _on_Area2D_input_event(viewport, event, shape_idx):
+func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.doubleclick:

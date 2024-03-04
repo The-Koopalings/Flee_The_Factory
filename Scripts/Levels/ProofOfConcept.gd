@@ -34,7 +34,7 @@ func _ready():
 	PEP.loadLevel(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#Check win con
 	#If win con, then open door
 	if B0_Pressed == true:
@@ -43,5 +43,5 @@ func _process(delta):
 		B0_Pressed = false #So console doesn't get spammed at the end
 		
 
-func _on_Button_buttonPressed(name):
+func _on_Button_buttonPressed(_name):
 	B0_Pressed = true

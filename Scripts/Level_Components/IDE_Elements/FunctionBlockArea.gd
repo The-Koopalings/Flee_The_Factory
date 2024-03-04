@@ -57,7 +57,7 @@ func _on_FunctionBlockArea_area_exited(area):
 
 
 #Something is dropped in function area
-func _on_FunctionBlockArea_input_event(viewport, event, shape_idx):
+func _on_FunctionBlockArea_input_event(_viewport, event, _shape_idx):
 	#If event was a drop
 	if event is InputEventMouseButton and (event.button_index == BUTTON_LEFT and !event.pressed):
 		add_block(blockToAdd)

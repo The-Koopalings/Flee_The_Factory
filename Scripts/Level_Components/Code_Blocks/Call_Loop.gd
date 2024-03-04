@@ -65,3 +65,7 @@ func send_signal():
 				emit_signal("forLoop1")
 			if result2:
 				emit_signal("forLoop2")
+
+#Just here to supress errors during debugging
+func _on_Area2D_input_event(_viewport, _event, _shape_idx):
+	pass
