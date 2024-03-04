@@ -14,8 +14,13 @@ var result2
 func _ready():
 	#Connect signals to IDE
 	var IDE = get_node("../../../../IDE")
-	connect("ifStatement1", IDE, "_on_ifStatement1")
-	connect("f2Signal", IDE, "_on_f2Signal")
+	var status = 0
+	status += connect("ifStatement1", IDE, "_on_ifStatement1")
+	status += connect("f2Signal", IDE, "_on_f2Signal")
+	
+	if status != 0:
+		printerr("Something went wrong trying to connect signals in ", name)
+	
 	#Connect signals to ControlFlowBlock in IDE
 	#Connect pressing of a dropdown option to this node
 	$MenuButton.get_popup().connect("id_pressed", self, "on_option_selected")

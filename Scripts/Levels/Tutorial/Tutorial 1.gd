@@ -9,6 +9,7 @@ signal openDoor
 ##UNIQUE LEVEL VARIABLES
 onready var TextBox = get_node("TextBox")
 var btn_pressed = false
+var dialogue_queue = []
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
