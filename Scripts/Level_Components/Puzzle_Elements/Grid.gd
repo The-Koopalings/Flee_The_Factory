@@ -8,7 +8,7 @@ var start_y = 192
 var end_x = 1248
 var end_y = 864
 
-# Draw bounds of grid
+# Draw bounds of grid (Deprecated, Replaced in PEP)
 func _draw():
 	"""
 	draw_line(Vector2(start_x, start_x), Vector2(start_x, end_y), Color8(0, 0, 0), 4)

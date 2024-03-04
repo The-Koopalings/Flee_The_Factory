@@ -1,29 +1,21 @@
 extends Area2D
 
-signal f1Signal
-signal f2Signal
+#signal callFunction
+
+const BLOCK_TYPE = "CALL"
 
 func _ready():
-	var IDE = get_node("../../../../IDE")
-	connect("f1Signal", IDE, "_on_f1Signal")
-	connect("f2Signal", IDE, "_on_f2Signal")
-
-	
-func _process(delta):
 	pass
+	
+#func _process(delta):
+#	pass
 
 
 func send_signal():
-	var regexF1 = RegEx.new()
-	var regexF2 = RegEx.new()
-	regexF1.compile("F1_")
-	regexF2.compile("F2_")
-	var resultF1 = regexF1.search(name)
-	var resultF2 = regexF2.search(name) 
-	
-	if resultF1:
-		print("CALLING FUNCTION1")
-		emit_signal("f1Signal")
-	elif resultF2:
-		print("CALLING FUNCTION2")
-		emit_signal("f2Signal")
+	print("CALLING FUNCTION ", name)
+	$CodeBlock/Highlight.visible = true
+	#emit_signal("callFunction", name) #Not used anymore
+
+#Just here to supress errors during debugging
+func _on_Area2D_input_event(_viewport, _event, _shape_idx):
+	pass

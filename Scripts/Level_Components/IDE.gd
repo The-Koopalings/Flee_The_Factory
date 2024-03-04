@@ -1,14 +1,12 @@
 extends VBoxContainer
 
-signal function1Finished
-signal function2Finished
+signal executed
 
-#Entry point for IDE code
-onready var main = get_node("Main/FunctionBlockArea")
-onready var f1 = get_node("F1/FunctionBlockArea")
-onready var f2 = get_node("F2/FunctionBlockArea")
-var regexF1 = RegEx.new()
-var regexF2 = RegEx.new()
+var scopes = {} #Map of all functions using the name to index/hash (Done in PEP)
+var code = [] #List of currently executing code
+var context = [] #List of Frames (lists of code)
+var previousCode = null
+
 
 #To allow for only 1 press of Run unless the scene is restarted
 var runPressed = false
@@ -23,10 +21,6 @@ func _ready():
 	# Grab focus of Main Function
 	$Main.grab_focus()
 
-	#Regex for F1 and F2 code blocks
-	regexF1.compile("F1_")
-	regexF2.compile("F2_")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -35,76 +29,54 @@ func _ready():
 #Connected to Run_Button
 func _on_Button_pressed():
 	if !runPressed:
-		var code = main.get_children()
-	
-		#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-		code.pop_front()
-		code.pop_front()
-	
-		#debug so we know what's running
-		print(code)
-	
-		#Run all of the code + add delay between each block
-		for block in code:
-			if regexF1.search(block.name):
-				block.send_signal()
-				yield(self, "function1Finished")
-			elif regexF2.search(block.name):
-				block.send_signal()
-				yield(self, "function2Finished")
-			else:
-				block.send_signal()
-				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
 		runPressed = true
+		print("Scopes: ", scopes)
+		enter_scope(scopes["Main"])
+		run_code()
 
 
-#Run F1 code
-func _on_f1Signal():
-	var code = f1.get_children()
+func enter_scope(node):
+	#Store currently executing code to the context of previous scopes
+	if !code.empty():
+		context.push_back(code)
+		
+	#Swap code with the new code to run
+	code = node.get_code()
+	#print(code)
 	
-	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-	code.pop_front()
-	code.pop_front()
+	#print("Context: ", context)
+	#print("SIZE: ", context.size())
 	
-	#debug so we know what's running
-	print(code)
-	
-	#Run all of the code + add delay between each block
-	for block in code:
-		if regexF1.search(block.name):
-			block.send_signal()
-			yield(self, "function1Finished")
-		elif regexF2.search(block.name):
-			block.send_signal()
-			yield(self, "function2Finished")
-		else:
-			block.send_signal()
-			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
-	emit_signal("function1Finished")
-	
-	
-#Run F2 code
-func _on_f2Signal():
-	var code = f2.get_children()
-	
-	#Pop all the non-code nodes {CollisionShape2D, ColorRect}
-	code.pop_front()
-	code.pop_front()
-	
-	#debug so we know what's running
-	print(code)
-	
-	#Run all of the code + add delay between each block
-	for block in code:
-		if regexF1.search(block.name):
-			block.send_signal()
-			yield(self, "function1Finished")
-		elif regexF2.search(block.name):
-			block.send_signal()
-			yield(self, "function2Finished")
-		else:
-			block.send_signal()
-			yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
-	emit_signal("function2Finished")
-	
+	#Check for potential infinite loop. If we hit here, probably want to tell player about it.
+	if context.size() >= 1000:
+		printerr("Too many scopes called. Possibly an inifinite loop. Terminating early")
+		assert(context.size() < 1000)
 
+	#Will execute from back to front, so invert
+	code.invert()
+	yield(get_tree().create_timer(GameStats.run_speed/2, false), "timeout") 
+
+func run_code():
+	var block
+	#While there's still code to run
+	while !code.empty() or !context.empty(): 
+		#While this function still has code
+		while !code.empty():
+			block = code.pop_back()
+			
+			#debug so we know what's running
+			#print(block)
+			
+			#Run code + add delay between each block
+			emit_signal("executed", previousCode)
+			block.send_signal()
+			previousCode = block
+			
+			if block.BLOCK_TYPE == "CODE":
+				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+			elif block.BLOCK_TYPE == "CALL":
+				var call_name = block.name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
+				yield(enter_scope(scopes[call_name]), "completed")
+		
+		if !context.empty():
+			code = context.pop_back()
