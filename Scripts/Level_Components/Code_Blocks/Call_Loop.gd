@@ -22,8 +22,8 @@ func _ready():
 	#Get regex ready
 	var regexL1 = RegEx.new()
 	var regexL2 = RegEx.new()
-	regexL1.compile("Loop1_")
-	regexL2.compile("Loop2_")
+	regexL1.compile("Call_Loop1")
+	regexL2.compile("Call_Loop2")
 	result1 = regexL1.search(name)
 	result2 = regexL2.search(name) 
 	
@@ -36,6 +36,7 @@ func connect_to_LoopBlock():
 	var fromIfLoopFBA = null
 	var fromCodeBlockBar = null
 	var loopTitle = ""
+	var status = 0
 	
 	#Get path to Loop1
 	if result1: 
@@ -50,14 +51,17 @@ func connect_to_LoopBlock():
 	
 	#Check which path is correct, then connect & get Loop's title (i.e. While1, For2, etc.)
 	if fromFuncMainFBA:
-		fromFuncMainFBA.connect("ChosenLoop", self, "on_loop_type_selected")
+		status += fromFuncMainFBA.connect("ChosenLoop", self, "on_loop_type_selected")
 		loopTitle = fromFuncMainFBA.get_node("HighlightControl/ChooseLoopType/Label").text
 	elif fromIfLoopFBA:
-		fromIfLoopFBA.connect("ChosenLoop", self, "on_loop_type_selected")
+		status += fromIfLoopFBA.connect("ChosenLoop", self, "on_loop_type_selected")
 		loopTitle = fromIfLoopFBA.get_node("HighlightControl/ChooseLoopType/Label").text
 	elif fromCodeBlockBar:
-		fromCodeBlockBar.connect("ChosenLoop", self, "on_loop_type_selected")
-	
+		status += fromCodeBlockBar.connect("ChosenLoop", self, "on_loop_type_selected")
+
+	if status != 0:
+		printerr("Something went wrong trying to connect signals in ", name)
+
 	#Change sprite texture if Loop type has already been selected
 	if loopTitle == "While1" or loopTitle == "While2":
 		on_loop_type_selected("While")
@@ -72,15 +76,15 @@ func on_loop_type_selected(type: String):
 	#Loop1
 	if result1:
 		if type == "While":
-			$Sprite.texture = load("res://Assets/Placeholders/While1.png")
+			$Sprite.texture = load("res://Assets/Objects/While1.png")
 		elif type == "For":
-			$Sprite.texture = load("res://Assets/Placeholders/For1.png")
+			$Sprite.texture = load("res://Assets/Objects/For1.png")
 	#Loop2
 	elif result2:
 		if type == "While":
-			$Sprite.texture = load("res://Assets/Placeholders/While2.png")
+			$Sprite.texture = load("res://Assets/Objects/While2.png")
 		elif type == "For":
-			$Sprite.texture = load("res://Assets/Placeholders/For2.png")
+			$Sprite.texture = load("res://Assets/Objects/For2.png")
 
 
 func send_signal():

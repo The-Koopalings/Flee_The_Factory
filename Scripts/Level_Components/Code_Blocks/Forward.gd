@@ -7,7 +7,7 @@ func _ready():
 	
 	#Use PEP to get Robot node
 	var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot")) 
-	var status = connect("forwardSignal",Robot,"_on_Forward_forwardSignal")
+	var status = connect("forwardSignal", Robot, "_on_Forward_forwardSignal")
 
 	if status != 0:
 		printerr("Something went wrong trying to connect signals in ", name)

@@ -28,7 +28,7 @@
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_64.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_73.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_65.png" type="Texture" id=28]
-[ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Assets/Objects/FunctionBlock.tscn" type="PackedScene" id=29]
 
 [sub_resource type="TileSet" id=1]
 2/name = "Future_Tiles.png 2"
@@ -289,6 +289,9 @@ margin_right = 1920.0
 [node name="If1" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 513.0
 margin_bottom = 788.0
+__meta__ = {
+"_editor_description_": "Name this either IfElse1 or IfElse2"
+}
 
 [node name="Label" parent="IDE/If1/If" index="0"]
 text = "If1"

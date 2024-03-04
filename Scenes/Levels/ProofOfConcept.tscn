@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Objects/FunctionBlock.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Levels/ProofOfConcept.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=14]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_64.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_73.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_65.png" type="Texture" id=28]
+
 
 [sub_resource type="TileSet" id=1]
 2/name = "Future_Tiles.png 2"
