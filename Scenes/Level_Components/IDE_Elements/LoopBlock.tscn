@@ -104,16 +104,16 @@ __meta__ = {
 }
 
 [node name="ForConditional" type="Control" parent="HighlightControl"]
-margin_left = 70.0
+margin_left = 16.0
 margin_top = 35.0
-margin_right = 110.0
+margin_right = 56.0
 margin_bottom = 75.0
 mouse_filter = 2
 
 [node name="LoopCounter" type="Label" parent="HighlightControl/ForConditional"]
-margin_left = 190.0
+margin_left = 225.0
 margin_top = 209.0
-margin_right = 226.0
+margin_right = 261.0
 margin_bottom = 223.0
 rect_scale = Vector2( 2.5, 2.5 )
 text = "i: 0"
@@ -129,21 +129,22 @@ __meta__ = {
 "_editor_description_": "pos(0,0)"
 }
 
-[node name="StartValue" type="LineEdit" parent="HighlightControl/ForConditional"]
+[node name="StartValue" type="SpinBox" parent="HighlightControl/ForConditional"]
 margin_left = 70.0
 margin_top = 8.0
-margin_right = 101.0
+margin_right = 144.0
 margin_bottom = 32.0
-custom_constants/minimum_spaces = 0
-max_length = 2
+mouse_default_cursor_shape = 2
+min_value = -99.0
+max_value = 99.0
 __meta__ = {
 "_editor_description_": "(82,5)"
 }
 
 [node name="Stop" type="Label" parent="HighlightControl/ForConditional"]
-margin_left = 115.0
+margin_left = 145.0
 margin_top = 8.0
-margin_right = 148.0
+margin_right = 178.0
 margin_bottom = 22.0
 rect_scale = Vector2( 2, 2 )
 text = "Stop:"
@@ -151,21 +152,22 @@ __meta__ = {
 "_editor_description_": "pos (115,0)"
 }
 
-[node name="StopValue" type="LineEdit" parent="HighlightControl/ForConditional"]
-margin_left = 183.0
+[node name="StopValue" type="SpinBox" parent="HighlightControl/ForConditional"]
+margin_left = 213.0
 margin_top = 8.0
-margin_right = 214.0
+margin_right = 287.0
 margin_bottom = 32.0
-custom_constants/minimum_spaces = 0
-max_length = 2
+mouse_default_cursor_shape = 2
+min_value = -99.0
+max_value = 99.0
 __meta__ = {
 "_editor_description_": "(195,5)"
 }
 
 [node name="Step" type="Label" parent="HighlightControl/ForConditional"]
-margin_left = 227.0
+margin_left = 288.0
 margin_top = 8.0
-margin_right = 260.0
+margin_right = 321.0
 margin_bottom = 23.0
 rect_scale = Vector2( 2, 2 )
 text = "Step:"
@@ -174,9 +176,9 @@ __meta__ = {
 }
 
 [node name="StepOperator" type="MenuButton" parent="HighlightControl/ForConditional"]
-margin_left = 290.0
+margin_left = 347.0
 margin_top = 5.0
-margin_right = 319.0
+margin_right = 376.0
 margin_bottom = 35.0
 mouse_default_cursor_shape = 2
 __meta__ = {
@@ -191,13 +193,15 @@ text = "+"
 align = 1
 valign = 2
 
-[node name="StepValue" type="LineEdit" parent="HighlightControl/ForConditional"]
-margin_left = 320.0
+[node name="StepValue" type="SpinBox" parent="HighlightControl/ForConditional"]
+margin_left = 376.0
 margin_top = 8.0
-margin_right = 351.0
+margin_right = 450.0
 margin_bottom = 32.0
-custom_constants/minimum_spaces = 0
-max_length = 1
+mouse_default_cursor_shape = 2
+min_value = 1.0
+max_value = 9.0
+value = 1.0
 __meta__ = {
 "_editor_description_": "(335,5)"
 }
@@ -281,3 +285,4 @@ __meta__ = {
 [connection signal="input_event" from="HighlightControl/FunctionBlockArea" to="HighlightControl/FunctionBlockArea" method="_on_FunctionBlockArea_input_event"]
 [connection signal="input_event" from="HighlightControl/Clickable" to="HighlightControl" method="_on_Clickable_input_event"]
 [connection signal="mouse_entered" from="HighlightControl/Clickable" to="HighlightControl" method="_on_Clickable_mouse_entered"]
+[connection signal="value_changed" from="HighlightControl/ForConditional/StartValue" to="." method="_on_StartValue_value_changed"]

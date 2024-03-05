@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 signal executed
+signal loopExecuted
 
 var scopes = {} #Map of all functions using the name to index/hash (Done in PEP)
 var code = [] #List of currently executing code
@@ -77,7 +78,14 @@ func run_code():
 				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
 			elif block.BLOCK_TYPE == "CALL":
 				var call_name = block.name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
-				yield(enter_scope(scopes[call_name]), "completed")
+				if call_name == "Loop1" or call_name == "Loop2":
+					#Keep calling Loop code while conditions are true, iterate LoopCounter after a loop
+					while get_node(call_name).check_conditions():
+						yield(enter_scope(scopes[call_name]), "completed")
+						emit_signal("loopExecuted")
+				else:
+					yield(enter_scope(scopes[call_name]), "completed")
+					
 		
 		if !context.empty():
 			code = context.pop_back()

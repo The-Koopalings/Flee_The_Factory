@@ -1,6 +1,10 @@
 extends Control
 
 signal ChosenLoop
+#What type of loop this is, either While or For
+var type = ""
+#Keep track of i for For loops
+var loopCount: int = 0
 
 onready var Counter = get_node("HighlightControl/Counter")
 onready var ChooseLoopType = get_node("HighlightControl/ChooseLoopType")
@@ -24,10 +28,10 @@ onready var StepOperator = get_node(forConditionalPath + "/StepOperator")
 onready var StepOperatorLabel = get_node(forConditionalPath + "/StepOperator/Label")
 onready var LoopCounter = get_node(forConditionalPath + "/LoopCounter")
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connections()
+	#NOTE: remove this later once level scripts can add these dropdown options
 	add_dropdown_options()
 	
 	#Set visibility of Conditional nodes to false
@@ -43,6 +47,8 @@ func connections():
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	StepOperator.get_popup().connect("id_pressed", self, "on_StepOperator_option_selected")
+	#Connect to IDE
+	get_parent().connect("loopExecuted", self, "increment_loopCount") 
 
 
 func add_dropdown_options():
@@ -84,6 +90,7 @@ func on_CLT_option_selected(id):
 			Counter.set_position(Vector2(177.5, 244)) #Move the code block counter to the middle
 			WhileConditional.set_visible(true)
 			ForConditional.set_visible(false)
+			type = "While"
 			emit_signal("ChosenLoop", "While")
 		1:
 			if self.name == "Loop1":
@@ -93,6 +100,7 @@ func on_CLT_option_selected(id):
 			Counter.set_position(Vector2(130, 244)) #Move the code block counter slightly left
 			ForConditional.set_visible(true)
 			WhileConditional.set_visible(false)
+			type = "For"
 			emit_signal("ChosenLoop", "For")
 			
 
@@ -132,3 +140,54 @@ func on_StepOperator_option_selected(id):
 			StepOperatorLabel.text = "*"
 		3: 
 			StepOperatorLabel.text = "/"
+
+
+func _on_StartValue_value_changed(value):
+	loopCount = value
+
+
+func get_code():
+	var code = $HighlightControl/FunctionBlockArea.get_children()
+	
+	#Remove non-codeblocks [CollisionShape2D, ColorRect]
+	code.pop_front()
+	code.pop_front()
+		
+	return code
+
+
+#Returns true if the loop can continue, false if the loop has to stop
+func check_conditions():
+	#Return false if For loop needs to stop
+	if type == "For":
+		match StepOperatorLabel.text:
+			"+":
+				if loopCount >= StopValue.value:
+					return false
+			"-":
+				if loopCount <= StopValue.value:
+					return false
+			"*":
+				if (StartValue.value >= 0 and loopCount >= StopValue.value) or (StartValue.value < 0 and loopCount <= StopValue.value):
+					return false
+			"/":
+				if (StartValue.value >= 0 and loopCount <= StopValue.value) or (StartValue.value < 0 and loopCount >= StopValue.value):
+					return false
+		return true
+	
+	elif type == "While":
+		return true
+
+
+#Updates loopCount & LoopCounter's text
+func increment_loopCount():
+	match StepOperatorLabel.text:
+		"+":
+			loopCount += StepValue.value
+		"-":
+			loopCount -= StepValue.value
+		"*":
+			loopCount *= StepValue.value
+		"/":
+			loopCount /= StepValue.value
+	LoopCounter.text = "i: " + str(loopCount)

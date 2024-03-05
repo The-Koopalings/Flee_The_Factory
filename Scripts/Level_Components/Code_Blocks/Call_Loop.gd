@@ -1,6 +1,6 @@
 extends Area2D
 
-signal loopSignal
+#signal loopSignal
 const BLOCK_TYPE = "CALL"
 
 #Which loop type is chosen
@@ -12,10 +12,10 @@ var result2
 
 func _ready():
 	#Connect signals to IDE
-	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else or Loop
-	var IDE = get_node("../../../../IDE") #For code blocks NOT in If-Else or Loop
-	connect("loopSignal", IDEIf, "_on_LoopSignal")
-	connect("loopSignal", IDE, "_on_LoopSignal")
+#	var IDEIf = get_node("../../../../../IDE") #For code blocks in If-Else or Loop
+#	var IDE = get_node("../../../../IDE") #For code blocks NOT in If-Else or Loop
+#	connect("loopSignal", IDEIf, "_on_LoopSignal")
+#	connect("loopSignal", IDE, "_on_LoopSignal")
 #	connect("loop2Signal", IDEIf, "_on_Loop2Signal")
 #	connect("loop2Signal", IDE, "_on_Loop2Signal")
 	
@@ -88,13 +88,14 @@ func on_loop_type_selected(type: String):
 
 
 func send_signal():
+	print("CALLING " + name + " " + type)
 	$CodeBlock/Highlight.visible = true
-	if result1:
-		print("CALLING " + type + "1")
-		emit_signal("loop1Signal", type, 1)
-	elif result2:
-		print("CALLING " + type + "2")
-		emit_signal("loop2Signal", type, 2)
+#	if result1:
+#		print("CALLING " + type + "1")
+#		emit_signal("loop1Signal", type, 1)
+#	elif result2:
+#		print("CALLING " + type + "2")
+#		emit_signal("loop2Signal", type, 2)
 
 
 #Just here to supress errors during debugging
