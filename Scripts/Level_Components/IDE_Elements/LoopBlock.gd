@@ -146,17 +146,27 @@ func _on_StartValue_value_changed(value):
 
 
 func get_code():
-	var code = $HighlightControl/FunctionBlockArea.get_children()
+	var code = null
 	
-	#Remove non-codeblocks [CollisionShape2D, ColorRect]
-	code.pop_front()
-	code.pop_front()
+	#Return empty array if loop type hasn't been selected yet
+	if type == "": 
+		code = []
+	else:
+		code = $HighlightControl/FunctionBlockArea.get_children()
+		#Remove non-codeblocks [CollisionShape2D, ColorRect]
+		code.pop_front()
+		code.pop_front()
+	
 		
 	return code
 
 
 #Returns true if the loop can continue, false if the loop has to stop
 func check_conditions():
+	#Return false if loop type has not been selected
+	if type == "":
+		return false
+		
 	#Return false if For loop needs to stop
 	if type == "For":
 		match StepOperatorLabel.text:
@@ -197,3 +207,4 @@ func reset_loopCount():
 	if type == "For":
 		loopCount = StartValue.value
 		LoopCounter.text = "i: " + str(loopCount)
+
