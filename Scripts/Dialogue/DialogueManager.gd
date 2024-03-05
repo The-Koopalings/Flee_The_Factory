@@ -1,7 +1,12 @@
 extends Node
 
 
-# Loads dialogue from a text file
+func add_dialogue(level, file_path):
+	load_dialogue(file_path, level.dialogue_queue)
+	display_dialogue(level)
+
+
+# Helper function to load dialogue from a text file
 func load_dialogue(file_path, dialogue_queue):
 	var path_to_dialogue = "res://Scripts/Dialogue/"
 	
@@ -15,6 +20,16 @@ func load_dialogue(file_path, dialogue_queue):
 	file.close()
 
 
+# Helper function that displays dialogue and yields to a level's progress signal when encountering a semicolon
+func display_dialogue(level):
+	for dialogue in level.dialogue_queue:
+		if dialogue != ";":
+			level.TextBox.queue_text(dialogue)
+		else:
+			yield(level, "dialogue_progress")
+
+
+# Check to see if the right code blocks are dropped into FBA in the expected order
 func fba_children_check(FBA, block_names_arr):
 	var code_blocks = FBA.get_children()
 	code_blocks.pop_front()    # first 2 children aren't code blocks

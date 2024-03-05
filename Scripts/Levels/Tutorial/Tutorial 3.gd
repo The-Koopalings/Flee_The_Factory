@@ -10,7 +10,10 @@ signal openDoor
 ##UNIQUE LEVEL VARIABLES
 var b1_pressed = false
 var b2_pressed = false
+
 var dialogue_queue = []
+signal dialogue_progress
+var progress_check = [false, false, false]
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES

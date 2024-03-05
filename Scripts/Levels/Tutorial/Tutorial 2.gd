@@ -12,7 +12,7 @@ signal openDoor
 var btn_pressed = false
 var dialogue_queue = []
 
-signal tutorial_progress
+signal dialogue_progress
 var progress_check = [false, false, false]
 ##UNIQUE LEVEL VARIABLES
 
@@ -27,11 +27,12 @@ var tiles = [
 	'X','X','X','X','X','X','X','X','X','X','X',
 	'X','X','X','X','X','X','X','X','X','X','X',
 ]
-var robotStartOrientation = PEP.Orientation.RIGHT
+var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
 	PEP.loadLevel(self)
+	DialogueManager.add_dialogue(self, "Tutorial/Tutorial 2.txt")
 
 
 func _process(delta):
@@ -39,45 +40,31 @@ func _process(delta):
 	
 	if btn_pressed:
 		emit_signal("openDoor")
+		emit_signal("dialogue_progress")
 		$AcceptDialog.popup()
 		btn_pressed = false
+
 
 #Handles all button presses
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
 
 
-func display_dialogue():
-	var semicolon_count = 0
-	
-	for dialogue in dialogue_queue:
-		if dialogue != ";":
-			TextBox.queue_text(dialogue)
-		else:
-			semicolon_count += 1
-			
-			if semicolon_count != 4:
-				yield(self, "tutorial_progress")
-			else:
-				yield($IDE/Run_Button, "pressed")
-				yield(get_tree().create_timer(GameStats.run_speed * 4, false), "timeout")   # Wait for animation to play
-
-
 func tutorial_dialogue_check():
 	# Check 1: one rotate left block in Main
 	var check1_arr = ["RotateLeft"]
-	if !progress_check[0] and Dialogue.fba_children_check(MainFBA, check1_arr):
-		emit_signal("tutorial_progress")
+	if !progress_check[0] and DialogueManager.fba_children_check(MainFBA, check1_arr):
+		emit_signal("dialogue_progress")
 		progress_check[0] = true
 	
 	# Check 2: one rotate left and one forward block in Main
 	var check2_arr = ["RotateLeft", "Forward"]
-	if !progress_check[1] and Dialogue.fba_children_check(MainFBA, check2_arr):
-		emit_signal("tutorial_progress")
+	if !progress_check[1] and DialogueManager.fba_children_check(MainFBA, check2_arr):
+		emit_signal("dialogue_progress")
 		progress_check[1] = true
 	
 	# Check 3: one rotate left, one forward, and one rotate right block in Main
 	var check3_arr = ["RotateLeft", "Forward", "RotateRight"]
-	if !progress_check[2] and Dialogue.fba_children_check(MainFBA, check3_arr):
-		emit_signal("tutorial_progress")
+	if !progress_check[2] and DialogueManager.fba_children_check(MainFBA, check3_arr):
+		emit_signal("dialogue_progress")
 		progress_check[2] = true
