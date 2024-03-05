@@ -10,6 +10,7 @@ signal openDoor
 ##UNIQUE LEVEL VARIABLES
 var b1_pressed = false
 var b2_pressed = false
+var dialogue_queue = []
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -26,7 +27,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
-	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
+	PEP.loadLevel(self)
 
 
 func _process(delta):

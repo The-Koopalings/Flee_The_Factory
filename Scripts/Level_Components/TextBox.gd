@@ -22,7 +22,7 @@ func _ready():
 	hide_textbox()
 
 
-func _process(delta):
+func _process(_delta):
 	match current_state:
 		State.READY:
 			if !text_queue.empty():

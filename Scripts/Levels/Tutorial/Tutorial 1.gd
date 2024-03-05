@@ -9,6 +9,7 @@ signal openDoor
 ##UNIQUE LEVEL VARIABLES
 onready var TextBox = get_node("TextBox")
 var btn_pressed = false
+var dialogue_queue = []
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -25,7 +26,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
-	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
+	PEP.loadLevel(self)
   
 	# Add tutorial dialogue
 	load_dialogue()
