@@ -10,10 +10,10 @@ signal openDoor
 
 ##UNIQUE LEVEL VARIABLES
 var btn_pressed = false
-var dialogue_queue = []
 
 signal dialogue_progress
 var progress_check = [false, false, false]
+var progress_check_arr = [["RotateLeft"], ["RotateLeft", "Forward"], ["RotateLeft", "Forward", "RotateRight"]]
 ##UNIQUE LEVEL VARIABLES
 
 
@@ -36,7 +36,7 @@ func _ready():
 
 
 func _process(delta):
-	tutorial_dialogue_check()
+	DialogueManager.dialogue_progress_check(self)
 	
 	if btn_pressed:
 		emit_signal("openDoor")
@@ -49,22 +49,3 @@ func _process(delta):
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
 
-
-func tutorial_dialogue_check():
-	# Check 1: one rotate left block in Main
-	var check1_arr = ["RotateLeft"]
-	if !progress_check[0] and DialogueManager.fba_children_check(MainFBA, check1_arr):
-		emit_signal("dialogue_progress")
-		progress_check[0] = true
-	
-	# Check 2: one rotate left and one forward block in Main
-	var check2_arr = ["RotateLeft", "Forward"]
-	if !progress_check[1] and DialogueManager.fba_children_check(MainFBA, check2_arr):
-		emit_signal("dialogue_progress")
-		progress_check[1] = true
-	
-	# Check 3: one rotate left, one forward, and one rotate right block in Main
-	var check3_arr = ["RotateLeft", "Forward", "RotateRight"]
-	if !progress_check[2] and DialogueManager.fba_children_check(MainFBA, check3_arr):
-		emit_signal("dialogue_progress")
-		progress_check[2] = true

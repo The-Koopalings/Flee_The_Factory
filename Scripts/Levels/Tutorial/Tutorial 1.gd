@@ -10,10 +10,10 @@ signal openDoor
 
 ##UNIQUE LEVEL VARIABLES
 var btn_pressed = false
-var dialogue_queue = []
 
 signal dialogue_progress
 var progress_check = [false, false]    # So signal is only emitted the first time the check is passed
+var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Interact"]]
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -35,7 +35,7 @@ func _ready():
 
 
 func _process(delta):
-	tutorial_dialogue_check()
+	DialogueManager.dialogue_progress_check(self)
 	
 	if btn_pressed:
 		emit_signal("openDoor")
@@ -47,16 +47,3 @@ func _process(delta):
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
 
-
-func tutorial_dialogue_check():
-	# Check 1: one forward code block was dropped into main
-	var check1_arr = ["Forward"]
-	if !progress_check[0] and DialogueManager.fba_children_check(MainFBA, check1_arr):
-		emit_signal("dialogue_progress")
-		progress_check[0] = true 
-	
-	# Check 2: 3 forward and 1 interact was dropped into main (in that exact order)
-	var check2_arr = ["Forward", "Forward", "Forward", "Interact"]
-	if !progress_check[1] and DialogueManager.fba_children_check(MainFBA, check2_arr):
-		emit_signal("dialogue_progress")
-		progress_check[1] = true
