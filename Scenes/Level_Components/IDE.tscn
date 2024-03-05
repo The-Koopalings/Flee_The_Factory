@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Objects/FunctionBlock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Level_Components/IDE.gd" type="Script" id=2]
 
 

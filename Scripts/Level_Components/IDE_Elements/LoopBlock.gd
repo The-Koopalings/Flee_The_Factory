@@ -47,8 +47,6 @@ func connections():
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	StepOperator.get_popup().connect("id_pressed", self, "on_StepOperator_option_selected")
-	#Connect to IDE
-	get_parent().connect("loopExecuted", self, "increment_loopCount") 
 
 
 func add_dropdown_options():
@@ -144,6 +142,7 @@ func on_StepOperator_option_selected(id):
 
 func _on_StartValue_value_changed(value):
 	loopCount = value
+	LoopCounter.text = "i: " + str(loopCount)
 
 
 func get_code():
@@ -181,13 +180,20 @@ func check_conditions():
 
 #Updates loopCount & LoopCounter's text
 func increment_loopCount():
-	match StepOperatorLabel.text:
-		"+":
-			loopCount += StepValue.value
-		"-":
-			loopCount -= StepValue.value
-		"*":
-			loopCount *= StepValue.value
-		"/":
-			loopCount /= StepValue.value
-	LoopCounter.text = "i: " + str(loopCount)
+	if type == "For":
+		match StepOperatorLabel.text:
+			"+":
+				loopCount += StepValue.value
+			"-":
+				loopCount -= StepValue.value
+			"*":
+				loopCount *= StepValue.value
+			"/":
+				loopCount /= StepValue.value
+		LoopCounter.text = "i: " + str(loopCount)
+
+
+func reset_loopCount():
+	if type == "For":
+		loopCount = StartValue.value
+		LoopCounter.text = "i: " + str(loopCount)

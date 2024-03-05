@@ -33,7 +33,7 @@ script = ExtResource( 3 )
 margin_right = 104.0
 margin_bottom = 16.0
 rect_scale = Vector2( 4, 4 )
-text = "If2"
+text = "If1"
 
 [node name="FunctionBlockArea" type="Area2D" parent="If"]
 position = Vector2( 30, 50 )

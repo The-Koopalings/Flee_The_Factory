@@ -1,13 +1,15 @@
 extends VBoxContainer
 
 signal executed
-signal loopExecuted
 
 var scopes = {} #Map of all functions using the name to index/hash (Done in PEP)
 var code = [] #List of currently executing code
-var context = [] #List of Frames (lists of code)
+var context = [] #List of Frames (lists of code), 2D array
+var nodeNames = [] #List of names of each IDE section contained in context
 var previousCode = null
-
+var currentNode = null
+var looping: bool = false
+var loopDone: bool = false #True means loop can increment
 
 #To allow for only 1 press of Run unless the scene is restarted
 var runPressed = false
@@ -41,11 +43,22 @@ func enter_scope(node):
 	#Store currently executing code to the context of previous scopes
 	if !code.empty():
 		context.push_back(code)
-		
+		nodeNames.push_back(currentNode.name)
+	#A loop has been completed if code is empty & currentNode is a Loop IDE block
+	else:
+		if currentNode and is_loop():
+			loopDone = true
+	
+	#Increment loopCount 
+	if loopDone:
+		currentNode.increment_loopCount()
+		loopDone = false
+	
 	#Swap code with the new code to run
 	code = node.get_code()
-	#print(code)
 	
+	#Change currentNode 
+	currentNode = node
 	#print("Context: ", context)
 	#print("SIZE: ", context.size())
 	
@@ -64,8 +77,19 @@ func run_code():
 	while !code.empty() or !context.empty(): 
 		#While this function still has code
 		while !code.empty():
-			block = code.pop_back()
+			#Allows Loops that call other IDE blocks at the end of their loop to continue looping after the IDE blocks finish
+			#i.e. FOR1{Forward, FOR2} can continue looping until its condition is false even after calling FOR2
+			if looping:
+				var tempCode = currentNode.get_code()
+				tempCode.invert()
+				context.push_back(tempCode)
+				nodeNames.push_back(currentNode.name)
+				
 			
+			block = code.pop_back()
+			#Prevents Loops whose conditions are false from running
+			if !looping and is_loop():
+				continue
 			#debug so we know what's running
 			#print(block)
 			
@@ -78,14 +102,39 @@ func run_code():
 				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
 			elif block.BLOCK_TYPE == "CALL":
 				var call_name = block.name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
-				if call_name == "Loop1" or call_name == "Loop2":
-					#Keep calling Loop code while conditions are true, iterate LoopCounter after a loop
-					while get_node(call_name).check_conditions():
-						yield(enter_scope(scopes[call_name]), "completed")
-						emit_signal("loopExecuted")
-				else:
-					yield(enter_scope(scopes[call_name]), "completed")
-					
+				if is_loop(call_name):
+					looping = true
+				yield(enter_scope(scopes[call_name]), "completed")
+				
+		#Increment loopCount, & continue loop or stop it
+		if looping:
+			if is_loop():
+				yield(enter_scope(scopes[currentNode.name]), "completed")
+				looping = currentNode.check_conditions()
+			else:
+				looping = false
 		
-		if !context.empty():
+		#Looping is finished, code array is empty, but there's more code to execute in context
+		if !context.empty() and !looping:
+			#Reset loopCount when Loop is finished, NOTE: later, find a way to not reset on the last iteration of a loop
+			if is_loop():
+				currentNode.reset_loopCount()
+			#Pop all code in current IDE section until another section's code is reached
+			var tempName = nodeNames.pop_back()
 			code = context.pop_back()
+			while tempName == currentNode.name:
+				code = context.pop_back()
+				tempName = nodeNames.pop_back()
+			#Switch currentNode to current IDE block
+			if tempName:
+				currentNode = scopes[tempName]
+				#If this frame is a Loop, check it's conditions
+				if is_loop():
+					looping = currentNode.check_conditions()
+			#Set code to empty array rather than null, if applicable
+			if !code:
+				code = []
+
+#Default parameter value is currentNode.name
+func is_loop(nodeName: String = currentNode.name):
+	return nodeName == "Loop1" or nodeName == "Loop2"
