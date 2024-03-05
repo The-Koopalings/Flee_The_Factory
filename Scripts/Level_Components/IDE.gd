@@ -7,9 +7,9 @@ var code = [] #List of currently executing code
 var context = [] #List of Frames (lists of code), 2D array
 var nodeNames = [] #List of names of each IDE section contained in context
 var previousCode = null
-var currentNode = null
-var looping: bool = false
-var loopDone: bool = false #True means loop can increment
+var currentNode = null #Current IDE section node
+var looping: bool = false 
+var singleLoopCompleted: bool = false #True means loop can increment
 
 #To allow for only 1 press of Run unless the scene is restarted
 var runPressed = false
@@ -40,24 +40,38 @@ func _on_Button_pressed():
 
 
 func enter_scope(node):
+	#If current IDE block node is not a Loop
+	if !is_loop(node.name): 
+		looping = false
+	
 	#Store currently executing code to the context of previous scopes
 	if !code.empty():
 		context.push_back(code)
 		nodeNames.push_back(currentNode.name)
-	#A loop has been completed if code is empty & currentNode is a Loop IDE block
+	#If code is empty/has all been executed, check if currentNode (previous IDE block) is a Loop
+	#NOTE: Here, currentNode is the previous IDE block & node is the current IDE block
 	else:
+		#Allows Loops that call other IDE blocks at the end of their loop to continue looping after the IDE blocks finish
+		#i.e. FOR1{Forward, FOR2} can continue looping until its condition is false even after calling FOR2
 		if currentNode and is_loop():
-			loopDone = true
+			#Put previous loop's code into context
+			#NOTE: Also pushes extra versions of current loop code, this is taken into account in line 127-ish
+			var tempCode = currentNode.get_code()
+			tempCode.invert()
+			context.push_back(tempCode)
+			nodeNames.push_back(currentNode.name)
+			#code is empty, meaning 1 loop has been completed
+			singleLoopCompleted = true
 	
-	#Increment loopCount 
-	if loopDone:
+	#Increment loopCount, if applicable
+	if singleLoopCompleted:
 		currentNode.increment_loopCount()
-		loopDone = false
+		singleLoopCompleted = false
 	
 	#Swap code with the new code to run
 	code = node.get_code()
 	
-	#Change currentNode 
+	#Change currentNode to current IDE block
 	currentNode = node
 	#print("Context: ", context)
 	#print("SIZE: ", context.size())
@@ -77,19 +91,12 @@ func run_code():
 	while !code.empty() or !context.empty(): 
 		#While this function still has code
 		while !code.empty():
-			#Allows Loops that call other IDE blocks at the end of their loop to continue looping after the IDE blocks finish
-			#i.e. FOR1{Forward, FOR2} can continue looping until its condition is false even after calling FOR2
-			if looping:
-				var tempCode = currentNode.get_code()
-				tempCode.invert()
-				context.push_back(tempCode)
-				nodeNames.push_back(currentNode.name)
-				
-			
 			block = code.pop_back()
+			
 			#Prevents Loops whose conditions are false from running
 			if !looping and is_loop():
-				continue
+				continue 
+			
 			#debug so we know what's running
 			#print(block)
 			
@@ -103,37 +110,34 @@ func run_code():
 			elif block.BLOCK_TYPE == "CALL":
 				var call_name = block.name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
 				if is_loop(call_name):
-					looping = true
+					scopes[call_name].reset_loopCount()
+					looping = scopes[call_name].check_conditions()
 				yield(enter_scope(scopes[call_name]), "completed")
 				
-		#Increment loopCount, & continue loop or stop it
+		#Increment loopCount for For Loops, refresh code array, & continue Loop or stop it
 		if looping:
-			if is_loop():
-				yield(enter_scope(scopes[currentNode.name]), "completed")
-				looping = currentNode.check_conditions()
-			else:
-				looping = false
+			yield(enter_scope(scopes[currentNode.name]), "completed")
+			looping = currentNode.check_conditions()
 		
 		#Looping is finished, code array is empty, but there's more code to execute in context
 		if !context.empty() and !looping:
-			#Reset loopCount when Loop is finished, NOTE: later, find a way to not reset on the last iteration of a loop
-			if is_loop():
-				currentNode.reset_loopCount()
-			#Pop all code in current IDE section until another section's code is reached
-			var tempName = nodeNames.pop_back()
+			#Pop all code in the current IDE section until a previous section's code is reached
+			var prevName = nodeNames.pop_back()
 			code = context.pop_back()
-			while tempName == currentNode.name:
+			while prevName == currentNode.name:
 				code = context.pop_back()
-				tempName = nodeNames.pop_back()
-			#Switch currentNode to current IDE block
-			if tempName:
-				currentNode = scopes[tempName]
-				#If this frame is a Loop, check it's conditions
+				prevName = nodeNames.pop_back()
+			#Switch currentNode to the previous IDE section node
+			if prevName:
+				currentNode = scopes[prevName]
+				#If currentNode is now a Loop, check it's conditions
 				if is_loop():
 					looping = currentNode.check_conditions()
+				
 			#Set code to empty array rather than null, if applicable
 			if !code:
 				code = []
+
 
 #Default parameter value is currentNode.name
 func is_loop(nodeName: String = currentNode.name):
