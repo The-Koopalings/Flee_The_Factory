@@ -84,7 +84,7 @@ func get_code():
 
 func check_conditions():
 	#If an Obstacle is in certain direction based on Robot's current orientation
-	if LHSLabel.text == "Obstacle" and RHSLabel.text != "Pressed":
+	if is_LHS_an_obstacle() and RHSLabel.text != "Pressed":
 		#object = null if no object in that direction
 		var object = Robot.get_object_in_direction(Robot.get_direction(RHSLabel.text)) 
 		#I.e. Obstacle == Front & object stores a node named Obstacle
@@ -98,3 +98,10 @@ func check_conditions():
 			return true
 		else:
 			return false
+
+#Can add on other types of obstacles later on
+func is_LHS_an_obstacle():
+	if LHSLabel.text == "Obstacle":
+		return true
+	else:
+		return false
