@@ -278,7 +278,6 @@ script = ExtResource( 12 )
 [node name="Button" parent="Grid" instance=ExtResource( 8 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 13 )]
-scale = Vector2( 5, 5 )
 
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
