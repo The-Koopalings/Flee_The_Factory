@@ -291,9 +291,6 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Label" parent="IDE/If1/If" index="0"]
-text = "If1"
-
 [node name="Label" parent="IDE/If1/Else" index="0"]
 text = "Else1"
 
@@ -303,6 +300,9 @@ margin_bottom = 1067.0
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Label" parent="IDE/If2/If" index="0"]
+text = "If2"
 
 [node name="Label" parent="IDE/If2/Else" index="0"]
 text = "Else2"

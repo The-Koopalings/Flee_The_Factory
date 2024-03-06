@@ -28,6 +28,8 @@ onready var StepOperator = get_node(forConditionalPath + "/StepOperator")
 onready var StepOperatorLabel = get_node(forConditionalPath + "/StepOperator/Label")
 onready var LoopCounter = get_node(forConditionalPath + "/LoopCounter")
 
+onready var Robot = get_node("../../Grid/Robot")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connections()
@@ -64,7 +66,10 @@ func add_dropdown_options():
 	Operator.get_popup().add_item("!=") 
 	
 	#Add options into RHS dropdown
-	RHS.get_popup().add_item("Front") 
+	RHS.get_popup().add_item("Front")
+	RHS.get_popup().add_item("Back")
+	RHS.get_popup().add_item("Left")
+	RHS.get_popup().add_item("Right") 
 	RHS.get_popup().add_item("Pressed") 
 	
 	#Add options into StepOperator dropdown
@@ -122,9 +127,15 @@ func on_Operator_option_selected(id):
 
 func on_RHS_option_selected(id):
 	match id:
-		0: 
+		0:
 			RHSLabel.text = "Front"
-		1: 
+		1:
+			RHSLabel.text = "Back"
+		2:
+			RHSLabel.text = "Left"
+		3:
+			RHSLabel.text = "Right"
+		4: 
 			RHSLabel.text = "Pressed"
 	
 
@@ -185,7 +196,21 @@ func check_conditions():
 		return true
 	
 	elif type == "While":
-		return true
+		#If an Obstacle is in certain direction based on Robot's current orientation
+		if LHSLabel.text == "Obstacle" and RHSLabel.text != "Pressed":
+			#object = null if no object in that direction
+			var object = Robot.get_object_in_direction(Robot.get_direction(RHSLabel.text)) 
+			#I.e. Obstacle == Front & object stores a node named Obstacle
+			if OperatorLabel.text == "==" and object and object.name.rstrip("0123456789") == LHSLabel.text:
+				return true
+			#I.e. Obstacle == Front & object = null b/c no object is in front of Robot
+			elif OperatorLabel.text == "!=" and !object:
+				return true
+			#I.e. Obstacle == Front & object stores a node NOT named Obstacle
+			elif OperatorLabel.text == "!=" and object.name.rstrip("0123456789") != LHSLabel.text:
+				return true
+			else:
+				return false
 
 
 #Updates loopCount & LoopCounter's text

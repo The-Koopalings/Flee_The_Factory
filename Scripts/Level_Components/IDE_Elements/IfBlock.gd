@@ -6,6 +6,7 @@ onready var Operator = get_node("If/Operator")
 onready var OperatorLabel = get_node("If/Operator/Label")
 onready var RHS = get_node("If/RHS")
 onready var RHSLabel = get_node("If/RHS/Label")
+onready var Robot = get_node("../../Grid/Robot")
 
 func _ready():
 	#Connect pressing of a dropdown option to this node
@@ -29,6 +30,9 @@ func add_options():
 	
 	#Add options into RHS dropdown
 	RHS.get_popup().add_item("Front")
+	RHS.get_popup().add_item("Back")
+	RHS.get_popup().add_item("Left")
+	RHS.get_popup().add_item("Right")
 	RHS.get_popup().add_item("Pressed")
 	
 
@@ -56,6 +60,12 @@ func on_RHS_option_selected(id):
 		0:
 			RHSLabel.text = "Front"
 		1:
+			RHSLabel.text = "Back"
+		2:
+			RHSLabel.text = "Left"
+		3:
+			RHSLabel.text = "Right"
+		4: 
 			RHSLabel.text = "Pressed"
 
 func get_code():
@@ -73,4 +83,18 @@ func get_code():
 	
 
 func check_conditions():
-	return true
+	#If an Obstacle is in certain direction based on Robot's current orientation
+	if LHSLabel.text == "Obstacle" and RHSLabel.text != "Pressed":
+		#object = null if no object in that direction
+		var object = Robot.get_object_in_direction(Robot.get_direction(RHSLabel.text)) 
+		#I.e. Obstacle == Front & object stores a node named Obstacle
+		if OperatorLabel.text == "==" and object and object.name.rstrip("0123456789") == LHSLabel.text:
+			return true
+		#I.e. Obstacle == Front & object = null b/c no object is in front of Robot
+		elif OperatorLabel.text == "!=" and !object:
+			return true
+		#I.e. Obstacle == Front & object stores a node NOT named Obstacle
+		elif OperatorLabel.text == "!=" and object.name.rstrip("0123456789") != LHSLabel.text:
+			return true
+		else:
+			return false
