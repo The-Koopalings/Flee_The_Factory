@@ -28,7 +28,7 @@ onready var StepOperator = get_node(forConditionalPath + "/StepOperator")
 onready var StepOperatorLabel = get_node(forConditionalPath + "/StepOperator/Label")
 onready var LoopCounter = get_node(forConditionalPath + "/LoopCounter")
 
-onready var Robot = get_node("../../Grid/Robot")
+onready var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot"))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -34,7 +34,7 @@ func _ready():
 			status += connect("doubleClick", scope.get_node("If/FunctionBlockArea"), "_on_CodeBlock_doubleClick")
 			status += connect("doubleClick", scope.get_node("Else/FunctionBlockArea"), "_on_CodeBlock_doubleClick")
 		#Connect to LoopBlock
-		if scope.name.rstrip("0123456789") == "Loop":
+		elif scope.name.rstrip("0123456789") == "Loop":
 			status += connect("doubleClick", scope.get_node("HighlightControl/FunctionBlockArea"), "_on_CodeBlock_doubleClick")
 		#Connect to Main & FunctionBlock
 		else:

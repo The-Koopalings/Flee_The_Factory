@@ -6,7 +6,7 @@ onready var Operator = get_node("If/Operator")
 onready var OperatorLabel = get_node("If/Operator/Label")
 onready var RHS = get_node("If/RHS")
 onready var RHSLabel = get_node("If/RHS/Label")
-onready var Robot = get_node("../../Grid/Robot")
+onready var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot"))
 
 func _ready():
 	#Connect pressing of a dropdown option to this node
