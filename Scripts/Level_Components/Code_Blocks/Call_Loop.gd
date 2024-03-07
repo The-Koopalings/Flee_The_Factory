@@ -4,74 +4,44 @@ const BLOCK_TYPE = "CALL"
 
 #Which loop type is chosen
 var type = "none" 
-
-#Regex results to be used in send_signal()
-var result1
-var result2 
+var loopBlockName = ""
 
 func _ready():
-	#Get regex ready
-	var regexL1 = RegEx.new()
-	var regexL2 = RegEx.new()
-	regexL1.compile("Call_Loop1")
-	regexL2.compile("Call_Loop2")
-	result1 = regexL1.search(name)
-	result2 = regexL2.search(name) 
-	
 	connect_to_LoopBlock()
 
 
 #Connect LoopBlock's signal "ChosenLoop" to this Loop code block, change textures if loop type has already been chosen
 func connect_to_LoopBlock():
-	var fromFuncMainFBA = null
-	var fromIfLoopFBA = null
-	var fromCodeBlockBar = null
-	var loopTitle = ""
 	var status = 0
 	
-	#Get path to Loop1
-	if result1: 
-		fromFuncMainFBA = get_node("../../../Loop1")
-		fromIfLoopFBA = get_node("../../../../Loop1")
-		fromCodeBlockBar = get_node("../../IDE/Loop1")
-	#Get path to Loop2
-	elif result2:
-		fromFuncMainFBA = get_node("../../../Loop2")
-		fromIfLoopFBA = get_node("../../../../Loop2")
-		fromCodeBlockBar = get_node("../../IDE/Loop2")
+	if get_parent().name == "CodeBlockBar":
+		loopBlockName = name.trim_prefix("Call_")
+	else:
+		loopBlockName = name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
 	
-	#Check which path is correct, then connect & get Loop's title (i.e. While1, For2, etc.)
-	if fromFuncMainFBA:
-		status += fromFuncMainFBA.connect("ChosenLoop", self, "on_loop_type_selected")
-		loopTitle = fromFuncMainFBA.get_node("HighlightControl/ChooseLoopType/Label").text
-	elif fromIfLoopFBA:
-		status += fromIfLoopFBA.connect("ChosenLoop", self, "on_loop_type_selected")
-		loopTitle = fromIfLoopFBA.get_node("HighlightControl/ChooseLoopType/Label").text
-	elif fromCodeBlockBar:
-		status += fromCodeBlockBar.connect("ChosenLoop", self, "on_loop_type_selected")
-
+	var loopBlockNode = get_node(PEP.get_path_to_grandpibling(self, "IDE/" + loopBlockName)) 
+	status = loopBlockNode.connect("ChosenLoop", self, "on_loop_type_selected")
 	if status != 0:
 		printerr("Something went wrong trying to connect signals in ", name)
 
 	#Change sprite texture if Loop type has already been selected
-	if loopTitle == "While1" or loopTitle == "While2":
-		on_loop_type_selected("While")
-	elif loopTitle == "For1" or loopTitle == "For2":
-		on_loop_type_selected("For")
+	type = loopBlockNode.get_node("HighlightControl/ChooseLoopType/Label").text.rstrip("0123456789")
+	on_loop_type_selected(type)
+		
 
 
 #Changes Sprite texture to match the loop type of the Loop IDE section it represents
-#type is either For or While, num is either 1 or 2
+#type is either For or While (anything else does nothing)
 func on_loop_type_selected(type: String):
 	self.type = type
 	#Loop1
-	if result1:
+	if loopBlockName == "Loop1":
 		if type == "While":
 			$Sprite.texture = load("res://Assets/Objects/While1.png")
 		elif type == "For":
 			$Sprite.texture = load("res://Assets/Objects/For1.png")
 	#Loop2
-	elif result2:
+	elif loopBlockName == "Loop2":
 		if type == "While":
 			$Sprite.texture = load("res://Assets/Objects/While2.png")
 		elif type == "For":
