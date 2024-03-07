@@ -1,11 +1,11 @@
 extends CanvasLayer
 
-const CHAR_READ_RATE = 0.05
+const CHAR_READ_RATE = 0.03
 
 onready var textbox_container = $TextBoxContainer
-onready var start_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/Start
-onready var end_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/End
-onready var text = $TextBoxContainer/MarginContainer/HBoxContainer/Text
+onready var start_symbol = $TextBoxContainer/DialogueContainer/HBoxContainer/Start
+onready var end_symbol = $TextBoxContainer/DialogueContainer/End
+onready var text = $TextBoxContainer/DialogueContainer/HBoxContainer/Text
 
 # Keep track of what state the text box is currently in
 enum State {
@@ -99,10 +99,12 @@ func set_default_pos():
 
 
 func set_codeblock_pos():
-	textbox_container.rect_position = Vector2(300, 600)
-	textbox_container.rect_size = Vector2(1010, 300)
+	textbox_container.rect_position = Vector2(300, 650)
+	textbox_container.rect_size = Vector2(500, 300)
+	textbox_container.rect_scale = Vector2(0.8, 0.8)
 
 
 func set_IDE_pos():
-	textbox_container.rect_position = Vector2(300, 100)
-	textbox_container.rect_size = Vector2(1010, 300)
+	textbox_container.rect_position = Vector2(200, 100)
+	textbox_container.rect_size = Vector2(500, 300)
+	textbox_container.rect_scale = Vector2(0.8, 0.8)
