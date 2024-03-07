@@ -99,7 +99,7 @@ func set_default_pos():
 
 
 func set_codeblock_pos():
-	textbox_container.rect_position = Vector2(300, 650)
+	textbox_container.rect_position = Vector2(250, 650)
 	textbox_container.rect_size = Vector2(500, 300)
 	textbox_container.rect_scale = Vector2(0.8, 0.8)
 
