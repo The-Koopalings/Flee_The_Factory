@@ -10,6 +10,7 @@ var CodeBlockBar
 var robotStartOrientation
 var level
 var IDE
+var robot
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -82,7 +83,7 @@ func init_elements():
 	var tileCount = 0
 	var node
 	var elements = generate_elements_dict()
-	
+
 	#Iterate through each tile
 	for tile in tiles:		
 		var col = tileCount%maxCols
@@ -92,29 +93,30 @@ func init_elements():
 			
 
 		#If tile is an element, find that node in elements and set its position
-		if TileToTypeMapping.has(tile):
-			var type = TileToTypeMapping[tile]
-			
-			if elements[type].empty():
-				printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(type) + "> to the level")
-				assert(!elements[type].empty())
-				return
-			node = elements[type].pop_front()
-			
-			node.tileX = col
-			node.tileY = row
-			node.position = Vector2(x, y)	
-			
-			#If it's a special element, do special thing to it
-			if type == "Robot":
-				node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
-			elif type == "Button":
-				node.connect("buttonPressed", level, "_on_Button_buttonPressed")
-			elif type == "Door":
-				level.connect("openDoor", node, "_on_level_openDoor")
-		#error handling goes here??
-		else:
-			pass
+		for element in tile:
+			if TileToTypeMapping.has(element):
+				var type = TileToTypeMapping[element]
+				
+				if elements[type].empty():
+					printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(type) + "> to the level")
+					assert(!elements[element].empty())
+					return
+				node = elements[type].pop_front()
+				
+				node.tileX = col
+				node.tileY = row
+				node.position = Vector2(x, y)	
+				#If it's a special element, do special thing to it
+				if type == "Robot":
+					node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+				elif type == "Button":
+					robot.connect("interact",node,"_on_Robot_interact")
+					node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+				elif type == "Door":
+					level.connect("levelComplete", node, "_on_level_levelComplete")
+			#error handling goes here??
+			else:
+				pass
 			
 		tileCount += 1
 
@@ -132,7 +134,9 @@ func generate_elements_dict():
 	for node in nodes:
 		#Get the name, but remove all digits from the end
 		var type = node.name.rstrip("0123456789") 
-		
+		if type == "Robot":
+			robot = node
+			
 		#If it exists, push into list. Else, make a new list
 		if elements.keys().has(type):
 			elements[type].push_back(node) 
@@ -163,6 +167,8 @@ func init_code_blocks():
 		#if block.name == ""
 
 func init_IDE():
+	level.connect("levelComplete", IDE, "_on_level_levelComplete")
+	
 	for child in IDE.get_children():
 		if child.name != "Run_Button":
 			IDE.scopes[child.name] = child

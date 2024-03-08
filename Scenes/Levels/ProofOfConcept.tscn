@@ -1,9 +1,9 @@
 [gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Grid.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Level_Components/LevelControl.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Level_Components/IDE.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Level_Components/CodeBlockBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/CodeBlockBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateLeft.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateRight.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Forward.tscn" type="PackedScene" id=7]
