@@ -167,6 +167,8 @@ func init_code_blocks():
 		#if block.name == ""
 
 func init_IDE():
+	level.connect("levelComplete", IDE, "_on_level_levelComplete")
+	
 	for child in IDE.get_children():
 		if child.name != "Run_Button":
 			IDE.scopes[child.name] = child

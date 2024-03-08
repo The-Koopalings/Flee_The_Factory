@@ -80,3 +80,9 @@ func run_code():
 		
 		if !context.empty():
 			code = context.pop_back()
+
+func _on_level_levelComplete():
+	#Set all execution related variables to empty
+	code = []
+	context = {}
+	previousCode = null
