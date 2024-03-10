@@ -4,7 +4,7 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-signal openDoor
+signal levelComplete
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
@@ -32,7 +32,7 @@ func _ready():
 
 func _process(delta):
 	if b1_pressed and b2_pressed:
-		emit_signal("openDoor")
+		emit_signal("levelComplete")
 		$AcceptDialog.popup()
 		b1_pressed = false
 		b2_pressed = false
