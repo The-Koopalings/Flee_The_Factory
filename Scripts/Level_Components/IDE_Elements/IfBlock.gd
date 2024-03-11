@@ -14,11 +14,12 @@ func _ready():
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	
-	#Add options into LHS, Operator, & RHS dropdowns, move to level script later
-	add_options()
+	#Add options into LHS & Operator dropdowns
+	add_dropdown_options()
 	
 	
-func add_options():
+#NOTE: RHS options added in Level script
+func add_dropdown_options():
 	#Add options into LHS dropdown
 	LHS.get_popup().add_item("Tile")
 	LHS.get_popup().add_item("Front")
@@ -29,9 +30,6 @@ func add_options():
 	#Add options into Operator dropdown
 	Operator.get_popup().add_item("==")
 	Operator.get_popup().add_item("!=")
-	
-	#Add options into RHS dropdown, might move to load_level/level script
-	PEP.init_conditional_RHS_options(["Blocked", "Button"], RHS)
 	
 
 #change LHS text after selecting from dropdown
@@ -88,41 +86,61 @@ func get_code():
 func check_conditions():
 	var objectName = ""
 	if LHSLabel.text != "Tile":
-		#Equals null if no object in that direction, might make it just return the name (?)
-		var object = Robot.get_object_in_direction(Robot.get_direction(LHSLabel.text))
+		var dir = Robot.get_direction(LHSLabel.text)
+		#Equals null if no object in that direction
+		var object = Robot.get_object_in_direction(dir)
 		if object:
 			objectName = object.name.rstrip("0123456789")
-		if objectName == "Obstacle": #add code for wall
+		if objectName == "Obstacle" or is_wall(dir): 
 			objectName = "Blocked"
 	elif LHSLabel.text == "Tile":
-		#Use tileX and tileY in Robot and other grid nodes, use PEP.tiles[x][y]?
-		print(Robot.tileX)
-		print(Robot.tileY)
-#		objectName = PEP.tiles[Robot.tileX * Robot.tileY]
-#		objectName = letter_to_name(objectName)
+		objectName = PEP.tiles[Robot.tileY][Robot.tileX]
+		objectName = letter_to_name(objectName)
 	
-	#I.e. Front == DeathTile & object is named DeathTile
+	#I.e. Front == Button & objectName is Button
 	if OperatorLabel.text == "==" and objectName == RHSLabel.text:
 		return true
-#	#I.e. Front != DeathTile & objectName = "" b/c no object is in front of the Robot
-#	elif OperatorLabel.text == "!=" and objectName == "":
-#		return true
-	#I.e. Front != DeathTile & object is NOT named DeathTile
+	#I.e. Front != Button & objectName is NOT DeathTile
 	elif OperatorLabel.text == "!=" and objectName != RHSLabel.text:
 		return true
 	else:
 		return false
 	
 
+#Checks if a wall is specified direction
+func is_wall(dir):
+	if dir == "ui_up":
+		#If robot is on the top row/tile above is an X
+		if Robot.tileY == 0 or PEP.tiles[Robot.tileY - 1][Robot.tileX] == 'X':
+			return true
+	elif dir == "ui_down":
+		#If robot is on the bottom row/tile below is an X
+		if Robot.tileY == 6 or PEP.tiles[Robot.tileY + 1][Robot.tileX] == 'X':
+			return true
+	elif dir == "ui_left":
+		#If robot is on the leftmost row/tile left is an X
+		if Robot.tileX == 0 or PEP.tiles[Robot.tileY][Robot.tileX - 1] == 'X':
+			return true
+	elif dir == "ui_right":
+		#If robot is on the rightmost row/tile right is an X
+		if Robot.tileX == 10 or PEP.tiles[Robot.tileY][Robot.tileX + 1] == 'X':
+			return true
+	
+	return false
+	
+
+#For check_conditions(), convert the object letter of the current tile to a name
 func letter_to_name(letter):
-	if 'O':
+	if letter == 'O':
 		return "Blocked"
-	elif 'B':
+	elif letter == 'B':
 		return "Button"
-	elif 'D':
+	elif letter == 'D':
 		return "Door"
-	elif 'K':
+	elif letter == 'K':
 		return "Key"
 	else:
 		return ""
+	
+
 

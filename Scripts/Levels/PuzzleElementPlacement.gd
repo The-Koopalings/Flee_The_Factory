@@ -43,40 +43,45 @@ func loadLevel(_level):
 
 #Draws the borders of the grid+
 func _draw():
-	var tileCount = 0
-	for tile in tiles:
-		var col = tileCount%maxCols
-		var row = tileCount/maxCols
-		var x = Grid.start_x + halftile + col * Grid.tile_size
-		var y = Grid.start_y + halftile + row * Grid.tile_size
+#	var tileCount = 0
+	var rowIndex = 0
+	var colIndex = 0
+	for row in tiles:
+		colIndex = 0
+		for tile in row:
+#			var col = tileCount%maxCols
+#			var row = tileCount/maxCols
+			var x = Grid.start_x + halftile + colIndex * Grid.tile_size
+			var y = Grid.start_y + halftile + rowIndex * Grid.tile_size
 		
-		if tile == 'X':
-			#Check all edges to see if it's a border
-			var top = 'X' if (row == 0) else tiles[tileCount - maxCols]
-			var bottom = 'X' if (row == maxRows-1) else tiles[tileCount + maxCols]
-			var left = 'X' if (col == 0) else tiles[tileCount - 1]
-			var right = 'X' if (col == maxCols-1) else tiles[tileCount + 1]
+			if tile == 'X':
+				#Check all edges to see if it's a border
+				var top = 'X' if (rowIndex == 0) else tiles[rowIndex - 1][colIndex]
+				var bottom = 'X' if (rowIndex == maxRows-1) else tiles[rowIndex + 1][colIndex]
+				var left = 'X' if (colIndex == 0) else tiles[rowIndex][colIndex - 1]
+				var right = 'X' if (colIndex == maxCols-1) else tiles[rowIndex][colIndex + 1]
 			
-			if top != 'X':
-				draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
-			if bottom != 'X':
-				draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
-			if left != 'X':
-				draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
-			if right != 'X':
-				draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
-		else:
-			if row == 0:
-				draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
-			elif row == maxRows-1:
-				draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+				if top != 'X':
+					draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
+				if bottom != 'X':
+					draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+				if left != 'X':
+					draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
+				if right != 'X':
+					draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+			else:
+				if rowIndex == 0:
+					draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
+				elif rowIndex == maxRows-1:
+					draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
 			
-			if col == 0:
-				draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
-			elif col == maxCols-1:
-				draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
-			
-		tileCount += 1
+				if colIndex == 0:
+					draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
+				elif colIndex == maxCols-1:
+					draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+			colIndex += 1
+		rowIndex += 1
+#		tileCount += 1
 
 #Set positions/orientation of puzzle elements
 func init_elements():
@@ -85,39 +90,45 @@ func init_elements():
 	var elements = generate_elements_dict()
 	
 	#Iterate through each tile
-	for tile in tiles:		
-		var col = tileCount%maxCols
-		var row = tileCount/maxCols
-		var x = Grid.start_x + halftile + col * Grid.tile_size
-		var y = Grid.start_y + halftile + row * Grid.tile_size
+	var rowIndex = 0
+	var colIndex = 0
+	for row in tiles:	
+		colIndex = 0
+		for tile in row:	
+#			var col = tileCount%maxCols
+#			var row = tileCount/maxCols
+			var x = Grid.start_x + halftile + colIndex * Grid.tile_size
+			var y = Grid.start_y + halftile + rowIndex * Grid.tile_size
 			
 
-		#If tile is an element, find that node in elements and set its position
-		if TileToTypeMapping.has(tile):
-			var type = TileToTypeMapping[tile]
+			#If tile is an element, find that node in elements and set its position
+			if TileToTypeMapping.has(tile):
+				var type = TileToTypeMapping[tile]
 			
-			if elements[type].empty():
-				printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(type) + "> to the level")
-				assert(!elements[type].empty())
-				return
-			node = elements[type].pop_front()
+				if elements[type].empty():
+					printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(type) + "> to the level")
+					assert(!elements[type].empty())
+					return
+				node = elements[type].pop_front()
 			
-			node.tileX = col
-			node.tileY = row
-			node.position = Vector2(x, y)	
+				node.tileX = colIndex
+				node.tileY = rowIndex
+				node.position = Vector2(x, y)	
 			
-			#If it's a special element, do special thing to it
-			if type == "Robot":
-				node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
-			elif type == "Button":
-				node.connect("buttonPressed", level, "_on_Button_buttonPressed")
-			elif type == "Door":
-				level.connect("openDoor", node, "_on_level_openDoor")
-		#error handling goes here??
-		else:
-			pass
+				#If it's a special element, do special thing to it
+				if type == "Robot":
+					node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+				elif type == "Button":
+					node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+				elif type == "Door":
+					level.connect("openDoor", node, "_on_level_openDoor")
+			#error handling goes here??
+			else:
+				pass
 			
-		tileCount += 1
+#			tileCount += 1
+			colIndex += 1
+		rowIndex += 1
 
 #Helper function of init_elements. Creates dict to track all available elements
 func generate_elements_dict():

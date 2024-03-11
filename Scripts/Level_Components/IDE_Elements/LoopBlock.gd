@@ -33,7 +33,6 @@ onready var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot"))
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connections()
-	#NOTE: remove this later once level scripts can add these dropdown options
 	add_dropdown_options()
 	
 	#Set visibility of Conditional nodes to false
@@ -51,26 +50,22 @@ func connections():
 	StepOperator.get_popup().connect("id_pressed", self, "on_StepOperator_option_selected")
 
 
+#NOTE: RHS options added in Level script
 func add_dropdown_options():
 	#Add options into ChooseLoopType dropdown
 	ChooseLoopType.get_popup().add_item("While") 
 	ChooseLoopType.get_popup().add_item("For") 
 	
 	#Add options into LHS dropdown
-	LHS.get_popup().add_item("Obstacle") 
-	LHS.get_popup().add_item("ButtonA")  
-	LHS.get_popup().add_item("ButtonB") 
+	LHS.get_popup().add_item("Tile")
+	LHS.get_popup().add_item("Front")
+	LHS.get_popup().add_item("Back")
+	LHS.get_popup().add_item("Left")
+	LHS.get_popup().add_item("Right")
 	
 	#Add options into Operator dropdown
 	Operator.get_popup().add_item("==") 
-	Operator.get_popup().add_item("!=") 
-	
-	#Add options into RHS dropdown
-	RHS.get_popup().add_item("Front")
-	RHS.get_popup().add_item("Back")
-	RHS.get_popup().add_item("Left")
-	RHS.get_popup().add_item("Right") 
-	RHS.get_popup().add_item("Pressed") 
+	Operator.get_popup().add_item("!=")  
 	
 	#Add options into StepOperator dropdown
 	StepOperator.get_popup().add_item("+") 
@@ -107,14 +102,19 @@ func on_CLT_option_selected(id):
 			emit_signal("ChosenLoop", "For")
 			
 
+
 func on_LHS_option_selected(id):
 	match id:
-		0: 
-			LHSLabel.text = "Obstacle"
-		1: 
-			LHSLabel.text = "ButtonA"
-		2: 
-			LHSLabel.text = "ButtonB"
+		0:
+			LHSLabel.text = "Tile"
+		1:
+			LHSLabel.text = "Front"
+		2:
+			LHSLabel.text = "Back"
+		3:
+			LHSLabel.text = "Left"
+		4:
+			LHSLabel.text = "Right"
 	
 
 func on_Operator_option_selected(id):
@@ -125,18 +125,19 @@ func on_Operator_option_selected(id):
 			OperatorLabel.text = "!="
 	
 
+#change RHS text after selecting from dropdown
 func on_RHS_option_selected(id):
 	match id:
 		0:
-			RHSLabel.text = "Front"
+			RHS.get_node("Label").text = "Blocked"
 		1:
-			RHSLabel.text = "Back"
+			RHS.get_node("Label").text = "Button"
 		2:
-			RHSLabel.text = "Left"
+			RHS.get_node("Label").text = "Door"
 		3:
-			RHSLabel.text = "Right"
-		4: 
-			RHSLabel.text = "Pressed"
+			RHS.get_node("Label").text = "DeathTile"
+		4:
+			RHS.get_node("Label").text = "Key"
 	
 
 func on_StepOperator_option_selected(id):
@@ -196,29 +197,64 @@ func check_conditions():
 		return true
 	
 	elif type == "While":
-		#If an Obstacle is in certain direction based on Robot's current orientation
-		if is_LHS_an_obstacle() and RHSLabel.text != "Pressed":
-			#object = null if no object in that direction
-			var object = Robot.get_object_in_direction(Robot.get_direction(RHSLabel.text)) 
-			#I.e. Obstacle == Front & object stores a node named Obstacle
-			if OperatorLabel.text == "==" and object and object.name.rstrip("0123456789") == LHSLabel.text:
-				return true
-			#I.e. Obstacle == Front & object = null b/c no object is in front of Robot
-			elif OperatorLabel.text == "!=" and !object:
-				return true
-			#I.e. Obstacle == Front & object stores a node NOT named Obstacle
-			elif OperatorLabel.text == "!=" and object.name.rstrip("0123456789") != LHSLabel.text:
-				return true
-			else:
-				return false
+		var objectName = ""
+		if LHSLabel.text != "Tile":
+			var dir = Robot.get_direction(LHSLabel.text)
+			#Equals null if no object in that direction
+			var object = Robot.get_object_in_direction(dir)
+			if object:
+				objectName = object.name.rstrip("0123456789")
+			if objectName == "Obstacle" or is_wall(dir):
+				objectName = "Blocked"
+		elif LHSLabel.text == "Tile":
+			objectName = PEP.tiles[Robot.tileY][Robot.tileX]
+			objectName = letter_to_name(objectName)
+	
+		#I.e. Front == Button & objectName is Button
+		if OperatorLabel.text == "==" and objectName == RHSLabel.text:
+			return true
+		#I.e. Front != Button & objectName is NOT Button
+		elif OperatorLabel.text == "!=" and objectName != RHSLabel.text:
+			return true
+		else:
+			return false
+	
 
+#Checks if wall is specified direction
+func is_wall(dir):
+	if dir == "ui_up":
+		#If robot is on the top row/tile above is an X
+		if Robot.tileY == 0 or PEP.tiles[Robot.tileY - 1][Robot.tileX] == 'X':
+			return true
+	elif dir == "ui_down":
+		#If robot is on the bottom row/tile below is an X
+		if Robot.tileY == 6 or PEP.tiles[Robot.tileY + 1][Robot.tileX] == 'X':
+			return true
+	elif dir == "ui_left":
+		#If robot is on the leftmost row/tile left is an X
+		if Robot.tileX == 0 or PEP.tiles[Robot.tileY][Robot.tileX - 1] == 'X':
+			return true
+	elif dir == "ui_right":
+		#If robot is on the rightmost row/tile right is an X
+		if Robot.tileX == 10 or PEP.tiles[Robot.tileY][Robot.tileX + 1] == 'X':
+			return true
+	
+	return false
+	
 
-#Can add on other types of obstacles later on
-func is_LHS_an_obstacle():
-	if LHSLabel.text == "Obstacle":
-		return true
+#For check_conditions(), convert the object letter of the current tile to a name
+func letter_to_name(letter):
+	if letter == 'O':
+		return "Blocked"
+	elif letter == 'B':
+		return "Button"
+	elif letter == 'D':
+		return "Door"
+	elif letter == 'K':
+		return "Key"
 	else:
-		return false
+		return ""
+		
 
 #Updates loopCount & LoopCounter's text
 func increment_loopCount():

@@ -19,11 +19,11 @@ var B0_Pressed = false
 #2D array
 var tiles = [
 	['R','O',' ',' ',' ',' ',' ',' ',' ',' ',' '],
-	[' ','O',' ',' ',' ',' ',' ',' ',' ',' ',' '],
-	[' ','O',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+	[' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+	[' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' '],
 	[' ','B',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+	[' ','D',' ',' ',' ',' ',' ',' ',' ',' ',' '],
 	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
-	[' ',' ',' ',' ',' ',' ',' ',' ',' ','D',' '],
 	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
 ]
 var robotStartOrientation = PEP.Orientation.DOWN
@@ -33,6 +33,18 @@ var robotStartOrientation = PEP.Orientation.DOWN
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
+	var RHS = get_node("IDE/If1/If/RHS")
+	if RHS:
+		PEP.init_conditional_RHS_options(["Blocked", "Door", "Button"], RHS)
+	RHS = get_node("IDE/If2/If/RHS")
+	if RHS:
+		PEP.init_conditional_RHS_options(["Blocked", "Door", "Button"], RHS)
+	RHS = get_node("IDE/Loop1/HighlightControl/WhileConditional/RHS")
+	if RHS:
+		PEP.init_conditional_RHS_options(["Blocked", "Door", "Button"], RHS)
+	RHS = get_node("IDE/Loop2/HighlightControl/WhileConditional/RHS")
+	if RHS:
+		PEP.init_conditional_RHS_options(["Blocked", "Door", "Button"], RHS)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

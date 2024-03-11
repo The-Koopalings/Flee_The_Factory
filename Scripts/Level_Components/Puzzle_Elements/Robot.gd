@@ -10,8 +10,8 @@ onready var end_x = grid.end_x
 onready var end_y = grid.end_y
 var tileX
 var tileY
-export var tileXMax = 6 #accounting for first row being 0
-export var tileYMax = 10  #accounting for first column being 0
+export var tileXMax = 10 #accounting for first column being 0
+export var tileYMax = 6  #accounting for first row being 0
 
 # startPosition is now set by the Level
 #var startPosition = Vector2(200, 200)
