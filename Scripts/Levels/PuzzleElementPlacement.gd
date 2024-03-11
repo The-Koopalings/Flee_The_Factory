@@ -39,6 +39,7 @@ func loadLevel(_level):
 	self.init_code_blocks()
 	self.init_IDE()
 	self.update()
+	
 
 #Draws the borders of the grid+
 func _draw():
@@ -175,3 +176,28 @@ func get_path_to_grandpibling(node, target):
 		node = node.get_parent()
 		path += "../"
 	return path + target
+	
+
+#Determines and adds appropriate RHS options into the If/While's conditional RHS dropdown menu
+#No functionality yet
+#Idea: call this in each level's script, add a String array in the parameter called options, to specify which options to set
+#Level script can also pass in the RHS
+#I.e. options = ["Button", "Key"] 
+#     init_conditional_RHS_options(options, get_node("IDE/If1").RHS)
+func init_conditional_RHS_options(options, RHS):
+	#NOTE: index doesn't change, but id can
+	var index = 0
+	for item in options:
+		RHS.get_popup().add_item(item)
+		if item == "Blocked":
+			RHS.get_popup().set_item_id(index, 0)
+		elif item == "Button":
+			RHS.get_popup().set_item_id(index, 1)
+		elif item == "Door":
+			RHS.get_popup().set_item_id(index, 2)
+		elif item == "DeathTile":
+			RHS.get_popup().set_item_id(index, 3)
+		elif item == "Key":
+			RHS.get_popup().set_item_id(index, 4)
+		index += 1
+	

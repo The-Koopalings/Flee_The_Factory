@@ -10,8 +10,8 @@ onready var end_x = grid.end_x
 onready var end_y = grid.end_y
 var tileX
 var tileY
-export var tileXMax = 10 #change once we settle on what this should be
-export var tileYMax = 6  #change once we settle on what this should be
+export var tileXMax = 6 #accounting for first row being 0
+export var tileYMax = 10  #accounting for first column being 0
 
 # startPosition is now set by the Level
 #var startPosition = Vector2(200, 200)
@@ -39,6 +39,7 @@ func move(dir):
 	var vector_position = inputs[dir] * tile_size
 	
 	# Check if there is an obstacle in the direction of the robot's movement
+	ray.set_collide_with_areas(false)
 	ray.cast_to = vector_position
 	ray.force_raycast_update()
 	
@@ -114,6 +115,7 @@ func get_direction(fromWhere: String = "Front"):
 
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
+	ray.set_collide_with_areas(true)
 	ray.cast_to = inputs[dir] * tile_size
 	ray.force_raycast_update()
 	

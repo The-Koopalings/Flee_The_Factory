@@ -87,22 +87,22 @@ shape = SubResource( 2 )
 
 [node name="LHS" type="MenuButton" parent="If"]
 margin_left = 75.0
-margin_right = 250.0
+margin_right = 185.0
 margin_bottom = 50.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="If/LHS"]
 margin_top = 10.0
-margin_right = 57.0
+margin_right = 35.0
 margin_bottom = 24.0
 rect_scale = Vector2( 3, 3 )
-text = "Obstacle"
+text = "Front"
 align = 2
 
 [node name="Operator" type="MenuButton" parent="If"]
-margin_left = 250.0
-margin_right = 300.0
+margin_left = 185.0
+margin_right = 235.0
 margin_bottom = 50.0
 focus_mode = 2
 mouse_filter = 1
@@ -117,8 +117,8 @@ text = "=="
 align = 1
 
 [node name="RHS" type="MenuButton" parent="If"]
-margin_left = 300.0
-margin_right = 475.0
+margin_left = 240.0
+margin_right = 433.0
 margin_bottom = 50.0
 focus_mode = 2
 mouse_filter = 1
@@ -129,7 +129,7 @@ margin_top = 10.0
 margin_right = 51.0
 margin_bottom = 24.0
 rect_scale = Vector2( 3, 3 )
-text = "Front"
+text = "Blocked"
 
 [node name="Else" type="Control" parent="."]
 margin_top = 137.5

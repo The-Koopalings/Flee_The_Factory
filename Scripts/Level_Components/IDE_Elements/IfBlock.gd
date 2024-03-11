@@ -20,31 +20,33 @@ func _ready():
 	
 func add_options():
 	#Add options into LHS dropdown
-	LHS.get_popup().add_item("Obstacle")
-	LHS.get_popup().add_item("ButtonA")
-	LHS.get_popup().add_item("ButtonB")
+	LHS.get_popup().add_item("Tile")
+	LHS.get_popup().add_item("Front")
+	LHS.get_popup().add_item("Back")
+	LHS.get_popup().add_item("Left")
+	LHS.get_popup().add_item("Right")
 	
 	#Add options into Operator dropdown
 	Operator.get_popup().add_item("==")
 	Operator.get_popup().add_item("!=")
 	
-	#Add options into RHS dropdown
-	RHS.get_popup().add_item("Front")
-	RHS.get_popup().add_item("Back")
-	RHS.get_popup().add_item("Left")
-	RHS.get_popup().add_item("Right")
-	RHS.get_popup().add_item("Pressed")
+	#Add options into RHS dropdown, might move to load_level/level script
+	PEP.init_conditional_RHS_options(["Blocked", "Button"], RHS)
 	
 
 #change LHS text after selecting from dropdown
 func on_LHS_option_selected(id):
 	match id:
 		0:
-			LHSLabel.text = "Obstacle"
+			LHSLabel.text = "Tile"
 		1:
-			LHSLabel.text = "ButtonA"
+			LHSLabel.text = "Front"
 		2:
-			LHSLabel.text = "ButtonB"
+			LHSLabel.text = "Back"
+		3:
+			LHSLabel.text = "Left"
+		4:
+			LHSLabel.text = "Right"
 
 #change Operator text after selecting from dropdown
 func on_Operator_option_selected(id):
@@ -58,15 +60,16 @@ func on_Operator_option_selected(id):
 func on_RHS_option_selected(id):
 	match id:
 		0:
-			RHSLabel.text = "Front"
+			RHS.get_node("Label").text = "Blocked"
 		1:
-			RHSLabel.text = "Back"
+			RHS.get_node("Label").text = "Button"
 		2:
-			RHSLabel.text = "Left"
+			RHS.get_node("Label").text = "Door"
 		3:
-			RHSLabel.text = "Right"
-		4: 
-			RHSLabel.text = "Pressed"
+			RHS.get_node("Label").text = "DeathTile"
+		4:
+			RHS.get_node("Label").text = "Key"
+	
 
 func get_code():
 	var code
@@ -81,27 +84,45 @@ func get_code():
 	
 	return code
 	
-
+#Testing required still, copy into LoopBlock's While check_conditions()
 func check_conditions():
-	#If an Obstacle is in certain direction based on Robot's current orientation
-	if is_LHS_an_obstacle() and RHSLabel.text != "Pressed":
-		#object = null if no object in that direction
-		var object = Robot.get_object_in_direction(Robot.get_direction(RHSLabel.text)) 
-		#I.e. Obstacle == Front & object stores a node named Obstacle
-		if OperatorLabel.text == "==" and object and object.name.rstrip("0123456789") == LHSLabel.text:
-			return true
-		#I.e. Obstacle == Front & object = null b/c no object is in front of Robot
-		elif OperatorLabel.text == "!=" and !object:
-			return true
-		#I.e. Obstacle == Front & object stores a node NOT named Obstacle
-		elif OperatorLabel.text == "!=" and object.name.rstrip("0123456789") != LHSLabel.text:
-			return true
-		else:
-			return false
-
-#Can add on other types of obstacles later on
-func is_LHS_an_obstacle():
-	if LHSLabel.text == "Obstacle":
+	var objectName = ""
+	if LHSLabel.text != "Tile":
+		#Equals null if no object in that direction, might make it just return the name (?)
+		var object = Robot.get_object_in_direction(Robot.get_direction(LHSLabel.text))
+		if object:
+			objectName = object.name.rstrip("0123456789")
+		if objectName == "Obstacle": #add code for wall
+			objectName = "Blocked"
+	elif LHSLabel.text == "Tile":
+		#Use tileX and tileY in Robot and other grid nodes, use PEP.tiles[x][y]?
+		print(Robot.tileX)
+		print(Robot.tileY)
+#		objectName = PEP.tiles[Robot.tileX * Robot.tileY]
+#		objectName = letter_to_name(objectName)
+	
+	#I.e. Front == DeathTile & object is named DeathTile
+	if OperatorLabel.text == "==" and objectName == RHSLabel.text:
+		return true
+#	#I.e. Front != DeathTile & objectName = "" b/c no object is in front of the Robot
+#	elif OperatorLabel.text == "!=" and objectName == "":
+#		return true
+	#I.e. Front != DeathTile & object is NOT named DeathTile
+	elif OperatorLabel.text == "!=" and objectName != RHSLabel.text:
 		return true
 	else:
 		return false
+	
+
+func letter_to_name(letter):
+	if 'O':
+		return "Blocked"
+	elif 'B':
+		return "Button"
+	elif 'D':
+		return "Door"
+	elif 'K':
+		return "Key"
+	else:
+		return ""
+
