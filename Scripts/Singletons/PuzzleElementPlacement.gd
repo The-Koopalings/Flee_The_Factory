@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var wallScene = preload("res://Scenes/Level_Components/Puzzle_Elements/Wall.tscn")
 var maxRows = 7 #Number of Rows (Cells per Column)
 var maxCols = 11  #Numbers of Columns (Cells per Row)
 var tiles = []
@@ -47,19 +47,24 @@ func loadLevel(_level):
 #Draws the borders of the grid+
 func _draw():
 	var tileCount = 0
+	var wall
 	for tile in tiles:
+
 		var col = tileCount%maxCols
 		var row = tileCount/maxCols
 		var x = Grid.start_x + halftile + col * Grid.tile_size
 		var y = Grid.start_y + halftile + row * Grid.tile_size
 		
 		if tile == 'X':
+			wall = wallScene.instance()
+			Grid.add_child(wall)
+			
 			#Check all edges to see if it's a border
 			var top = 'X' if (row == 0) else tiles[tileCount - maxCols]
 			var bottom = 'X' if (row == maxRows-1) else tiles[tileCount + maxCols]
 			var left = 'X' if (col == 0) else tiles[tileCount - 1]
 			var right = 'X' if (col == maxCols-1) else tiles[tileCount + 1]
-			
+			wall.position = Vector2(x, y)
 			if top != 'X':
 				draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
 			if bottom != 'X':

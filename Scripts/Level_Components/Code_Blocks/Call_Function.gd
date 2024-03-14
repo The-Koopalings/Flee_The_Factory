@@ -12,7 +12,8 @@ func _ready():
 
 
 func send_signal():
-	print("CALLING FUNCTION ", name)
+	var funcName = name.trim_prefix("Call_").rstrip("_1234567890")
+	print("CALLING FUNCTION ", funcName)
 	$CodeBlock/Highlight.visible = true
 	#emit_signal("callFunction", name) #Not used anymore
 
