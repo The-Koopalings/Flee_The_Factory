@@ -123,11 +123,12 @@ func init_elements():
 					node.connect("buttonPressed", level, "_on_Button_buttonPressed")
 				elif type == "Virus":
 					robot.connect("interact",node,"_on_Robot_interact")
-					#Virus pressed
 				elif type == "Door":
 					level.connect("levelComplete", node, "_on_level_levelComplete")
 			#error handling goes here??
-			else:
+			elif not (element == 'X' || element == ' '):
+				printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(TileToTypeMapping[element]) + "> to the level")
+				assert(!elements[element].empty())
 				pass
 			
 		tileCount += 1
