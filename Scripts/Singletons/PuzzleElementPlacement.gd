@@ -18,6 +18,7 @@ var TileToTypeMapping = {
 	'O': "Obstacle",
 	'B': "Button",
 	'D': "Door",
+	'V': "Virus",
 }
 
 enum Orientation{
@@ -37,9 +38,11 @@ func loadLevel(_level):
 	self.halftile = Grid.tile_size/2
 	
 	self.init_elements()
-	self.init_code_blocks()
+	self.init_code_blocks_bar()
 	self.init_IDE()
 	self.update()
+	
+	GameStats.set_game_state(GameStats.State.CODING)
 
 #Draws the borders of the grid+
 func _draw():
@@ -109,9 +112,13 @@ func init_elements():
 				#If it's a special element, do special thing to it
 				if type == "Robot":
 					node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+					GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 				elif type == "Button":
 					robot.connect("interact",node,"_on_Robot_interact")
 					node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+				elif type == "Virus":
+					robot.connect("interact",node,"_on_Robot_interact")
+					#Virus pressed
 				elif type == "Door":
 					level.connect("levelComplete", node, "_on_level_levelComplete")
 			#error handling goes here??
@@ -146,7 +153,7 @@ func generate_elements_dict():
 	return elements
 
 #Set position of code blocks on CodeBlockBar
-func init_code_blocks():
+func init_code_blocks_bar():
 	var x = 90
 	var y = 1008
 	
@@ -168,6 +175,7 @@ func init_code_blocks():
 
 func init_IDE():
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
+	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
 	
 	for child in IDE.get_children():
 		if child.name != "Run_Button":
@@ -177,7 +185,11 @@ func init_IDE():
 #Get path to a node that's a relative to an ancestor of the current node
 func get_path_to_grandpibling(node, target):
 	var path = ""
-	while !node.has_node(target):
+	while node and !node.has_node(target):
 		node = node.get_parent()
 		path += "../"
-	return path + target
+	
+	if (node != null):
+		return (path + target)
+	else:
+		return "ERROR"

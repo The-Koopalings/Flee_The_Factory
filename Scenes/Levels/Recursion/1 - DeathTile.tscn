@@ -48,8 +48,8 @@ margin_top = 513.0
 margin_bottom = 788.0
 
 [node name="Counter" parent="IDE/F1" index="4"]
-text = "0/3"
-maxBlocks = 3
+text = "0/5"
+maxBlocks = 5
 
 [node name="IfElse" parent="IDE" instance=ExtResource( 7 )]
 margin_top = 792.0

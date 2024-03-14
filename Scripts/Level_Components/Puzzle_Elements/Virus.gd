@@ -17,5 +17,5 @@ func _ready():
 
 func _on_Robot_interact(x, y):
 	if x == tileX and y == tileY:
-		emit_signal("robotDied")
+		GameStats.kill_robot()
 		print("DEATH!!!")

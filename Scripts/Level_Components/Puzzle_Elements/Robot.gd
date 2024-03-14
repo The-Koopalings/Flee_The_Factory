@@ -13,8 +13,9 @@ var tileY
 export var tileXMax = 10 #change once we settle on what this should be
 export var tileYMax = 6  #change once we settle on what this should be
 
-# startPosition is now set by the Level
-#var startPosition = Vector2(200, 200)
+var deadRobotTexture = preload("res://Assets/Placeholders/dead.png")
+
+
 
 signal interact(tileX, tileY)
 
@@ -98,3 +99,9 @@ func _on_RotateRight_rotateRightSignal():
 #Interact
 func _on_Interact_interactSignal():
 	emit_signal("interact", tileX, tileY)
+
+#Virus (killed via GameStats)
+func _on_GameStats_robotDied():
+	#Temporary action just so there's a visual indicator
+	#Should be replaced with some animation or something else to better show Robby dying
+	$Sprite.set_texture(deadRobotTexture) 

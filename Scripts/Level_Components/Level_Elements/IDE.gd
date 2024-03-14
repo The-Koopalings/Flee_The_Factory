@@ -81,8 +81,17 @@ func run_code():
 		if !context.empty():
 			code = context.pop_back()
 
-func _on_level_levelComplete():
-	#Set all execution related variables to empty
+func dump_code():
 	code = []
 	context = {}
 	previousCode = null
+
+func _on_GameStats_robotDied():
+	dump_code()
+	
+func _on_level_levelComplete():
+	GameStats.set_game_state(GameStats.State.PASSED)
+	
+	#Set all execution related variables to empty
+	dump_code()
+
