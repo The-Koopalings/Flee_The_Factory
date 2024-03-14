@@ -7,6 +7,7 @@
 extents = Vector2( 32, 32 )
 
 [node name="Robot" type="KinematicBody2D"]
+z_index = 10
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": "Use factors of 48 to center an object's position on a tile"
