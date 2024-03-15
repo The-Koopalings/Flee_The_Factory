@@ -250,6 +250,8 @@ func letter_to_name(letter):
 		return "Button"
 	elif letter == 'D':
 		return "Door"
+	elif letter == 'V':
+		return "Virus"
 	elif letter == 'K':
 		return "Key"
 	else:
