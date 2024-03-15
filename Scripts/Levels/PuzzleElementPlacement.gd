@@ -102,32 +102,31 @@ func init_elements():
 			var x = Grid.start_x + halftile + colIndex * Grid.tile_size
 			var y = Grid.start_y + halftile + rowIndex * Grid.tile_size
 			
-
-		#If tile is an element, find that node in elements and set its position
-		for element in tile:
-			if TileToTypeMapping.has(element):
-				var type = TileToTypeMapping[element]
-				
-				if elements[type].empty():
-					printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(type) + "> to the level")
-					assert(!elements[element].empty())
-					return
-				node = elements[type].pop_front()
-				
-				node.tileX = col
-				node.tileY = row
-				node.position = Vector2(x, y)	
-				#If it's a special element, do special thing to it
-				if type == "Robot":
-					node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
-				elif type == "Button":
-					robot.connect("interact",node,"_on_Robot_interact")
-					node.connect("buttonPressed", level, "_on_Button_buttonPressed")
-				elif type == "Door":
-					level.connect("levelComplete", node, "_on_level_levelComplete")
-			#error handling goes here??
-			else:
-				pass
+			#If tile is an element, find that node in elements and set its position
+			for element in tile:
+				if TileToTypeMapping.has(element):
+					var type = TileToTypeMapping[element]
+					
+					if puzzleElements[type].empty():
+						printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(type) + "> to the level")
+						assert(!puzzleElements[element].empty())
+						return
+					node = puzzleElements[type].pop_front()
+					
+					node.tileX = colIndex
+					node.tileY = rowIndex
+					node.position = Vector2(x, y)	
+					#If it's a special element, do special thing to it
+					if type == "Robot":
+						node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+					elif type == "Button":
+						robot.connect("interact",node,"_on_Robot_interact")
+						node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+					elif type == "Door":
+						level.connect("levelComplete", node, "_on_level_levelComplete")
+				#error handling goes here??
+				else:
+					pass
 			
 #			tileCount += 1
 			colIndex += 1

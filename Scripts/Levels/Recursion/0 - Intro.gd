@@ -20,13 +20,13 @@ var B4_Pressed = false
 #NOTE: This script assumes the children of Grid are placed in the order they will be read (left to right, top to bottom).
 #Useful for easier editing of levels and for level editors in the future
 var tiles = [
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','BR',' ','B',' ','X','X','X','X','X',
-	'X','X',' ','O',' ',' ','D','X','X','X','X',
-	'X','X','B',' ','B',' ','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','BR',' ','B',' ','X','X','X','X','X'],
+	['X','X',' ','O',' ',' ','D','X','X','X','X'],
+	['X','X','B',' ','B',' ','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES

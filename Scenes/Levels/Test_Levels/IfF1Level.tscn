@@ -30,7 +30,6 @@
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_65.png" type="Texture" id=28]
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=29]
 
-
 [sub_resource type="TileSet" id=1]
 2/name = "Future_Tiles.png 2"
 2/texture = ExtResource( 17 )

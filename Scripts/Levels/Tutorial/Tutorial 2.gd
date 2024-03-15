@@ -14,13 +14,13 @@ var dialogue_queue = []
 
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','R',' ','O','X','X','X','X',
-	'X','X','X','X','O','B','D','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','R',' ','O','X','X','X','X'],
+	['X','X','X','X','O','B','D','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
