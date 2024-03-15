@@ -244,6 +244,9 @@ func is_wall(dir):
 
 #For check_conditions(), convert the object letter of the current tile to a name
 func letter_to_name(letter):
+	if letter.find('R') != -1:
+		letter.erase(letter.find('R'), 1)
+
 	if letter == 'O' or letter == 'X':
 		return "Blocked"
 	elif letter == 'B':
@@ -254,8 +257,10 @@ func letter_to_name(letter):
 		return "Virus"
 	elif letter == 'K':
 		return "Key"
-	else:
+	elif letter == "" or letter == ' ':
 		return ""
+	else:
+		return PEP.TileToTypeMapping[letter]
 		
 
 #Updates loopCount & LoopCounter's text

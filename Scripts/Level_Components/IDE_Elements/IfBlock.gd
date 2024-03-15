@@ -146,6 +146,8 @@ func letter_to_name(letter):
 		return "Virus"
 	elif letter == 'K':
 		return "Key"
+	elif letter == "" or letter == ' ':
+		return ""
 	else:
 		return PEP.TileToTypeMapping[letter]
 
