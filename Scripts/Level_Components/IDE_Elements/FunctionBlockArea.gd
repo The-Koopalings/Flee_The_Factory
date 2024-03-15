@@ -30,9 +30,6 @@ func _ready():
 	monitoring = true
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 #Area2D enters a function area
 func _on_FunctionBlockArea_area_entered(area):
@@ -93,10 +90,20 @@ func add_block(block):
 				child = CallFunction.instance()
 				child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
 				child.name = block.name + "_1"
-			"CallIF":
-				child = CallIF.instance()
-			"CallLoop":
-				child = CallLoop.instance()
+			"Call_If":
+				#Prevent an If statement from calling itself
+				var ifName = block.name.trim_prefix("Call_")
+				if ifName != get_node("../..").name:
+					child = CallIF.instance()
+					child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
+					child.name = block.name + "_1"
+			"Call_Loop":
+				#Prevent a Loop from calling itself
+				var loopName = block.name.trim_prefix("Call_")
+				if loopName != get_node("../..").name:
+					child = CallLoop.instance()
+					child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
+					child.name = block.name + "_1"
 				
 	#Add codeblock node to tree
 	if child and numBlocks < counter.maxBlocks:

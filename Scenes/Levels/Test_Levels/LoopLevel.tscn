@@ -1,20 +1,20 @@
 [gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Level_Components/Level_Elements/CodeBlockBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Grid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Level_Components/LevelControl.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Level_Components/IDE.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Level_Components/CodeBlockBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateLeft.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateRight.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Forward.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Level_Components/IDE_Elements/IfBlock.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/LoopBlock.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Levels/TestLevel.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallIf.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallLoop.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Assets/Tilesets/Future_Tiles.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_66.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Backgrounds/night1.png" type="Texture" id=19]
@@ -27,7 +27,6 @@
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_64.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_73.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_65.png" type="Texture" id=28]
-
 
 [sub_resource type="TileSet" id=1]
 2/name = "Future_Tiles.png 2"
@@ -263,7 +262,7 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[node name="IfLevel" type="Node2D"]
+[node name="LoopLevel" type="Node2D"]
 script = ExtResource( 12 )
 
 [node name="Grid" parent="." instance=ExtResource( 1 )]
@@ -285,28 +284,16 @@ script = ExtResource( 12 )
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 margin_right = 1920.0
 
-[node name="If1" parent="IDE" instance=ExtResource( 11 )]
+[node name="Loop1" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 513.0
 margin_bottom = 788.0
-__meta__ = {
-"_editor_description_": ""
-}
 
-[node name="Label" parent="IDE/If1/Else" index="0"]
-text = "Else1"
-
-[node name="If2" parent="IDE" instance=ExtResource( 11 )]
+[node name="Loop2" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 792.0
 margin_bottom = 1067.0
-__meta__ = {
-"_editor_description_": ""
-}
 
-[node name="Label" parent="IDE/If2/If" index="0"]
-text = "If2"
-
-[node name="Label" parent="IDE/If2/Else" index="0"]
-text = "Else2"
+[node name="Label" parent="IDE/Loop2/HighlightControl/ChooseLoopType" index="1"]
+text = "Loop2"
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
 
@@ -322,9 +309,9 @@ position = Vector2( 310, 90 )
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 14 )]
 position = Vector2( 420, 90 )
 
-[node name="Call_If1" parent="CodeBlockBar" instance=ExtResource( 15 )]
+[node name="Call_Loop1" parent="CodeBlockBar" instance=ExtResource( 15 )]
 
-[node name="Call_If2" parent="CodeBlockBar" instance=ExtResource( 15 )]
+[node name="Call_Loop2" parent="CodeBlockBar" instance=ExtResource( 15 )]
 
 [node name="AcceptDialog" type="AcceptDialog" parent="."]
 margin_left = 490.0
@@ -371,5 +358,4 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [editable path="Grid/Obstacle"]
 [editable path="Grid/Obstacle2"]
 [editable path="Grid/Obstacle3"]
-[editable path="IDE/If1"]
-[editable path="IDE/If2"]
+[editable path="IDE/Loop2"]

@@ -10,8 +10,8 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Level_Components/IDE_Elements/IfElseBlock.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scripts/Levels/ProofOfConcept.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/IfBlock.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Levels/TestLevel.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallFunction.tscn" type="PackedScene" id=15]
@@ -265,7 +265,7 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[node name="ProofOfConcept" type="Node2D"]
+[node name="IfF1Level" type="Node2D"]
 script = ExtResource( 12 )
 
 [node name="Grid" parent="." instance=ExtResource( 1 )]
@@ -281,21 +281,20 @@ script = ExtResource( 12 )
 [node name="Button" parent="Grid" instance=ExtResource( 8 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 13 )]
-scale = Vector2( 5, 5 )
 
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 margin_right = 1920.0
 
-[node name="IfElse1" parent="IDE" instance=ExtResource( 11 )]
+[node name="If1" parent="IDE" instance=ExtResource( 11 )]
 margin_top = 513.0
 margin_bottom = 788.0
+__meta__ = {
+"_editor_description_": "Name this either IfElse1 or IfElse2"
+}
 
-[node name="Label" parent="IDE/IfElse1/If" index="0"]
-text = "If1"
-
-[node name="Label" parent="IDE/IfElse1/Else" index="0"]
+[node name="Label" parent="IDE/If1/Else" index="0"]
 text = "Else1"
 
 [node name="F1" parent="IDE" instance=ExtResource( 29 )]
@@ -369,5 +368,5 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [editable path="Grid/Obstacle"]
 [editable path="Grid/Obstacle2"]
 [editable path="Grid/Obstacle3"]
-[editable path="IDE/IfElse1"]
+[editable path="IDE/If1"]
 [editable path="IDE/F1"]

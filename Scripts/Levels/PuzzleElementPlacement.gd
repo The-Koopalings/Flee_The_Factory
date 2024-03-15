@@ -11,6 +11,7 @@ var robotStartOrientation
 var level
 var IDE
 var robot
+var puzzleElements
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -40,56 +41,66 @@ func loadLevel(_level):
 	self.init_code_blocks()
 	self.init_IDE()
 	self.update()
+	
 
 #Draws the borders of the grid+
 func _draw():
-	var tileCount = 0
-	for tile in tiles:
-		var col = tileCount%maxCols
-		var row = tileCount/maxCols
-		var x = Grid.start_x + halftile + col * Grid.tile_size
-		var y = Grid.start_y + halftile + row * Grid.tile_size
+#	var tileCount = 0
+	var rowIndex = 0
+	var colIndex = 0
+	for row in tiles:
+		colIndex = 0
+		for tile in row:
+#			var col = tileCount%maxCols
+#			var row = tileCount/maxCols
+			var x = Grid.start_x + halftile + colIndex * Grid.tile_size
+			var y = Grid.start_y + halftile + rowIndex * Grid.tile_size
 		
-		if tile == 'X':
-			#Check all edges to see if it's a border
-			var top = 'X' if (row == 0) else tiles[tileCount - maxCols]
-			var bottom = 'X' if (row == maxRows-1) else tiles[tileCount + maxCols]
-			var left = 'X' if (col == 0) else tiles[tileCount - 1]
-			var right = 'X' if (col == maxCols-1) else tiles[tileCount + 1]
+			if tile == 'X':
+				#Check all edges to see if it's a border
+				var top = 'X' if (rowIndex == 0) else tiles[rowIndex - 1][colIndex]
+				var bottom = 'X' if (rowIndex == maxRows-1) else tiles[rowIndex + 1][colIndex]
+				var left = 'X' if (colIndex == 0) else tiles[rowIndex][colIndex - 1]
+				var right = 'X' if (colIndex == maxCols-1) else tiles[rowIndex][colIndex + 1]
 			
-			if top != 'X':
-				draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
-			if bottom != 'X':
-				draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
-			if left != 'X':
-				draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
-			if right != 'X':
-				draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
-		else:
-			if row == 0:
-				draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
-			elif row == maxRows-1:
-				draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+				if top != 'X':
+					draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
+				if bottom != 'X':
+					draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+				if left != 'X':
+					draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
+				if right != 'X':
+					draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+			else:
+				if rowIndex == 0:
+					draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
+				elif rowIndex == maxRows-1:
+					draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
 			
-			if col == 0:
-				draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
-			elif col == maxCols-1:
-				draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
-			
-		tileCount += 1
+				if colIndex == 0:
+					draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
+				elif colIndex == maxCols-1:
+					draw_line(Vector2(x + halftile, y - halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
+			colIndex += 1
+		rowIndex += 1
+#		tileCount += 1
 
 #Set positions/orientation of puzzle elements
 func init_elements():
 	var tileCount = 0
 	var node
-	var elements = generate_elements_dict()
-
+	puzzleElements = generate_elements_dict()
+	
 	#Iterate through each tile
-	for tile in tiles:		
-		var col = tileCount%maxCols
-		var row = tileCount/maxCols
-		var x = Grid.start_x + halftile + col * Grid.tile_size
-		var y = Grid.start_y + halftile + row * Grid.tile_size
+	var rowIndex = 0
+	var colIndex = 0
+	for row in tiles:	
+		colIndex = 0
+		for tile in row:	
+#			var col = tileCount%maxCols
+#			var row = tileCount/maxCols
+			var x = Grid.start_x + halftile + colIndex * Grid.tile_size
+			var y = Grid.start_y + halftile + rowIndex * Grid.tile_size
 			
 
 		#If tile is an element, find that node in elements and set its position
@@ -118,7 +129,9 @@ func init_elements():
 			else:
 				pass
 			
-		tileCount += 1
+#			tileCount += 1
+			colIndex += 1
+		rowIndex += 1
 
 #Helper function of init_elements. Creates dict to track all available elements
 func generate_elements_dict():
@@ -168,12 +181,26 @@ func init_code_blocks():
 
 func init_IDE():
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
+	var options = generate_RHS_options()
 	
 	for child in IDE.get_children():
-		if child.name != "Run_Button":
-			IDE.scopes[child.name] = child
+		var type = child.name.rstrip("1234567890")
+		
+		#Ignore the Run Button
+		if type == "Run_Button":
+			continue
 			
-
+		#Check if we need to add RHS options
+		if type == "If":
+			var RHS = child.get_node("If/RHS")
+			add_RHS_options(options, RHS)
+		elif type == "Loop":
+			var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
+			add_RHS_options(options, RHS)
+			
+		#Add the scope to list of scopes
+		IDE.scopes[child.name] = child
+			
 #Get path to a node that's a relative to an ancestor of the current node
 func get_path_to_grandpibling(node, target):
 	var path = ""
@@ -181,3 +208,41 @@ func get_path_to_grandpibling(node, target):
 		node = node.get_parent()
 		path += "../"
 	return path + target
+	
+
+#Determines and adds appropriate RHS options into the If/While's conditional RHS dropdown menu
+#No functionality yet
+#Idea: call this in each level's script, add a String array in the parameter called options, to specify which options to set
+#Level script can also pass in the RHS
+#I.e. options = ["Button", "Key"] 
+#     init_conditional_RHS_options(options, get_node("IDE/If1").RHS)
+func generate_RHS_options():
+	var types = puzzleElements.keys()
+	var options = ["Blocked"]
+	for type in types:
+		if type == "Obstacle" || type == "Robot":
+			continue
+		options.push_back(type)
+	options.sort()
+	
+	print(options)
+	
+	return options
+	
+
+func add_RHS_options(options, RHS):
+	var index = 0
+	#NOTE: index doesn't change, but id can
+	for item in options:
+		RHS.get_popup().add_item(item)
+		if item == "Blocked":
+			RHS.get_popup().set_item_id(index, 0)
+		elif item == "Button":
+			RHS.get_popup().set_item_id(index, 1)
+		elif item == "Door":
+			RHS.get_popup().set_item_id(index, 2)
+		elif item == "DeathTile":
+			RHS.get_popup().set_item_id(index, 3)
+		elif item == "Key":
+			RHS.get_popup().set_item_id(index, 4)
+		index += 1	

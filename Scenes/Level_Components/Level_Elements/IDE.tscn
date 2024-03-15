@@ -4,6 +4,7 @@
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/IDE.gd" type="Script" id=2]
 
 
+
 [node name="IDE" type="VBoxContainer"]
 margin_left = 1440.0
 margin_right = 480.0
