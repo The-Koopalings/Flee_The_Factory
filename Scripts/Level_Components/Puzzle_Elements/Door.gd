@@ -20,4 +20,7 @@ func _ready():
 
 
 func _on_level_levelComplete():
-	get_node("Sprite").set_texture(openDoorTexture)
+	$Sprite.set_texture(openDoorTexture)
+	
+	#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
+	$Sprite.set_scale(Vector2(1,1)) 

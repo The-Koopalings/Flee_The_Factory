@@ -17,13 +17,13 @@ var B1_Pressed = false
 #NOTE: This script assumes the children of Grid are placed in the order they will be read (left to right, top to bottom).
 #Useful for easier editing of levels and for level editors in the future
 var tiles = [
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'R',' ','V',' ','V',' ','V',' ','B',' ','D',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['R',' ','V',' ','V',' ','V',' ','B',' ','D'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
@@ -44,6 +44,8 @@ func _process(_delta):
 		
 
 func _on_Button_buttonPressed(name):
+	print("SIGNAL")
 	match name:
 		"Button1":
+			print("NAMEMATCH")
 			B1_Pressed = true

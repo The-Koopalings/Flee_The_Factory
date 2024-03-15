@@ -85,6 +85,8 @@ func get_code():
 #Testing required still, copy into LoopBlock's While check_conditions()
 func check_conditions():
 	var objectName = ""
+
+	
 	if LHSLabel.text != "Tile":
 		var dir = Robot.get_direction(LHSLabel.text)
 		#Equals null if no object in that direction
@@ -96,7 +98,7 @@ func check_conditions():
 	elif LHSLabel.text == "Tile":
 		objectName = PEP.tiles[Robot.tileY][Robot.tileX]
 		objectName = letter_to_name(objectName)
-	
+		
 	#I.e. Front == Button & objectName is Button
 	if OperatorLabel.text == "==" and objectName == RHSLabel.text:
 		return true
@@ -131,16 +133,14 @@ func is_wall(dir):
 
 #For check_conditions(), convert the object letter of the current tile to a name
 func letter_to_name(letter):
-	if letter == 'O':
+	if letter.find('R') != -1:
+		letter.erase(letter.find('R'), 1)
+	
+	if letter == 'O' or letter == 'X':
 		return "Blocked"
-	elif letter == 'B':
-		return "Button"
-	elif letter == 'D':
-		return "Door"
-	elif letter == 'K':
-		return "Key"
 	else:
-		return ""
+		return PEP.TileToTypeMapping[letter]
+
 	
 
 

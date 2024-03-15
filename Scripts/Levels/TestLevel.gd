@@ -3,7 +3,7 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-signal openDoor
+signal levelComplete
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
@@ -39,7 +39,7 @@ func _process(_delta):
 	#Check win con
 	#If win con, then open door
 	if B0_Pressed == true:
-		emit_signal("openDoor")
+		emit_signal("levelComplete")
 		$AcceptDialog.popup()
 		B0_Pressed = false #So console doesn't get spammed at the end
 		

@@ -3,7 +3,10 @@
 [ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/Door.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Decoration/10.png" type="Texture" id=2]
 
-[node name="Door" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28, 40.5 )
+
+[node name="Door" type="Area2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Use factors of 48 to center an object's position on a tile"

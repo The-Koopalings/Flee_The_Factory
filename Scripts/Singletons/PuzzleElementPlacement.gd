@@ -1,5 +1,6 @@
 extends Node2D
 
+var DEBUG_buffer = "~~~~~~~~~~~~~~~"
 var wallScene = preload("res://Scenes/Level_Components/Puzzle_Elements/Wall.tscn")
 var maxRows = 7 #Number of Rows (Cells per Column)
 var maxCols = 11  #Numbers of Columns (Cells per Row)
@@ -49,6 +50,8 @@ func _draw():
 #	var tileCount = 0
 	var rowIndex = 0
 	var colIndex = 0
+	var wall
+		
 	for row in tiles:
 		colIndex = 0
 		for tile in row:
@@ -58,12 +61,16 @@ func _draw():
 			var y = Grid.start_y + halftile + rowIndex * Grid.tile_size
 		
 			if tile == 'X':
+				wall = wallScene.instance()
+				Grid.add_child(wall)
 				#Check all edges to see if it's a border
 				var top = 'X' if (rowIndex == 0) else tiles[rowIndex - 1][colIndex]
 				var bottom = 'X' if (rowIndex == maxRows-1) else tiles[rowIndex + 1][colIndex]
 				var left = 'X' if (colIndex == 0) else tiles[rowIndex][colIndex - 1]
 				var right = 'X' if (colIndex == maxCols-1) else tiles[rowIndex][colIndex + 1]
 			
+				wall.position = Vector2(x, y)
+				
 				if top != 'X':
 					draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
 				if bottom != 'X':
@@ -119,6 +126,7 @@ func init_elements():
 					#If it's a special element, do special thing to it
 					if type == "Robot":
 						node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+						GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
 						node.connect("buttonPressed", level, "_on_Button_buttonPressed")
@@ -129,7 +137,7 @@ func init_elements():
 				#error handling goes here??
 				elif not (element == 'X' || element == ' '):
 					printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(TileToTypeMapping[element]) + "> to the level")
-					assert(!elements[element].empty())
+					assert(!puzzleElements[element].empty())
 					pass
 			
 #			tileCount += 1
@@ -158,7 +166,10 @@ func generate_elements_dict():
 			elements[type].push_back(node) 
 		else:
 			elements[type] = [node]
-			
+	
+	print("ELEMENTS: ", elements)
+	print(DEBUG_buffer)
+	
 	return elements
 
 #Set position of code blocks on CodeBlockBar
@@ -180,6 +191,8 @@ func init_code_blocks_bar():
 		
 		x += 110
 		
+	print("CODE BLOCKS: ", blocks)
+	print(DEBUG_buffer)
 		#if block.name == ""
 
 func init_IDE():
@@ -205,7 +218,10 @@ func init_IDE():
 			
 		#Add the scope to list of scopes
 		IDE.scopes[child.name] = child
-			
+		
+	print("SCOPES: ", IDE.scopes.keys())
+	print(DEBUG_buffer)
+	
 #Get path to a node that's a relative to an ancestor of the current node
 func get_path_to_grandpibling(node, target):
 	var path = ""
@@ -233,13 +249,15 @@ func generate_RHS_options():
 		options.push_back(type)
 	options.sort()
 	
-	print(options)
+	print("RHS OPTIONS: ", options)
+	print(DEBUG_buffer)
 	
 	return options
 	
 
 func add_RHS_options(options, RHS):
 	var index = 0
+
 	#NOTE: index doesn't change, but id can
 	for item in options:
 		RHS.get_popup().add_item(item)

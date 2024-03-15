@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Level_Components/IDE_Elements/IfElseBlock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/IfBlock.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Levels/Recursion/1 - DeathTile.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=10]
@@ -27,15 +27,15 @@ script = ExtResource( 9 )
 
 [node name="Robot" parent="Grid" instance=ExtResource( 10 )]
 
-[node name="Virus" parent="Grid" instance=ExtResource( 13 )]
+[node name="Virus1" parent="Grid" instance=ExtResource( 13 )]
 
 [node name="Virus2" parent="Grid" instance=ExtResource( 13 )]
 
 [node name="Virus3" parent="Grid" instance=ExtResource( 13 )]
 
-[node name="Button" parent="Grid" instance=ExtResource( 11 )]
-
 [node name="Door" parent="Grid" instance=ExtResource( 12 )]
+
+[node name="Button1" parent="Grid" instance=ExtResource( 11 )]
 
 [node name="IDE" parent="." instance=ExtResource( 4 )]
 
@@ -51,15 +51,15 @@ margin_bottom = 788.0
 text = "0/6"
 maxBlocks = 6
 
-[node name="IfElse" parent="IDE" instance=ExtResource( 7 )]
+[node name="If1" parent="IDE" instance=ExtResource( 7 )]
 margin_top = 792.0
 margin_bottom = 1067.0
 
-[node name="Counter" parent="IDE/IfElse/If" index="4"]
+[node name="Counter" parent="IDE/If1/If" index="4"]
 text = "0/2"
 maxBlocks = 2
 
-[node name="Counter" parent="IDE/IfElse/Else" index="4"]
+[node name="Counter" parent="IDE/If1/Else" index="4"]
 text = "0/2"
 maxBlocks = 2
 
@@ -86,4 +86,4 @@ maxBlocks = 2
 [editable path="IDE"]
 [editable path="IDE/Main"]
 [editable path="IDE/F1"]
-[editable path="IDE/IfElse"]
+[editable path="IDE/If1"]
