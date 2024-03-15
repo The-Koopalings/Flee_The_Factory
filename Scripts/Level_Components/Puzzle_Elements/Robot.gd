@@ -116,7 +116,8 @@ func get_direction(fromWhere: String = "Front"):
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
 	ray.set_collide_with_areas(true)
-	ray.cast_to = inputs[dir] * tile_size
+	ray.position = inputs[dir] * 48
+	ray.cast_to = inputs[dir] * tile_size 
 	ray.force_raycast_update()
 	
 	if ray.is_colliding():
