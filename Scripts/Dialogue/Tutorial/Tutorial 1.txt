@@ -1,16 +1,31 @@
 Welcome to Flee the Factory! Robby the Robot is trapped in our elaborate factory and it is your job to help him escape.
 To help Robby, you must program him to move across the factory floor and reach the exit.
+
+HIGHLIGHT_BUTTON
+Explain button
+
+HIGHLIGHT_DOOR
+Explain door
+
 IDE
+HIGHLIGHT_IDE
 This is the IDE.
 Explain Main function
+
 CODE_BLOCK
 These are code blocks. This is what you use to control Robby's movements.
+
+HIGHLIGHT_FORWARD
 Explain forward code block
+HIGHLIGHT_INTERACT
 Explain interact code block
+
 To place the code blocks into the IDE, you can drag and drop them. Let's move one forward code block into the Main function.
 ;
 Great! As you can see, Robby has to move 3 tiles to reach the button and interact with it. Let's move two more forward code blocks and one interact code block into the Main function.
 ;
+
+HIGHLIGHT_RUN
 Now that we have programmed Robby, let's press the run button to run our code and see him move.
 ;
 Congratulations! You have helped Robby get one step closer to fleeing the factory (roll credits lol).

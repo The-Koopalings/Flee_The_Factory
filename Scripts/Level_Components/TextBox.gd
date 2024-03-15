@@ -16,7 +16,7 @@ enum State {
 
 var current_state = State.READY
 var text_queue = []
-
+signal user_action
 
 func _ready():
 	hide_textbox()
@@ -30,12 +30,15 @@ func _process(_delta):
 				if text_queue[0] == "IDE":
 					text_queue.pop_front()
 					set_IDE_pos()
+					emit_signal("user_action")
 				elif text_queue[0] == "CODE_BLOCK":
 					text_queue.pop_front()
 					set_codeblock_pos()
+					emit_signal("user_action")
 				elif text_queue[0] == "DEFAULT":
 					text_queue.pop_front()
 					set_default_pos()
+					emit_signal("user_action")
 				# Display text from queue
 				else:
 					display_text()
@@ -53,6 +56,7 @@ func _process(_delta):
 				if text_queue.empty():
 					hide_textbox()
 				change_state(State.READY)
+				emit_signal("user_action")
 
 
 func queue_text(dialogue):
@@ -105,6 +109,6 @@ func set_codeblock_pos():
 
 
 func set_IDE_pos():
-	textbox_container.rect_position = Vector2(200, 100)
+	textbox_container.rect_position = Vector2(120, 100)
 	textbox_container.rect_size = Vector2(500, 300)
 	textbox_container.rect_scale = Vector2(0.8, 0.8)

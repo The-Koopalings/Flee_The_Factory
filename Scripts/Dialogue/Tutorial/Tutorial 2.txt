@@ -1,7 +1,14 @@
 Not all floors will contain a straight path to the door! Robby will only move forward in the direction that he is facing.
+
+HIGHLIGHT_OBSTACLE
 Explain obstacle
+
 CODE_BLOCK
-Explain Rotate left/right code blocks
+HIGHLIGHT_ROTATE_LEFT
+Explain Rotate left
+HIGHLIGHT_ROTATE_RIGHT
+Explain Rotate right
+
 Let's rotate Robby to the left so that he no longer faces the obstacle.
 ;
 Great! Now that he's facing the right direction, he can move forward one tile. Let's place a forward code block into Main.

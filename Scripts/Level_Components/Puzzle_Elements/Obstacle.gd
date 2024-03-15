@@ -11,4 +11,4 @@ var tileY
 #var startPosition = Vector2(500,300)
 
 func _ready():
-	pass
+	$Highlight.visible = false
