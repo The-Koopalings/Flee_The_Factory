@@ -142,11 +142,11 @@ func run_code():
 
 #Default parameter value is currentNode.name
 func is_loop(nodeName: String = currentNode.name):
-	return nodeName == "Loop1" or nodeName == "Loop2"
+	return nodeName.rstrip("0123456789") == "Loop"
 
 func dump_code():
 	code = []
-	context = {}
+	context = []
 	previousCode = null
 
 func _on_GameStats_robotDied():
