@@ -234,12 +234,6 @@ func get_path_to_grandpibling(node, target):
 		return "ERROR"
 	
 
-#Determines and adds appropriate RHS options into the If/While's conditional RHS dropdown menu
-#No functionality yet
-#Idea: call this in each level's script, add a String array in the parameter called options, to specify which options to set
-#Level script can also pass in the RHS
-#I.e. options = ["Button", "Key"] 
-#     init_conditional_RHS_options(options, get_node("IDE/If1").RHS)
 func generate_RHS_options():
 	var types = puzzleElements.keys()
 	var options = ["Blocked"]
@@ -267,7 +261,7 @@ func add_RHS_options(options, RHS):
 			RHS.get_popup().set_item_id(index, 1)
 		elif item == "Door":
 			RHS.get_popup().set_item_id(index, 2)
-		elif item == "DeathTile":
+		elif item == "Virus":
 			RHS.get_popup().set_item_id(index, 3)
 		elif item == "Key":
 			RHS.get_popup().set_item_id(index, 4)

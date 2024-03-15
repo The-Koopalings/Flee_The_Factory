@@ -85,8 +85,6 @@ func get_code():
 #Testing required still, copy into LoopBlock's While check_conditions()
 func check_conditions():
 	var objectName = ""
-
-	
 	if LHSLabel.text != "Tile":
 		var dir = Robot.get_direction(LHSLabel.text)
 		#Equals null if no object in that direction
