@@ -43,7 +43,7 @@ func on_loop_type_selected(type: String):
 
 
 func send_signal():
-	print("CALLING " + name + " " + type)
+	print("CALLING " + name + " (" + type + ")")
 	$CodeBlock/Highlight.visible = true
 
 

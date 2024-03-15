@@ -135,7 +135,7 @@ func on_RHS_option_selected(id):
 		2:
 			RHS.get_node("Label").text = "Door"
 		3:
-			RHS.get_node("Label").text = "DeathTile"
+			RHS.get_node("Label").text = "Virus"
 		4:
 			RHS.get_node("Label").text = "Key"
 	

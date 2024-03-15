@@ -10,6 +10,7 @@ var CodeBlockBar
 var robotStartOrientation
 var level
 var IDE
+var puzzleElements
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -87,7 +88,7 @@ func _draw():
 func init_elements():
 	var tileCount = 0
 	var node
-	var elements = generate_elements_dict()
+	puzzleElements = generate_elements_dict()
 	
 	#Iterate through each tile
 	var rowIndex = 0
@@ -105,11 +106,11 @@ func init_elements():
 			if TileToTypeMapping.has(tile):
 				var type = TileToTypeMapping[tile]
 			
-				if elements[type].empty():
+				if puzzleElements[type].empty():
 					printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(type) + "> to the level")
-					assert(!elements[type].empty())
+					assert(!puzzleElements[type].empty())
 					return
-				node = elements[type].pop_front()
+				node = puzzleElements[type].pop_front()
 			
 				node.tileX = colIndex
 				node.tileY = rowIndex
@@ -175,11 +176,26 @@ func init_code_blocks():
 		#if block.name == ""
 
 func init_IDE():
+	var options = generate_RHS_options()
+	
 	for child in IDE.get_children():
-		if child.name != "Run_Button":
-			IDE.scopes[child.name] = child
+		var type = child.name.rstrip("1234567890")
+		
+		#Ignore the Run Button
+		if type == "Run_Button":
+			continue
 			
-
+		#Check if we need to add RHS options
+		if type == "If":
+			var RHS = child.get_node("If/RHS")
+			add_RHS_options(options, RHS)
+		elif type == "Loop":
+			var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
+			add_RHS_options(options, RHS)
+			
+		#Add the scope to list of scopes
+		IDE.scopes[child.name] = child
+			
 #Get path to a node that's a relative to an ancestor of the current node
 func get_path_to_grandpibling(node, target):
 	var path = ""
@@ -195,9 +211,23 @@ func get_path_to_grandpibling(node, target):
 #Level script can also pass in the RHS
 #I.e. options = ["Button", "Key"] 
 #     init_conditional_RHS_options(options, get_node("IDE/If1").RHS)
-func init_conditional_RHS_options(options, RHS):
-	#NOTE: index doesn't change, but id can
+func generate_RHS_options():
+	var types = puzzleElements.keys()
+	var options = ["Blocked"]
+	for type in types:
+		if type == "Obstacle" || type == "Robot":
+			continue
+		options.push_back(type)
+	options.sort()
+	
+	print(options)
+	
+	return options
+	
+
+func add_RHS_options(options, RHS):
 	var index = 0
+	#NOTE: index doesn't change, but id can
 	for item in options:
 		RHS.get_popup().add_item(item)
 		if item == "Blocked":
@@ -210,5 +240,4 @@ func init_conditional_RHS_options(options, RHS):
 			RHS.get_popup().set_item_id(index, 3)
 		elif item == "Key":
 			RHS.get_popup().set_item_id(index, 4)
-		index += 1
-	
+		index += 1	
