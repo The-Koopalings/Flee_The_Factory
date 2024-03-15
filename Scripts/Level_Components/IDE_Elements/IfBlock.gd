@@ -130,20 +130,13 @@ func is_wall(dir):
 	
 
 #For check_conditions(), convert the object letter of the current tile to a name
+#Realistically should be in PEP since it's also called in LoopBlocks
 func letter_to_name(letter):
 	if letter.find('R') != -1:
 		letter.erase(letter.find('R'), 1)
 	
 	if letter == 'O' or letter == 'X':
 		return "Blocked"
-	elif letter == 'B':
-		return "Button"
-	elif letter == 'D':
-		return "Door"
-	elif letter == 'V':
-		return "Virus"
-	elif letter == 'K':
-		return "Key"
 	elif letter == "" or letter == ' ':
 		return ""
 	else:
