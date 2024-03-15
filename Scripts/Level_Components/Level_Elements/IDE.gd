@@ -148,6 +148,7 @@ func dump_code():
 	code = []
 	context = []
 	previousCode = null
+	looping = false
 
 func _on_GameStats_robotDied():
 	dump_code()
