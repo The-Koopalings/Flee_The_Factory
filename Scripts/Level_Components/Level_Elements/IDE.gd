@@ -144,8 +144,17 @@ func run_code():
 func is_loop(nodeName: String = currentNode.name):
 	return nodeName == "Loop1" or nodeName == "Loop2"
 
-func _on_level_levelComplete():
-	#Set all execution related variables to empty
+func dump_code():
 	code = []
 	context = {}
 	previousCode = null
+
+func _on_GameStats_robotDied():
+	dump_code()
+	
+func _on_level_levelComplete():
+	GameStats.set_game_state(GameStats.State.PASSED)
+	
+	#Set all execution related variables to empty
+	dump_code()
+

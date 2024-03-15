@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var wallScene = preload("res://Scenes/Level_Components/Puzzle_Elements/Wall.tscn")
 var maxRows = 7 #Number of Rows (Cells per Column)
 var maxCols = 11  #Numbers of Columns (Cells per Row)
 var tiles = []
@@ -19,6 +19,7 @@ var TileToTypeMapping = {
 	'O': "Obstacle",
 	'B': "Button",
 	'D': "Door",
+	'V': "Virus",
 }
 
 enum Orientation{
@@ -38,10 +39,10 @@ func loadLevel(_level):
 	self.halftile = Grid.tile_size/2
 	
 	self.init_elements()
-	self.init_code_blocks()
+	self.init_code_blocks_bar()
 	self.init_IDE()
 	self.update()
-	
+	GameStats.set_game_state(GameStats.State.CODING)
 
 #Draws the borders of the grid+
 func _draw():
@@ -75,8 +76,7 @@ func _draw():
 				if rowIndex == 0:
 					draw_line(Vector2(x - halftile, y - halftile), Vector2(x + halftile, y - halftile), Color8(0, 0, 0), 4)
 				elif rowIndex == maxRows-1:
-					draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)
-			
+					draw_line(Vector2(x - halftile, y + halftile), Vector2(x + halftile, y + halftile), Color8(0, 0, 0), 4)			
 				if colIndex == 0:
 					draw_line(Vector2(x - halftile, y - halftile), Vector2(x - halftile, y + halftile), Color8(0, 0, 0), 4)
 				elif colIndex == maxCols-1:
@@ -122,10 +122,14 @@ func init_elements():
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
 						node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+					elif type == "Virus":
+						robot.connect("interact",node,"_on_Robot_interact")
 					elif type == "Door":
 						level.connect("levelComplete", node, "_on_level_levelComplete")
 				#error handling goes here??
-				else:
+				elif not (element == 'X' || element == ' '):
+					printerr("TRIED TO PLACE ELEMENT THAT DOESN'T EXIST. Consider adding another <" + str(TileToTypeMapping[element]) + "> to the level")
+					assert(!elements[element].empty())
 					pass
 			
 #			tileCount += 1
@@ -158,7 +162,7 @@ func generate_elements_dict():
 	return elements
 
 #Set position of code blocks on CodeBlockBar
-func init_code_blocks():
+func init_code_blocks_bar():
 	var x = 90
 	var y = 1008
 	
@@ -179,8 +183,10 @@ func init_code_blocks():
 		#if block.name == ""
 
 func init_IDE():
+	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
 	var options = generate_RHS_options()
+	
 	
 	for child in IDE.get_children():
 		var type = child.name.rstrip("1234567890")
@@ -203,10 +209,13 @@ func init_IDE():
 #Get path to a node that's a relative to an ancestor of the current node
 func get_path_to_grandpibling(node, target):
 	var path = ""
-	while !node.has_node(target):
+	while node and !node.has_node(target):
 		node = node.get_parent()
 		path += "../"
-	return path + target
+	if (node != null):
+		return (path + target)
+	else:
+		return "ERROR"
 	
 
 #Determines and adds appropriate RHS options into the If/While's conditional RHS dropdown menu
