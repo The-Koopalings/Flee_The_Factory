@@ -39,6 +39,7 @@ func loadLevel(_level):
 	self.IDE = level.get_node("IDE")
 	self.halftile = Grid.tile_size/2
 	
+	print(DEBUG_buffer)
 	self.init_elements()
 	self.init_code_blocks_bar()
 	self.init_IDE()
