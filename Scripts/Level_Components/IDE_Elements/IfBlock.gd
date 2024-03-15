@@ -138,6 +138,14 @@ func letter_to_name(letter):
 	
 	if letter == 'O' or letter == 'X':
 		return "Blocked"
+	elif letter == 'B':
+		return "Button"
+	elif letter == 'D':
+		return "Door"
+	elif letter == 'V':
+		return "Virus"
+	elif letter == 'K':
+		return "Key"
 	else:
 		return PEP.TileToTypeMapping[letter]
 
