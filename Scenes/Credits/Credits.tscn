@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Credits" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 644.0
+margin_top = 43.0
+margin_right = 745.0
+margin_bottom = 57.0
+rect_scale = Vector2( 6, 6 )
+text = "Credits Yeehaw!"

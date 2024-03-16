@@ -4,34 +4,35 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-signal openDoor
+signal levelComplete
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
 var b1_pressed = false
 var b2_pressed = false
+var dialogue_queue = []
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','R','O','D','X','X','X','X',
-	'X','X','X','X',' ','O','B','X','X','X','X',
-	'X','X','X','X','B',' ',' ','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','R','O','D','X','X','X','X'],
+	['X','X','X','X',' ','O','B','X','X','X','X'],
+	['X','X','X','X','B',' ',' ','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
-	PEP.loadLevel(self, tiles, robotStartOrientation, Grid, CodeBlockBar)
+	PEP.loadLevel(self)
 
 
 func _process(delta):
 	if b1_pressed and b2_pressed:
-		emit_signal("openDoor")
+		emit_signal("levelComplete")
 		$AcceptDialog.popup()
 		b1_pressed = false
 		b2_pressed = false
