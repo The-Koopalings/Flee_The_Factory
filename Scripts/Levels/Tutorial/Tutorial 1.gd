@@ -5,7 +5,7 @@ onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
 onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
 onready var TextBox = get_node("TextBox")
-signal openDoor
+signal levelComplete
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
@@ -18,13 +18,13 @@ var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Intera
 
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','R',' ',' ','B','D','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
-	'X','X','X','X','X','X','X','X','X','X','X',
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','R',' ',' ','B','D','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
@@ -41,7 +41,7 @@ func _process(delta):
 	DialogueManager.dialogue_progress_check(self)
 	
 	if btn_pressed:
-		emit_signal("openDoor")
+		emit_signal("levelComplete")
 		emit_signal("dialogue_progress")
 		$AcceptDialog.popup()
 		btn_pressed = false

@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/Counter.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Level_Components/IDE_Elements/IfElseBlock.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/IfBlock.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 210, 27.5 )
@@ -11,12 +11,15 @@ extents = Vector2( 210, 27.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 243, 71.5 )
 
-[node name="IfElse" type="Control"]
+[node name="If1" type="Control"]
 margin_right = 480.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 480, 275 )
 mouse_filter = 2
 script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": "Name this either If1 or If2"
+}
 
 [node name="If" type="Control" parent="."]
 margin_right = 480.0
@@ -30,7 +33,7 @@ script = ExtResource( 3 )
 margin_right = 104.0
 margin_bottom = 16.0
 rect_scale = Vector2( 4, 4 )
-text = "If2"
+text = "If1"
 
 [node name="FunctionBlockArea" type="Area2D" parent="If"]
 position = Vector2( 30, 50 )
@@ -84,22 +87,22 @@ shape = SubResource( 2 )
 
 [node name="LHS" type="MenuButton" parent="If"]
 margin_left = 75.0
-margin_right = 250.0
+margin_right = 185.0
 margin_bottom = 50.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="If/LHS"]
 margin_top = 10.0
-margin_right = 57.0
+margin_right = 35.0
 margin_bottom = 24.0
 rect_scale = Vector2( 3, 3 )
-text = "Obstacle"
+text = "Front"
 align = 2
 
 [node name="Operator" type="MenuButton" parent="If"]
-margin_left = 250.0
-margin_right = 300.0
+margin_left = 185.0
+margin_right = 235.0
 margin_bottom = 50.0
 focus_mode = 2
 mouse_filter = 1
@@ -114,8 +117,8 @@ text = "=="
 align = 1
 
 [node name="RHS" type="MenuButton" parent="If"]
-margin_left = 300.0
-margin_right = 475.0
+margin_left = 240.0
+margin_right = 433.0
 margin_bottom = 50.0
 focus_mode = 2
 mouse_filter = 1
@@ -126,7 +129,7 @@ margin_top = 10.0
 margin_right = 51.0
 margin_bottom = 24.0
 rect_scale = Vector2( 3, 3 )
-text = "Front"
+text = "Blocked"
 
 [node name="Else" type="Control" parent="."]
 margin_top = 137.5

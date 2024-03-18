@@ -1,75 +1,51 @@
 extends Area2D
 
-signal whileLoop1
-signal forLoop1
-signal whileLoop2
-signal forLoop2
 const BLOCK_TYPE = "CALL"
-#Which option is chosen, -1 = none, 0 = While, 1 = For
-var option = -1 
-#Regex results to be used in send_signal() & on_option_selected()
-var result1
-var result2 
 
+#Which loop type is chosen
+var type = "none" 
+var loopBlockName = ""
+var loopBlockNumber = ""
 func _ready():
-	#Connect signals to IDE
-	var IDE = get_node("../../../../IDE")
+	connect_to_LoopBlock()
+
+
+#Connect LoopBlock's signal "ChosenLoop" to this Loop code block, change textures if loop type has already been chosen
+func connect_to_LoopBlock():
 	var status = 0
-	status += connect("ifStatement1", IDE, "_on_ifStatement1")
-	status += connect("f2Signal", IDE, "_on_f2Signal")
 	
+	if get_parent().name == "CodeBlockBar":
+		loopBlockName = name.trim_prefix("Call_")
+	else:
+		loopBlockName = name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
+	
+	loopBlockNumber = loopBlockName.trim_prefix("Loop")
+
+	var loopBlockNode = get_node(PEP.get_path_to_grandpibling(self, "IDE/" + loopBlockName)) 
+	status = loopBlockNode.connect("ChosenLoop", self, "on_loop_type_selected")
 	if status != 0:
 		printerr("Something went wrong trying to connect signals in ", name)
-	
-	#Connect signals to ControlFlowBlock in IDE
-	#Connect pressing of a dropdown option to this node
-	$MenuButton.get_popup().connect("id_pressed", self, "on_option_selected")
-	
-	#Add options into dropdown
-	$MenuButton.get_popup().add_item("While")
-	$MenuButton.get_popup().add_item("For")
-	
-	#Get regex ready
-	var regexF1 = RegEx.new()
-	var regexF2 = RegEx.new()
-	regexF1.compile("Loop1_")
-	regexF2.compile("Loop2_")
-	result1 = regexF1.search(name)
-	result2 = regexF2.search(name) 
-	
-#func _process(delta):
-#	pass
+
+	#Change sprite texture if Loop type has already been selected
+	type = loopBlockNode.get_node("HighlightControl/ChooseLoopType/Label").text.rstrip("0123456789")
+	on_loop_type_selected(type)
+		
 
 
-func on_option_selected(id):
-	option = id
-	match id:
-		0:
-			if result1:
-				$Sprite.texture = load("res://Assets/Placeholders/While1.PNG")
-			elif result2:
-				$Sprite.texture = load("res://Assets/Placeholders/While2.PNG")
-		1:
-			if result1:
-				$Sprite.texture = load("res://Assets/Placeholders/For1.PNG")
-			if result2:
-				$Sprite.texture = load("res://Assets/Placeholders/For2.PNG")
-	send_signal() #will change the type of section in the IDE
+#Changes Sprite texture to match the loop type of the Loop IDE section it represents
+#type is either For or While (anything else does nothing)
+func on_loop_type_selected(type: String):
+	self.type = type
+	 
+	#Example path: "res://Assets/Objects/While1.png"
+	$Sprite.texture = load("res://Assets/Objects/" + type + loopBlockNumber + ".png")
 	
+
 
 func send_signal():
+	print("CALLING " + name + " (" + type + ")")
 	$CodeBlock/Highlight.visible = true
-	match option:
-		0:
-			if result1:
-				emit_signal("whileLoop1")
-			if result2:
-				emit_signal("whileLoop2")
-		1: 
-			if result1:
-				emit_signal("forLoop1")
-			if result2:
-				emit_signal("forLoop2")
+
 
 #Just here to supress errors during debugging
 func _on_Area2D_input_event(_viewport, _event, _shape_idx):

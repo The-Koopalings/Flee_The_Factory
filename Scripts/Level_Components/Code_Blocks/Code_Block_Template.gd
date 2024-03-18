@@ -25,12 +25,20 @@ func _ready():
 	#Signal for when IDE has finished executing this Code Block
 	IDE.connect("executed", self, "_on_IDE_executed") 
 	
-	
 	# Connect double click signal to all function blocks
 	for scope in IDE.get_children():
 		if scope.name == "Run_Button":
 			continue
-		status += connect("doubleClick", scope.get_node("FunctionBlockArea"), "_on_CodeBlock_doubleClick")
+		#Connect to IfBlock
+		if scope.name.rstrip("0123456789") == "If":
+			status += connect("doubleClick", scope.get_node("If/FunctionBlockArea"), "_on_CodeBlock_doubleClick")
+			status += connect("doubleClick", scope.get_node("Else/FunctionBlockArea"), "_on_CodeBlock_doubleClick")
+		#Connect to LoopBlock
+		elif scope.name.rstrip("0123456789") == "Loop":
+			status += connect("doubleClick", scope.get_node("HighlightControl/FunctionBlockArea"), "_on_CodeBlock_doubleClick")
+		#Connect to Main & FunctionBlock
+		else:
+			status += connect("doubleClick", scope.get_node("FunctionBlockArea"), "_on_CodeBlock_doubleClick")
 	
 	if status != 0:
 		printerr("Something went wrong trying to connect signals in ", name)
