@@ -21,14 +21,14 @@ var b3_pressed = false
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','R',' ','B',' ','B',' ','B',' ','D','X'],
-	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','R','O',' ',' ',' ','X','X','X'],
+	['X','X','X',' ','O','B','O',' ','X','X','X'],
+	['X','X','X',' ','O',' ','O',' ','X','X','X'],
+	['X','X','X','B','O',' ','O','B','X','X','X'],
+	['X','X','X',' ',' ',' ','O','D','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
-var robotStartOrientation = PEP.Orientation.RIGHT
+var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
 
@@ -45,14 +45,3 @@ func _process(delta):
 		b1_pressed = false
 		b2_pressed = false
 		b3_pressed = false
-
-
-#Handles all button presses
-func _on_Button_buttonPressed(name):
-	match name:
-		"Button1":
-			b1_pressed = true
-		"Button2":
-			b2_pressed = true
-		"Button3":
-			b3_pressed = true

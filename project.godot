@@ -16,9 +16,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-DialogueManager="*res://Scripts/Dialogue/DialogueManager.gd"
 PEP="*res://Scripts/Singletons/PuzzleElementPlacement.gd"
 GameStats="*res://Scripts/Singletons/GameStats.gd"
+DialogueManager="*res://Scripts/Singletons/DialogueManager.gd"
 
 [display]
 
