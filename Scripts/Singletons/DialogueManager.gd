@@ -63,7 +63,7 @@ func highlight_manager(dialogue, level):
 # Checks if user completed the correct action before the next line of dialogue is triggered
 func dialogue_progress_check(level):
 	for i in range(level.progress_check.size()):
-		if !level.progress_check[i] and fba_children_check(level.MainFBA, level.progress_check_arr[i]):
+		if !level.progress_check[i] and fba_children_check(level.progress_check_FBA[i], level.progress_check_arr[i]):
 			level.emit_signal("dialogue_progress")
 			level.progress_check[i] = true 
 
