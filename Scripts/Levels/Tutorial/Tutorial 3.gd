@@ -56,4 +56,7 @@ func _on_Button_buttonPressed(name):
 			b1_pressed = true
 		"Button2":
 			b2_pressed = true
+	
+	if b1_pressed and b2_pressed:
+		level_win = true
 
