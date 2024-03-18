@@ -10,7 +10,7 @@ extents = Vector2( 210, 84 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 243, 140.5 )
 
-[node name="FunctionBlockControl" type="Control"]
+[node name="F1" type="Control"]
 margin_right = 480.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 480, 275 )
@@ -23,7 +23,7 @@ margin_left = 140.0
 margin_right = 180.0
 margin_bottom = 20.0
 rect_scale = Vector2( 4, 4 )
-text = "FUNCTION"
+text = "FUNC1"
 align = 1
 
 [node name="FunctionBlockArea" type="Area2D" parent="."]

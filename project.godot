@@ -11,13 +11,13 @@ config_version=4
 [application]
 
 config/name="Flee The Factory"
-run/main_scene="res://Scenes/Levels/Tutorial/Tutorial 3.tscn"
+run/main_scene="res://Scenes/Levels/Test_Levels/LoopLevel.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-GameStats="*res://Scripts/GameStats.gd"
-PEP="*res://Scripts/Levels/PuzzleElementPlacement.gd"
+GameStats="*res://Scripts/Singletons/GameStats.gd"
+PEP="*res://Scripts/Singletons/PuzzleElementPlacement.gd"
 
 [display]
 
