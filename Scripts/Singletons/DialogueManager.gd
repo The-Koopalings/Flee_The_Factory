@@ -12,6 +12,7 @@ var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",
 					  "HIGHLIGHT_DOOR": "Grid/Door/Highlight",
 					  "HIGHLIGHT_OBSTACLE": "Grid/Obstacle/Highlight"}
 
+var check_progress = false  # Boolean check to fix yielding bug
 
 # Load and display dialogue
 func add_dialogue(level, file_path):
@@ -39,6 +40,7 @@ func display_dialogue(level):
 	
 	for dialogue in dialogue_queue:
 		if dialogue == ";":
+			check_progress = true
 			yield(level, "dialogue_progress")
 		elif dialogue.begins_with("HIGHLIGHT_"):
 			last_highlight = highlight_manager(dialogue, level)
@@ -63,9 +65,10 @@ func highlight_manager(dialogue, level):
 # Checks if user completed the correct action before the next line of dialogue is triggered
 func dialogue_progress_check(level):
 	for i in range(level.progress_check.size()):
-		if !level.progress_check[i] and fba_children_check(level.progress_check_FBA[i], level.progress_check_arr[i]):
+		if check_progress and !level.progress_check[i] and fba_children_check(level.progress_check_FBA[i], level.progress_check_arr[i]):
 			level.emit_signal("dialogue_progress")
 			level.progress_check[i] = true 
+			check_progress = false
 
 
 # Helper function to check to see if the right code blocks are dropped into FBA in the expected order

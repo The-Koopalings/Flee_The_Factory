@@ -6,6 +6,7 @@ onready var CodeBlockBar = get_node("CodeBlockBar")
 onready var TextBox = get_node("TextBox")
 onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
 signal levelComplete
+var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
@@ -40,13 +41,16 @@ func _process(delta):
 	DialogueManager.dialogue_progress_check(self)
 	
 	if btn_pressed:
-		emit_signal("levelComplete")
 		emit_signal("dialogue_progress")
-		$AcceptDialog.popup()
-		btn_pressed = false
+		
+		if level_win:
+			emit_signal("levelComplete")
+			$AcceptDialog.popup()
+			level_win = false
 
 
 #Handles all button presses
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
+	level_win = true
 
