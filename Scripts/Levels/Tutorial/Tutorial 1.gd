@@ -3,63 +3,55 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
+onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var TextBox = get_node("TextBox")
 signal levelComplete
+var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
-onready var TextBox = get_node("TextBox")
 var btn_pressed = false
-var dialogue_queue = []
+
+signal dialogue_progress
+var progress_check = [false, false]    # So signal is only emitted the first time the check is passed
+var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Interact"]]
+onready var progress_check_FBA = [MainFBA, MainFBA]
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X',' ',' ',' ',' ',' ',' ','X','X','X','X'],
-	['X',' ',' ','X',' ','X',' ','X','X',' ','X'],
-	['X','X','X','R',' ',' ','B','D','X',' ','X'],
-	['X','X','X',' ','X',' ','X','X','X',' ','X'],
-	['X','X','X',' ',' ',' ','X','X',' ',' ',' '],
-	['X','X','X',' ','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','R',' ',' ','B','D','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
 	PEP.loadLevel(self)
-  
-	# Add tutorial dialogue
-	load_dialogue()
-	display_dialogue()
+	DialogueManager.add_dialogue(self, "Tutorial/Tutorial 1.txt")
+	
+	$IDE/IDE_Arrow.visible = false
+	$IDE/Run_Arrow.visible = false
 
 
 func _process(delta):
+	DialogueManager.dialogue_progress_check(self)
+	
 	if btn_pressed:
-		emit_signal("levelComplete")
-		$AcceptDialog.popup()
-		btn_pressed = false
+		emit_signal("dialogue_progress")
+		
+		if level_win:
+			emit_signal("levelComplete")
+			$AcceptDialog.popup()
+			level_win = false
 
 #Handles all button presses
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
+	level_win = true
 
-
-# Loads dialogue from a text file
-func load_dialogue():
-	var file = File.new()
-	file.open("res://Scripts/Dialogue/Tutorial 1.txt", file.READ)
-	
-	while !file.eof_reached():
-		var line = file.get_line()
-		dialogue_queue.push_back(line)
-	
-	file.close()
-
-# Displays dialogue on the screen
-# We may need to hardcode when to have the user do an action before triggering the next line of dialogue
-func display_dialogue():
-	var line_counter = 0
-	
-	for dialogue in dialogue_queue:
-		line_counter += 1
-		TextBox.queue_text(dialogue)
