@@ -66,3 +66,7 @@ func move_to_inventory(item, slotNum):
 		itemSlot.add_child(item)
 		item.global_position = itemSlot.get_global_position() + Vector2(48, 48)
 		item.z_index = 99
+	
+
+func on_useItem():
+	pass

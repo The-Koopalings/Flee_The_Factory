@@ -1,6 +1,6 @@
 extends Area2D
 
-signal pickup
+signal useItem
 
 const BLOCK_TYPE = "CODE"
 var type
@@ -10,7 +10,7 @@ var slotNum
 func _ready():
 	#Use PEP to get Inventory node
 	var Inventory = get_node(PEP.get_path_to_grandpibling(self, "Inventory")) 
-	var status = connect("pickup", Inventory, "on_pickup")
+	var status = connect("useItem", Inventory, "on_useItem")
 	if status != 0:
 		printerr("Something went wrong trying to connect signals in ", name)
 	
@@ -53,9 +53,9 @@ func on_SlotNum_Selected(id):
 	
 
 func send_signal():
-	print("PICKING UP ITEM")
+	print("USING ITEM")
 	$CodeBlock/Highlight.visible = true
-	emit_signal("pickup", slotNum)
+	emit_signal("useItem", slotNum)
 	
 
 #Just here to supress errors during debugging

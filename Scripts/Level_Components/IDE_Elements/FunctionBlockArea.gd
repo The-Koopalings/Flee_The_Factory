@@ -8,6 +8,7 @@ var RotateLeft = load(PathToCodeBlocks + "RotateLeft.tscn")
 var RotateRight = load(PathToCodeBlocks + "RotateRight.tscn")
 var Interact  = load(PathToCodeBlocks + "Interact.tscn")
 var Pickup = load(PathToCodeBlocks + "Pickup.tscn")
+var UseItem = load(PathToCodeBlocks + "UseItem.tscn")
 var CallFunction = load(PathToCodeBlocks + "CallFunction.tscn")
 var CallIF = load(PathToCodeBlocks + "CallIf.tscn")
 var CallLoop = load(PathToCodeBlocks + "CallLoop.tscn")
@@ -89,6 +90,8 @@ func add_block(block):
 				child = Interact.instance()
 			"Pickup":
 				child = Pickup.instance()
+			"UseItem":
+				child = UseItem.instance()
 			"Call_F":
 				child = CallFunction.instance()
 				child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
