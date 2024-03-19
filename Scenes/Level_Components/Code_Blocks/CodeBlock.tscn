@@ -25,8 +25,7 @@ margin_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-border_color = Color( 0, 0, 0, 1 )
-border_width = 3.0
+border_width = 4.0
 editor_only = false
 
 [connection signal="input_event" from="." to="." method="_on_Area2D_input_event"]

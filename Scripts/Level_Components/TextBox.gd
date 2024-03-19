@@ -1,11 +1,11 @@
 extends CanvasLayer
 
-const CHAR_READ_RATE = 0.05
+const CHAR_READ_RATE = 0.03
 
 onready var textbox_container = $TextBoxContainer
-onready var start_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/Start
-onready var end_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/End
-onready var text = $TextBoxContainer/MarginContainer/HBoxContainer/Text
+onready var start_symbol = $TextBoxContainer/DialogueContainer/HBoxContainer/Start
+onready var end_symbol = $TextBoxContainer/DialogueContainer/End
+onready var text = $TextBoxContainer/DialogueContainer/HBoxContainer/Text
 
 # Keep track of what state the text box is currently in
 enum State {
@@ -16,7 +16,7 @@ enum State {
 
 var current_state = State.READY
 var text_queue = []
-
+signal user_action
 
 func _ready():
 	hide_textbox()
@@ -30,30 +30,33 @@ func _process(_delta):
 				if text_queue[0] == "IDE":
 					text_queue.pop_front()
 					set_IDE_pos()
+					emit_signal("user_action")
 				elif text_queue[0] == "CODE_BLOCK":
 					text_queue.pop_front()
 					set_codeblock_pos()
+					emit_signal("user_action")
 				elif text_queue[0] == "DEFAULT":
 					text_queue.pop_front()
 					set_default_pos()
+					emit_signal("user_action")
 				# Display text from queue
 				else:
 					display_text()
 					change_state(State.READING)
 		State.READING:
-			# Press enter to display all text right away
-			if Input.is_action_just_pressed("ui_accept"):
+			# Press space to display all text right away
+			if Input.is_action_just_pressed("ui_select"):
 				text.percent_visible = 1.0
 				$Tween.remove_all()
-				end_symbol.text = "v"
+				end_symbol.text = "(Press SPACEBAR to continue)"
 				change_state(State.END)
 		State.END:
-			# Press enter to hide textbox
-			if Input.is_action_just_pressed("ui_accept"):
+			if Input.is_action_just_pressed("ui_select"):
 				end_symbol.text = ""
 				if text_queue.empty():
 					hide_textbox()
 				change_state(State.READY)
+				emit_signal("user_action")
 
 
 func queue_text(dialogue):
@@ -86,7 +89,7 @@ func display_text():
 
 
 func _on_Tween_tween_all_completed():
-	end_symbol.text = "v"
+	end_symbol.text = "(Press SPACEBAR to continue)"
 	change_state(State.END)
 
 
@@ -100,10 +103,12 @@ func set_default_pos():
 
 
 func set_codeblock_pos():
-	textbox_container.rect_position = Vector2(300, 600)
-	textbox_container.rect_size = Vector2(1010, 300)
+	textbox_container.rect_position = Vector2(250, 650)
+	textbox_container.rect_size = Vector2(500, 300)
+	textbox_container.rect_scale = Vector2(0.8, 0.8)
 
 
 func set_IDE_pos():
-	textbox_container.rect_position = Vector2(300, 100)
-	textbox_container.rect_size = Vector2(1010, 300)
+	textbox_container.rect_position = Vector2(120, 100)
+	textbox_container.rect_size = Vector2(500, 300)
+	textbox_container.rect_scale = Vector2(0.8, 0.8)

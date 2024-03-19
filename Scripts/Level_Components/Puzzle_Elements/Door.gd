@@ -11,7 +11,7 @@ var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
 
 
 func _ready():
-	pass 
+	$Highlight.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

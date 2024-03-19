@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Level_Components/TextBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Forward.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/CodeBlockBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=11]
@@ -32,6 +33,17 @@ script = ExtResource( 15 )
 
 [node name="Counter" parent="IDE/Main" index="4"]
 maxBlocks = 4
+
+[node name="IDE_Arrow" type="Sprite" parent="IDE"]
+position = Vector2( -104, 200 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+
+[node name="Run_Arrow" type="Sprite" parent="IDE"]
+position = Vector2( 234, 614 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 10 )]
 
