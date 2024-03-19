@@ -4,10 +4,12 @@ var dialogue_queue = []
 
 var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",
 					  "HIGHLIGHT_RUN": "IDE/Run_Arrow",
+					  "HIGHLIGHT_FUNCTION_BLOCK": "IDE/F1_Arrow",
 					  "HIGHLIGHT_FORWARD": "CodeBlockBar/Forward/CodeBlock/Highlight",
 					  "HIGHLIGHT_INTERACT": "CodeBlockBar/Interact/CodeBlock/Highlight",
 					  "HIGHLIGHT_ROTATE_LEFT": "CodeBlockBar/RotateLeft/CodeBlock/Highlight",
 					  "HIGHLIGHT_ROTATE_RIGHT": "CodeBlockBar/RotateRight/CodeBlock/Highlight",
+					  "HIGHLIGHT_CALL_F1": "CodeBlockBar/Call_F1/CodeBlock/Highlight",
 					  "HIGHLIGHT_BUTTON": "Grid/Button/Highlight",
 					  "HIGHLIGHT_DOOR": "Grid/Door/Highlight",
 					  "HIGHLIGHT_OBSTACLE": "Grid/Obstacle/Highlight"}
@@ -80,7 +82,13 @@ func fba_children_check(FBA, block_names_arr):
 	var passed_check = true
 	
 	for i in range(0, code_blocks.size()):
-		if code_blocks[i].name.rstrip("0123456789") != block_names_arr[i]:
+		var name = code_blocks[i].name
+		
+		if name.begins_with("Call"):
+			if name.begins_with("Call_F1") and block_names_arr[i] != "Call_F1":
+				passed_check = false
+				break
+		elif name.rstrip("0123456789") != block_names_arr[i]:
 			passed_check = false
 			break
 	

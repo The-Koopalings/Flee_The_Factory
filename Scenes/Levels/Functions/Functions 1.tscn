@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelClearedPopup.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scripts/Levels/Functions/Functions 1.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallFunction.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Level_Components/TextBox.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=16]
 
 [node name="Functions 1" type="Node2D"]
 script = ExtResource( 13 )
@@ -28,8 +30,6 @@ script = ExtResource( 13 )
 
 [node name="Button2" parent="Grid" instance=ExtResource( 2 )]
 
-[node name="Button3" parent="Grid" instance=ExtResource( 2 )]
-
 [node name="Door" parent="Grid" instance=ExtResource( 3 )]
 
 [node name="Level Control" parent="." instance=ExtResource( 6 )]
@@ -37,7 +37,7 @@ script = ExtResource( 13 )
 [node name="IDE" parent="." instance=ExtResource( 7 )]
 
 [node name="Counter" parent="IDE/Main" index="4"]
-maxBlocks = 3
+maxBlocks = 2
 
 [node name="F1" parent="IDE" instance=ExtResource( 8 )]
 margin_top = 513.0
@@ -45,6 +45,12 @@ margin_bottom = 788.0
 
 [node name="Counter" parent="IDE/F1" index="4"]
 maxBlocks = 3
+
+[node name="F1_Arrow" type="Sprite" parent="IDE"]
+position = Vector2( -106, 392 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 9 )]
 
@@ -57,9 +63,7 @@ position = Vector2( 0, -918 )
 
 [node name="AcceptDialog" parent="." instance=ExtResource( 12 )]
 
-[connection signal="interact" from="Grid/Robot" to="Grid/Button1" method="_on_Robot_interact"]
-[connection signal="interact" from="Grid/Robot" to="Grid/Button2" method="_on_Robot_interact"]
-[connection signal="interact" from="Grid/Robot" to="Grid/Button3" method="_on_Robot_interact"]
+[node name="TextBox" parent="." instance=ExtResource( 15 )]
 
 [editable path="IDE"]
 [editable path="IDE/Main"]

@@ -4,16 +4,18 @@ extends Node2D
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
 onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
-#onready var TextBox = get_node("TextBox")
+onready var TextBox = get_node("TextBox")
 signal levelComplete
+var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
 var btn_pressed = false
 
-#signal dialogue_progress
-#var progress_check = [false, false]
-#var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Interact"]]
+signal dialogue_progress
+var progress_check = []
+var progress_check_arr = []
+onready var progress_check_FBA = []
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -33,15 +35,20 @@ var robotStartOrientation = PEP.Orientation.DOWN
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
+	DialogueManager.add_dialogue(self, "Functions/Functions 2.txt")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if btn_pressed:
-		emit_signal("levelComplete")
-		$AcceptDialog.popup()
-		btn_pressed = false
+		emit_signal("dialogue_progress")
+		
+		if level_win:
+			emit_signal("levelComplete")
+			$AcceptDialog.popup()
+			level_win = false
 
 
 func _on_Button_buttonPressed(name):
 	btn_pressed = true
+	level_win = true
