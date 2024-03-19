@@ -21,6 +21,7 @@ var TileToTypeMapping = {
 	'B': "Button",
 	'D': "Door",
 	'V': "Virus",
+	'K': "Key",
 }
 
 enum Orientation{
@@ -143,6 +144,8 @@ func init_elements():
 #			tileCount += 1
 			colIndex += 1
 		rowIndex += 1
+	puzzleElements = generate_elements_dict()
+	
 
 #Helper function of init_elements. Creates dict to track all available elements
 func generate_elements_dict():
@@ -158,6 +161,10 @@ func generate_elements_dict():
 	for node in nodes:
 		#Get the name, but remove all digits from the end
 		var type = node.name.rstrip("0123456789") 
+		#For keys, remove the letter at the end too
+		if type.substr(0, 3) == "Key":
+			type = type.rstrip("RGBrgb")
+			
 		if type == "Robot":
 			robot = node
 			

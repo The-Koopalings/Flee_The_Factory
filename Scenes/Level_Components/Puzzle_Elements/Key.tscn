@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Placeholders/Red_Key.PNG" type="Texture" id=1]
+[ext_resource path="res://Assets/Objects/Red_Key.PNG" type="Texture" id=1]
+[ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/Key.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
-[node name="Key" type="Area2D"]
+[node name="KeyR" type="Area2D"]
+script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": "Use factors of 48 to center an object's position on a tile"
 }

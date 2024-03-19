@@ -1,31 +1,68 @@
 extends ColorRect
 
-#Stack = 0, 1 = Queue, 2 = Array
-export var type = 0
-# Called when the node enters the scene tree for the first time.
+#First character of the Level's Node2D name, "S" = Stack, "Q" = Queue, "A" = Array
+var type
+onready var Robot = get_node("../Grid/Robot")
+onready var Grid = get_node("../Grid")
+
 func _ready():
+	type = get_node("..").name.substr(0,1)
+	initialize_inventory()
+	
+
+func initialize_inventory():
 	match type:
-		0:
+		"S":
 			$ReferenceRect.set_border_color(Color(1, 0, 0)) #Red
 			$Line2D.set_default_color(Color(1, 0, 0))
 			$Line2D2.set_default_color(Color(1, 0, 0))
 			$Line2D3.set_default_color(Color(1, 0, 0))
 			$Line2D4.set_default_color(Color(1, 0, 0))
-		1:
+		"Q":
 			$ReferenceRect.set_border_color(Color(0, 1, 0)) #Green
 			$Line2D.set_default_color(Color(0, 1, 0))
 			$Line2D2.set_default_color(Color(0, 1, 0))
 			$Line2D3.set_default_color(Color(0, 1, 0))
 			$Line2D4.set_default_color(Color(0, 1, 0))
-		2:
+		"A":
 			$ReferenceRect.set_border_color(Color(0, 0, 1)) #Blue
 			$Line2D.set_default_color(Color(0, 0, 1))
 			$Line2D2.set_default_color(Color(0, 0, 1))
 			$Line2D3.set_default_color(Color(0, 0, 1))
 			$Line2D4.set_default_color(Color(0, 0, 1))
+	
 
+func on_pickup(slotNum: int):
+	var letter = PEP.tiles[Robot.tileY][Robot.tileX]
+	if letter.find('R') != -1:
+		letter.erase(letter.find('R'), 1)
+	
+	if letter == 'K':
+		for key in PEP.puzzleElements["Key"]:
+			if key.tileX == Robot.tileX and key.tileY == Robot.tileY:
+				move_to_inventory(key, slotNum) #Move to first available slot
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+func move_to_inventory(item, slotNum):
+	#For Queue or Stack, find the next available slot & add item into it, shouldn't pick up anything if inventory is full
+	if slotNum == -1:
+		var itemSlots = $ItemSlots.get_children()
+		for itemSlot in itemSlots:
+			if itemSlot.get_child_count() == 0:
+				itemSlot.text = ""
+				Grid.remove_child(item)
+				itemSlot.add_child(item)
+				item.global_position = itemSlot.get_global_position() + Vector2(48, 48)
+				item.z_index = 99
+				break
+	#For Array, add item into specified slot, replaces existing item in the specified slot if there is one
+	else:
+		var itemSlot = get_node("ItemSlots/ItemSlot" + str(slotNum))
+		itemSlot.text = ""
+		Grid.remove_child(item)
+		if itemSlot.get_child_count() != 0:
+			itemSlot.get_child(0).queue_free()
+			
+		itemSlot.add_child(item)
+		item.global_position = itemSlot.get_global_position() + Vector2(48, 48)
+		item.z_index = 99
