@@ -31,7 +31,7 @@ func initialize_inventory():
 			$Line2D3.set_default_color(Color(0, 0, 1))
 			$Line2D4.set_default_color(Color(0, 0, 1))
 	
-
+#NOTE: remember to remove the key that's moved into the inventory from the PEP.puzzleElements["Key"] dict
 func on_pickup(slotNum: int):
 	var letter = PEP.tiles[Robot.tileY][Robot.tileX]
 	if letter.find('R') != -1:
@@ -54,6 +54,7 @@ func move_to_inventory(item, slotNum):
 				itemSlot.add_child(item)
 				item.global_position = itemSlot.get_global_position() + Vector2(48, 48)
 				item.z_index = 99
+				PEP.puzzleElements["Key"].erase(item)
 				break
 	#For Array, add item into specified slot, replaces existing item in the specified slot if there is one
 	else:
@@ -66,6 +67,7 @@ func move_to_inventory(item, slotNum):
 		itemSlot.add_child(item)
 		item.global_position = itemSlot.get_global_position() + Vector2(48, 48)
 		item.z_index = 99
+		PEP.puzzleElements["Key"].erase(item)
 	
 
 func on_useItem():

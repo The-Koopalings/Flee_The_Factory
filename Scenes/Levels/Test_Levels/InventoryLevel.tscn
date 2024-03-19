@@ -268,7 +268,7 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[node name="A Inventory Level" type="Node2D"]
+[node name="S Inventory Level" type="Node2D"]
 script = ExtResource( 12 )
 
 [node name="Inventory" parent="." instance=ExtResource( 30 )]
