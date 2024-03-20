@@ -17,10 +17,10 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateLeft.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scripts/Levels/Recursion/2 - RecursiveLoops.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/Levels/Recursion/100 - MegaBigRecursion.gd" type="Script" id=18]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=19]
 
-[node name="2 - RecursiveLoops" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource( 18 )
 
 [node name="Grid" parent="." instance=ExtResource( 17 )]

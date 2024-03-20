@@ -20,7 +20,7 @@ var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['R',' ','V',' ','V',' ','V',' ','B',' ','D'],
+	['R',' ','V',' ','V',' ','B',' ','V',' ','D'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
@@ -47,5 +47,4 @@ func _on_Button_buttonPressed(name):
 	print("SIGNAL")
 	match name:
 		"Button1":
-			print("NAMEMATCH")
 			B1_Pressed = true

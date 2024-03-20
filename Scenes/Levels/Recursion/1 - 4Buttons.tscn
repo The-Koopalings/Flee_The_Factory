@@ -16,9 +16,9 @@
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallFunction.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scripts/Levels/Recursion/0 - Intro.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/Levels/Recursion/1 - 4Buttons.gd" type="Script" id=17]
 
-[node name="0 - Intro" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource( 17 )
 
 [node name="Grid" parent="." instance=ExtResource( 4 )]
