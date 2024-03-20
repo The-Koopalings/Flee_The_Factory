@@ -98,7 +98,7 @@ func change_state(state):
 
 
 func set_default_pos():
-	textbox_container.rect_position = Vector2(150, 740)
+	textbox_container.rect_position = Vector2(150, 745)
 	textbox_container.rect_size = Vector2(1620, 300)
 
 

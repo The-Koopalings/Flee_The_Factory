@@ -18,12 +18,12 @@ var B0_Pressed = false
 #Useful for easier editing of levels and for level editors in the future
 #2D array
 var tiles = [
-	[' ','O',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
 	[' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' '],
 	[' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' '],
 	['R','B',' ',' ',' ',' ','D',' ',' ',' ',' '],
-	['K',' ','K','K',' ',' ',' ',' ',' ',' ',' '],
-	['D',' ','D','D',' ',' ',' ',' ',' ',' ',' '],
+	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
+	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
 	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
 ]
 var robotStartOrientation = PEP.Orientation.DOWN
@@ -33,6 +33,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
+	PEP.init_inventory()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

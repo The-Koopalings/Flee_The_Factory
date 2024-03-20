@@ -204,6 +204,8 @@ func check_conditions():
 			var object = Robot.get_object_in_direction(dir)
 			if object:
 				objectName = object.name.rstrip("0123456789")
+				if objectName.substr(0, 3) == "Key":
+					objectName = objectName.rstrip("RGBrgb")
 			if objectName == "Obstacle" or is_wall(dir):
 				objectName = "Blocked"
 		elif LHSLabel.text == "Tile":

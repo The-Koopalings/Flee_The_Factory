@@ -6,10 +6,12 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 40 )
 
-[node name="Door" type="Area2D"]
+[node name="Door" type="StaticBody2D"]
 script = ExtResource( 1 )
 __meta__ = {
-"_editor_description_": "Use factors of 48 to center an object's position on a tile"
+"_editor_description_": "Like Key, will be added in order of appearance in scene tree, & color is denoted by the 5th letter/4th index using R, G, or B. Colored doors can be unlocked with keys.
+
+Use factors of 48 to center an object's position on a tile"
 }
 
 [node name="Sprite" type="Sprite" parent="."]
