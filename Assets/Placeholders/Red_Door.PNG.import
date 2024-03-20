@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Blue_Key.PNG-726a6152738b048f418f1cc9cecb40bb.stex"
+path="res://.import/Red_Door.PNG-29fdd35095a135a64ed7a77731c616cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Objects/Blue_Key.PNG"
-dest_files=[ "res://.import/Blue_Key.PNG-726a6152738b048f418f1cc9cecb40bb.stex" ]
+source_file="res://Assets/Placeholders/Red_Door.PNG"
+dest_files=[ "res://.import/Red_Door.PNG-29fdd35095a135a64ed7a77731c616cb.stex" ]
 
 [params]
 

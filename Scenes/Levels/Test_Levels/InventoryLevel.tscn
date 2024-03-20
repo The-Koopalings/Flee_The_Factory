@@ -268,7 +268,7 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[node name="S Inventory Level" type="Node2D"]
+[node name="Inventory Level S" type="Node2D"]
 script = ExtResource( 12 )
 
 [node name="Inventory" parent="." instance=ExtResource( 30 )]
@@ -276,6 +276,9 @@ margin_left = 865.0
 margin_top = 43.0
 margin_right = 1345.0
 margin_bottom = 139.0
+__meta__ = {
+"_editor_description_": "For variable type: S = Stack, Q = Queue, A = Array"
+}
 
 [node name="Grid" parent="." instance=ExtResource( 1 )]
 
@@ -303,6 +306,12 @@ Use factors of 48 to center an object's position on a tile"
 [node name="KeyB" parent="Grid" instance=ExtResource( 31 )]
 
 [node name="KeyG" parent="Grid" instance=ExtResource( 31 )]
+
+[node name="DoorR" parent="Grid" instance=ExtResource( 13 )]
+
+[node name="DoorB" parent="Grid" instance=ExtResource( 13 )]
+
+[node name="DoorG" parent="Grid" instance=ExtResource( 13 )]
 
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 

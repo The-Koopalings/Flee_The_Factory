@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Red_Key.PNG-6e871a8a202d11c796c530aefc41d388.stex"
+path="res://.import/Red_Key.PNG-4adc1440988a0ea450244f090d3b834f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Objects/Red_Key.PNG"
-dest_files=[ "res://.import/Red_Key.PNG-6e871a8a202d11c796c530aefc41d388.stex" ]
+source_file="res://Assets/Placeholders/Red_Key.PNG"
+dest_files=[ "res://.import/Red_Key.PNG-4adc1440988a0ea450244f090d3b834f.stex" ]
 
 [params]
 

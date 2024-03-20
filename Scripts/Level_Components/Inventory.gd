@@ -1,16 +1,17 @@
 extends ColorRect
 
-#First character of the Level's Node2D name, "S" = Stack, "Q" = Queue, "A" = Array
+#Last character of the Level's Node2D name, "S" = Stack, "Q" = Queue, "A" = Array
 var type
 onready var Robot = get_node("../Grid/Robot")
 onready var Grid = get_node("../Grid")
 
 func _ready():
-	type = get_node("..").name.substr(0,1)
 	initialize_inventory()
 	
 
 func initialize_inventory():
+	var levelName = get_node("..").name
+	type = levelName.substr(levelName.length() - 1, 1)
 	match type:
 		"S":
 			$ReferenceRect.set_border_color(Color(1, 0, 0)) #Red
@@ -31,7 +32,7 @@ func initialize_inventory():
 			$Line2D3.set_default_color(Color(0, 0, 1))
 			$Line2D4.set_default_color(Color(0, 0, 1))
 	
-#NOTE: remember to remove the key that's moved into the inventory from the PEP.puzzleElements["Key"] dict
+
 func on_pickup(slotNum: int):
 	var letter = PEP.tiles[Robot.tileY][Robot.tileX]
 	if letter.find('R') != -1:

@@ -162,8 +162,8 @@ func generate_elements_dict():
 		#Get the name, but remove all digits from the end
 		var type = node.name.rstrip("0123456789") 
 		#For keys, remove the letter at the end too
-		if type.substr(0, 3) == "Key":
-			type = type.rstrip("RGBrgb")
+		if type.substr(0, 3) == "Key" or type.substr(0, 4) == "Door":
+			type = type.rstrip("RGB")
 			
 		if type == "Robot":
 			robot = node
