@@ -71,5 +71,42 @@ func move_to_inventory(item, slotNum):
 		PEP.puzzleElements["Key"].erase(item)
 	
 
-func on_useItem():
-	pass
+#Only functional for using keys on doors right now
+func on_useItem(slotNum):
+	var item
+	var itemSlot
+	var object = Robot.get_object_in_direction(Robot.get_direction("Front"))
+	#No object in front, the object isn't a door, or it is a non-colored door, then stop function
+	if !object or object.name.substr(0, 4) != "Door" or object.name.rstrip("0123456789").length() <= 4:
+		return
+	
+	#LIFO Stack
+	if type == "S":
+		var itemSlots = get_node("ItemSlots").get_children()
+		for i in range(4, -1, -1):	
+			itemSlot = itemSlots.pop_back()
+			item = itemSlot.get_child(0)
+			if !item:
+				continue
+			elif item and item.name.substr(3, 1) == object.name.substr(4, 1):
+				item.queue_free()
+				object.queue_free()
+				itemSlot.text = str(i)
+			break #stops loop once an item is found 
+	#FIFO Queue
+	elif type == "Q":
+		itemSlot = get_node("ItemSlots/ItemSlot0")
+		item = itemSlot.get_child(0)
+		if item and item.name.substr(3, 1) == object.name.substr(4, 1):
+			pass
+	#Array
+	elif type == "A":
+		itemSlot = get_node("ItemSlots/ItemSlot" + str(slotNum))
+		item = itemSlot.get_child(0)
+		#If the key is the same color as the door, then queue_free the door & key
+		if item and item.name.substr(3, 1) == object.name.substr(4, 1):
+			item.queue_free()
+			object.queue_free()
+			itemSlot.text = str(slotNum)
+	
+

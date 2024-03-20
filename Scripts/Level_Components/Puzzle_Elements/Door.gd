@@ -34,10 +34,6 @@ func set_color():
 			$Sprite.set_scale(Vector2(0.25,0.25))
 	
 
-func open_door():
-	self.queue_free()
-	
-
 func _on_level_levelComplete():
 	$Sprite.set_texture(openDoorTexture)
 	
