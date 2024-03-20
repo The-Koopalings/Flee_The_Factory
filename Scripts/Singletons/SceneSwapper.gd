@@ -6,7 +6,10 @@ var scene_path = {"Credits": "res://Scenes/Credits/Credits.tscn",
 				  "Functions Select": "res://Scenes/Stage_Select/FunctionsSelect.tscn",
 				  "Recursion Select": "res://Scenes/Stage_Select/RecursionSelect.tscn",
 				  "Control Flow Select": "res://Scenes/Stage_Select/ControlFlowSelect.tscn",
-				  "Data Structures Select": "res://Scenes/Stage_Select/DataStructuresSelect.tscn"}
+				  "Data Structures Select": "res://Scenes/Stage_Select/DataStructuresSelect.tscn",
+				  "Func 1": "res://Scenes/Levels/Functions/1 - Functions Intro.tscn",
+				  "Func 2": "res://Scenes/Levels/Functions/2 - L Shape.tscn",
+				  "Func 3": "res://Scenes/Levels/Functions/3 - Multi Func Intro.tscn"}
 
 var current_scene = null
 
