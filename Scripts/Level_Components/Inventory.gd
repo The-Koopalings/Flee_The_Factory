@@ -92,13 +92,21 @@ func on_useItem(slotNum):
 				item.queue_free()
 				object.queue_free()
 				itemSlot.text = str(i)
-			break #stops loop once an item is found 
+			#Stops loop once an item is found 
+			break 
 	#FIFO Queue
 	elif type == "Q":
 		itemSlot = get_node("ItemSlots/ItemSlot0")
 		item = itemSlot.get_child(0)
 		if item and item.name.substr(3, 1) == object.name.substr(4, 1):
-			pass
+			item.queue_free()
+			object.queue_free()
+			#Shift all items left 1 slot if there are any left in Inventory
+			if get_node("ItemSlots/ItemSlot1").get_child_count() != 0:
+				shift_items_left()
+			else:
+				itemSlot.text = "0"
+			
 	#Array
 	elif type == "A":
 		itemSlot = get_node("ItemSlots/ItemSlot" + str(slotNum))
@@ -110,3 +118,19 @@ func on_useItem(slotNum):
 			itemSlot.text = str(slotNum)
 	
 
+#Shift items 1 slot left
+func shift_items_left():
+	var itemSlots = get_node("ItemSlots").get_children()
+	var itemSlot
+	var item
+	for i in range(1, 5):
+		itemSlot = itemSlots[i]
+		item = itemSlot.get_child(0)
+		#Stops loop once there are no more items to shift
+		if !item:
+			break
+		else:
+			itemSlot.remove_child(item)
+			itemSlot.text = str(i)
+			itemSlots[i-1].add_child(item)
+	
