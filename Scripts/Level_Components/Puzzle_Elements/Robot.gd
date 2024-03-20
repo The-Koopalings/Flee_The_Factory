@@ -27,7 +27,7 @@ onready var ray = $RayCast2D
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 
 func _ready():
-	pass
+	$Highlight.visible = true
 	
 #Event handler for movement via keyboard	
 func _unhandled_input(event):
@@ -72,14 +72,28 @@ func _on_Forward_forwardSignal():
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
 	$Sprite.rotation -= PI/2
+	move_highlight()
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
 	$Sprite.rotation += PI/2
+	move_highlight()
 
 #Interact
 func _on_Interact_interactSignal():
 	emit_signal("interact", tileX, tileY)
+	
+
+func move_highlight():
+	var dir = get_direction()
+	if dir == "ui_up":
+		$Highlight.set_position(Vector2(-48, -144))
+	elif dir == "ui_left":
+		$Highlight.set_position(Vector2(-144, -48))
+	elif dir == "ui_down":
+		$Highlight.set_position(Vector2(-48, 48))
+	elif dir == "ui_right":
+		$Highlight.set_position(Vector2(48, -48)) 
 	
 
 #fromWhere can be "Front", "Back", "Left", or "Right"

@@ -21,6 +21,7 @@ var TileToTypeMapping = {
 	'B': "Button",
 	'D': "Door",
 	'V': "Virus",
+	'K': "Key",
 }
 
 enum Orientation{
@@ -126,6 +127,7 @@ func init_elements():
 					#If it's a special element, do special thing to it
 					if type == "Robot":
 						node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+						node.move_highlight()
 						GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
@@ -143,6 +145,8 @@ func init_elements():
 #			tileCount += 1
 			colIndex += 1
 		rowIndex += 1
+	puzzleElements = generate_elements_dict()
+	
 
 #Helper function of init_elements. Creates dict to track all available elements
 func generate_elements_dict():
@@ -158,6 +162,10 @@ func generate_elements_dict():
 	for node in nodes:
 		#Get the name, but remove all digits from the end
 		var type = node.name.rstrip("0123456789") 
+		#For keys, remove the letter at the end too
+		if type.substr(0, 3) == "Key" or type.substr(0, 4) == "Door":
+			type = type.rstrip("RGB")
+			
 		if type == "Robot":
 			robot = node
 			
@@ -222,6 +230,11 @@ func init_IDE():
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
 	
+
+func init_inventory():
+	level.get_node("Inventory").set_position(Vector2(865, 43))
+	
+
 #Get path to a node that's a relative to an ancestor of the current node
 func get_path_to_grandpibling(node, target):
 	var path = ""
