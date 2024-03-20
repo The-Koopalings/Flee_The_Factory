@@ -229,6 +229,11 @@ func init_IDE():
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
 	
+
+func init_inventory():
+	level.get_node("Inventory").set_position(Vector2(865, 43))
+	
+
 #Get path to a node that's a relative to an ancestor of the current node
 func get_path_to_grandpibling(node, target):
 	var path = ""
