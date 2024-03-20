@@ -33,7 +33,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Tutorial/Tutorial 1.txt")
+	DialogueManager.add_dialogue(self, "Tutorial/1 - Game Intro.txt")
 	
 	$IDE/IDE_Arrow.visible = false
 	$IDE/Run_Arrow.visible = false

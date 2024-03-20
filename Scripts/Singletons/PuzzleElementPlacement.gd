@@ -212,8 +212,8 @@ func init_IDE():
 	for child in IDE.get_children():
 		var type = child.name.rstrip("1234567890")
 		
-		#Ignore the Run Button
-		if type == "Run_Button":
+		#Ignore the Run Button and Arrow Highlights
+		if type == "Run_Button" or type.find("Arrow") != -1:
 			continue
 			
 		#Check if we need to add RHS options
