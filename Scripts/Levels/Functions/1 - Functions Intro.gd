@@ -10,24 +10,25 @@ var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
+onready var F1_FBA = get_node("IDE/F1/FunctionBlockArea")
+
 var b1_pressed = false
 var b2_pressed = false
-var b3_pressed = false
 
 signal dialogue_progress
-var progress_check = [false, false]
-var progress_check_arr = [["Forward", "Forward", "Forward", "Interact"], ["RotateRight", "Forward", "Forward", "RotateLeft"]]
-onready var progress_check_FBA = [$IDE/F1/FunctionBlockArea, $IDE/F2/FunctionBlockArea]
+var progress_check = [false, false, false]
+var progress_check_arr = [["Forward", "Forward", "Interact"], ["Call_F1"], ["Call_F1", "Call_F1"]]
+onready var progress_check_FBA = [F1_FBA, MainFBA, MainFBA]
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['R',' ',' ','B','X','X','X','X','X','X','X'],
-	['X','X','X',' ','X','X','X','X','X','X','X'],
-	['X','X','X',' ',' ',' ','B','X','X','X','X'],
-	['X','X','X','X','X','X',' ','X','X','X','X'],
-	['X','X','X','X','X','X',' ',' ',' ','B','D'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','R',' ','B',' ','B',' ','D','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.RIGHT
@@ -37,14 +38,16 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Functions/Functions 3.txt")
+	DialogueManager.add_dialogue(self, "Functions/1 - Functions Intro.txt")
+	
+	$IDE/F1_Arrow.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	DialogueManager.dialogue_progress_check(self)
 	
-	if b1_pressed and b2_pressed and b3_pressed:
+	if b1_pressed and b2_pressed:
 		emit_signal("dialogue_progress")
 		
 		if level_win:
@@ -60,8 +63,6 @@ func _on_Button_buttonPressed(name):
 			b1_pressed = true
 		"Button2":
 			b2_pressed = true
-		"Button3":
-			b3_pressed = true
 	
-	if b1_pressed and b2_pressed and b3_pressed:
+	if b1_pressed and b2_pressed:
 		level_win = true

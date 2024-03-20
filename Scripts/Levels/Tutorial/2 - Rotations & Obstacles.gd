@@ -34,7 +34,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Tutorial/Tutorial 2.txt")
+	DialogueManager.add_dialogue(self, "Tutorial/2 - Rotations & Obstacles.txt")
 
 
 func _process(delta):

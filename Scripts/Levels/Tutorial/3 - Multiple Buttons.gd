@@ -1,5 +1,6 @@
 extends Node2D
 
+
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
@@ -14,34 +15,29 @@ var b1_pressed = false
 var b2_pressed = false
 
 signal dialogue_progress
-var progress_check = [false, false, false]
-var progress_check_arr = [["Forward", "Forward", "Interact"], ["Call_F1"], ["Call_F1", "Call_F1"]]
-onready var progress_check_FBA = [$IDE/F1/FunctionBlockArea, MainFBA, MainFBA]
+var progress_check = [false]
+var progress_check_arr = [["Forward", "Forward", "Interact"]]
+onready var progress_check_FBA = [MainFBA]
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','R',' ','B',' ','B',' ','D','X','X'],
-	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','R','O','D','X','X','X','X'],
+	['X','X','X','X',' ','O','B','X','X','X','X'],
+	['X','X','X','X','B',' ',' ','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
-var robotStartOrientation = PEP.Orientation.RIGHT
+var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Functions/Functions 1.txt")
-	
-	$IDE/F1_Arrow.visible = false
+	DialogueManager.add_dialogue(self, "Tutorial/3 - Multiple Buttons.txt")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	DialogueManager.dialogue_progress_check(self)
 	
@@ -53,7 +49,6 @@ func _process(delta):
 			$AcceptDialog.popup()
 			level_win = false
 
-
 #Handles all button presses
 func _on_Button_buttonPressed(name):
 	match name:
@@ -64,3 +59,4 @@ func _on_Button_buttonPressed(name):
 	
 	if b1_pressed and b2_pressed:
 		level_win = true
+
