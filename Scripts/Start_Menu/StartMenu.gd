@@ -1,4 +1,4 @@
-extends TextureButton
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -17,4 +17,12 @@ func _ready():
 
 
 func _on_StartButton_pressed():
-	get_tree().change_scene("res://Scenes/Stage_Select/StageSelect.tscn")
+	SceneSwapper.change_scene("Stage Select")
+
+
+func _on_ExitButton_pressed():
+	get_tree().quit()
+
+
+func _on_CreditsButton_pressed():
+	SceneSwapper.change_scene("Credits")

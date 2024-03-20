@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Miscalleous/button.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Backgrounds/starterconcept.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=3]
-[ext_resource path="res://Scripts/Start_Menu/CreditsButton.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Start_Menu/StartButton.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Start_Menu/ExitButton.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Start_Menu/StartMenu.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 200
@@ -17,6 +15,7 @@ extra_spacing_top = -5
 font_data = ExtResource( 3 )
 
 [node name="StartMenu" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="Title" type="Label" parent="."]
 anchor_left = 0.5
@@ -39,7 +38,6 @@ margin_bottom = 512.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 stretch_mode = 3
-script = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="StartButton"]
 anchor_bottom = 1.0
@@ -56,7 +54,6 @@ margin_bottom = 731.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 stretch_mode = 3
-script = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="ExitButton"]
 anchor_bottom = 1.0
@@ -73,7 +70,6 @@ margin_bottom = 981.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 stretch_mode = 3
-script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="CreditsButton"]
 anchor_bottom = 1.0
@@ -87,6 +83,6 @@ position = Vector2( 961, 544 )
 z_index = -97
 texture = ExtResource( 2 )
 
-[connection signal="pressed" from="StartButton" to="StartButton" method="_on_StartButton_pressed"]
-[connection signal="pressed" from="ExitButton" to="ExitButton" method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="CreditsButton" to="CreditsButton" method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_CreditsButton_pressed"]
