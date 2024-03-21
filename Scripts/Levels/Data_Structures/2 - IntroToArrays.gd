@@ -22,13 +22,13 @@ onready var progress_check_FBA = [MainFBA, MainFBA]
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','X','R','O',' ','X','X','X','X'],
-	['X','X','X','X','K','O',' ','X','X','X','X'],
-	['X','X','X','X','D','B','D','X','X','X','X'],
+	['X','X','X','R','K','K','O',' ','X','X','X'],
+	['X','X','X',' ',' ','D','D',' ','X','X','X'],
+	['X','X','X',' ',' ','O','B','D','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
-var robotStartOrientation = PEP.Orientation.DOWN
+var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
