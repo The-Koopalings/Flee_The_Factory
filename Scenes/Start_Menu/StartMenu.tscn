@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Miscalleous/button.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Backgrounds/starterconcept.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Backgrounds/finalbgbutbigger.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scripts/Start_Menu/StartMenu.gd" type="Script" id=7]
 
@@ -31,10 +31,11 @@ text = "Flee the Factory"
 align = 1
 
 [node name="StartButton" type="TextureButton" parent="."]
-margin_left = 542.0
+margin_left = 620.0
 margin_top = 360.0
-margin_right = 1357.0
+margin_right = 1435.0
 margin_bottom = 512.0
+rect_scale = Vector2( 0.8, 0.8 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 stretch_mode = 3
@@ -47,10 +48,11 @@ text = "Start"
 align = 1
 
 [node name="ExitButton" type="TextureButton" parent="."]
-margin_left = 542.0
+margin_left = 620.0
 margin_top = 582.0
-margin_right = 1357.0
-margin_bottom = 731.0
+margin_right = 1435.0
+margin_bottom = 734.0
+rect_scale = Vector2( 0.8, 0.8 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 stretch_mode = 3
@@ -63,10 +65,11 @@ text = "Exit"
 align = 1
 
 [node name="CreditsButton" type="TextureButton" parent="."]
-margin_left = 543.0
+margin_left = 620.0
 margin_top = 829.0
-margin_right = 1358.0
+margin_right = 1435.0
 margin_bottom = 981.0
+rect_scale = Vector2( 0.8, 0.8 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 stretch_mode = 3
