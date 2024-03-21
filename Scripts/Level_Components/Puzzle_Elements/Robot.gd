@@ -37,16 +37,14 @@ func _unhandled_input(event):
 
 # Controls movement of the robot
 func move(dir):
-	var vector_position = inputs[dir] * (tile_size - 1)
-	print(dir) 
-	print(vector_position)
+	var vector_position = inputs[dir] * tile_size
 	
 	# Check if there is an obstacle in the direction of the robot's movement
 	ray.set_collide_with_areas(false)
 	ray.position = Vector2(0, 0)
 	ray.cast_to = vector_position
 	ray.force_raycast_update()
-	print(ray.get_collider())
+	
 	if !ray.is_colliding():
 		position += vector_position
 		

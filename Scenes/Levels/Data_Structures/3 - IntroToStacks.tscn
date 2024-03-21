@@ -16,7 +16,7 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scripts/Levels/Data_Structures/3 - IntroToStacks.gd" type="Script" id=15]
 
-[node name="1 - Intro to Stacks S" type="Node2D"]
+[node name="3 - Intro to Stacks S" type="Node2D"]
 script = ExtResource( 15 )
 
 [node name="Inventory" parent="." instance=ExtResource( 10 )]

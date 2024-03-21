@@ -3,47 +3,52 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
+onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var TextBox = get_node("TextBox")
 signal levelComplete
+var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
-var B0_Pressed = false
+var btn_pressed = false
+
+signal dialogue_progress
+var progress_check = [false, false]    # So signal is only emitted the first time the check is passed
+var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Interact"]]
+onready var progress_check_FBA = [MainFBA, MainFBA]
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
-#Define what's on the grid
-#This is one array, read by tile, starting from the first tile of the first row and moving right.
-#Size of the grid is curently determined by the above variables, but probably should be determined by variables of the Grid scene
-#NOTE: This script assumes the children of Grid are placed in the order they will be read (left to right, top to bottom).
-#Useful for easier editing of levels and for level editors in the future
-#2D array
 var tiles = [
-	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
-	[' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' '],
-	[' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' '],
-	['R','B',' ',' ',' ',' ','D',' ',' ',' ',' '],
-	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
-	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
-	[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','R','O',' ','X','X','X','X'],
+	['X','X','X','X','K','O',' ','X','X','X','X'],
+	['X','X','X','X','D','B','D','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
-# Called when the node enters the scene tree for the first time.
-# Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	#Check win con
-	#If win con, then open door
-	if B0_Pressed == true:
-		emit_signal("levelComplete")
-		$AcceptDialog.popup()
-		B0_Pressed = false #So console doesn't get spammed at the end
+func _process(delta):
+	DialogueManager.dialogue_progress_check(self)
+	
+	if btn_pressed:
+		emit_signal("dialogue_progress")
 		
+		if level_win:
+			emit_signal("levelComplete")
+			$AcceptDialog.popup()
+			level_win = false
 
-func _on_Button_buttonPressed(_name):
-	B0_Pressed = true
+#Handles all button presses
+func _on_Button_buttonPressed(name):
+	btn_pressed = true
+	level_win = true
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=2]
@@ -15,8 +15,9 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelClearedPopup.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Level_Components/TextBox.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Key.tscn" type="PackedScene" id=16]
 
-[node name="3 - Intro to Arrays A" type="Node2D"]
+[node name="2 - Intro to Arrays A" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="Inventory" parent="." instance=ExtResource( 5 )]
@@ -28,6 +29,10 @@ script = ExtResource( 6 )
 [node name="Button1" parent="Grid" instance=ExtResource( 7 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 8 )]
+
+[node name="KeyR" parent="Grid" instance=ExtResource( 16 )]
+
+[node name="KeyG" parent="Grid" instance=ExtResource( 16 )]
 
 [node name="IDE" parent="." instance=ExtResource( 4 )]
 
