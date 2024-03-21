@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Placeholders/Koopa Troopa.jpg" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Placeholders/Buzzy Beetle.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Placeholders/Ludwig.jpg" type="Texture" id=5]
 [ext_resource path="res://Scripts/Stage_Select/StageSelect.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Backgrounds/finalbgbutbigger.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=2]
 size = 100
@@ -111,6 +112,11 @@ custom_fonts/font = SubResource( 2 )
 text = "Data Structures"
 align = 1
 valign = 1
+
+[node name="back" type="Sprite" parent="."]
+position = Vector2( 961, 544 )
+z_index = -97
+texture = ExtResource( 7 )
 
 [connection signal="pressed" from="FunctionsButton" to="." method="_on_FunctionsButton_pressed"]
 [connection signal="pressed" from="RecursionButton" to="." method="_on_RecursionButton_pressed"]
