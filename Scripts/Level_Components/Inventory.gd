@@ -14,18 +14,21 @@ func initialize_inventory():
 	type = levelName.substr(levelName.length() - 1, 1)
 	match type:
 		"S":
+			$Label.text = "Stack"
 			$ReferenceRect.set_border_color(Color(1, 0, 0)) #Red
 			$Line2D.set_default_color(Color(1, 0, 0))
 			$Line2D2.set_default_color(Color(1, 0, 0))
 			$Line2D3.set_default_color(Color(1, 0, 0))
 			$Line2D4.set_default_color(Color(1, 0, 0))
 		"Q":
+			$Label.text = "Queue"
 			$ReferenceRect.set_border_color(Color(0, 1, 0)) #Green
 			$Line2D.set_default_color(Color(0, 1, 0))
 			$Line2D2.set_default_color(Color(0, 1, 0))
 			$Line2D3.set_default_color(Color(0, 1, 0))
 			$Line2D4.set_default_color(Color(0, 1, 0))
 		"A":
+			$Label.text = "Array"
 			$ReferenceRect.set_border_color(Color(0, 0, 1)) #Blue
 			$Line2D.set_default_color(Color(0, 0, 1))
 			$Line2D2.set_default_color(Color(0, 0, 1))
