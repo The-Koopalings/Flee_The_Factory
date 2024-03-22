@@ -21,11 +21,11 @@ onready var progress_check_FBA = []
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','R','O',' ',' ',' ','X','X','X'],
-	['X','X','X','K','O','O','O',' ','X','X','X'],
-	['X','X','X','K','D','K','D','O','X','X','X'],
-	['X','X','X','O','O','O','D',' ','X','X','X'],
-	['X','X','X',' ',' ',' ','B','D','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','R','O','D','X','X','X','X'],
+	['X','X','X','X','K','O','B','X','X','X','X'],
+	['X','X','X','X','K','D','D','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
 var robotStartOrientation = PEP.Orientation.DOWN

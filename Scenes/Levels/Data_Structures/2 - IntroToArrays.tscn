@@ -46,6 +46,10 @@ script = ExtResource( 6 )
 
 [node name="Obstacle2" parent="Grid" instance=ExtResource( 17 )]
 
+[node name="Obstacle3" parent="Grid" instance=ExtResource( 17 )]
+
+[node name="Obstacle4" parent="Grid" instance=ExtResource( 17 )]
+
 [node name="IDE" parent="." instance=ExtResource( 4 )]
 
 [node name="Counter" parent="IDE/Main" index="4"]
