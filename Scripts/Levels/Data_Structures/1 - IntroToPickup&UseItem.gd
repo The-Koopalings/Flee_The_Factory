@@ -14,7 +14,7 @@ var btn_pressed = false
 
 signal dialogue_progress
 var progress_check = [false, false]    # So signal is only emitted the first time the check is passed
-var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Interact"]]
+var progress_check_arr = [["Forward", "Pickup"], ["Forward", "Pickup", "UseItem"]]
 onready var progress_check_FBA = [MainFBA, MainFBA]
 ##UNIQUE LEVEL VARIABLES
 
@@ -33,7 +33,9 @@ var robotStartOrientation = PEP.Orientation.DOWN
 
 func _ready():
 	PEP.loadLevel(self)
+	DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToPickup&UseItem.txt")
 	PEP.init_inventory()
+	$Inventory/Inventory_Arrow.visible = false
 	
 
 func _process(delta):
