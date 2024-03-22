@@ -14,7 +14,7 @@ func _ready():
 func connect_to_LoopBlock():
 	var status = 0
 	
-	if get_parent().name == "CodeBlockBar":
+	if get_parent() and get_parent().name == "CodeBlockBar":
 		loopBlockName = name.trim_prefix("Call_")
 	else:
 		loopBlockName = name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
@@ -22,13 +22,17 @@ func connect_to_LoopBlock():
 	loopBlockNumber = loopBlockName.trim_prefix("Loop")
 
 	var loopBlockNode = get_node(PEP.get_path_to_grandpibling(self, "IDE/" + loopBlockName)) 
-	status = loopBlockNode.connect("ChosenLoop", self, "on_loop_type_selected")
-	if status != 0:
-		printerr("Something went wrong trying to connect signals in ", name)
+	
+	if loopBlockNode:
+		status = loopBlockNode.connect("ChosenLoop", self, "on_loop_type_selected")
+		if status != 0:
+			printerr("Something went wrong trying to connect signals in ", name)
 
-	#Change sprite texture if Loop type has already been selected
-	type = loopBlockNode.get_node("HighlightControl/ChooseLoopType/Label").text.rstrip("0123456789")
-	on_loop_type_selected(type)
+		#Change sprite texture if Loop type has already been selected
+		type = loopBlockNode.get_node("HighlightControl/ChooseLoopType/Label").text.rstrip("0123456789")
+		on_loop_type_selected(type)
+	else:
+		printerr("Unable to get loopBlockNode in ", name)
 		
 
 
