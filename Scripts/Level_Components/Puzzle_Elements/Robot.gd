@@ -27,7 +27,7 @@ onready var ray = $RayCast2D
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 
 func _ready():
-	pass
+	$Highlight.visible = true
 	
 #Event handler for movement via keyboard	
 func _unhandled_input(event):
@@ -72,14 +72,28 @@ func _on_Forward_forwardSignal():
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
 	$Sprite.rotation -= PI/2
+	move_highlight()
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
 	$Sprite.rotation += PI/2
+	move_highlight()
 
 #Interact
 func _on_Interact_interactSignal():
 	emit_signal("interact", tileX, tileY)
+	
+
+func move_highlight():
+	var dir = get_direction()
+	if dir == "ui_up":
+		$Highlight.set_position(Vector2(-48, -144))
+	elif dir == "ui_left":
+		$Highlight.set_position(Vector2(-144, -48))
+	elif dir == "ui_down":
+		$Highlight.set_position(Vector2(-48, 48))
+	elif dir == "ui_right":
+		$Highlight.set_position(Vector2(48, -48)) 
 	
 
 #fromWhere can be "Front", "Back", "Left", or "Right"
@@ -117,7 +131,8 @@ func get_direction(fromWhere: String = "Front"):
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
 	ray.set_collide_with_areas(true)
-	ray.cast_to = inputs[dir] * tile_size
+	ray.position = inputs[dir] * 48
+	ray.cast_to = inputs[dir] * tile_size 
 	ray.force_raycast_update()
 	
 	if ray.is_colliding():

@@ -4,18 +4,29 @@
 [ext_resource path="res://Assets/Objects/Decoration/10.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28, 40.5 )
+extents = Vector2( 28, 40 )
 
-[node name="Door" type="Area2D"]
+[node name="Door" type="StaticBody2D"]
 script = ExtResource( 1 )
 __meta__ = {
-"_editor_description_": "Use factors of 48 to center an object's position on a tile"
+"_editor_description_": "Like Key, will be added in order of appearance in scene tree, & color is denoted by the 5th letter/4th index using R, G, or B. Colored doors can be unlocked with keys.
+
+Use factors of 48 to center an object's position on a tile"
 }
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
 
+[node name="Highlight" type="ReferenceRect" parent="."]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+border_width = 4.0
+editor_only = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.5 )
+position = Vector2( 0, -1 )
 shape = SubResource( 1 )

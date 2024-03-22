@@ -204,6 +204,8 @@ func check_conditions():
 			var object = Robot.get_object_in_direction(dir)
 			if object:
 				objectName = object.name.rstrip("0123456789")
+				if objectName.substr(0, 3) == "Key":
+					objectName = objectName.rstrip("RGBrgb")
 			if objectName == "Obstacle" or is_wall(dir):
 				objectName = "Blocked"
 		elif LHSLabel.text == "Tile":
@@ -243,17 +245,17 @@ func is_wall(dir):
 	
 
 #For check_conditions(), convert the object letter of the current tile to a name
+#Realistically should be in PEP since it's also called in IfBlocks
 func letter_to_name(letter):
-	if letter == 'O':
+	if letter.find('R') != -1:
+		letter.erase(letter.find('R'), 1)
+	
+	if letter == 'O' or letter == 'X':
 		return "Blocked"
-	elif letter == 'B':
-		return "Button"
-	elif letter == 'D':
-		return "Door"
-	elif letter == 'K':
-		return "Key"
-	else:
+	elif letter == "" or letter == ' ':
 		return ""
+	else:
+		return PEP.TileToTypeMapping[letter]
 		
 
 #Updates loopCount & LoopCounter's text

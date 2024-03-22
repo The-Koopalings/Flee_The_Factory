@@ -1,3 +1,124 @@
-[gd_scene format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Placeholders/Koopa Troopa.jpg" type="Texture" id=2]
+[ext_resource path="res://Assets/Placeholders/Boom Boom.jpg" type="Texture" id=3]
+[ext_resource path="res://Assets/Placeholders/Buzzy Beetle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Placeholders/Ludwig.jpg" type="Texture" id=5]
+[ext_resource path="res://Scripts/Stage_Select/StageSelect.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Backgrounds/finalbgbutbigger.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
 
 [node name="StageSelect" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="FunctionsButton" type="TextureButton" parent="."]
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 200.0
+margin_right = 1820.0
+margin_bottom = 420.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="FunctionsButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -195.0
+margin_top = -60.5
+margin_right = 195.0
+margin_bottom = 60.5
+custom_fonts/font = SubResource( 2 )
+text = "Functions"
+align = 1
+valign = 1
+
+[node name="RecursionButton" type="TextureButton" parent="."]
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 420.0
+margin_right = 1820.0
+margin_bottom = 640.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="RecursionButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -198.0
+margin_top = -60.5
+margin_right = 198.0
+margin_bottom = 60.5
+custom_fonts/font = SubResource( 2 )
+text = "Recursion"
+align = 1
+valign = 1
+
+[node name="ControlFlowButton" type="TextureButton" parent="."]
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 640.0
+margin_right = 1820.0
+margin_bottom = 860.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="ControlFlowButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -249.5
+margin_top = -60.5
+margin_right = 249.5
+margin_bottom = 60.5
+custom_fonts/font = SubResource( 2 )
+text = "Control Flow"
+align = 1
+valign = 1
+
+[node name="DataStructuresButton" type="TextureButton" parent="."]
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 860.0
+margin_right = 1820.0
+margin_bottom = 1080.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Label" type="Label" parent="DataStructuresButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -309.0
+margin_top = -60.5
+margin_right = 309.0
+margin_bottom = 60.5
+custom_fonts/font = SubResource( 2 )
+text = "Data Structures"
+align = 1
+valign = 1
+
+[node name="back" type="Sprite" parent="."]
+position = Vector2( 961, 544 )
+z_index = -97
+texture = ExtResource( 7 )
+
+[connection signal="pressed" from="FunctionsButton" to="." method="_on_FunctionsButton_pressed"]
+[connection signal="pressed" from="RecursionButton" to="." method="_on_RecursionButton_pressed"]
+[connection signal="pressed" from="ControlFlowButton" to="." method="_on_ControlFlowButton_pressed"]
+[connection signal="pressed" from="DataStructuresButton" to="." method="_on_DataStructuresButton_pressed"]

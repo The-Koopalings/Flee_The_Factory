@@ -21,6 +21,7 @@ var TileToTypeMapping = {
 	'B': "Button",
 	'D': "Door",
 	'V': "Virus",
+	'K': "Key",
 }
 
 enum Orientation{
@@ -127,6 +128,7 @@ func init_elements():
 					#If it's a special element, do special thing to it
 					if type == "Robot":
 						node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+						node.move_highlight()
 						GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
@@ -144,6 +146,8 @@ func init_elements():
 #			tileCount += 1
 			colIndex += 1
 		rowIndex += 1
+	puzzleElements = generate_elements_dict()
+	
 
 #Helper function of init_elements. Creates dict to track all available elements
 func generate_elements_dict():
@@ -159,6 +163,10 @@ func generate_elements_dict():
 	for node in nodes:
 		#Get the name, but remove all digits from the end
 		var type = node.name.rstrip("0123456789") 
+		#For keys, remove the letter at the end too
+		if type.substr(0, 3) == "Key" or type.substr(0, 4) == "Door":
+			type = type.rstrip("RGB")
+			
 		if type == "Robot":
 			robot = node
 			
@@ -205,8 +213,8 @@ func init_IDE():
 	for child in IDE.get_children():
 		var type = child.name.rstrip("1234567890")
 		
-		#Ignore the Run Button
-		if type == "Run_Button":
+		#Ignore the Run Button and Arrow Highlights
+		if type == "Run_Button" or type.find("Arrow") != -1:
 			continue
 			
 		#Check if we need to add RHS options
@@ -223,6 +231,11 @@ func init_IDE():
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
 	
+
+func init_inventory():
+	level.get_node("Inventory").set_position(Vector2(865, 43))
+	
+
 #Get path to a node that's a relative to an ancestor of the current node
 func get_path_to_grandpibling(node, target):
 	var path = ""
@@ -235,12 +248,6 @@ func get_path_to_grandpibling(node, target):
 		return "ERROR"
 	
 
-#Determines and adds appropriate RHS options into the If/While's conditional RHS dropdown menu
-#No functionality yet
-#Idea: call this in each level's script, add a String array in the parameter called options, to specify which options to set
-#Level script can also pass in the RHS
-#I.e. options = ["Button", "Key"] 
-#     init_conditional_RHS_options(options, get_node("IDE/If1").RHS)
 func generate_RHS_options():
 	var types = puzzleElements.keys()
 	var options = ["Blocked"]
@@ -268,7 +275,7 @@ func add_RHS_options(options, RHS):
 			RHS.get_popup().set_item_id(index, 1)
 		elif item == "Door":
 			RHS.get_popup().set_item_id(index, 2)
-		elif item == "DeathTile":
+		elif item == "Virus":
 			RHS.get_popup().set_item_id(index, 3)
 		elif item == "Key":
 			RHS.get_popup().set_item_id(index, 4)

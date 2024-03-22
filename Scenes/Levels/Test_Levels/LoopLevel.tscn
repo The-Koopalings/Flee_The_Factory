@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallLoop.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Virus.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/Tilesets/Future_Tiles.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_66.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Backgrounds/night1.png" type="Texture" id=19]
@@ -278,6 +279,8 @@ script = ExtResource( 12 )
 [node name="Button" parent="Grid" instance=ExtResource( 8 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 13 )]
+
+[node name="Virus1" parent="Grid" instance=ExtResource( 16 )]
 
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
