@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walkleft1.png-0bb9e652cc2177a0cfcaa89da984b319.stex"
+path="res://.import/Robby.png-3cd6b264a33adaaea8f43ce4e05a81c0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Animations/walkleft1.png"
-dest_files=[ "res://.import/walkleft1.png-0bb9e652cc2177a0cfcaa89da984b319.stex" ]
+source_file="res://Assets/Animations/Robby.png"
+dest_files=[ "res://.import/Robby.png-3cd6b264a33adaaea8f43ce4e05a81c0.stex" ]
 
 [params]
 

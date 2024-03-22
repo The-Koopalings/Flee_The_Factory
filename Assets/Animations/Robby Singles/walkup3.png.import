@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walkdown3.png-be7f03886541198bf438a3a5ab001355.stex"
+path="res://.import/walkup3.png-bbaa327e5bbd131eca4deda028622f80.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Animations/walkdown3.png"
-dest_files=[ "res://.import/walkdown3.png-be7f03886541198bf438a3a5ab001355.stex" ]
+source_file="res://Assets/Animations/Robby Singles/walkup3.png"
+dest_files=[ "res://.import/walkup3.png-bbaa327e5bbd131eca4deda028622f80.stex" ]
 
 [params]
 
