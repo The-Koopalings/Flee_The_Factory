@@ -10,7 +10,7 @@ func before_all():
 	var file = dir.get_next()
 		
 	while file != "":
-		if file == "Code_Block.tscn":
+		if file == "CodeBlock.tscn":
 			file = dir.get_next()
 			continue
 		var test = autofree(load(dir.get_current_dir() + "/" + file).instance())
@@ -19,22 +19,23 @@ func before_all():
 		file = dir.get_next()
 	dir.list_dir_end()
 	
+	
 func test_Function_Get_Code():
 	
+	var node = autofree(load('res://Scenes/Level_Components/Level_Elements/Grid.tscn').instance())
 	var function = autofree(load('res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn').instance())			
 	function._ready()
+	node.add_child(function)
 	var codespace = function.get_node("FunctionBlockArea")
 	codespace._ready()
+	codespace.get_node("../Counter").maxBlocks = 100
 
 	for block in codeblocks:
 		codespace.add_block(block)
-	
-	
-	print("HIYA")
+
 	var code = function.get_code()
-	print(code)
-	print(codeblocks)
-	assert_eq(code, codeblocks)
+	for i in range(0,code.size()):
+		assert_eq(code[i].name.rstrip("0123456789").trim_suffix("_"), codeblocks[i].name)
 	
 	
 	###FUNCTION BLOCK AREA	

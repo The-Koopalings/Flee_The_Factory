@@ -8,8 +8,8 @@ onready var start_x = grid.start_x
 onready var start_y = grid.start_y
 onready var end_x = grid.end_x
 onready var end_y = grid.end_y
-var tileX
-var tileY
+var tileX = 0
+var tileY = 0
 export var tileXMax = 10 #accounting for first column being 0
 export var tileYMax = 6  #accounting for first row being 0
 
@@ -127,14 +127,13 @@ func get_direction(fromWhere: String = "Front"):
 		PEP.Orientation.RIGHT:
 			return "ui_right"
 
-
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
 	ray.set_collide_with_areas(true)
 	ray.position = inputs[dir] * 48
 	ray.cast_to = inputs[dir] * tile_size 
 	ray.force_raycast_update()
-	
+	print(ray.position+ray.cast_to)
 	if ray.is_colliding():
 #		print(ray.get_collider())
 		return ray.get_collider()

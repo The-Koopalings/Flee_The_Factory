@@ -48,10 +48,12 @@ class TestRobotFunctions:
 			robot._on_RotateRight_rotateRightSignal()
 		
 	func test_get_object_in_direction():
-		#RAYCAST IS NULL FOR SOME REASON
-		pending()
-		"""
-
+		var grid = autofree(load('res://Scenes/Level_Components/Level_Elements/Grid.tscn').instance())
+		grid._ready()
+		grid.add_child(robot)
+		robot._ready()
+		robot.position = Vector2(0,0)
+		
 		var dir = Directory.new()
 		dir.open("res://Scenes/Level_Components/Puzzle_Elements/")
 		dir.list_dir_begin(true, true)
@@ -66,37 +68,48 @@ class TestRobotFunctions:
 			elements.push_back(autofree(load(dir.get_current_dir() + "/" + file).instance()))
 			file = dir.get_next()
 		dir.list_dir_end()
-		
+
 		#UP
 		for i in range(0,elements.size(),4):
-			elements[i].position = Vector2(tileSize/2, 0)
-		
+			elements[i].position = Vector2(tileSize*3/2 , 0)
+			grid.add_child(elements[i])
+			elements[i]._ready()
+			print("PLACED AT: ",elements[i].position)
+			
 		#RIGHT
 		for i in range(1,elements.size(),4):
-			elements[i].position = Vector2(0, tileSize/2)
-			
+			elements[i].position = Vector2(0, tileSize*3/2)
+			grid.add_child(elements[i])
+			elements[i]._ready()
+		
 		#DOWN
 		for i in range(2,elements.size(),4):
-			elements[i].position = Vector2(-tileSize/2, 0)
-			
+			elements[i].position = Vector2(-tileSize*3/2, 0)
+			grid.add_child(elements[i])
+			elements[i]._ready()
+		
 		#LEFT
 		for i in range(3,elements.size(),4):
-			elements[i].position = Vector2(0, -tileSize/2)
+			elements[i].position = Vector2(0, -tileSize*3/2)
+			grid.add_child(elements[i])
+			elements[i]._ready()
 			
 		var ui_dirs = ["ui_up", "ui_right", "ui_down", "ui_left"]
-		
-		
+
 		for direction in ui_dirs:
 			print(robot.get_object_in_direction(direction))
 			assert_eq(robot.get_object_in_direction(direction), null)
-		"""
+		
 
 	func test_move_forward():
 		#RAYCAST IS NULL FOR SOME REASON
-		pending()
-		"""
+		var grid = autofree(load('res://Scenes/Level_Components/Level_Elements/Grid.tscn').instance())
+		grid._ready()
+		grid.add_child(robot)
+		robot._ready()
+		
 		var startPos = robot.position
 		robot._on_Forward_forwardSignal()
 		var endPos = robot.position
-		assert_eq(endPos, startPos + tileSize)
-		"""
+		assert_eq(endPos-startPos, Vector2(tileSize, tileSize))
+		
