@@ -13,9 +13,9 @@ var level_win = false
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check = [false, false]    # So signal is only emitted the first time the check is passed
-var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Interact"]]
-onready var progress_check_FBA = [MainFBA, MainFBA]
+var progress_check = []    # So signal is only emitted the first time the check is passed
+var progress_check_arr = []
+onready var progress_check_FBA = []
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES

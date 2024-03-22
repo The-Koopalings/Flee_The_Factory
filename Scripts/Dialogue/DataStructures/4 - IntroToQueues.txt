@@ -1,0 +1,21 @@
+Explain Queues & how the inventory is green + has text as to what it is
+
+CODE_BLOCK
+Let's go over how Pickup and UseItem work for Queue mode
+
+HIGHLIGHT_PICKUP
+Pickup in Queue mode works exactly the same as in Stack mode. 
+HIGHLIGHT_PICKUP
+Pickup automatically places a picked-up item into the smallest, or leftmost, available index & if my inventory is full then I can't pickup the item.
+
+HIGHLIGHT_USEITEM
+UseItem works differently in Queue mode because it follows the FIFO principle of Queues.
+HIGHLIGHT_USEITEM
+UseItem will try to use the earliest picked up item in my inventory AKA the item at index 0.
+HIGHLIGHT_USEITEM
+If the item is used up, then everything in my inventory will be shifted 1 index to the left (or in math terms (their current index - 1)).
+
+Now that you know how Queues work, use what you've just learned to free me from my prison of brimstone and hellfire.
+;
+
+uwu
