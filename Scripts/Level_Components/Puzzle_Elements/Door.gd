@@ -32,6 +32,8 @@ func set_color():
 		"B":
 			$Sprite.set_texture(load("res://Assets/Placeholders/Blue_Door.png"))
 			$Sprite.set_scale(Vector2(0.25,0.25))
+		_:
+			color = ""
 	
 
 func _on_level_levelComplete():

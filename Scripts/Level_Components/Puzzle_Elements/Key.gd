@@ -11,6 +11,7 @@ var color #R = red, G = green, B = blue
 
 func _ready():
 	set_color()
+	$Highlight.visible = false
 	
 
 func set_color():

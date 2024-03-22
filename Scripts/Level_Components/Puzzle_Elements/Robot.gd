@@ -41,6 +41,7 @@ func move(dir):
 	
 	# Check if there is an obstacle in the direction of the robot's movement
 	ray.set_collide_with_areas(false)
+	ray.position = Vector2(0, 0)
 	ray.cast_to = vector_position
 	ray.force_raycast_update()
 	

@@ -1,0 +1,18 @@
+Explain Arrays or whatever & how the inventory is blue + has text as to what it is
+
+CODE_BLOCK
+You may have noticed that the Pickup and UseItem code blocks are slightly different.
+
+HIGHLIGHT_PICKUP
+In Array mode, you are able to choose which index an item is put into with the Pickup code block.
+
+HIGHLIGHT_USEITEM
+As well as which index's item to use with the UseItem code block.
+
+Something to keep in mind when choosing which index to put an item into is that if you choose to put an item into an index that already has an item, the previous item will be discarded and disappear from the inventory.
+For example, if there is a red Key in index 0 and you pickup a green Key & put it into index 0, then the red Key will be discarded. If you UseItem on index 0, then the green Key will be used, but the red Key is forever lost (until Restart).
+Now, lead us the way out!
+;
+
+Congrats, you made it out alive!
+

@@ -1,0 +1,18 @@
+Explain Stacks & how the inventory is red + has text as to what it is
+
+CODE_BLOCK
+
+HIGHLIGHT_PICKUP
+Since we are in Stack mode, Pickup automatically places a picked-up item into the smallest, or leftmost, available index.
+HIGHLIGHT_PICKUP
+If I try to pickup an item while my inventory is full, then I can't pick it up and nothing happens.
+
+HIGHLIGHT_USEITEM
+UseItem, however, will try to use the biggest, or rightmost, occupied index. AKA the item that was last put into the inventory.
+HIGHLIGHT_USEITEM
+This imitates the LIFO principle of Stacks, which is why we call this mode the Stack mode.
+
+What should happen, step-by-step blah blah red key goes, then blue, but use blue or whatever
+;
+
+YEEEEEHAWWWWW pardner we made it out!
