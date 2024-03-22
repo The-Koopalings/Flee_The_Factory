@@ -4,7 +4,7 @@ signal pickup
 
 const BLOCK_TYPE = "CODE"
 var type
-var slotNum
+var slotNum = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +24,7 @@ func setup():
 		slotNum = -1
 		SelectSlotNum.visible = false
 	elif type == "A":
-		slotNum = 0
+		on_SlotNum_Selected(slotNum)
 		SelectSlotNum.get_popup().connect("id_pressed", self, "on_SlotNum_Selected")
 		SelectSlotNum.get_popup().add_item("0")
 		SelectSlotNum.get_popup().add_item("1")

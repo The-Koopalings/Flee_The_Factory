@@ -90,8 +90,10 @@ func add_block(block):
 				child = Interact.instance()
 			"Pickup":
 				child = Pickup.instance()
+				child.slotNum = block.slotNum
 			"UseItem":
 				child = UseItem.instance()
+				child.slotNum = block.slotNum
 			"Call_F":
 				child = CallFunction.instance()
 				child.get_node("Sprite").set_texture(block.get_node("Sprite").get_texture())
