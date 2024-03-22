@@ -3,10 +3,12 @@ extends GutTest
 class TestRobotFunctions:
 	extends GutTest
 	var robot
-
+	var tileSize = 96
 	func before_each():
-		robot = autofree(load('res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn').instance())
-	
+		robot = autofree(load('res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn').instance())			
+		robot.tile_size = tileSize
+		
+		
 	func test_Rotate_Left():
 		var startOrientation = robot.get_node("Sprite").rotation
 		#gut.p("START: " + str(startOrientation))
@@ -28,16 +30,73 @@ class TestRobotFunctions:
 	
 	func test_Robot_Death():
 		robot._on_GameStats_robotDied()
-		pending()
+		assert_eq(robot.get_node("Sprite").texture, robot.deadRobotTexture)
 
-	func test_get_object_in_direction():
-		robot.get_object_in_direction("DIRECTION")
-		pending()
-	
 	func test_get_direction():
-		robot.get_direction("DIRECTION")
-		pending()
+		var dirs = ["Front", "Right", "Back", "Left"]
+		var ui_dirs = ["ui_up", "ui_right", "ui_down", "ui_left"]
+		robot.rotation = 0
 		
-	func test_move_forward():
-		robot._on_Forward_forwardSignal()
+		#For all orientations
+		for o in PEP.Orientation:
+			var orient = PEP.Orientation[o] 
+			var i = 0
+			#For all directions in a given orientation
+			for dir in dirs:
+				assert_eq(robot.get_direction(dir), ui_dirs[(i + orient) %4])
+				i += 1
+			robot._on_RotateRight_rotateRightSignal()
+		
+	func test_get_object_in_direction():
+		#RAYCAST IS NULL FOR SOME REASON
 		pending()
+		"""
+
+		var dir = Directory.new()
+		dir.open("res://Scenes/Level_Components/Puzzle_Elements/")
+		dir.list_dir_begin(true, true)
+		var file = dir.get_next()
+		var elements = []
+		
+		#Get all puzzle elements
+		while file != "":
+			if file == "Robot.tscn":
+				file = dir.get_next()
+				continue
+			elements.push_back(autofree(load(dir.get_current_dir() + "/" + file).instance()))
+			file = dir.get_next()
+		dir.list_dir_end()
+		
+		#UP
+		for i in range(0,elements.size(),4):
+			elements[i].position = Vector2(tileSize/2, 0)
+		
+		#RIGHT
+		for i in range(1,elements.size(),4):
+			elements[i].position = Vector2(0, tileSize/2)
+			
+		#DOWN
+		for i in range(2,elements.size(),4):
+			elements[i].position = Vector2(-tileSize/2, 0)
+			
+		#LEFT
+		for i in range(3,elements.size(),4):
+			elements[i].position = Vector2(0, -tileSize/2)
+			
+		var ui_dirs = ["ui_up", "ui_right", "ui_down", "ui_left"]
+		
+		
+		for direction in ui_dirs:
+			print(robot.get_object_in_direction(direction))
+			assert_eq(robot.get_object_in_direction(direction), null)
+		"""
+
+	func test_move_forward():
+		#RAYCAST IS NULL FOR SOME REASON
+		pending()
+		"""
+		var startPos = robot.position
+		robot._on_Forward_forwardSignal()
+		var endPos = robot.position
+		assert_eq(endPos, startPos + tileSize)
+		"""
