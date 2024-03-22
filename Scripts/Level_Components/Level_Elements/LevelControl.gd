@@ -23,6 +23,9 @@ func _on_Restart_pressed():
 	var Error = get_tree().reload_current_scene()
 	if Error != 0:
 		printerr("Error encountered on pressing Restart button. Error code: ", Error)
+	
+	# Clear dialogue queue to remove duplicate dialogue
+	DialogueManager.clear_dialogue_queue()
 
 
 func _on_DoubleSpeed_toggled(button_pressed):

@@ -53,8 +53,11 @@ func display_dialogue(level):
 			if last_highlight:
 				last_highlight.visible = false
 	
-	dialogue_queue.clear()
+	clear_dialogue_queue()
 
+
+func clear_dialogue_queue():
+	dialogue_queue.clear()
 
 # Manages visual highlight for current game component we are describing
 func highlight_manager(dialogue, level):
