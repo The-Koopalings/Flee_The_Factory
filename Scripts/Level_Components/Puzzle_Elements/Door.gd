@@ -6,18 +6,33 @@ onready var grid = get_node("../")
 onready var tile_size = grid.tile_size
 var tileX
 var tileY
+var color
 
 var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
 
 
 func _ready():
-	pass 
+	set_color()
+	$Highlight.visible = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+func set_color():
+	if name.length() > 4:
+		color = name.substr(4, 1)
+	else:
+		color = ""
+	
+	match color:
+		"R":
+			$Sprite.set_texture(load("res://Assets/Placeholders/Red_Door.png"))
+			$Sprite.set_scale(Vector2(0.25,0.25))
+		"G":
+			$Sprite.set_texture(load("res://Assets/Placeholders/Green_Door.png"))
+			$Sprite.set_scale(Vector2(0.25,0.25))
+		"B":
+			$Sprite.set_texture(load("res://Assets/Placeholders/Blue_Door.png"))
+			$Sprite.set_scale(Vector2(0.25,0.25))
+	
 
 func _on_level_levelComplete():
 	$Sprite.set_texture(openDoorTexture)
