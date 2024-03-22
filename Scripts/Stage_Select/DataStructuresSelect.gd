@@ -1,4 +1,4 @@
-extends TextureButton
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -16,5 +16,17 @@ func _ready():
 #	pass
 
 
-func _on_CreditsButton_pressed():
-	get_tree().change_scene("res://Scenes/Credits/Credits.tscn")
+func _on_Back_Btn_pressed():
+	SceneSwapper.change_scene("Stage Select")
+
+
+func _on_1_Btn_pressed():
+	pass # Replace with function body.
+
+
+func _on_2_Btn_pressed():
+	pass # Replace with function body.
+
+
+func _on_3_Btn_pressed():
+	pass # Replace with function body.
