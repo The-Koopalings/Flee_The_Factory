@@ -33,8 +33,8 @@ var robotStartOrientation = PEP.Orientation.DOWN
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToPickup&UseItem.txt")
 	PEP.init_inventory()
+	DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToPickup&UseItem.txt")
 	$Inventory/Inventory_Arrow.visible = false
 	
 

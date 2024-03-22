@@ -34,6 +34,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
+	DialogueManager.add_dialogue(self, "DataStructures/2 - IntroToArrays.txt")
 	
 
 func _process(delta):
