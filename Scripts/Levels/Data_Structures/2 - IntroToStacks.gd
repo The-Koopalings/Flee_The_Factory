@@ -22,9 +22,9 @@ onready var progress_check_FBA = []
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','R','K','K','O',' ','X','X','X'],
-	['X','X','X','O','O','D','D',' ','X','X','X'],
-	['X','X','X',' ',' ','O','B','D','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','R','K','K','D','D','B','D','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
@@ -34,7 +34,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	DialogueManager.add_dialogue(self, "DataStructures/2 - IntroToArrays.txt")
+	DialogueManager.add_dialogue(self, "DataStructures/2 - IntroToStacks.txt")
 	
 
 func _process(delta):

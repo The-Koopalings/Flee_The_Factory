@@ -22,19 +22,19 @@ onready var progress_check_FBA = []
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','X','R','O','D','X','X','X','X'],
-	['X','X','X','X','K','O','B','X','X','X','X'],
-	['X','X','X','X','K','D','D','X','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','R','K','K','D','D','B','D','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
-var robotStartOrientation = PEP.Orientation.DOWN
+var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	DialogueManager.add_dialogue(self, "DataStructures/4 - IntroToQueues.txt")
+	DialogueManager.add_dialogue(self, "DataStructures/3 - IntroToQueues.txt")
 	
 
 func _process(delta):

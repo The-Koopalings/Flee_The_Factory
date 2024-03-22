@@ -15,6 +15,7 @@ UseItem will try to use the earliest picked up item in my inventory AKA the item
 HIGHLIGHT_USEITEM
 If the item is used up, then everything in my inventory will be shifted 1 index to the left (or in math terms (their current index - 1)).
 
+What should happen, step-by-step blah blah blue key goes, then red, but use blue or whatever
 Now that you know how Queues work, use what you've just learned to free me from my prison of brimstone and hellfire.
 ;
 

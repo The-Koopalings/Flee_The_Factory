@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelClearedPopup.tscn" type="PackedScene" id=2]
@@ -14,16 +14,15 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateRight.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scripts/Levels/Data_Structures/3 - IntroToStacks.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/Levels/Data_Structures/2 - IntroToStacks.gd" type="Script" id=15]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Key.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Pickup.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/UseItem.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallFunction.tscn" type="PackedScene" id=22]
 
-[node name="3 - Intro to Stacks S" type="Node2D"]
+[node name="2 - Intro to Stacks S" type="Node2D"]
 script = ExtResource( 15 )
 
 [node name="Inventory" parent="." instance=ExtResource( 10 )]
@@ -34,11 +33,11 @@ script = ExtResource( 15 )
 
 [node name="Button1" parent="Grid" instance=ExtResource( 5 )]
 
-[node name="Door" parent="Grid" instance=ExtResource( 6 )]
-
 [node name="DoorR" parent="Grid" instance=ExtResource( 6 )]
 
 [node name="DoorB" parent="Grid" instance=ExtResource( 6 )]
+
+[node name="Door" parent="Grid" instance=ExtResource( 6 )]
 
 [node name="KeyB" parent="Grid" instance=ExtResource( 16 )]
 
@@ -67,10 +66,6 @@ script = ExtResource( 15 )
 [node name="Counter" parent="IDE/Main" index="4"]
 maxBlocks = 10
 
-[node name="F1" parent="IDE" instance=ExtResource( 21 )]
-margin_top = 513.0
-margin_bottom = 788.0
-
 [node name="CodeBlockBar" parent="." instance=ExtResource( 8 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 11 )]
@@ -95,4 +90,3 @@ margin_bottom = 788.0
 
 [editable path="IDE"]
 [editable path="IDE/Main"]
-[editable path="IDE/F1"]
