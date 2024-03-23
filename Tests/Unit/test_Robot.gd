@@ -1,6 +1,6 @@
 extends GutTest
 
-class TestRobotFunctions:
+class TestRobot:
 	extends GutTest
 	var robot
 	var tileSize = 96
@@ -64,4 +64,8 @@ class TestRobotFunctions:
 			robot._on_RotateRight_rotateRightSignal()
 		
 
+	func test_move_forward_blocked():
+		pending()
 		
+	func test_get_object_in_direction():
+		pending()
