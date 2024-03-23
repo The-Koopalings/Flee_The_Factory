@@ -30,7 +30,7 @@
  "tests": [
 
  ],
- "unit_test_name": "test_get_object_in_direction",
+ "unit_test_name": "test_move_forward",
  "gut_on_top": true,
  "panel_options": {
   "font_name": "CourierPrime",

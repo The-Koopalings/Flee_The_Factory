@@ -38,7 +38,6 @@ func _unhandled_input(event):
 # Controls movement of the robot
 func move(dir):
 	var vector_position = inputs[dir] * tile_size
-	
 	# Check if there is an obstacle in the direction of the robot's movement
 	ray.set_collide_with_areas(false)
 	ray.cast_to = vector_position
@@ -130,10 +129,10 @@ func get_direction(fromWhere: String = "Front"):
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
 	ray.set_collide_with_areas(true)
-	ray.position = inputs[dir] * 48
+	ray.position = inputs[dir] * tile_size/2
 	ray.cast_to = inputs[dir] * tile_size 
 	ray.force_raycast_update()
-	print(ray.position+ray.cast_to)
+	print("Ray collides from ", ray.position, " up to: ", ray.position+ray.cast_to)
 	if ray.is_colliding():
 #		print(ray.get_collider())
 		return ray.get_collider()
