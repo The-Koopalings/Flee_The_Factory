@@ -125,7 +125,6 @@ scale = Vector2( 0.75, 0.799562 )
 texture = ExtResource( 4 )
 
 [node name="HeaderContainer" type="MarginContainer" parent="TextBoxContainer"]
-visible = false
 margin_right = 1620.0
 margin_bottom = 300.0
 custom_constants/margin_right = 25
@@ -147,6 +146,7 @@ margin_right = 350.0
 margin_bottom = 65.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "Robby"
 
