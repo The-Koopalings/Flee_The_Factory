@@ -17,7 +17,6 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scripts/Levels/Tutorial/2 - Rotations & Obstacles.gd" type="Script" id=16]
 
-
 [node name="2 - Rotations & Obstacles" type="Node2D"]
 script = ExtResource( 16 )
 
