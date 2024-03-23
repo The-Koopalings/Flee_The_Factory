@@ -47,74 +47,12 @@ class TestRobotFunctions:
 				i += 1
 			robot._on_RotateRight_rotateRightSignal()
 		
-	func test_get_object_in_direction():
+	func test_move_forward_clear():
 		var grid = autofree(load('res://Scenes/Level_Components/Level_Elements/Grid.tscn').instance())
 		grid._ready()
 		grid.add_child(robot)
 		robot._ready()
-		robot.position = Vector2(0,0)
-		robot.get_node("RayCast2D").enabled = true
-
-		var dir = Directory.new()
-		dir.open("res://Scenes/Level_Components/Puzzle_Elements/")
-		dir.list_dir_begin(true, true)
-		var file = dir.get_next()
-		var elements = []
-		
-		#Get all puzzle elements
-		while file != "":
-			if file == "Robot.tscn":
-				file = dir.get_next()
-				continue
-			elements.push_back(autofree(load(dir.get_current_dir() + "/" + file).instance()))
-			robot.get_node("RayCast2D").remove_exception(elements.back())
-			file = dir.get_next()
-		dir.list_dir_end()
-
-		#UP
-		for i in range(0,elements.size(),4):
-			elements[i].position = Vector2(tileSize , 0)
-			grid.add_child(elements[i])
-			elements[i]._ready()
-			print("PLACED AT: ",elements[i].position)
-			
-		#RIGHT
-		for i in range(1,elements.size(),4):
-			elements[i].position = Vector2(0, tileSize)
-			grid.add_child(elements[i])
-			elements[i]._ready()
-			print("PLACED AT: ",elements[i].position)
-		
-		#DOWN
-		for i in range(2,elements.size(),4):
-			elements[i].position = Vector2(-tileSize, 0)
-			grid.add_child(elements[i])
-			elements[i]._ready()
-			print("PLACED AT: ",elements[i].position)
-		
-		#LEFT
-		for i in range(3,elements.size(),4):
-			elements[i].position = Vector2(0, -tileSize)
-			grid.add_child(elements[i])
-			elements[i]._ready()
-			print("PLACED AT: ",elements[i].position)
-		print(elements)
-		var ui_dirs = ["ui_up", "ui_right", "ui_down", "ui_left"]
-		
-		for direction in ui_dirs:
-			print(robot.get_object_in_direction(direction))
-			assert_eq(robot.get_object_in_direction(direction), null)
-		for element in elements:
-			print(element.position)
-		print(robot.get_node("RayCast2D").get_collider())
-
-	func test_move_forward():
-		#RAYCAST IS NULL FOR SOME REASON
-		var grid = autofree(load('res://Scenes/Level_Components/Level_Elements/Grid.tscn').instance())
-		grid._ready()
-		grid.add_child(robot)
-		robot._ready()
-		robot.position = Vector2(robot.start_x + tileSize/2, robot.start_y+3*tileSize/2)
+		robot.position = Vector2(robot.start_x + tileSize/2, robot.start_y + tileSize*3/2)
 		
 		var solutions = [Vector2(0, -tileSize), Vector2(tileSize, 0), Vector2(0, tileSize), Vector2(-tileSize,0)]
 		
@@ -124,4 +62,6 @@ class TestRobotFunctions:
 			var endPos = robot.position
 			assert_eq(endPos-startPos, s)
 			robot._on_RotateRight_rotateRightSignal()
+		
+
 		

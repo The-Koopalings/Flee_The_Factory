@@ -27,6 +27,7 @@ onready var ray = $RayCast2D
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 
 func _ready():
+	ray.set_enabled(true)
 	$Highlight.visible = true
 	
 #Event handler for movement via keyboard	
@@ -42,7 +43,7 @@ func move(dir):
 	ray.set_collide_with_areas(false)
 	ray.cast_to = vector_position
 	ray.force_raycast_update()
-	
+
 	if !ray.is_colliding():
 		position += vector_position
 		

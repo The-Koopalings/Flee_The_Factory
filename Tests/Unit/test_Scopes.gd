@@ -19,6 +19,15 @@ func before_all():
 		file = dir.get_next()
 	dir.list_dir_end()
 	
+
+class TestFunctionBlockArea:
+	extends GutTest
+	
+	func test_add_block():
+		pass
+	#Add all the code blocks
+	#Shift blocks
+	#Remove Blocks (Order is kept)
 	
 func test_Function_Get_Code():
 	
@@ -36,13 +45,6 @@ func test_Function_Get_Code():
 	var code = function.get_code()
 	for i in range(0,code.size()):
 		assert_eq(code[i].name.rstrip("0123456789").trim_suffix("_"), codeblocks[i].name)
-	
-	
-	###FUNCTION BLOCK AREA	
-	#Add all the code blocks
-	#Shift blocks
-	#Remove Blocks (Order is kept)
-	
 	###IfBlock
 	#Check conditions (Can't w/o Robot)
 	#Get Code (Can't w/o Robot)
