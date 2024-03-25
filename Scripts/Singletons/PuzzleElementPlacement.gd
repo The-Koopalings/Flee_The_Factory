@@ -2,6 +2,7 @@ extends Node2D
 
 var DEBUG_buffer = "~~~~~~~~~~~~~~~"
 var wallScene = preload("res://Scenes/Level_Components/Puzzle_Elements/Wall.tscn")
+var WCLScene = preload("res://Scenes/Level_Components/Puzzle_Elements/WinConditionLight.tscn")
 var maxRows = 7 #Number of Rows (Cells per Column)
 var maxCols = 11  #Numbers of Columns (Cells per Row)
 var tiles = []
@@ -40,11 +41,16 @@ func loadLevel(_level):
 	self.IDE = level.get_node("IDE")
 	self.halftile = Grid.tile_size/2
 	
+	var control = Control.new()
+	control.name = "WCLs"
+	level.add_child(control)
+	
 	self.init_elements()
 	self.init_code_blocks_bar()
 	self.init_IDE()
 	self.update()
 	GameStats.set_game_state(GameStats.State.CODING)
+	
 
 #Draws the borders of the grid+
 func _draw():
@@ -132,6 +138,11 @@ func init_elements():
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
 						node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+						#Setup WinConditionLight for this Button
+						var wcl = WCLScene.instance()
+						level.get_node("WCLs").add_child(wcl)
+						wcl.position = Vector2(145 + (96*int(node.name.substr(6))), 165)
+						node.connect("buttonPressed", wcl, "turn_on")
 					elif type == "Virus":
 						robot.connect("interact",node,"_on_Robot_interact")
 					elif type == "Door":
