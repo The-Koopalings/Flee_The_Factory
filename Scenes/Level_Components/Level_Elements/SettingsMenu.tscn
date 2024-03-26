@@ -2,7 +2,11 @@
 
 [node name="PopupDialog" type="PopupDialog"]
 visible = true
-margin_left = 498.0
-margin_top = 225.0
-margin_right = 1364.0
-margin_bottom = 747.0
+margin_left = 288.0
+margin_top = 192.0
+margin_right = 1370.0
+margin_bottom = 838.0
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
