@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/Door.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Decoration/10.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/WCLs.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 40 )
@@ -30,3 +31,8 @@ editor_only = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
 shape = SubResource( 1 )
+
+[node name="WCLs" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )

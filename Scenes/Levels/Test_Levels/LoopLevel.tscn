@@ -363,4 +363,5 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [editable path="Grid/Obstacle"]
 [editable path="Grid/Obstacle2"]
 [editable path="Grid/Obstacle3"]
+[editable path="Grid/Door"]
 [editable path="IDE/Loop2"]
