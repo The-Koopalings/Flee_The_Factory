@@ -9,7 +9,7 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 48
+size = 40
 font_data = ExtResource( 2 )
 
 [node name="Inventory" type="ColorRect"]
@@ -110,11 +110,10 @@ width = 2.0
 default_color = Color( 1, 0, 0, 1 )
 
 [node name="Label" type="Label" parent="."]
-margin_top = -55.0
+margin_top = -58.0
 margin_right = 478.0
-margin_bottom = 3.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 2 )
-text = "Stack"
+text = "Array"
 align = 1
 valign = 2

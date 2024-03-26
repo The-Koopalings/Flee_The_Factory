@@ -2,6 +2,7 @@ extends Node2D
 
 var DEBUG_buffer = "~~~~~~~~~~~~~~~"
 var wallScene = preload("res://Scenes/Level_Components/Puzzle_Elements/Wall.tscn")
+var WCLScene = preload("res://Scenes/Level_Components/Puzzle_Elements/WinConditionLight.tscn")
 var maxRows = 7 #Number of Rows (Cells per Column)
 var maxCols = 11  #Numbers of Columns (Cells per Row)
 var tiles = []
@@ -41,10 +42,12 @@ func loadLevel(_level):
 	self.halftile = Grid.tile_size/2
 	
 	self.init_elements()
+	self.init_WCLs()
 	self.init_code_blocks_bar()
 	self.init_IDE()
 	self.update()
 	GameStats.set_game_state(GameStats.State.CODING)
+	
 
 #Draws the borders of the grid+
 func _draw():
@@ -132,6 +135,11 @@ func init_elements():
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
 						node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+						#Setup WinConditionLight
+						var wcl = WCLScene.instance()
+						var wcls = level.get_node("Grid/Door/WCLs")
+						wcls.add_child(wcl)
+						node.connect("buttonPressed", wcls, "on_button_pressed")
 					elif type == "Virus":
 						robot.connect("interact",node,"_on_Robot_interact")
 					elif type == "Door":
@@ -179,6 +187,44 @@ func generate_elements_dict():
 	print(DEBUG_buffer)
 	
 	return elements
+
+func init_WCLs():
+	var positions = []
+	var wcls = level.get_node("Grid/Door/WCLs")
+	var wclChildren = wcls.get_children()
+	var wclCount = wcls.get_child_count()
+	
+	if wclCount == 1:
+		return
+	elif wclCount == 2:
+		positions.push_back(Vector2(-10, 0))
+		positions.push_back(Vector2(10, 0))
+	elif wclCount == 3:
+		positions.push_back(Vector2(-15, 0))
+		positions.push_back(Vector2(0, 0))
+		positions.push_back(Vector2(15, 0))
+	elif wclCount == 4:
+		positions.push_back(Vector2(-10, -10))
+		positions.push_back(Vector2(10, -10))
+		positions.push_back(Vector2(-10, 10))
+		positions.push_back(Vector2(10, 10))
+	elif wclCount == 5:
+		positions.push_back(Vector2(-15, -10))
+		positions.push_back(Vector2(0, -10))
+		positions.push_back(Vector2(15, -10))
+		positions.push_back(Vector2(-10, 10))
+		positions.push_back(Vector2(10, 10))
+	elif wclCount == 6:
+		positions.push_back(Vector2(-15, -10))
+		positions.push_back(Vector2(0, -10))
+		positions.push_back(Vector2(15, -10))
+		positions.push_back(Vector2(-15, 10))
+		positions.push_back(Vector2(0, 10))
+		positions.push_back(Vector2(15, 10))
+	
+	for wcl in wclChildren:
+		wcl.position = positions.pop_front()
+	
 
 #Set position of code blocks on CodeBlockBar
 func init_code_blocks_bar():

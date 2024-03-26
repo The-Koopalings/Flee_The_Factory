@@ -38,6 +38,7 @@ func set_color():
 
 func _on_level_levelComplete():
 	$Sprite.set_texture(openDoorTexture)
+	get_node("WCLs").visible = false
 	
 	#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
 	$Sprite.set_scale(Vector2(1,1)) 
