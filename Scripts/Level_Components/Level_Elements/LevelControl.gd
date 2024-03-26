@@ -16,7 +16,7 @@ func _ready():
 
 
 func _on_Settings_pressed():
-	pass # Replace with function body.
+	$Settings/PopupDialog.popup()
 
 
 func _on_Restart_pressed():
