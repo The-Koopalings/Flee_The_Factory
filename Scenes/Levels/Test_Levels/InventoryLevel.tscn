@@ -271,6 +271,9 @@
 
 [node name="Inventory Level Q" type="Node2D"]
 script = ExtResource( 12 )
+__meta__ = {
+"_editor_description_": "Script has it so 6 buttons need to be pressed to win"
+}
 
 [node name="Inventory" parent="." instance=ExtResource( 30 )]
 margin_left = 865.0
@@ -296,6 +299,12 @@ __meta__ = {
 [node name="Button2" parent="Grid" instance=ExtResource( 8 )]
 
 [node name="Button3" parent="Grid" instance=ExtResource( 8 )]
+
+[node name="Button4" parent="Grid" instance=ExtResource( 8 )]
+
+[node name="Button5" parent="Grid" instance=ExtResource( 8 )]
+
+[node name="Button6" parent="Grid" instance=ExtResource( 8 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 13 )]
 
@@ -402,6 +411,9 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [connection signal="buttonPressed" from="Grid/Button1" to="." method="_on_Button_buttonPressed"]
 [connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button_buttonPressed"]
 [connection signal="buttonPressed" from="Grid/Button3" to="." method="_on_Button_buttonPressed"]
+[connection signal="buttonPressed" from="Grid/Button4" to="." method="_on_Button_buttonPressed"]
+[connection signal="buttonPressed" from="Grid/Button5" to="." method="_on_Button_buttonPressed"]
+[connection signal="buttonPressed" from="Grid/Button6" to="." method="_on_Button_buttonPressed"]
 [connection signal="forwardSignal" from="CodeBlockBar/Forward" to="Grid/Robot" method="_on_Forward_forwardSignal"]
 [connection signal="rotateLeftSignal" from="CodeBlockBar/RotateLeft" to="Grid/Robot" method="_on_RotateLeft_rotateLeftSignal"]
 [connection signal="rotateRightSignal" from="CodeBlockBar/RotateRight" to="Grid/Robot" method="_on_RotateRight_rotateRightSignal"]

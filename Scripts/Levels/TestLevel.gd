@@ -10,6 +10,9 @@ signal levelComplete
 var b1_pressed = false
 var b2_pressed = false
 var b3_pressed = false
+var b4_pressed = false
+var b5_pressed = false
+var b6_pressed = false
 var level_win = false
 ##UNIQUE LEVEL VARIABLES
 
@@ -39,7 +42,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if b1_pressed and b2_pressed and b3_pressed:
+	if b1_pressed and b2_pressed and b3_pressed and b4_pressed and b5_pressed and b6_pressed:
 		emit_signal("dialogue_progress")
 		
 		if level_win:
@@ -56,6 +59,12 @@ func _on_Button_buttonPressed(name):
 			b2_pressed = true
 		"Button3":
 			b3_pressed = true
+		"Button4":
+			b4_pressed = true
+		"Button5":
+			b5_pressed = true
+		"Button6":
+			b6_pressed = true
 	
-	if b1_pressed and b2_pressed and b3_pressed:
+	if b1_pressed and b2_pressed and b3_pressed and b4_pressed and b5_pressed and b6_pressed:
 		level_win = true

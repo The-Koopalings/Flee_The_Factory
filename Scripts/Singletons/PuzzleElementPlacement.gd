@@ -41,11 +41,8 @@ func loadLevel(_level):
 	self.IDE = level.get_node("IDE")
 	self.halftile = Grid.tile_size/2
 	
-	var control = Control.new()
-	control.name = "WCLs"
-	level.add_child(control)
-	
 	self.init_elements()
+	self.init_WCLs()
 	self.init_code_blocks_bar()
 	self.init_IDE()
 	self.update()
@@ -140,8 +137,7 @@ func init_elements():
 						node.connect("buttonPressed", level, "_on_Button_buttonPressed")
 						#Setup WinConditionLight for this Button
 						var wcl = WCLScene.instance()
-						level.get_node("WCLs").add_child(wcl)
-						wcl.position = Vector2(145 + (96*int(node.name.substr(6))), 165)
+						level.get_node("Grid/Door/WCLs").add_child(wcl)
 						node.connect("buttonPressed", wcl, "turn_on")
 					elif type == "Virus":
 						robot.connect("interact",node,"_on_Robot_interact")
@@ -190,6 +186,44 @@ func generate_elements_dict():
 	print(DEBUG_buffer)
 	
 	return elements
+
+func init_WCLs():
+	var positions = []
+	var wcls = level.get_node("Grid/Door/WCLs")
+	var wclChildren = wcls.get_children()
+	var wclCount = wcls.get_child_count()
+	
+	if wclCount == 1:
+		return
+	elif wclCount == 2:
+		positions.push_back(Vector2(-10, 0))
+		positions.push_back(Vector2(10, 0))
+	elif wclCount == 3:
+		positions.push_back(Vector2(-15, 0))
+		positions.push_back(Vector2(0, 0))
+		positions.push_back(Vector2(15, 0))
+	elif wclCount == 4:
+		positions.push_back(Vector2(-10, -10))
+		positions.push_back(Vector2(10, -10))
+		positions.push_back(Vector2(-10, 10))
+		positions.push_back(Vector2(10, 10))
+	elif wclCount == 5:
+		positions.push_back(Vector2(-15, -10))
+		positions.push_back(Vector2(0, -10))
+		positions.push_back(Vector2(15, -10))
+		positions.push_back(Vector2(-10, 10))
+		positions.push_back(Vector2(10, 10))
+	elif wclCount == 6:
+		positions.push_back(Vector2(-15, -10))
+		positions.push_back(Vector2(0, -10))
+		positions.push_back(Vector2(15, -10))
+		positions.push_back(Vector2(-15, 10))
+		positions.push_back(Vector2(0, 10))
+		positions.push_back(Vector2(15, 10))
+	
+	for wcl in wclChildren:
+		wcl.position = positions.pop_front()
+	
 
 #Set position of code blocks on CodeBlockBar
 func init_code_blocks_bar():
