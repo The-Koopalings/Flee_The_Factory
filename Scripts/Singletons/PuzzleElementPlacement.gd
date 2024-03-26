@@ -135,10 +135,11 @@ func init_elements():
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
 						node.connect("buttonPressed", level, "_on_Button_buttonPressed")
-						#Setup WinConditionLight for this Button
+						#Setup WinConditionLight
 						var wcl = WCLScene.instance()
-						level.get_node("Grid/Door/WCLs").add_child(wcl)
-						node.connect("buttonPressed", wcl, "turn_on")
+						var wcls = level.get_node("Grid/Door/WCLs")
+						wcls.add_child(wcl)
+						node.connect("buttonPressed", wcls, "on_button_pressed")
 					elif type == "Virus":
 						robot.connect("interact",node,"_on_Robot_interact")
 					elif type == "Door":

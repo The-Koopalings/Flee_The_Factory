@@ -11,8 +11,8 @@ func _ready():
 	pass # Replace with function body.
 	
 
-func turn_on(buttonName):
-	print(name + " turnt on for "+ buttonName)
+func turn_on():
+	print(name + " got turnt on")
 	set_texture(load("res://Assets/Placeholders/OnWCL.png"))
 
 
