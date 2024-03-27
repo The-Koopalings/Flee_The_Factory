@@ -54,7 +54,6 @@ func exit_level_pressed():
 	var directory = get_tree().root.get_child(5).filename.get_base_dir()
 	directory = directory.substr(20)
 	SceneSwapper.change_scene(directory + " Select")
-	get_tree().paused = false
 	
 
 func exit_game_pressed():

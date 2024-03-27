@@ -33,7 +33,10 @@ func change_scene(scene_name):
 func _deferred_change_scene(scene_name):
 	# It is now safe to remove the current scene
 	current_scene.free()
-
+	
+	#Clear dialogue queue
+	DialogueManager.clear_dialogue_queue()
+	
 	# Load the new scene.
 	var path = scene_path[scene_name]
 	var scene = ResourceLoader.load(path)
