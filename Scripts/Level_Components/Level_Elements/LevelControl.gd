@@ -8,15 +8,14 @@ func _ready():
 		$DoubleSpeed.pressed = true
 	else:
 		$DoubleSpeed.pressed = false
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	
+	#Hide settings menu
+	$Settings/SettingsMenu.visible = false
+	
 
 func _on_Settings_pressed():
-	$Settings/PopupDialog.popup()
+	$Settings/SettingsMenu.visible = true
+	get_tree().paused = true
 
 
 func _on_Restart_pressed():
