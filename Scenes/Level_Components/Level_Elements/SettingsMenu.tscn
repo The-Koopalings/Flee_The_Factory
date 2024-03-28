@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/SettingsMenu.gd" type="Script" id=2]
@@ -16,10 +16,6 @@ size = 32
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=6]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -150,7 +146,7 @@ valign = 1
 margin_left = 310.0
 margin_right = 950.0
 margin_bottom = 90.0
-value = 70.0
+value = 50.0
 tick_count = 100
 
 [node name="Reset" type="Button" parent="Sliders/Brightness"]
@@ -163,9 +159,9 @@ text = "Reset"
 
 [node name="Buttons" type="Control" parent="."]
 margin_left = 7.0
-margin_top = 50.0
+margin_top = 80.0
 margin_right = 1075.0
-margin_bottom = 682.0
+margin_bottom = 712.0
 mouse_filter = 2
 
 [node name="Continue" type="Button" parent="Buttons"]
@@ -176,26 +172,18 @@ margin_bottom = 350.0
 custom_fonts/font = SubResource( 5 )
 text = "Continue"
 
-[node name="StageSelect" type="Button" parent="Buttons"]
-margin_left = 400.0
-margin_top = 370.0
-margin_right = 700.0
-margin_bottom = 420.0
-custom_fonts/font = SubResource( 6 )
-text = "Stage Select"
-
 [node name="ExitLevel" type="Button" parent="Buttons"]
 margin_left = 400.0
-margin_top = 440.0
+margin_top = 380.0
 margin_right = 700.0
-margin_bottom = 490.0
+margin_bottom = 430.0
 custom_fonts/font = SubResource( 7 )
 text = "Exit Level"
 
-[node name="StartMenu" type="Button" parent="Buttons"]
+[node name="ExitGame" type="Button" parent="Buttons"]
 margin_left = 400.0
-margin_top = 510.0
+margin_top = 460.0
 margin_right = 700.0
-margin_bottom = 560.0
+margin_bottom = 510.0
 custom_fonts/font = SubResource( 8 )
-text = "Start Menu"
+text = "Exit Game"

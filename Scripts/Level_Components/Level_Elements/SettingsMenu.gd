@@ -31,10 +31,12 @@ func connections():
 	$Sliders/Brightness/Reset.connect("pressed", self, "reset_brightness")
 	
 	$Buttons/Continue.connect("pressed", self, "continue_pressed")
-	$Buttons/StageSelect.connect("pressed", self, "stage_select_pressed")
 	$Buttons/ExitLevel.connect("pressed", self, "exit_level_pressed")
-	$Buttons/StartMenu.connect("pressed", self, "start_menu_pressed")
+	$Buttons/ExitGame.connect("pressed", self, "exit_game_pressed")
+#	$Buttons/StartMenu.connect("pressed", self, "start_menu_pressed")
+#	$Buttons/StageSelect.connect("pressed", self, "stage_select_pressed")
 	
+
 func setup():
 	mvStartVal = musicVolumeSlider.value
 	sevStartVal = soundEffectsVolumeSlider.value
@@ -62,7 +64,7 @@ func sound_effects_volume_changed(value: float):
 func brightness_changed(value: float):
 	brightnessLabel.text = "Brightness\n" + str(value) + "%"
 	var brightness = brightnessSlider.value / 100.0
-	GlobalWE.environment.adjustment_brightness = 1.5 * brightness
+	GlobalWE.environment.adjustment_brightness = 1.5 * brightness + 0.25
 	
 
 func reset_music_volume():
@@ -82,15 +84,6 @@ func continue_pressed():
 	visible = false
 	
 
-func stage_select_pressed():
-	get_tree().paused = false
-	visible = false
-	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
-	PEP.update()
-	
-	SceneSwapper.change_scene("Stage Select")
-	
-
 func exit_level_pressed():
 	get_tree().paused = false
 	visible = false
@@ -103,10 +96,22 @@ func exit_level_pressed():
 	SceneSwapper.change_scene(directory + " Select")
 	
 
-func start_menu_pressed():
-	get_tree().paused = false
-	visible = false
-	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
-	PEP.update()
+func exit_game_pressed():
+	get_tree().quit()
 	
-	SceneSwapper.change_scene("Start Menu")
+
+#func stage_select_pressed():
+#	get_tree().paused = false
+#	visible = false
+#	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
+#	PEP.update()
+#
+#	SceneSwapper.change_scene("Stage Select")
+
+#func start_menu_pressed():
+#	get_tree().paused = false
+#	visible = false
+#	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
+#	PEP.update()
+#
+#	SceneSwapper.change_scene("Start Menu")
