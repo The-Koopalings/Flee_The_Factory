@@ -43,12 +43,16 @@ func continue_pressed():
 func stage_select_pressed():
 	get_tree().paused = false
 	visible = false
+	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
+	
 	SceneSwapper.change_scene("Stage Select")
 	
 
 func exit_level_pressed():
 	get_tree().paused = false
 	visible = false
+	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
+	
 	var root = get_tree().root
 	var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
 	directory = directory.substr(20)
