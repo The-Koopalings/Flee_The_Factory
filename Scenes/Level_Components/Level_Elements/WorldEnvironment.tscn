@@ -3,6 +3,7 @@
 [sub_resource type="Environment" id=1]
 background_mode = 4
 adjustment_enabled = true
+adjustment_brightness = 1.5
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource( 1 )

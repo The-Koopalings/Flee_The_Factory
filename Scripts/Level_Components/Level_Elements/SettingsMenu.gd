@@ -1,5 +1,12 @@
 extends CanvasLayer
 
+onready var musicVolumeLabel = $Sliders/MusicVolume/Label
+onready var soundEffectsVolumeLabel = $Sliders/SoundEffectsVolume/Label
+onready var brightnessLabel = $Sliders/Brightness/Label
+
+onready var musicVolumeSlider = $Sliders/MusicVolume/HSlider
+onready var soundEffectsVolumeSlider = $Sliders/SoundEffectsVolume/HSlider
+onready var brightnessSlider = $Sliders/Brightness/HSlider
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -7,15 +14,15 @@ func _ready():
 	#Connect signals
 	connections()
 	#Makes sure initial slider values affect text & volume/brightness
-	music_volume_changed($Sliders/MusicVolume/HSlider.value)
-	sound_effects_volume_changed($Sliders/SoundEffectsVolume/HSlider.value)
-	brightness_changed($Sliders/Brightness/HSlider.value)
+	music_volume_changed(musicVolumeSlider.value)
+	sound_effects_volume_changed(soundEffectsVolumeSlider.value)
+	brightness_changed(brightnessSlider.value)
 	
 
 func connections():
-	$Sliders/MusicVolume/HSlider.connect("value_changed", self, "music_volume_changed")
-	$Sliders/SoundEffectsVolume/HSlider.connect("value_changed", self, "sound_effects_volume_changed")
-	$Sliders/Brightness/HSlider.connect("value_changed", self, "brightness_changed")
+	musicVolumeSlider.connect("value_changed", self, "music_volume_changed")
+	soundEffectsVolumeSlider.connect("value_changed", self, "sound_effects_volume_changed")
+	brightnessSlider.connect("value_changed", self, "brightness_changed")
 	
 	$Buttons/Continue.connect("pressed", self, "continue_pressed")
 	$Buttons/StageSelect.connect("pressed", self, "stage_select_pressed")
@@ -23,16 +30,24 @@ func connections():
 	$Buttons/ExitGame.connect("pressed", self, "exit_game_pressed")
 	
 
+#Test functionality once music has been added
 func music_volume_changed(value: float):
-	$Sliders/MusicVolume/Label.text = "Music Volume\n" + str(value) + "%"
+	musicVolumeLabel.text = "Music Volume\n" + str(value) + "%"
+	var volume = musicVolumeSlider.value / 100.0
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 4 * volume)
 	
 
+#Test functionality once sound effects have been added
 func sound_effects_volume_changed(value: float):
-	$Sliders/SoundEffectsVolume/Label.text = "Sound Effects Volume\n" + str(value) + "%"
+	soundEffectsVolumeLabel.text = "Sound Effects Volume\n" + str(value) + "%"
+	var volume = soundEffectsVolumeSlider.value / 100.0
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SoundEffects"), 4 * volume)
 	
 
 func brightness_changed(value: float):
-	$Sliders/Brightness/Label.text = "Brightness\n" + str(value) + "%"
+	brightnessLabel.text = "Brightness\n" + str(value) + "%"
+	var brightness = brightnessSlider.value / 100.0
+	GlobalWE.environment.adjustment_brightness = 1.5 * brightness
 	
 
 func continue_pressed():

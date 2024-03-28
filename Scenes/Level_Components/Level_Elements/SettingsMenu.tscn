@@ -25,6 +25,15 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Background" type="ColorRect" parent="."]
+show_behind_parent = true
+margin_left = -288.0
+margin_top = -192.0
+margin_right = 1632.0
+margin_bottom = 888.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.25098 )
+
 [node name="MenuPanel" type="ColorRect" parent="."]
 margin_right = 1082.0
 margin_bottom = 646.0
@@ -109,7 +118,7 @@ valign = 1
 margin_left = 310.0
 margin_right = 950.0
 margin_bottom = 90.0
-value = 50.0
+value = 75.0
 tick_count = 100
 
 [node name="Buttons" type="Control" parent="."]
@@ -174,12 +183,3 @@ custom_fonts/font = SubResource( 3 )
 text = "Exit Game"
 align = 1
 valign = 1
-
-[node name="Background" type="ColorRect" parent="."]
-show_behind_parent = true
-margin_left = -288.0
-margin_top = -192.0
-margin_right = 1632.0
-margin_bottom = 888.0
-mouse_filter = 2
-color = Color( 0, 0, 0, 0.25098 )
