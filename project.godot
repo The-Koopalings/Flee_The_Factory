@@ -21,6 +21,7 @@ GameStats="*res://Scripts/Singletons/GameStats.gd"
 DialogueManager="*res://Scripts/Singletons/DialogueManager.gd"
 SceneSwapper="*res://Scripts/Singletons/SceneSwapper.gd"
 GlobalWE="*res://Scenes/Level_Components/Level_Elements/WorldEnvironment.tscn"
+SettingsMenu="*res://Scenes/Level_Components/Level_Elements/SettingsMenu.tscn"
 
 [display]
 

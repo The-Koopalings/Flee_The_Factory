@@ -1,13 +1,9 @@
 extends CanvasLayer
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	visible = false
 	#Connect signals
 	connections()
 	#Makes sure initial slider values affect text & volume/brightness
@@ -46,12 +42,15 @@ func continue_pressed():
 
 func stage_select_pressed():
 	get_tree().paused = false
+	visible = false
 	SceneSwapper.change_scene("Stage Select")
 	
 
 func exit_level_pressed():
 	get_tree().paused = false
-	var directory = get_tree().root.get_child(5).filename.get_base_dir()
+	visible = false
+	var root = get_tree().root
+	var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
 	directory = directory.substr(20)
 	SceneSwapper.change_scene(directory + " Select")
 	

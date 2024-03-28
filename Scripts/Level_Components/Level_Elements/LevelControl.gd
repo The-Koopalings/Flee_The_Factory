@@ -9,12 +9,9 @@ func _ready():
 	else:
 		$DoubleSpeed.pressed = false
 	
-	#Hide settings menu
-	$Settings/SettingsMenu.visible = false
-	
 
 func _on_Settings_pressed():
-	$Settings/SettingsMenu.visible = true
+	SettingsMenu.visible = true
 	get_tree().paused = true
 
 

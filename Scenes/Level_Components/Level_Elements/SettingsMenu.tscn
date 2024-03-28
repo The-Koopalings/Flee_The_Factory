@@ -21,6 +21,9 @@ layer = 2
 offset = Vector2( 288, 192 )
 transform = Transform2D( 1, 0, 0, 1, 288, 192 )
 script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="MenuPanel" type="ColorRect" parent="."]
 margin_right = 1082.0
