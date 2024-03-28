@@ -1,12 +1,13 @@
 extends Node
 
 
-var scene_path = {"Credits": "res://Scenes/Credits/Credits.tscn",
+var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
+				  "Credits": "res://Scenes/Credits/Credits.tscn",
 				  "Stage Select": "res://Scenes/Stage_Select/StageSelect.tscn",
 				  "Functions Select": "res://Scenes/Stage_Select/FunctionsSelect.tscn",
 				  "Recursion Select": "res://Scenes/Stage_Select/RecursionSelect.tscn",
 				  "Control Flow Select": "res://Scenes/Stage_Select/ControlFlowSelect.tscn",
-				  "Data Structures Select": "res://Scenes/Stage_Select/DataStructuresSelect.tscn",
+				  "Data_Structures Select": "res://Scenes/Stage_Select/DataStructuresSelect.tscn",
 				  "Func 1": "res://Scenes/Levels/Functions/1 - Functions Intro.tscn",
 				  "Func 2": "res://Scenes/Levels/Functions/2 - L Shape.tscn",
 				  "Func 3": "res://Scenes/Levels/Functions/3 - Multi Func Intro.tscn"}
@@ -33,7 +34,10 @@ func change_scene(scene_name):
 func _deferred_change_scene(scene_name):
 	# It is now safe to remove the current scene
 	current_scene.free()
-
+	
+	#Clear dialogue queue
+	DialogueManager.clear_dialogue_queue()
+	
 	# Load the new scene.
 	var path = scene_path[scene_name]
 	var scene = ResourceLoader.load(path)

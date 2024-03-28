@@ -51,6 +51,9 @@ func loadLevel(_level):
 
 #Draws the borders of the grid+
 func _draw():
+	#If not in a Level, then don't execute 
+	if GameStats.game_state == GameStats.State.OUT_OF_LEVEL:
+		return
 #	var tileCount = 0
 	var rowIndex = 0
 	var colIndex = 0
