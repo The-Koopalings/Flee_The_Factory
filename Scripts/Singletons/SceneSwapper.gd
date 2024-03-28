@@ -1,7 +1,8 @@
 extends Node
 
 
-var scene_path = {"Credits": "res://Scenes/Credits/Credits.tscn",
+var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
+				  "Credits": "res://Scenes/Credits/Credits.tscn",
 				  "Stage Select": "res://Scenes/Stage_Select/StageSelect.tscn",
 				  "Functions Select": "res://Scenes/Stage_Select/FunctionsSelect.tscn",
 				  "Recursion Select": "res://Scenes/Stage_Select/RecursionSelect.tscn",

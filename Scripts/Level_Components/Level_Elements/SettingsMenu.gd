@@ -8,15 +8,17 @@ onready var musicVolumeSlider = $Sliders/MusicVolume/HSlider
 onready var soundEffectsVolumeSlider = $Sliders/SoundEffectsVolume/HSlider
 onready var brightnessSlider = $Sliders/Brightness/HSlider
 
+var mvStartVal
+var sevStartVal
+var bStartVal
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
 	#Connect signals
 	connections()
 	#Makes sure initial slider values affect text & volume/brightness
-	music_volume_changed(musicVolumeSlider.value)
-	sound_effects_volume_changed(soundEffectsVolumeSlider.value)
-	brightness_changed(brightnessSlider.value)
+	setup()
 	
 
 func connections():
@@ -24,10 +26,23 @@ func connections():
 	soundEffectsVolumeSlider.connect("value_changed", self, "sound_effects_volume_changed")
 	brightnessSlider.connect("value_changed", self, "brightness_changed")
 	
+	$Sliders/MusicVolume/Reset.connect("pressed", self, "reset_music_volume")
+	$Sliders/SoundEffectsVolume/Reset.connect("pressed", self, "reset_sound_effects_volume")
+	$Sliders/Brightness/Reset.connect("pressed", self, "reset_brightness")
+	
 	$Buttons/Continue.connect("pressed", self, "continue_pressed")
 	$Buttons/StageSelect.connect("pressed", self, "stage_select_pressed")
 	$Buttons/ExitLevel.connect("pressed", self, "exit_level_pressed")
-	$Buttons/ExitGame.connect("pressed", self, "exit_game_pressed")
+	$Buttons/StartMenu.connect("pressed", self, "start_menu_pressed")
+	
+func setup():
+	mvStartVal = musicVolumeSlider.value
+	sevStartVal = soundEffectsVolumeSlider.value
+	bStartVal = brightnessSlider.value
+	
+	music_volume_changed(mvStartVal)
+	sound_effects_volume_changed(sevStartVal)
+	brightness_changed(bStartVal)
 	
 
 #Test functionality once music has been added
@@ -50,6 +65,18 @@ func brightness_changed(value: float):
 	GlobalWE.environment.adjustment_brightness = 1.5 * brightness
 	
 
+func reset_music_volume():
+	musicVolumeSlider.value = mvStartVal
+	
+
+func reset_sound_effects_volume():
+	soundEffectsVolumeSlider.value = sevStartVal
+	
+
+func reset_brightness():
+	brightnessSlider.value = bStartVal
+	
+
 func continue_pressed():
 	get_tree().paused = false
 	visible = false
@@ -59,6 +86,7 @@ func stage_select_pressed():
 	get_tree().paused = false
 	visible = false
 	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
+	PEP.update()
 	
 	SceneSwapper.change_scene("Stage Select")
 	
@@ -67,6 +95,7 @@ func exit_level_pressed():
 	get_tree().paused = false
 	visible = false
 	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
+	PEP.update()
 	
 	var root = get_tree().root
 	var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
@@ -74,5 +103,10 @@ func exit_level_pressed():
 	SceneSwapper.change_scene(directory + " Select")
 	
 
-func exit_game_pressed():
-	get_tree().quit()
+func start_menu_pressed():
+	get_tree().paused = false
+	visible = false
+	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)
+	PEP.update()
+	
+	SceneSwapper.change_scene("Start Menu")

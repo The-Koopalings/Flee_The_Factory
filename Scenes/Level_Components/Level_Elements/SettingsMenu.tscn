@@ -1,17 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/SettingsMenu.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -71,6 +87,14 @@ margin_bottom = 90.0
 value = 50.0
 tick_count = 100
 
+[node name="Reset" type="Button" parent="Sliders/MusicVolume"]
+margin_left = 960.0
+margin_top = 25.0
+margin_right = 1020.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 4 )
+text = "Reset"
+
 [node name="SoundEffectsVolume" type="ReferenceRect" parent="Sliders"]
 margin_left = 40.0
 margin_top = 150.0
@@ -96,6 +120,14 @@ margin_bottom = 90.0
 value = 50.0
 tick_count = 100
 
+[node name="Reset" type="Button" parent="Sliders/SoundEffectsVolume"]
+margin_left = 960.0
+margin_top = 25.0
+margin_right = 1020.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 4 )
+text = "Reset"
+
 [node name="Brightness" type="ReferenceRect" parent="Sliders"]
 margin_left = 40.0
 margin_top = 250.0
@@ -118,8 +150,16 @@ valign = 1
 margin_left = 310.0
 margin_right = 950.0
 margin_bottom = 90.0
-value = 75.0
+value = 70.0
 tick_count = 100
+
+[node name="Reset" type="Button" parent="Sliders/Brightness"]
+margin_left = 960.0
+margin_top = 25.0
+margin_right = 1020.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 4 )
+text = "Reset"
 
 [node name="Buttons" type="Control" parent="."]
 margin_left = 7.0
@@ -133,53 +173,29 @@ margin_left = 400.0
 margin_top = 300.0
 margin_right = 700.0
 margin_bottom = 350.0
-
-[node name="Label" type="Label" parent="Buttons/Continue"]
-margin_right = 300.0
-margin_bottom = 50.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Continue"
-align = 1
-valign = 1
 
 [node name="StageSelect" type="Button" parent="Buttons"]
 margin_left = 400.0
 margin_top = 370.0
 margin_right = 700.0
 margin_bottom = 420.0
-
-[node name="Label" type="Label" parent="Buttons/StageSelect"]
-margin_right = 300.0
-margin_bottom = 50.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "Stage Select"
-align = 1
-valign = 1
 
 [node name="ExitLevel" type="Button" parent="Buttons"]
 margin_left = 400.0
 margin_top = 440.0
 margin_right = 700.0
 margin_bottom = 490.0
-
-[node name="Label" type="Label" parent="Buttons/ExitLevel"]
-margin_right = 300.0
-margin_bottom = 50.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 7 )
 text = "Exit Level"
-align = 1
-valign = 1
 
-[node name="ExitGame" type="Button" parent="Buttons"]
+[node name="StartMenu" type="Button" parent="Buttons"]
 margin_left = 400.0
 margin_top = 510.0
 margin_right = 700.0
 margin_bottom = 560.0
-
-[node name="Label" type="Label" parent="Buttons/ExitGame"]
-margin_right = 300.0
-margin_bottom = 50.0
-custom_fonts/font = SubResource( 3 )
-text = "Exit Game"
-align = 1
-valign = 1
+custom_fonts/font = SubResource( 8 )
+text = "Start Menu"
