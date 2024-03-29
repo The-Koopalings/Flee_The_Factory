@@ -14,7 +14,7 @@ export var tileXMax = 10 #accounting for first column being 0
 export var tileYMax = 6  #accounting for first row being 0
 
 var deadRobotTexture = preload("res://Assets/Placeholders/dead.png")
-
+export(int) var speed = 80.0
 
 
 signal interact(tileX, tileY)
@@ -58,7 +58,7 @@ func move(dir):
 				tileY += 1
 			"ui_up":
 				tileY -= 1
-	
+				
 	# Clamp position to window
 	position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
 	position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
@@ -128,6 +128,24 @@ func get_direction(fromWhere: String = "Front"):
 		PEP.Orientation.RIGHT:
 			return "ui_right"
 
+#AnimationTree work
+func _physics_process(delta):
+	var velocity = Vector2.ZERO
+	if Input.is_action_pressed("ui_right"):
+		velocity.x += 1.0
+	if Input.is_action_pressed("ui_left"):
+		velocity.x -= 1.0
+	if Input.is_action_pressed("ui_down"):
+		velocity.y += 1.0
+	if Input.is_action_pressed("ui_up"):
+		velocity.y -= 1.0
+		
+	velocity = velocity.normalized()
+	if velocity == Vector2.ZERO:
+		pass
+	else:
+		$AnimationTree.set("parameters/Idle/blend_position", velocity)
+		move(velocity * speed)
 
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
