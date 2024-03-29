@@ -27,7 +27,8 @@ func change_scene(scene_name):
 
 	# The solution is to defer the load to a later time 
 	# when we can be sure that no code from the current scene is running:
-
+	var root = get_tree().root
+	current_scene = root.get_child(root.get_child_count() - 1)
 	call_deferred("_deferred_change_scene", scene_name)
 
 
