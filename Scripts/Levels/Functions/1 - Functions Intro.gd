@@ -16,7 +16,6 @@ var b1_pressed = false
 var b2_pressed = false
 
 signal dialogue_progress
-var progress_check = [false, false, false]
 var progress_check_arr = [["Forward", "Forward", "Interact"], ["Call_F1"], ["Call_F1", "Call_F1"]]
 onready var progress_check_FBA = [F1_FBA, MainFBA, MainFBA]
 ##UNIQUE LEVEL VARIABLES

@@ -8,15 +8,11 @@ func _ready():
 		$DoubleSpeed.pressed = true
 	else:
 		$DoubleSpeed.pressed = false
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	
 
 func _on_Settings_pressed():
-	pass # Replace with function body.
+	SettingsMenu.visible = true
+	get_tree().paused = true
 
 
 func _on_Restart_pressed():
@@ -25,7 +21,7 @@ func _on_Restart_pressed():
 		printerr("Error encountered on pressing Restart button. Error code: ", Error)
 	
 	# Clear dialogue queue to remove duplicate dialogue
-	DialogueManager.clear_dialogue_queue()
+	DialogueManager.restart_dialogue()
 
 
 func _on_DoubleSpeed_toggled(button_pressed):
