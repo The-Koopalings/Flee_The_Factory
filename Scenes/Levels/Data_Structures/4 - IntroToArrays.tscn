@@ -21,7 +21,6 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/TextBox.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scripts/Levels/Data_Structures/4 - IntroToArrays.gd" type="Script" id=20]
 
-
 [node name="4 - Intro to Arrays A" type="Node2D"]
 script = ExtResource( 20 )
 
