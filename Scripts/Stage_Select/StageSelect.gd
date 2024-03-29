@@ -26,3 +26,7 @@ func _on_ControlFlowButton_pressed():
 
 func _on_DataStructuresButton_pressed():
 	SceneSwapper.change_scene("Data_Structures Select")
+
+
+func _on_TutorialButton_pressed():
+	SceneSwapper.change_scene("Tutorial Select")

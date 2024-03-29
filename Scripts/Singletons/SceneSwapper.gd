@@ -4,6 +4,7 @@ extends Node
 var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 				  "Credits": "res://Scenes/Credits/Credits.tscn",
 				  "Stage Select": "res://Scenes/Stage_Select/StageSelect.tscn",
+				  "Tutorial Select": "res://Scenes/Stage_Select/TutorialSelect.tscn",
 				  "Functions Select": "res://Scenes/Stage_Select/FunctionsSelect.tscn",
 				  "Recursion Select": "res://Scenes/Stage_Select/RecursionSelect.tscn",
 				  "Control Flow Select": "res://Scenes/Stage_Select/ControlFlowSelect.tscn",
