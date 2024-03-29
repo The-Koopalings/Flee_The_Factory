@@ -21,7 +21,7 @@ func _on_RecursionButton_pressed():
 
 
 func _on_ControlFlowButton_pressed():
-	SceneSwapper.change_scene("Control Flow Select")
+	SceneSwapper.change_scene("Control_Flow Select")
 
 
 func _on_DataStructuresButton_pressed():
