@@ -14,6 +14,8 @@ var level
 var IDE
 var robot
 var puzzleElements
+var codeBlocks = {}
+var IDEChildren = []
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -250,16 +252,39 @@ func init_code_blocks_bar():
 		#if block.name == ""
 
 func init_IDE():
+	if codeBlocks.size() != 0:
+		for key in codeBlocks:
+			print(codeBlocks[key])
+		#Put code blocks into appropraite IDE section
+		codeBlocks.clear()
+	
+	if IDEChildren.size() != 0:
+		print(IDEChildren)
+#		print(IDEChildren[0].get_node("FunctionBlockArea").get_children())
+		var i = 0
+		for block in IDE.get_children():
+#			block = IDEChildren[i]
+			IDE.remove_child(block)
+			IDE.add_child(IDEChildren[i])
+			i = i + 1
+#			if i == 1:
+#				break
+		print(IDE.get_child(0))
+		print(IDE.get_child(0).get_code())
+		IDEChildren.clear()
 	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
 	var options = generate_RHS_options()
 	
 	
 	for child in IDE.get_children():
+		print(child)
 		var type = child.name.rstrip("1234567890")
 		
 		#Ignore the Run Button and Arrow Highlights
-		if type == "Run_Button" or type.find("Arrow") != -1:
+		if type == "Run_Button":
+			child.connect("pressed", IDE, "_on_Button_pressed")
+		elif type.find("Arrow") != -1:
 			continue
 			
 		#Check if we need to add RHS options
