@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Scripts/Level_Components/TextBox.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/Level_Components/TextBox.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Robby/waveWITHBG.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -18,7 +19,7 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 30
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 30
@@ -29,7 +30,7 @@ size = 32
 font_data = ExtResource( 2 )
 
 [node name="TextBox" type="CanvasLayer"]
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": "To change text box position, send \"IDE\", \"CODE_BLOCK\", and \"DEFAULT\" into the queue"
 }
@@ -70,8 +71,8 @@ margin_right = 1595.0
 margin_bottom = 275.0
 
 [node name="End" type="Label" parent="TextBoxContainer/DialogueContainer"]
-margin_left = 1305.0
-margin_top = 244.0
+margin_left = 1234.0
+margin_top = 243.0
 margin_right = 1595.0
 margin_bottom = 275.0
 size_flags_horizontal = 8
@@ -119,9 +120,9 @@ margin_right = 245.0
 margin_bottom = 275.0
 
 [node name="Sprite" type="Sprite" parent="TextBoxContainer/PictureContainer"]
-position = Vector2( 135, 150 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
+position = Vector2( 127, 145 )
+scale = Vector2( 0.75, 0.799562 )
+texture = ExtResource( 4 )
 
 [node name="HeaderContainer" type="MarginContainer" parent="TextBoxContainer"]
 margin_right = 1620.0
@@ -141,10 +142,11 @@ margin_bottom = 75.0
 [node name="Robby" type="Label" parent="TextBoxContainer/HeaderContainer"]
 margin_left = 250.0
 margin_top = 25.0
-margin_right = 329.0
-margin_bottom = 64.0
+margin_right = 350.0
+margin_bottom = 65.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 5 )
 text = "Robby"
 

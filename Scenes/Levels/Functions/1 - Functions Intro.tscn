@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Forward.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Level_Components/TextBox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/TextBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/CodeBlockBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelClearedPopup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=10]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scripts/Levels/Functions/1 - Functions Intro.gd" type="Script" id=15]
 [ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=16]
+
 
 [node name="1 - Functions Intro" type="Node2D"]
 script = ExtResource( 15 )
