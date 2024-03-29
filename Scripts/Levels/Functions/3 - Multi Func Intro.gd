@@ -18,7 +18,6 @@ var b2_pressed = false
 var b3_pressed = false
 
 signal dialogue_progress
-var check_index = 0
 var progress_check_arr = [["Forward", "Forward", "Forward", "Interact"], ["RotateRight", "Forward", "Forward", "RotateLeft"]]
 onready var progress_check_FBA = [F1_FBA, F2_FBA]
 ##UNIQUE LEVEL VARIABLES

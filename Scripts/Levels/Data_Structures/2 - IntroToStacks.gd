@@ -13,7 +13,6 @@ var level_win = false
 var btn_pressed = false
 
 signal dialogue_progress
-var check_index = 0
 var progress_check_arr = []
 onready var progress_check_FBA = []
 ##UNIQUE LEVEL VARIABLES

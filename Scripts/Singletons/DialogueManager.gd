@@ -20,6 +20,7 @@ var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",
 					  "HIGHLIGHT_OBSTACLE": "Grid/Obstacle/Highlight"}
 
 var check_progress = false  # Boolean check to fix yielding bug
+var check_index = 0  # Only check for currently yielding user action checkpoint
 
 # Load and display dialogue
 func add_dialogue(level, file_path):
@@ -58,11 +59,12 @@ func display_dialogue(level):
 			if last_highlight:
 				last_highlight.visible = false
 	
-	clear_dialogue_queue()
-
-
-func clear_dialogue_queue():
 	dialogue_queue.clear()
+
+
+func restart_dialogue():
+	dialogue_queue.clear()
+	check_index = 0
 
 # Manages visual highlight for current game component we are describing
 func highlight_manager(dialogue, level):
@@ -74,13 +76,14 @@ func highlight_manager(dialogue, level):
 
 # Checks if user completed the correct action before the next line of dialogue is triggered
 func dialogue_progress_check(level):
-	if level.check_index < level.progress_check_arr.size():
-		var i = level.check_index
+	if check_index < level.progress_check_arr.size():
+		var i = check_index
 		
 		if check_progress and fba_children_check(level.progress_check_FBA[i], level.progress_check_arr[i]):
 			level.emit_signal("dialogue_progress")
 			check_progress = false
-			level.check_index += 1
+			print(check_index)
+			check_index += 1
 
 
 # Helper function to check to see if the right code blocks are dropped into FBA in the expected order

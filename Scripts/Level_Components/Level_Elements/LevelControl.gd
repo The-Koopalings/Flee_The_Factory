@@ -25,7 +25,7 @@ func _on_Restart_pressed():
 		printerr("Error encountered on pressing Restart button. Error code: ", Error)
 	
 	# Clear dialogue queue to remove duplicate dialogue
-	DialogueManager.clear_dialogue_queue()
+	DialogueManager.restart_dialogue()
 
 
 func _on_DoubleSpeed_toggled(button_pressed):
