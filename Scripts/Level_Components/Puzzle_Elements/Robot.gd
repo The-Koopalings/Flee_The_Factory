@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends RigidBody2D
 
  #Gets puzzle, which should be the immediate parent for any puzzle elements
 onready var grid = get_node("../")
@@ -14,7 +14,6 @@ export var tileXMax = 10 #accounting for first column being 0
 export var tileYMax = 6  #accounting for first row being 0
 
 var deadRobotTexture = preload("res://Assets/Placeholders/dead.png")
-export(int) var speed = 80.0
 
 
 signal interact(tileX, tileY)
@@ -28,6 +27,9 @@ var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vecto
 
 func _ready():
 	$Highlight.visible = true
+	linear_velocity = Vector2.ZERO
+	mass = 0
+	gravity_scale = 0
 	
 #Event handler for movement via keyboard	
 func _unhandled_input(event):
@@ -51,19 +53,30 @@ func move(dir):
 		#Update grid coordinates
 		match dir:
 			"ui_right":
-				tileX += 1
+				#tileX += 1
+				linear_velocity.x += (tile_size/GameStats.run_speed)
 			"ui_left":
-				tileX -= 1
+				#tileX -= 1
+				linear_velocity.x -= (tile_size/GameStats.run_speed)
 			"ui_down":
-				tileY += 1
+				#tileY += 1
+				linear_velocity.y += (tile_size/GameStats.run_speed)
 			"ui_up":
-				tileY -= 1
+				#tileY -= 1
+				linear_velocity.y -= (tile_size/GameStats.run_speed)
 				
 	# Clamp position to window
-	position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
+	"""position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
 	position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
 	tileX = clamp(tileX, 0, tileXMax)
 	tileY = clamp(tileY, 0, tileYMax)
+	"""
+	#linear_velocity.normalized()
+	if linear_velocity == Vector2.ZERO:
+		pass
+	else:
+		$AnimationTree.set("parameters/Idle/blend_position", linear_velocity)
+		#move_and_collide(linear_velocity * speed)
 
 
 #Forward
@@ -129,14 +142,14 @@ func get_direction(fromWhere: String = "Front"):
 			return "ui_right"
 
 #AnimationTree work
-func _physics_process(delta):
-	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1.0
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1.0
-	if Input.is_action_pressed("ui_down"):
-		velocity.y += 1.0
+"""#func _physics_process(delta):
+	#var velocity = Vector2.ZERO
+	#if Input.is_action_pressed("ui_right"):
+	#	velocity.x += 1.0
+	#if Input.is_action_pressed("ui_left"):
+	#	velocity.x -= 1.0
+	#if Input.is_action_pressed("ui_down"):
+	#	velocity.y += 1.0
 	if Input.is_action_pressed("ui_up"):
 		velocity.y -= 1.0
 		
@@ -145,8 +158,8 @@ func _physics_process(delta):
 		pass
 	else:
 		$AnimationTree.set("parameters/Idle/blend_position", velocity)
-		move(velocity * speed)
-
+		move_and_slide(velocity * speed)
+"""
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
 	ray.set_collide_with_areas(true)
