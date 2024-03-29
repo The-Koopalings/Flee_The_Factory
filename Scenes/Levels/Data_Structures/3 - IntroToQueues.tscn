@@ -22,7 +22,6 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=22]
 
-
 [node name="3 - Intro to Queues Q" type="Node2D"]
 script = ExtResource( 6 )
 

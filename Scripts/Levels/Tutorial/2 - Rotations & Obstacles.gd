@@ -13,7 +13,7 @@ var level_win = false
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check = [false, false, false]
+var check_index = 0
 var progress_check_arr = [["RotateLeft"], ["RotateLeft", "Forward"], ["RotateLeft", "Forward", "RotateRight"]]
 onready var progress_check_FBA = [MainFBA, MainFBA, MainFBA]
 ##UNIQUE LEVEL VARIABLES

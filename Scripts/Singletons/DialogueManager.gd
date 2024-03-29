@@ -74,11 +74,13 @@ func highlight_manager(dialogue, level):
 
 # Checks if user completed the correct action before the next line of dialogue is triggered
 func dialogue_progress_check(level):
-	for i in range(level.progress_check.size()):
-		if check_progress and !level.progress_check[i] and fba_children_check(level.progress_check_FBA[i], level.progress_check_arr[i]):
+	if level.check_index < level.progress_check_arr.size():
+		var i = level.check_index
+		
+		if check_progress and fba_children_check(level.progress_check_FBA[i], level.progress_check_arr[i]):
 			level.emit_signal("dialogue_progress")
-			level.progress_check[i] = true 
 			check_progress = false
+			level.check_index += 1
 
 
 # Helper function to check to see if the right code blocks are dropped into FBA in the expected order
@@ -90,6 +92,10 @@ func fba_children_check(FBA, block_names_arr):
 	var passed_check = true
 	
 	for i in range(0, code_blocks.size()):
+		# Edge case: more code blocks are in the FBA than what we are checking for
+		if i >= block_names_arr.size():
+			break
+		
 		var name = code_blocks[i].name
 		
 		if name.begins_with("Call"):
