@@ -82,7 +82,6 @@ func dialogue_progress_check(level):
 		if check_progress and fba_children_check(level.progress_check_FBA[i], level.progress_check_arr[i]):
 			level.emit_signal("dialogue_progress")
 			check_progress = false
-			print(check_index)
 			check_index += 1
 
 
