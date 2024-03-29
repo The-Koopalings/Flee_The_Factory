@@ -65,6 +65,7 @@ func display_dialogue(level):
 func restart_dialogue():
 	dialogue_queue.clear()
 	check_index = 0
+	check_progress = false
 
 # Manages visual highlight for current game component we are describing
 func highlight_manager(dialogue, level):
