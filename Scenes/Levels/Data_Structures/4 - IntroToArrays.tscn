@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/UseItem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Level_Components/Inventory.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/Inventory.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Key.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=9]
@@ -52,7 +52,7 @@ script = ExtResource( 20 )
 [node name="IDE" parent="." instance=ExtResource( 8 )]
 
 [node name="Counter" parent="IDE/Main" index="4"]
-maxBlocks = 13
+maxBlocks = 18
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 17 )]
 
