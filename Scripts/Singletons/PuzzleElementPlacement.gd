@@ -129,7 +129,8 @@ func init_elements():
 					node.position = Vector2(x, y)	
 					#If it's a special element, do special thing to it
 					if type == "Robot":
-						node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+						#node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+						node.orientation = robotStartOrientation
 						node.move_highlight()
 						GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 					elif type == "Button":

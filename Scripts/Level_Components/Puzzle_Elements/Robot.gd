@@ -13,6 +13,13 @@ var tileY
 export var tileXMax = 10 #accounting for first column being 0
 export var tileYMax = 6  #accounting for first row being 0
 
+var orientation
+var vector_position = Vector2.ZERO
+var start_position = Vector2.ZERO
+
+onready var animation_tree = get_node("AnimationTree")
+onready var animation_mode = animation_tree.get("parameters/playback")
+
 var deadRobotTexture = preload("res://Assets/Placeholders/dead.png")
 
 
@@ -39,7 +46,7 @@ func _unhandled_input(event):
 
 # Controls movement of the robot
 func move(dir):
-	var vector_position = inputs[dir] * tile_size
+	vector_position = inputs[dir] * tile_size
 	
 	# Check if there is an obstacle in the direction of the robot's movement
 	ray.set_collide_with_areas(false)
@@ -48,35 +55,50 @@ func move(dir):
 	ray.force_raycast_update()
 	
 	if !ray.is_colliding():
-		position += vector_position
-		
+		#position += vector_position
+		start_position = position
 		#Update grid coordinates
+		animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
 		match dir:
 			"ui_right":
-				#tileX += 1
-				linear_velocity.x += (tile_size/GameStats.run_speed)
+				tileX += 1
+				position.x += 4/GameStats.run_speed
+				#linear_velocity.x += (tile_size/GameStats.run_speed)
+				#$AnimationPlayer.play("walk_right")
 			"ui_left":
-				#tileX -= 1
-				linear_velocity.x -= (tile_size/GameStats.run_speed)
+				tileX -= 1
+				position.x -= 4/GameStats.run_speed
+				#linear_velocity.x -= (tile_size/GameStats.run_speed)
+				#$AnimationPlayer.play("walk_left")
 			"ui_down":
-				#tileY += 1
-				linear_velocity.y += (tile_size/GameStats.run_speed)
+				tileY += 1
+				position.y += 4/GameStats.run_speed
+				#linear_velocity.y += (tile_size/GameStats.run_speed)
+				#$AnimationPlayer.play("walk_down")
 			"ui_up":
-				#tileY -= 1
-				linear_velocity.y -= (tile_size/GameStats.run_speed)
-				
+				tileY -= 1
+				position.y -= 4/GameStats.run_speed
+				#linear_velocity.y -= (tile_size/GameStats.run_speed)
+				#$AnimationPlayer.play("walk_up")
+		#animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
 	# Clamp position to window
-	"""position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
+	position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
 	position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
 	tileX = clamp(tileX, 0, tileXMax)
 	tileY = clamp(tileY, 0, tileYMax)
-	"""
-	#linear_velocity.normalized()
-	if linear_velocity == Vector2.ZERO:
-		pass
+
+func _process(delta):
+	#Clamping grid
+	position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
+	position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
+	
+	#if position != (start_position + vector_position):
+	  #to stop robot from moving when it's not supposed to or like keep tracking of boolean for when robot should move or not
+	if (start_position + vector_position) != Vector2.ZERO:
+		#position += 4/GameStats.run_speed
+		animation_mode.travel("Walk")
 	else:
-		$AnimationTree.set("parameters/Idle/blend_position", linear_velocity)
-		#move_and_collide(linear_velocity * speed)
+		animation_mode.travel("Idle")
 
 
 #Forward
@@ -85,40 +107,48 @@ func _on_Forward_forwardSignal():
 
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
-	$Sprite.rotation -= PI/2
+	#$Sprite.rotation -= PI/2
+	orientation = (orientation - 1) % 4
+	if orientation < 0:
+		orientation = 3
 	move_highlight()
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
-	$Sprite.rotation += PI/2
+	#$Sprite.rotation += PI/2
+	orientation = (orientation + 1) % 4
 	move_highlight()
 
 #Interact
 func _on_Interact_interactSignal():
 	emit_signal("interact", tileX, tileY)
-	
+	###############MAYBE???? DO A JUMP?????######################
 
 func move_highlight():
 	var dir = get_direction()
 	if dir == "ui_up":
 		$Highlight.set_position(Vector2(-48, -144))
+		$AnimationPlayer.play("idle_up")
 	elif dir == "ui_left":
 		$Highlight.set_position(Vector2(-144, -48))
+		$AnimationPlayer.play("idle_left")
 	elif dir == "ui_down":
 		$Highlight.set_position(Vector2(-48, 48))
+		$AnimationPlayer.play("idle_down")
 	elif dir == "ui_right":
 		$Highlight.set_position(Vector2(48, -48)) 
+		$AnimationPlayer.play("idle_right")
 	
 
 #fromWhere can be "Front", "Back", "Left", or "Right"
 func get_direction(fromWhere: String = "Front"):
-	var orientation
-	if $Sprite.rotation >= 0:
-		orientation = int(($Sprite.rotation_degrees+1) / 90) % 4
-	elif $Sprite.rotation < 0:
-		orientation = int(($Sprite.rotation_degrees-1) / 90) % 4
-		orientation += 4 if orientation != 0 else 0
-	
+#	var orientation
+#	if $Sprite.rotation >= 0:
+#		orientation = int(($Sprite.rotation_degrees+1) / 90) % 4
+#	elif $Sprite.rotation < 0:
+#		orientation = int(($Sprite.rotation_degrees-1) / 90) % 4
+#		orientation += 4 if orientation != 0 else 0
+#
 	#up = 0, right = 1, down = 2, left = 3
 	if fromWhere == "Back":
 		orientation = (orientation + 2) % 4
@@ -141,25 +171,6 @@ func get_direction(fromWhere: String = "Front"):
 		PEP.Orientation.RIGHT:
 			return "ui_right"
 
-#AnimationTree work
-"""#func _physics_process(delta):
-	#var velocity = Vector2.ZERO
-	#if Input.is_action_pressed("ui_right"):
-	#	velocity.x += 1.0
-	#if Input.is_action_pressed("ui_left"):
-	#	velocity.x -= 1.0
-	#if Input.is_action_pressed("ui_down"):
-	#	velocity.y += 1.0
-	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1.0
-		
-	velocity = velocity.normalized()
-	if velocity == Vector2.ZERO:
-		pass
-	else:
-		$AnimationTree.set("parameters/Idle/blend_position", velocity)
-		move_and_slide(velocity * speed)
-"""
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
 	ray.set_collide_with_areas(true)
