@@ -193,7 +193,7 @@ transitions = [ "Idle", "Walk", SubResource( 28 ), "Walk", "Idle", SubResource( 
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 
-[node name="Robot" type="RigidBody2D"]
+[node name="Robot" type="KinematicBody2D"]
 z_index = 10
 script = ExtResource( 2 )
 __meta__ = {

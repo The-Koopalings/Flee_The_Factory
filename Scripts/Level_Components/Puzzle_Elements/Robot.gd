@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends KinematicBody2D
 
  #Gets puzzle, which should be the immediate parent for any puzzle elements
 onready var grid = get_node("../")
@@ -20,7 +20,7 @@ var start_position = Vector2.ZERO
 onready var animation_tree = get_node("AnimationTree")
 onready var animation_mode = animation_tree.get("parameters/playback")
 
-var deadRobotTexture = preload("res://Assets/Placeholders/dead.png")
+var deadRobotTexture = preload("res://Assets/Robby/death.png")
 
 
 signal interact(tileX, tileY)
@@ -34,9 +34,6 @@ var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vecto
 
 func _ready():
 	$Highlight.visible = true
-	linear_velocity = Vector2.ZERO
-	mass = 0
-	gravity_scale = 0
 	
 #Event handler for movement via keyboard	
 func _unhandled_input(event):
