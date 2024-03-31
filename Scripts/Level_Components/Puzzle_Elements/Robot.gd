@@ -16,6 +16,8 @@ export var tileYMax = 6  #accounting for first row being 0
 var orientation
 var vector_position = Vector2.ZERO
 var start_position = Vector2.ZERO
+var moving = false
+var direction = ''
 
 onready var animation_tree = get_node("AnimationTree")
 onready var animation_mode = animation_tree.get("parameters/playback")
@@ -52,6 +54,7 @@ func move(dir):
 	ray.force_raycast_update()
 	
 	if !ray.is_colliding():
+		moving = true
 		#position += vector_position
 		start_position = position
 		#Update grid coordinates
@@ -59,47 +62,75 @@ func move(dir):
 		match dir:
 			"ui_right":
 				tileX += 1
-				position.x += 4/GameStats.run_speed
+				direction = 'right'
+				#position.x += 4/GameStats.run_speed
 				#linear_velocity.x += (tile_size/GameStats.run_speed)
 				#$AnimationPlayer.play("walk_right")
 			"ui_left":
 				tileX -= 1
-				position.x -= 4/GameStats.run_speed
+				direction = 'left'
+				#position.x -= 4/GameStats.run_speed
 				#linear_velocity.x -= (tile_size/GameStats.run_speed)
 				#$AnimationPlayer.play("walk_left")
 			"ui_down":
 				tileY += 1
-				position.y += 4/GameStats.run_speed
+				direction = 'down'
+				#position.y += 4/GameStats.run_speed
 				#linear_velocity.y += (tile_size/GameStats.run_speed)
 				#$AnimationPlayer.play("walk_down")
 			"ui_up":
 				tileY -= 1
-				position.y -= 4/GameStats.run_speed
+				direction = 'up'
+				#position.y -= 4/GameStats.run_speed
 				#linear_velocity.y -= (tile_size/GameStats.run_speed)
 				#$AnimationPlayer.play("walk_up")
+	else:
+		moving = false
+		animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
+		
 		#animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
 	# Clamp position to window
-	position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
-	position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
+	#position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
+	#position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
 	tileX = clamp(tileX, 0, tileXMax)
 	tileY = clamp(tileY, 0, tileYMax)
 
 func _process(delta):
-	#Clamping grid
-	position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
-	position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
-	
-	#if position != (start_position + vector_position):
-	  #to stop robot from moving when it's not supposed to or like keep tracking of boolean for when robot should move or not
-	if (start_position + vector_position) != Vector2.ZERO:
-		#position += 4/GameStats.run_speed
-		animation_mode.travel("Walk")
+	if !moving:
+		var facing = 'idle_' + direction
+		$AnimationPlayer.play(facing)
 	else:
-		animation_mode.travel("Idle")
+		var walking = 'walk_' + direction
+		$AnimationPlayer.play(walking)
+		#animation_tree.set("parameters/Walk/blend_position", inputs[get_direction()].normalized())
+		
+		#Clamping grid
+		position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
+		position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
+		
+		var end_position = start_position + vector_position
+		print ('end position is ', end_position)
+		if position != end_position:
+			#position += 4/GameStats.run_speed
+			if (position.x != end_position.x):
+				if (position.x - end_position.x) > 0:
+					position.x -= 1
+				else:
+					position.x += 1
+			if (position.y != end_position.y):
+				if (position.y - end_position.y) > 0:
+					position.y -= 1
+				else:
+					position.y += 1
+				
+		else:
+			moving = false
+			animation_mode.travel("Idle")
 
 
 #Forward
 func _on_Forward_forwardSignal():
+	moving = true
 	move(get_direction())
 
 #RotateLeft
