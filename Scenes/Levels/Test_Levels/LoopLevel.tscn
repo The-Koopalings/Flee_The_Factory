@@ -290,6 +290,8 @@ parameters/playback = SubResource( 4 )
 
 [node name="KeyR" parent="Grid" instance=ExtResource( 29 )]
 
+[node name="DoorR" parent="Grid" instance=ExtResource( 13 )]
+
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
