@@ -26,6 +26,7 @@ var deadRobotTexture = preload("res://Assets/Robby/death.png")
 
 
 signal interact(tileX, tileY)
+signal animationFinished
 
 #Used for dictating movement
 onready var ray = $RayCast2D
@@ -94,38 +95,42 @@ func move(dir):
 	#position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
 	tileX = clamp(tileX, 0, tileXMax)
 	tileY = clamp(tileY, 0, tileYMax)
+	
 
 func _process(delta):
 	if !moving:
-		var facing = 'idle_' + direction
-		$AnimationPlayer.play(facing)
+#		var facing = 'idle_' + direction
+#		$AnimationPlayer.play(facing)
+		animation_mode.travel("Idle")
 	else:
 		var walking = 'walk_' + direction
 		$AnimationPlayer.play(walking)
 		#animation_tree.set("parameters/Walk/blend_position", inputs[get_direction()].normalized())
-		
-		#Clamping grid
-		position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
-		position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
-		
+
 		var end_position = start_position + vector_position
 		print ('end position is ', end_position)
 		if position != end_position:
 			#position += 4/GameStats.run_speed
 			if (position.x != end_position.x):
 				if (position.x - end_position.x) > 0:
-					position.x -= 1
+					position.x -= 0.75/GameStats.run_speed
 				else:
-					position.x += 1
+					position.x += 0.75/GameStats.run_speed
 			if (position.y != end_position.y):
 				if (position.y - end_position.y) > 0:
-					position.y -= 1
+					position.y -= 0.75/GameStats.run_speed
 				else:
-					position.y += 1
-				
+					position.y += 0.75/GameStats.run_speed
+			#Clamping grid
+			position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
+			position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
+
 		else:
 			moving = false
 			animation_mode.travel("Idle")
+			var facing = 'idle_' + direction
+			$AnimationPlayer.play(facing)
+			emit_signal("animationFinished")
 
 
 #Forward
