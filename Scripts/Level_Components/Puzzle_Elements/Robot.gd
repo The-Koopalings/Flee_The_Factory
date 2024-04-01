@@ -50,10 +50,10 @@ func move(dir):
 	
 	# Check if there is an obstacle in the direction of the robot's movement
 	ray.set_collide_with_areas(false)
-	ray.position = Vector2(0, 0)
+	ray.position = Vector2.ZERO
 	ray.cast_to = vector_position
 	ray.force_raycast_update()
-	
+	print("raycast pos ", ray.position)
 	if !ray.is_colliding():
 		moving = true
 		#position += vector_position
@@ -87,7 +87,6 @@ func move(dir):
 				#$AnimationPlayer.play("walk_up")
 	else:
 		moving = false
-		vector_position = Vector2.ZERO
 		animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
 		
 		#animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
@@ -103,14 +102,15 @@ func _process(delta):
 #		var facing = 'idle_' + direction
 #		$AnimationPlayer.play(facing)
 		animation_mode.travel("Idle")
+		emit_signal("animationFinished") #Allows code execution to continue if front is blocked, doesn't work if put in move() for some reason?
 	else:
 		var walking = 'walk_' + direction
 		$AnimationPlayer.play(walking)
 		#animation_tree.set("parameters/Walk/blend_position", inputs[get_direction()].normalized())
 
 		var end_position = start_position + vector_position
-		print("position is ", position)
-		print ('end position is ', end_position)
+#		print("position is ", position)
+#		print ('end position is ', end_position)
 		if position != end_position:
 			#position += 4/GameStats.run_speed
 			if (position.x != end_position.x):
@@ -183,17 +183,17 @@ func get_direction(fromWhere: String = "Front"):
 #	elif $Sprite.rotation < 0:
 #		orientation = int(($Sprite.rotation_degrees-1) / 90) % 4
 #		orientation += 4 if orientation != 0 else 0
-#
+	var checkOrientation = orientation
 	#up = 0, right = 1, down = 2, left = 3
 	if fromWhere == "Back":
-		orientation = (orientation + 2) % 4
+		checkOrientation = (orientation + 2) % 4
 	elif fromWhere == "Left":
-		orientation = (orientation + 3) % 4
+		checkOrientation = (orientation + 3) % 4
 	elif fromWhere == "Right":
-		orientation = (orientation + 1) % 4
+		checkOrientation = (orientation + 1) % 4
 	
 	#Return direction to move in/detect objects in, based on Robot orientation
-	match orientation:
+	match checkOrientation:
 		PEP.Orientation.UP:
 			return "ui_up"
 			
