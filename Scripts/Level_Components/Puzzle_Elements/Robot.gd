@@ -87,6 +87,7 @@ func move(dir):
 				#$AnimationPlayer.play("walk_up")
 	else:
 		moving = false
+		vector_position = Vector2.ZERO
 		animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
 		
 		#animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
@@ -108,6 +109,7 @@ func _process(delta):
 		#animation_tree.set("parameters/Walk/blend_position", inputs[get_direction()].normalized())
 
 		var end_position = start_position + vector_position
+		print("position is ", position)
 		print ('end position is ', end_position)
 		if position != end_position:
 			#position += 4/GameStats.run_speed
