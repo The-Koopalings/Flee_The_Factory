@@ -32,7 +32,7 @@ text = "Functions"
 align = 1
 valign = 1
 
-[node name="Back_Btn" type="TextureButton" parent="."]
+[node name="BackButton" type="TextureButton" parent="."]
 margin_left = 82.0
 margin_top = 66.0
 margin_right = 182.0
@@ -46,5 +46,3 @@ expand = true
 [node name="Button2" parent="." instance=ExtResource( 5 )]
 
 [node name="Button3" parent="." instance=ExtResource( 5 )]
-
-[connection signal="pressed" from="Back_Btn" to="." method="_on_Back_Btn_pressed"]
