@@ -10,6 +10,7 @@ var previousCode = null
 var currentNode = null #Current IDE section node
 var looping: bool = false 
 var singleLoopCompleted: bool = false #True means loop can increment
+onready var Robot = get_node("../Grid/Robot")
 
 #To allow for only 1 press of Run unless the scene is restarted
 var runPressed = false
@@ -104,6 +105,8 @@ func run_code():
 			emit_signal("executed", previousCode)
 			block.send_signal()
 			previousCode = block
+			if block.name.begins_with("Forward"):
+				yield(Robot, "animationFinished")
 			
 			if block.BLOCK_TYPE == "CODE":
 				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 

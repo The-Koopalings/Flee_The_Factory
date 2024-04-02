@@ -59,6 +59,7 @@ func move_to_inventory(item, slotNum):
 				item.global_position = itemSlot.get_global_position() + Vector2(48, 48)
 				item.z_index = 99
 				PEP.puzzleElements["Key"].erase(item)
+				PEP.tiles[item.tileY][item.tileX] = ' '
 				break
 	#For Array, add item into specified slot, replaces existing item in the specified slot if there is one
 	else:
@@ -72,6 +73,7 @@ func move_to_inventory(item, slotNum):
 		item.global_position = itemSlot.get_global_position() + Vector2(48, 48)
 		item.z_index = 99
 		PEP.puzzleElements["Key"].erase(item)
+		PEP.tiles[item.tileY][item.tileX] = ' '
 	
 
 #Only functional for using keys on doors right now
@@ -91,7 +93,8 @@ func on_useItem(slotNum):
 			item = itemSlot.get_child(0)
 			if !item:
 				continue
-			elif item and item.name.substr(3, 1) == object.name.substr(4, 1):
+			elif item and item.name.substr(3, 1) == object.name.substr(4, 1): #Key is same color as Door
+				PEP.tiles[object.tileY][object.tileX] = ' '
 				item.queue_free()
 				object.queue_free()
 				itemSlot.text = str(i)
@@ -102,6 +105,7 @@ func on_useItem(slotNum):
 		itemSlot = get_node("ItemSlots/ItemSlot0")
 		item = itemSlot.get_child(0)
 		if item and item.name.substr(3, 1) == object.name.substr(4, 1):
+			PEP.tiles[object.tileY][object.tileX] = ' '
 			item.queue_free()
 			object.queue_free()
 			#Shift all items left 1 slot if there are any left in Inventory
@@ -116,6 +120,7 @@ func on_useItem(slotNum):
 		item = itemSlot.get_child(0)
 		#If the key is the same color as the door, then queue_free the door & key
 		if item and item.name.substr(3, 1) == object.name.substr(4, 1):
+			PEP.tiles[object.tileY][object.tileX] = ' '
 			item.queue_free()
 			object.queue_free()
 			itemSlot.text = str(slotNum)
