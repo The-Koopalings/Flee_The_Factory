@@ -1,14 +1,12 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal button_press(name)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	SceneSwapper.load_lvl_buttons(self, "Tutorial")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,3 +16,9 @@ func _ready():
 
 func _on_Back_Btn_pressed():
 	SceneSwapper.change_scene("Stage Select")
+
+
+func on_button_pressed():
+	print("HI")
+
+
