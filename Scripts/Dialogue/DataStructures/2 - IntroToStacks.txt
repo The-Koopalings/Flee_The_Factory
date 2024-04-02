@@ -1,4 +1,9 @@
-Explain Stacks & how the inventory is red + has text as to what it is
+Hey pardner look at our inventory.
+As you can see it's still on "Stack" mode. You can tell that's the case by either the color of the inventory (red for stacks), or by the name of it at the top of the inventory.
+Now let me explain what being in "Stack" mode means exactly.
+As explained last time, the inventory modes make my inventory act like different types of data structures. A stack is a type of data structure.
+Stacks work on the principle of "last in, first out", or LIFO, meaning if you wanted to take (or use) something out of a stack, then the last item put into the stack would be taken out (or used) first.
+Now let me explain how this mode's Pickup and UseItem work.
 
 CODE_BLOCK
 
@@ -10,9 +15,9 @@ If I try to pickup an item while my inventory is full, then I can't pick it up a
 HIGHLIGHT_USEITEM
 UseItem, however, will try to use the biggest, or rightmost, occupied index. AKA the item that was last put into the inventory.
 HIGHLIGHT_USEITEM
-This imitates the LIFO principle of Stacks, which is why we call this mode the Stack mode.
+This imitates the LIFO principle of stacks, which is why we call this mode the Stack mode.
 
-What should happen, step-by-step blah blah red key goes, then blue, but use blue or whatever
+To get to the exit, we will have to keep in mind the stack concept of LIFO. Always remember that for stacks, the last item put in is the first to be used!
 ;
 
 YEEEEEHAWWWWW pardner we made it out!
