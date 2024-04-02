@@ -38,7 +38,7 @@ func _deferred_change_scene(scene_name):
 	current_scene.free()
 	
 	#Clear dialogue queue
-	DialogueManager.clear_dialogue_queue()
+	DialogueManager.restart_dialogue()
 	
 	# Load the new scene.
 	var path = scene_path[scene_name]
