@@ -72,13 +72,8 @@ func _deferred_change_scene(scene_name):
 
 
 func load_lvl_buttons(level_select):
-	var btn_nodes = level_select.get_children()
+	var btn_nodes = get_tree().get_nodes_in_group("level_buttons")
 	var btn_count = 0
-	
-	# Pop the first 3 nodes -> not level buttons
-	btn_nodes.pop_front()
-	btn_nodes.pop_front()
-	btn_nodes.pop_front()
 	
 	var x_pos = X_START
 	var y_pos = Y_START
@@ -87,10 +82,12 @@ func load_lvl_buttons(level_select):
 		btn.rect_position = Vector2(x_pos, y_pos)
 		btn_count += 1
 		
-		print(btn.rect_position)
-		
 		x_pos += X_SPACE
 		
 		if btn_count % 6 == 0:
 			x_pos = X_START
 			y_pos += Y_SPACE
+
+
+func find_lvl_scene_path():
+	pass

@@ -10,6 +10,8 @@ extends Button
 func _ready():
 	var num = name.substr(6, -1)
 	text = num
+	
+	add_to_group("level_buttons")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
