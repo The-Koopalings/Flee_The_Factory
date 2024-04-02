@@ -8,7 +8,7 @@ var tileX
 var tileY
 var color
 
-var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
+var openDoorTexture = preload("res://Assets/Miscalleous/completion.png")
 
 
 func _ready():

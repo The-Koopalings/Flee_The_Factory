@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=2]
@@ -19,9 +19,7 @@
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Pickup.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/UseItem.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Key.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=22]
-
 
 [node name="3 - Intro to Queues Q" type="Node2D"]
 script = ExtResource( 6 )
@@ -43,22 +41,6 @@ script = ExtResource( 6 )
 [node name="KeyB" parent="Grid" instance=ExtResource( 19 )]
 
 [node name="KeyR" parent="Grid" instance=ExtResource( 19 )]
-
-[node name="Obstacle1" parent="Grid" instance=ExtResource( 20 )]
-
-[node name="Obstacle2" parent="Grid" instance=ExtResource( 20 )]
-
-[node name="Obstacle3" parent="Grid" instance=ExtResource( 20 )]
-
-[node name="Obstacle4" parent="Grid" instance=ExtResource( 20 )]
-
-[node name="Obstacle5" parent="Grid" instance=ExtResource( 20 )]
-
-[node name="Obstacle6" parent="Grid" instance=ExtResource( 20 )]
-
-[node name="Obstacle7" parent="Grid" instance=ExtResource( 20 )]
-
-[node name="Obstacle8" parent="Grid" instance=ExtResource( 20 )]
 
 [node name="IDE" parent="." instance=ExtResource( 4 )]
 

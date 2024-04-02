@@ -13,7 +13,6 @@ var level_win = false
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check = []    # So signal is only emitted the first time the check is passed
 var progress_check_arr = []
 onready var progress_check_FBA = []
 ##UNIQUE LEVEL VARIABLES
@@ -22,9 +21,9 @@ onready var progress_check_FBA = []
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','R','K','K','O',' ','X','X','X'],
-	['X','X','X','O','O','D','D',' ','X','X','X'],
-	['X','X','X',' ',' ','O','B','D','X','X','X'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
+	['R','K','K','K','K','D','D','D','D','B','D'],
+	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
