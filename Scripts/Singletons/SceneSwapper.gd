@@ -25,6 +25,11 @@ var stage_level_count = {"Tutorial": 3,
 						 "Data_Structures": 4}
 
 
+const X_START = 110
+const Y_START = 300
+const X_SPACE = 300
+const Y_SPACE = 300
+
 var current_scene = null
 
 
@@ -66,31 +71,26 @@ func _deferred_change_scene(scene_name):
 	get_tree().current_scene = current_scene
 
 
-func load_lvl_buttons(level_select, stage_name):
-	var btn_count = stage_level_count[stage_name]
+func load_lvl_buttons(level_select):
 	var btn_nodes = level_select.get_children()
+	var btn_count = 0
 	
-	# Pop the first 3 nodes -> not buttons
+	# Pop the first 3 nodes -> not level buttons
 	btn_nodes.pop_front()
 	btn_nodes.pop_front()
 	btn_nodes.pop_front()
 	
-	var x_min = 0
-	var y_min = 50
-	
-	var x_max = 1920
-	var y_max = 1080
-	
-	var x_space = 300
-	var y_space = 300
-	
-	# TODO: figure out how to calculate these based off total number of buttons
-	# Buttons should still be centered
-	var x_pos = 300
-	var y_pos = 300
+	var x_pos = X_START
+	var y_pos = Y_START
 	
 	for btn in btn_nodes:
 		btn.rect_position = Vector2(x_pos, y_pos)
+		btn_count += 1
 		
-		x_pos += x_space
-		#y_pos += y_space
+		print(btn.rect_position)
+		
+		x_pos += X_SPACE
+		
+		if btn_count % 6 == 0:
+			x_pos = X_START
+			y_pos += Y_SPACE

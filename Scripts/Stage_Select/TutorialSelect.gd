@@ -6,7 +6,7 @@ signal button_press(name)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SceneSwapper.load_lvl_buttons(self, "Tutorial")
+	SceneSwapper.load_lvl_buttons(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

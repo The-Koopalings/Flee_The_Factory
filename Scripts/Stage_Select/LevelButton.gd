@@ -8,7 +8,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var num = name.substr(6, 1)
+	var num = name.substr(6, -1)
 	text = num
 
 
