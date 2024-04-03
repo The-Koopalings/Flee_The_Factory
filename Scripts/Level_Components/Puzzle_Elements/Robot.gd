@@ -53,7 +53,7 @@ func move(dir):
 	ray.position = Vector2.ZERO
 	ray.cast_to = vector_position
 	ray.force_raycast_update()
-	print("raycast pos ", ray.position)
+	
 	if !ray.is_colliding():
 		moving = true
 		#position += vector_position
