@@ -257,11 +257,11 @@ func init_IDE():
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
 	var options = null
 	
-	if codeBlocks.size() != 0:
-		for key in codeBlocks:
-			print(codeBlocks[key])
-		#Put code blocks into appropriate IDE section
-		codeBlocks.clear()
+#	if codeBlocks.size() != 0:
+#		for key in codeBlocks:
+#			print(codeBlocks[key])
+#		#Put code blocks into appropriate IDE section
+#		codeBlocks.clear()
 	
 	if IDEChildren.size() != 0:
 		print(IDEChildren)
@@ -280,8 +280,6 @@ func init_IDE():
 	else:
 		options = generate_RHS_options()
 	
-	
-	
 	for child in IDE.get_children():
 		print(child)
 		var type = child.name.rstrip("1234567890")
@@ -291,6 +289,13 @@ func init_IDE():
 			child.connect("pressed", IDE, "_on_Button_pressed")
 		elif type.find("Arrow") != -1:
 			continue
+		elif type == "If":
+			child.get_node("If").set_FBA_numBlocks()
+			child.get_node("Else").set_FBA_numBlocks()
+		elif type == "Loop":
+			child.get_node("HighlightControl").set_FBA_numBlocks()
+		else:
+			child.set_FBA_numBlocks()
 			
 		#Check if we need to add RHS options
 		if options:

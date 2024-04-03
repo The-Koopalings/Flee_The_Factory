@@ -16,6 +16,10 @@ func get_code():
 
 	return code
 
+func set_FBA_numBlocks():
+	var FBA = get_node("FunctionBlockArea")
+	FBA.numBlocks = FBA.get_child_count() - 2
+
 func _on_FunctionBlockControl_focus_entered():
 	$Highlight.visible = true
 
