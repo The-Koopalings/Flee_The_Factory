@@ -253,10 +253,14 @@ func init_code_blocks_bar():
 		#if block.name == ""
 
 func init_IDE():
+	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
+	level.connect("levelComplete", IDE, "_on_level_levelComplete")
+	var options = null
+	
 	if codeBlocks.size() != 0:
 		for key in codeBlocks:
 			print(codeBlocks[key])
-		#Put code blocks into appropraite IDE section
+		#Put code blocks into appropriate IDE section
 		codeBlocks.clear()
 	
 	if IDEChildren.size() != 0:
@@ -273,9 +277,9 @@ func init_IDE():
 		print(IDE.get_child(0))
 		print(IDE.get_child(0).get_code())
 		IDEChildren.clear()
-	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
-	level.connect("levelComplete", IDE, "_on_level_levelComplete")
-	var options = generate_RHS_options()
+	else:
+		options = generate_RHS_options()
+	
 	
 	
 	for child in IDE.get_children():
@@ -289,12 +293,14 @@ func init_IDE():
 			continue
 			
 		#Check if we need to add RHS options
-		if type == "If":
-			var RHS = child.get_node("If/RHS")
-			add_RHS_options(options, RHS)
-		elif type == "Loop":
-			var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
-			add_RHS_options(options, RHS)
+		print("options: ", options)
+		if options:
+			if type == "If":
+				var RHS = child.get_node("If/RHS")
+				add_RHS_options(options, RHS)
+			elif type == "Loop":
+				var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
+				add_RHS_options(options, RHS)
 			
 		#Add the scope to list of scopes
 		IDE.scopes[child.name] = child
