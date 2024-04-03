@@ -1,4 +1,4 @@
-Hey pardner look at our inventory.
+Hey partner look at our inventory.
 As you can see it's still on "Stack" mode. You can tell that's the case by either the color of the inventory (red for stacks), or by the name of it at the top of the inventory.
 Now let me explain what being in "Stack" mode means exactly.
 As explained last time, the inventory modes make my inventory act like different types of data structures. A stack is a type of data structure.
@@ -20,4 +20,4 @@ This imitates the LIFO principle of stacks, which is why we call this mode the S
 To get to the exit, we will have to keep in mind the stack concept of LIFO. Always remember that for stacks, the last item put in is the first to be used!
 ;
 
-YEEEEEHAWWWWW pardner we made it out!
+YEEEEEHAWWWWW partner we made it out!

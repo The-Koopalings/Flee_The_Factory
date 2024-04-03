@@ -39,7 +39,7 @@ Great job! Now let's talk about our next new code block.
 HIGHLIGHT_USEITEM
 This code block is called UseItem.
 Again, you can probably guess that this will be used to use an item in our inventory.
-To unlock a Door, I have to face the Door (or the yellow highlight has to be on the Door's tile), then UseItem will have to be activated.
+To unlock a Door, I have to face the Door, then UseItem will have to be activated.
 The item that will be used with UseItem depends on my inventory mode, but since we only have 1 item, we don't need to worry about this yet.
 An important thing to remember here is that once an item is used correctly, it will be disappear from my inventory and cannot be used again (unless you Restart the level).
 Items used incorrectly (like if you try to open a green Door with a red Key) will not disappear.

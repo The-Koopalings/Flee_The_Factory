@@ -1,6 +1,6 @@
 Oh look, my inventory has changed modes once again! This time it's in "Array" mode.
 You can tell when my inventory is in Array mode because it will always be blue and have the words "Array" above it.
-In Array mode, my inventory will act like the data structure, array.
+In this mode, my inventory will act like an array data structure.
 Arrays are a type of data structure that allows you to choose which index you want to put an item into or take an item out of.
 So unlike stacks and queues, arrays allow you the freedom of choice. But if you put an item into an index that already has an item, the array will overwrite (AKA delete) the previously stored item, replacing it with the new one.
 So with arrays you have to be careful about where you choose to place items, a worry that wasn't there with stacks or queues.
