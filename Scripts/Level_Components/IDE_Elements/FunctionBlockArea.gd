@@ -137,7 +137,20 @@ func remove_block(block):
 	shift_blocks(startIndex+1)
 	#yield(get_tree().create_timer(0.01, false), "timeout") 
 	
+
+func clear_code():
+	var code = get_children()
 	
+	#Pop CollisionShape2D & ColorRect 
+	code.pop_front()
+	code.pop_front()
+	
+	for codeBlock in code:
+		codeBlock.queue_free()
+	numBlocks = 0
+	counter.display(numBlocks)
+	
+
 #Remove code blocks once player releases left mouse button
 func _on_CodeBlock_stop_drag(globalPos):
 	#If we're deleting a block, that block exists, and it's the one following the mouse, then delete

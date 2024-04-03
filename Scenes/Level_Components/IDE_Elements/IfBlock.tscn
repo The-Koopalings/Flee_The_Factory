@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/Counter.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/IfBlock.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/ClearCodeButton.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 210, 27.5 )
@@ -131,6 +132,12 @@ margin_bottom = 24.0
 rect_scale = Vector2( 3, 3 )
 text = "Blocked"
 
+[node name="ClearCode" parent="If" instance=ExtResource( 5 )]
+margin_left = 355.0
+margin_top = 5.0
+margin_right = 469.0
+margin_bottom = 40.0
+
 [node name="Else" type="Control" parent="."]
 margin_top = 137.5
 margin_right = 480.0
@@ -199,6 +206,12 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Else/Clickable"]
 position = Vector2( 240, 68.5 )
 shape = SubResource( 2 )
+
+[node name="ClearCode" parent="Else" instance=ExtResource( 5 )]
+margin_left = 355.0
+margin_top = 5.0
+margin_right = 469.0
+margin_bottom = 40.0
 
 [connection signal="focus_entered" from="If" to="If" method="_on_FunctionBlockControl_focus_entered"]
 [connection signal="focus_exited" from="If" to="If" method="_on_FunctionBlockControl_focus_exited"]
