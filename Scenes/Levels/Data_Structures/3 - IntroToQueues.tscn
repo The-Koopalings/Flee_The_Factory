@@ -42,6 +42,8 @@ script = ExtResource( 6 )
 
 [node name="KeyR" parent="Grid" instance=ExtResource( 19 )]
 
+[node name="Level Control" parent="." instance=ExtResource( 14 )]
+
 [node name="IDE" parent="." instance=ExtResource( 4 )]
 
 [node name="Counter" parent="IDE/Main" index="4"]
@@ -65,11 +67,9 @@ maxBlocks = 10
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
 
-[node name="AcceptDialog" parent="." instance=ExtResource( 13 )]
-
-[node name="Level Control" parent="." instance=ExtResource( 14 )]
-
 [node name="TextBox" parent="." instance=ExtResource( 15 )]
+
+[node name="PopupMenu" parent="." instance=ExtResource( 13 )]
 
 [editable path="IDE"]
 [editable path="IDE/Main"]

@@ -1,10 +1,53 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
 
-[node name="AcceptDialog" type="AcceptDialog"]
-margin_left = 490.0
-margin_top = 381.0
-margin_right = 596.0
-margin_bottom = 439.0
-rect_scale = Vector2( 3, 3 )
-window_title = ""
-dialog_text = "Level Cleared!"
+[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Level_Components/Level_Elements/LevelClearedPopup.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[node name="PopupMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 400.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 600.0
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
+
+[node name="Label" type="Label" parent="ColorRect"]
+margin_left = 113.5
+margin_top = 20.0
+margin_right = 386.5
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 2 )
+text = "Level Cleared!"
+
+[node name="Next Level" type="Button" parent="ColorRect"]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 450.0
+margin_bottom = 167.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 1 )
+text = "Next Level"
+
+[node name="Exit Level" type="Button" parent="ColorRect"]
+margin_left = 50.0
+margin_top = 200.0
+margin_right = 450.0
+margin_bottom = 267.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 1 )
+text = "Exit to Level Select"
+
+[connection signal="pressed" from="ColorRect/Next Level" to="." method="_on_Next_Level_pressed"]
+[connection signal="pressed" from="ColorRect/Exit Level" to="." method="_on_Exit_Level_pressed"]

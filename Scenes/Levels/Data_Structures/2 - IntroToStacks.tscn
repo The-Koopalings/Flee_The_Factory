@@ -67,9 +67,9 @@ maxBlocks = 10
 
 [node name="Background" parent="." instance=ExtResource( 1 )]
 
-[node name="AcceptDialog" parent="." instance=ExtResource( 2 )]
-
 [node name="TextBox" parent="." instance=ExtResource( 9 )]
+
+[node name="PopupMenu" parent="." instance=ExtResource( 2 )]
 
 [editable path="IDE"]
 [editable path="IDE/Main"]
