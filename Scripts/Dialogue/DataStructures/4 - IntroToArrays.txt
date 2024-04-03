@@ -1,7 +1,12 @@
-Explain Arrays or whatever & how the inventory is blue + has text as to what it is
+Oh look, my inventory has changed modes once again! This time it's in "Array" mode.
+You can tell when my inventory is in Array mode because it will always be blue and have the words "Array" above it.
+In this mode, my inventory will act like an array data structure.
+Arrays are a type of data structure that allows you to choose which index you want to put an item into or take an item out of.
+So unlike stacks and queues, arrays allow you the freedom of choice. But if you put an item into an index that already has an item, the array will overwrite (AKA delete) the previously stored item, replacing it with the new one.
+So with arrays you have to be careful about where you choose to place items, a worry that wasn't there with stacks or queues.
 
 CODE_BLOCK
-You may have noticed that the Pickup and UseItem code blocks are slightly different.
+You may have noticed that the Pickup and UseItem code blocks are slightly different in this mode.
 
 HIGHLIGHT_PICKUP
 In Array mode, you are able to choose which index an item is put into with the Pickup code block.
@@ -9,10 +14,16 @@ In Array mode, you are able to choose which index an item is put into with the P
 HIGHLIGHT_USEITEM
 As well as which index's item to use with the UseItem code block.
 
-Something to keep in mind when choosing which index to put an item into is that if you choose to put an item into an index that already has an item, the previous item will be discarded and disappear from the inventory.
+The ability to choose which index to put an item into or which index's item to use imitates how an array data structure would work.
+
+Keep in mind that when choosing which index to put an item into, you could accidentally discard a previously stored item.
 For example, if there is a red Key in index 0 and you pickup a green Key & put it into index 0, then the red Key will be discarded. If you UseItem on index 0, then the green Key will be used, but the red Key is forever lost (until Restart).
-Now, lead us the way out!
+Again, this imitates how a real array would work.
+
+To move to the next room, remember to be careful about which index you put your items into. If you put one in the same index as another then you might accidentally discard a key you need.
+Also, be mindful and keep track of which key you put into which index. Make sure you don't accidentally use the wrong key on a door!
+Now get us out of here!
 ;
 
-Congrats, you made it out alive!
+RAAAAUUUUUUGHHHHHHHHHHHH LET'S GOOOOOOO WE'RE OUTTA HERE BABYYYYYYY
 
