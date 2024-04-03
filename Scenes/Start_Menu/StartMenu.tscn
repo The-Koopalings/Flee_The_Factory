@@ -49,9 +49,9 @@ align = 1
 
 [node name="ExitButton" type="TextureButton" parent="."]
 margin_left = 620.0
-margin_top = 582.0
+margin_top = 590.0
 margin_right = 1435.0
-margin_bottom = 734.0
+margin_bottom = 742.0
 rect_scale = Vector2( 0.8, 0.8 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
@@ -66,9 +66,9 @@ align = 1
 
 [node name="CreditsButton" type="TextureButton" parent="."]
 margin_left = 620.0
-margin_top = 829.0
+margin_top = 820.0
 margin_right = 1435.0
-margin_bottom = 981.0
+margin_bottom = 972.0
 rect_scale = Vector2( 0.8, 0.8 )
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
