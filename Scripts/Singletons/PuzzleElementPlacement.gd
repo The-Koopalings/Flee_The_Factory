@@ -297,9 +297,11 @@ func init_IDE():
 		if options:
 			if type == "If":
 				var RHS = child.get_node("If/RHS")
+				child.add_dropdown_options()
 				add_RHS_options(options, RHS)
 			elif type == "Loop":
 				var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
+				child.add_dropdown_options()
 				add_RHS_options(options, RHS)
 			
 		#Add the scope to list of scopes

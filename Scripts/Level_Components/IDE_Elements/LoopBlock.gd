@@ -33,7 +33,7 @@ onready var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot"))
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connections()
-	add_dropdown_options()
+#	add_dropdown_options()
 	
 	#Set visibility of Conditional nodes to false
 	WhileConditional.set_visible(false)
