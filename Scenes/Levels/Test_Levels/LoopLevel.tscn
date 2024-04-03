@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=2]
@@ -29,6 +29,8 @@
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_73.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_65.png" type="Texture" id=28]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Key.tscn" type="PackedScene" id=29]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
 [sub_resource type="TileSet" id=1]
 2/name = "Future_Tiles.png 2"
@@ -271,6 +273,9 @@ script = ExtResource( 12 )
 
 [node name="Robot" parent="Grid" instance=ExtResource( 9 )]
 
+[node name="AnimationTree" parent="Grid/Robot" index="5"]
+parameters/playback = SubResource( 4 )
+
 [node name="Obstacle" parent="Grid" instance=ExtResource( 10 )]
 
 [node name="Obstacle2" parent="Grid" instance=ExtResource( 10 )]
@@ -284,6 +289,8 @@ script = ExtResource( 12 )
 [node name="Virus1" parent="Grid" instance=ExtResource( 16 )]
 
 [node name="KeyR" parent="Grid" instance=ExtResource( 29 )]
+
+[node name="DoorR" parent="Grid" instance=ExtResource( 13 )]
 
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 

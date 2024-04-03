@@ -1,0 +1,189 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Level_Components/Level_Elements/SettingsMenu.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="SettingsMenu" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+offset = Vector2( 288, 192 )
+transform = Transform2D( 1, 0, 0, 1, 288, 192 )
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Background" type="ColorRect" parent="."]
+show_behind_parent = true
+margin_left = -288.0
+margin_top = -192.0
+margin_right = 1632.0
+margin_bottom = 888.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.25098 )
+
+[node name="MenuPanel" type="ColorRect" parent="."]
+margin_right = 1082.0
+margin_bottom = 646.0
+mouse_filter = 2
+color = Color( 0.254902, 0.317647, 0.427451, 1 )
+
+[node name="Sliders" type="Control" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1075.0
+margin_bottom = 639.0
+mouse_filter = 2
+
+[node name="MusicVolume" type="ReferenceRect" parent="Sliders"]
+margin_left = 40.0
+margin_top = 50.0
+margin_right = 330.0
+margin_bottom = 140.0
+border_color = Color( 1, 1, 1, 1 )
+editor_only = false
+
+[node name="Label" type="Label" parent="Sliders/MusicVolume"]
+margin_right = 290.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 1 )
+text = "Music Volume
+100%"
+align = 1
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="Sliders/MusicVolume"]
+margin_left = 310.0
+margin_right = 950.0
+margin_bottom = 90.0
+value = 50.0
+tick_count = 100
+
+[node name="Reset" type="Button" parent="Sliders/MusicVolume"]
+margin_left = 960.0
+margin_top = 25.0
+margin_right = 1020.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 4 )
+text = "Reset"
+
+[node name="SoundEffectsVolume" type="ReferenceRect" parent="Sliders"]
+margin_left = 40.0
+margin_top = 150.0
+margin_right = 330.0
+margin_bottom = 240.0
+mouse_filter = 2
+border_color = Color( 1, 1, 1, 1 )
+editor_only = false
+
+[node name="Label" type="Label" parent="Sliders/SoundEffectsVolume"]
+margin_right = 290.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 1 )
+text = "Sound Effects Volume
+100%"
+align = 1
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="Sliders/SoundEffectsVolume"]
+margin_left = 310.0
+margin_right = 950.0
+margin_bottom = 90.0
+value = 50.0
+tick_count = 100
+
+[node name="Reset" type="Button" parent="Sliders/SoundEffectsVolume"]
+margin_left = 960.0
+margin_top = 25.0
+margin_right = 1020.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 4 )
+text = "Reset"
+
+[node name="Brightness" type="ReferenceRect" parent="Sliders"]
+margin_left = 40.0
+margin_top = 250.0
+margin_right = 330.0
+margin_bottom = 340.0
+mouse_filter = 2
+border_color = Color( 1, 1, 1, 1 )
+editor_only = false
+
+[node name="Label" type="Label" parent="Sliders/Brightness"]
+margin_right = 290.0
+margin_bottom = 90.0
+custom_fonts/font = SubResource( 2 )
+text = "Brightness
+100%"
+align = 1
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="Sliders/Brightness"]
+margin_left = 310.0
+margin_right = 950.0
+margin_bottom = 90.0
+value = 50.0
+tick_count = 100
+
+[node name="Reset" type="Button" parent="Sliders/Brightness"]
+margin_left = 960.0
+margin_top = 25.0
+margin_right = 1020.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 4 )
+text = "Reset"
+
+[node name="Buttons" type="Control" parent="."]
+margin_left = 7.0
+margin_top = 80.0
+margin_right = 1075.0
+margin_bottom = 712.0
+mouse_filter = 2
+
+[node name="Continue" type="Button" parent="Buttons"]
+margin_left = 400.0
+margin_top = 300.0
+margin_right = 700.0
+margin_bottom = 350.0
+custom_fonts/font = SubResource( 5 )
+text = "Continue"
+
+[node name="ExitLevel" type="Button" parent="Buttons"]
+margin_left = 400.0
+margin_top = 380.0
+margin_right = 700.0
+margin_bottom = 430.0
+custom_fonts/font = SubResource( 7 )
+text = "Exit Level"
+
+[node name="ExitGame" type="Button" parent="Buttons"]
+margin_left = 400.0
+margin_top = 460.0
+margin_right = 700.0
+margin_bottom = 510.0
+custom_fonts/font = SubResource( 8 )
+text = "Exit Game"
