@@ -293,7 +293,6 @@ func init_IDE():
 			continue
 			
 		#Check if we need to add RHS options
-		print("options: ", options)
 		if options:
 			if type == "If":
 				var RHS = child.get_node("If/RHS")

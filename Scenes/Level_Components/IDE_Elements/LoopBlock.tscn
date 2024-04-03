@@ -1,15 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/Counter.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/LoopBlock.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 210, 84 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 243, 140.5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 15
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 5 )
 
 [node name="Loop1" type="Control"]
 margin_right = 480.0
@@ -88,17 +97,17 @@ margin_left = 173.0
 margin_right = 307.0
 margin_bottom = 36.0
 mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_editor_description_": "x = 173, y = 0 at start. After choosing pos = (5, 18), size = (134, 50)"
 }
 
 [node name="Label" type="Label" parent="HighlightControl/ChooseLoopType"]
-margin_right = 45.0
-margin_bottom = 14.0
-rect_scale = Vector2( 3, 3 )
+margin_right = 135.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 4 )
 text = "Loop1"
 align = 1
-valign = 2
 __meta__ = {
 "_editor_description_": "after choose: pos = (0,0), size = (45, 18), scale = 3"
 }

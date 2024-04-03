@@ -2,7 +2,7 @@ extends Control
 
 signal ChosenLoop
 #What type of loop this is, either While or For
-var type = ""
+var type
 #Keep track of i for For loops
 var loopCount: int = 0
 
@@ -34,10 +34,9 @@ onready var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot"))
 func _ready():
 	connections()
 #	add_dropdown_options()
-	
-	#Set visibility of Conditional nodes to false
-	WhileConditional.set_visible(false)
-	ForConditional.set_visible(false)
+
+	#Set visibility of Conditional nodes appropriately
+	set_conditional_visibility()
 
 
 #NOTE: ChosenLoop connections are located in Loop.gd
@@ -48,7 +47,23 @@ func connections():
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	StepOperator.get_popup().connect("id_pressed", self, "on_StepOperator_option_selected")
+	
 
+func set_conditional_visibility():
+	type = ChooseLoopTypeLabel.text.rstrip("0123456789")
+	if type == "Loop":
+		type = ""
+	if type == "While":
+		WhileConditional.set_visible(true)
+		ForConditional.set_visible(false)
+	elif type == "For":
+		WhileConditional.set_visible(false)
+		ForConditional.set_visible(true)
+	else:
+		WhileConditional.set_visible(false)
+		ForConditional.set_visible(false)
+		type == ""
+	
 
 #NOTE: RHS options added in Level script
 func add_dropdown_options():
