@@ -30,3 +30,7 @@ func _on_DataStructuresButton_pressed():
 
 func _on_TutorialButton_pressed():
 	SceneSwapper.change_scene("Tutorial Select")
+
+
+func _on_BackButton_pressed():
+	SceneSwapper.change_scene("Start Menu")
