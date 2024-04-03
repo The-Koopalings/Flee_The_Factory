@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Placeholders/Koopa Troopa.jpg" type="Texture" id=2]
-[ext_resource path="res://Assets/Placeholders/Turn_Left.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Stage_Select/BackButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Stage_Select/RecursionSelect.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Stage_Select/LevelButton.tscn" type="PackedScene" id=5]
 
@@ -32,14 +32,7 @@ text = "Recursion"
 align = 1
 valign = 1
 
-[node name="BackButton" type="TextureButton" parent="."]
-margin_left = 82.0
-margin_top = 66.0
-margin_right = 182.0
-margin_bottom = 166.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 3 )
-expand = true
+[node name="BackButton" parent="." instance=ExtResource( 3 )]
 
 [node name="Button1" parent="." instance=ExtResource( 5 )]
 
