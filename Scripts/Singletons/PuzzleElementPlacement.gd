@@ -45,8 +45,8 @@ func loadLevel(_level):
 	
 	self.init_elements()
 	self.init_WCLs()
-	self.init_code_blocks_bar()
 	self.init_IDE()
+	self.init_code_blocks_bar()
 	self.update()
 	GameStats.set_game_state(GameStats.State.CODING)
 	
@@ -241,6 +241,7 @@ func init_code_blocks_bar():
 	for block in blocks:
 		var code_block_template = block.get_child(2)
 		code_block_template.startPos = Vector2(x, y)
+		code_block_template.connections()
 		if block.BLOCK_TYPE == "CALL":
 			var call_name = block.name.trim_prefix("Call_")
 			var texture = load("res://Assets/Objects/" + call_name + ".png")
@@ -279,7 +280,7 @@ func init_IDE():
 		IDEChildren.clear()
 	else:
 		options = generate_RHS_options()
-	
+
 	for child in IDE.get_children():
 		print(child)
 		var type = child.name.rstrip("1234567890")
