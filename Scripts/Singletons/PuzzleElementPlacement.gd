@@ -246,6 +246,8 @@ func init_code_blocks_bar():
 			var call_name = block.name.trim_prefix("Call_")
 			var texture = load("res://Assets/Objects/" + call_name + ".png")
 			block.get_node("Sprite").set_texture(texture)
+			if block.name.begins_with("Call_Loop"):
+				block.connect_to_LoopBlock()
 		
 		x += 110
 		
@@ -269,12 +271,9 @@ func init_IDE():
 #		print(IDEChildren[0].get_node("FunctionBlockArea").get_children())
 		var i = 0
 		for block in IDE.get_children():
-#			block = IDEChildren[i]
 			IDE.remove_child(block)
 			IDE.add_child(IDEChildren[i])
 			i = i + 1
-#			if i == 1:
-#				break
 		print(IDE.get_child(0))
 		print(IDE.get_child(0).get_code())
 		IDEChildren.clear()
@@ -285,11 +284,11 @@ func init_IDE():
 		print(child)
 		var type = child.name.rstrip("1234567890")
 		
-		#Ignore the Run Button and Arrow Highlights
-		if type == "Run_Button":
-			child.connect("pressed", IDE, "_on_Button_pressed")
-		elif type.find("Arrow") != -1:
+		#Ignore arrows, set FBAs/reconnect signals in case this is post-Restart
+		if type.find("Arrow") != -1:
 			continue
+		elif type == "Run_Button":
+			child.connect("pressed", IDE, "_on_Button_pressed")
 		elif type == "If":
 			child.get_node("If").set_FBA_numBlocks()
 			child.get_node("Else").set_FBA_numBlocks()
@@ -297,8 +296,11 @@ func init_IDE():
 			child.get_node("HighlightControl").set_FBA_numBlocks()
 		else:
 			child.set_FBA_numBlocks()
-			
-		#Check if we need to add RHS options
+		
+		#Reconnect signals in Call_Loop code blocks, needed after a Restart
+		call_loop_reconnections(type, child)
+		
+		#Check if we need to add RHS options, shouldn't trigger after a Restart
 		if options:
 			if type == "If":
 				var RHS = child.get_node("If/RHS")
@@ -314,6 +316,29 @@ func init_IDE():
 		
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
+	
+
+func call_loop_reconnections(type, child):
+	var code = []
+	if type.find("Arrow") != -1 or type == "Run_Button":
+		return
+	elif type == "If":
+		code = child.get_node("If/FunctionBlockArea").get_children()
+		for codeBlock in child.get_node("Else/FunctionBlockArea").get_children():
+			code.push_back(codeBlock)
+	elif type == "Loop":
+		code = child.get_node("HighlightControl/FunctionBlockArea").get_children()
+	else:
+		code = child.get_node("FunctionBlockArea").get_children()
+	
+	#Pop CollisionShape2D & ColorRect
+	code.pop_front()
+	code.pop_front()
+	
+	#Reconnect signals for Call_Loop code blocks
+	for codeBlock in code:
+		if codeBlock.name.begins_with("Call_Loop"):
+			codeBlock.connect_to_LoopBlock()
 	
 
 func init_inventory():
