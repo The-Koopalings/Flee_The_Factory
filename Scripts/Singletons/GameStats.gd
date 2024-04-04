@@ -11,6 +11,10 @@ enum State{
 	
 }
 
+# Keep track of the name of the current highlighted function
+# Use to keep the same function in focus when the user presses restart
+var curr_function_highlight = "Main"
+
 # Set code run speed for robot animations
 # 0.50 is for normal and 0.25 is for double speed
 var run_speed = 0.50

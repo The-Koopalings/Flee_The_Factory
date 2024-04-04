@@ -269,6 +269,10 @@ func init_IDE():
 			IDE.add_child(IDEChildren[i])
 			i = i + 1
 		IDEChildren.clear()
+		
+		# Grab focus of last highlighted function
+		var function = IDE.get_node(GameStats.curr_function_highlight)
+		function.grab_focus()
 	else:
 		options = generate_RHS_options()
 
