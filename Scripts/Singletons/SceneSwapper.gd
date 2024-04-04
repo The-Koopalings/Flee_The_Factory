@@ -146,7 +146,7 @@ func load_file_contents(path):
 func change_to_next_level_scene(old_scene):
 	var index = scene_array.find(old_scene, 0) + 1
 	
-	# Last level should not go back to first tutorial level (index = -1 + 1 if next scene isn't found)
+	# Last level should not go back to first tutorial level (index = scene_array.size() if next scene isn't found)
 	if index < scene_array.size():
 		var scene_path = scene_array[index]
 		change_scene(scene_path)
