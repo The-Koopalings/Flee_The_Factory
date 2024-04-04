@@ -26,13 +26,6 @@ func _ready():
 	$Main.grab_focus()
 
 
-func add_func_highlight():
-	var func_name = GameStats.curr_function_highlight
-	
-	if func_name.begins_with("If") or func_name.begins_with("Else"):
-		pass
-
-
 #Connected to Run_Button
 func _on_Button_pressed():
 	#Check that the Run button hasn't been pressed yet
