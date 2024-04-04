@@ -21,10 +21,10 @@ var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 				  "ControlFlow 1": "res://Scenes/Levels/ProofOfConcept.tscn",
 				  "ControlFlow 2": "res://Scenes/Levels/ProofOfConcept.tscn",
 				  "ControlFlow 3": "res://Scenes/Levels/ProofOfConcept.tscn",
-				  "DataStructures 1": "res://Scenes/Levels/Data_Structures/1 - IntroToInventory.tscn",
-				  "DataStructures 2": "res://Scenes/Levels/Data_Structures/2 - IntroToStacks.tscn",
-				  "DataStructures 3": "res://Scenes/Levels/Data_Structures/3 - IntroToQueues.tscn",
-				  "DataStructures 4": "res://Scenes/Levels/Data_Structures/4 - IntroToArrays.tscn",}
+				  "DataStructures 1": "res://Scenes/Levels/Data_Structures/1 - Intro To Inventory S.tscn",
+				  "DataStructures 2": "res://Scenes/Levels/Data_Structures/2 - Intro To Stacks S.tscn",
+				  "DataStructures 3": "res://Scenes/Levels/Data_Structures/3 - Intro To Queues Q.tscn",
+				  "DataStructures 4": "res://Scenes/Levels/Data_Structures/4 - Intro To Arrays A.tscn",}
 
 var scene_array = []
 

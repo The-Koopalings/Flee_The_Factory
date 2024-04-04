@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/Levels/Data_Structures/2 - Intro to Stacks S.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateRight.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelClearedPopup.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallFunction.tscn" type="PackedScene" id=20]
 
 [node name="2 - Intro to Stacks S" type="Node2D"]
 script = ExtResource( 1 )
@@ -62,8 +61,6 @@ maxBlocks = 10
 [node name="Pickup" parent="CodeBlockBar" instance=ExtResource( 12 )]
 
 [node name="UseItem" parent="CodeBlockBar" instance=ExtResource( 14 )]
-
-[node name="Call_F1" parent="CodeBlockBar" instance=ExtResource( 20 )]
 
 [node name="Background" parent="." instance=ExtResource( 11 )]
 

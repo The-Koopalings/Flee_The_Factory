@@ -68,7 +68,7 @@ position = Vector2( 0, -918 )
 
 [node name="Background" parent="." instance=ExtResource( 5 )]
 
-[node name="AcceptDialog" parent="." instance=ExtResource( 6 )]
+[node name="PopupMenu" parent="." instance=ExtResource( 6 )]
 
 [editable path="IDE"]
 [editable path="IDE/Main"]
