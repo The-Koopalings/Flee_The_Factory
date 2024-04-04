@@ -138,6 +138,7 @@ func remove_block(block):
 	#yield(get_tree().create_timer(0.01, false), "timeout") 
 	
 
+#Clears all code blocks from this FBA 
 func clear_code():
 	var code = get_children()
 	

@@ -16,45 +16,11 @@ func _on_Settings_pressed():
 
 
 func _on_Restart_pressed():
+	#Duplicate IDE sections to keep code blocks after Restart
 	var IDE = get_node("../IDE")
-#	for block in IDE.get_children():
-#		if block.name == "Run_Button":
-#			continue
-#		var FBA
-#		if block.name.rstrip("0123456789") == "If":
-#			FBA = block.get_node("If/FunctionBlockArea")
-##			code.push_back(null)
-##			for elseCode in block.get_node("Else/FunctionBlockArea").get_children():
-##				if elseCode.name != "CollisionShape2D" or elseCode.name != "ColorRect":
-##					code.push_back(elseCode)
-#		elif block.name.rstrip("0123456789") == "Loop":
-#			FBA = block.get_node("HighlightControl/FunctionBlockArea")
-#		else:
-#			FBA = block.get_node("FunctionBlockArea")
-#
-#		var dupeCode = []
-#		for code in FBA.get_children():
-#			if code.name == "CollisionShape2D" or code.name == "ColorRect":
-#				continue
-#			dupeCode.push_back(code.duplicate())
-#
-#		#if If statement, then push in Else block's code
-#		if block.name.rstrip("0123456789") == "If":
-#			FBA = block.get_node("Else/FunctionBlockArea")
-#			dupeCode.push_back(null)
-#			for code in FBA.get_children():
-#				if code.name == "CollisionShape2D" or code.name == "ColorRect":
-#					continue
-#				dupeCode.push_back(code.duplicate())
-#
-##		if PEP.codeBlocks.keys().has(block.name):
-##			PEP.codeBlocks[block.name].push_back(dupeCode)
-##		else:
-#		PEP.codeBlocks[block.name] = dupeCode
-#		print(PEP.codeBlocks[block.name])
 	for block in IDE.get_children():
 		PEP.IDEChildren.push_back(block.duplicate())
-	print(PEP.IDEChildren)
+
 	var Error = get_tree().reload_current_scene()
 	if Error != 0:
 		printerr("Error encountered on pressing Restart button. Error code: ", Error)

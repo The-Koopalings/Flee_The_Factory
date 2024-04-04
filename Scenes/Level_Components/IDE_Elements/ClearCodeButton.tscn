@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/ClearCodeButton.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Objects/13/Skillicon13_17.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -11,5 +12,5 @@ font_data = ExtResource( 1 )
 margin_right = 12.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 1 )
-text = "Clear Code"
+icon = ExtResource( 3 )
 script = ExtResource( 2 )

@@ -246,6 +246,7 @@ func init_code_blocks_bar():
 			var call_name = block.name.trim_prefix("Call_")
 			var texture = load("res://Assets/Objects/" + call_name + ".png")
 			block.get_node("Sprite").set_texture(texture)
+			#In case of Restart, allows Call_Loop code blocks to reconnect to pre-Restart IDE sections
 			if block.name.begins_with("Call_Loop"):
 				block.connect_to_LoopBlock()
 		
@@ -260,31 +261,21 @@ func init_IDE():
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
 	var options = null
 	
-#	if codeBlocks.size() != 0:
-#		for key in codeBlocks:
-#			print(codeBlocks[key])
-#		#Put code blocks into appropriate IDE section
-#		codeBlocks.clear()
-	
+	#If player pressed Restart
 	if IDEChildren.size() != 0:
-		print(IDEChildren)
-#		print(IDEChildren[0].get_node("FunctionBlockArea").get_children())
 		var i = 0
 		for block in IDE.get_children():
 			IDE.remove_child(block)
 			IDE.add_child(IDEChildren[i])
 			i = i + 1
-		print(IDE.get_child(0))
-		print(IDE.get_child(0).get_code())
 		IDEChildren.clear()
 	else:
 		options = generate_RHS_options()
 
 	for child in IDE.get_children():
-		print(child)
 		var type = child.name.rstrip("1234567890")
 		
-		#Ignore arrows, set FBAs/reconnect signals in case this is post-Restart
+		#Ignore arrows, set numBlocks in FBAs/reconnect signals in case this is post-Restart
 		if type.find("Arrow") != -1:
 			continue
 		elif type == "Run_Button":
@@ -297,7 +288,6 @@ func init_IDE():
 		else:
 			child.set_FBA_numBlocks()
 		
-		#Reconnect signals in Call_Loop code blocks, needed after a Restart
 		call_loop_reconnections(type, child)
 		
 		#Check if we need to add RHS options, shouldn't trigger after a Restart
@@ -318,6 +308,7 @@ func init_IDE():
 	print(DEBUG_buffer)
 	
 
+#Reconnect signals in Call_Loop code blocks, needed after a Restart
 func call_loop_reconnections(type, child):
 	var code = []
 	if type.find("Arrow") != -1 or type == "Run_Button":

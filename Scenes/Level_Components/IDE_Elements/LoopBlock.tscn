@@ -290,10 +290,10 @@ __meta__ = {
 }
 
 [node name="ClearCode" parent="HighlightControl" instance=ExtResource( 6 )]
-margin_left = 355.0
-margin_top = 5.0
-margin_right = 469.0
-margin_bottom = 40.0
+margin_left = 420.0
+margin_top = 3.0
+margin_right = 464.0
+margin_bottom = 41.0
 
 [connection signal="focus_entered" from="HighlightControl" to="HighlightControl" method="_on_FunctionBlockControl_focus_entered"]
 [connection signal="focus_exited" from="HighlightControl" to="HighlightControl" method="_on_FunctionBlockControl_focus_exited"]
