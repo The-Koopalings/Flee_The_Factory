@@ -13,4 +13,6 @@ func _ready():
 
 func on_pressed():
 	get_node("../FunctionBlockArea").clear_code()
+	var node = get_focus_owner()
+	print(node)
 	
