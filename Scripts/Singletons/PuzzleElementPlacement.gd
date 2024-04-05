@@ -264,14 +264,17 @@ func init_IDE():
 	#If player pressed Restart
 	if IDEChildren.size() != 0:
 		var i = 0
+		
 		#Replace current IDE sections with pre-Restart IDE sections
 		for block in IDE.get_children():
 			IDE.remove_child(block)
 			IDE.add_child(IDEChildren[i])
 			i = i + 1
 		IDEChildren.clear()
+		
 		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEChildren
 		init_progress_check_FBA()
+		
 		# Grab focus of main
 		IDE.get_node("Main").grab_focus()
 	
@@ -345,12 +348,15 @@ func call_loop_reconnections(type, child):
 #Allows progress checks to work after Restart, progress_check_FBA elements need to point to pre-Restart FBAs
 func init_progress_check_FBA():
 	for i in range(level.progress_check_FBA.size()):
-		if level.progress_check_FBA[i].get_parent().name == "Main":
-			level.progress_check_FBA[i] = level.get_node("IDE/Main/FunctionBlockArea")
-		elif level.progress_check_FBA[i].get_parent().name == "F1":
-			level.progress_check_FBA[i] = level.get_node("IDE/F1/FunctionBlockArea")
-		elif level.progress_check_FBA[i].get_parent().name == "F2":
-			level.progress_check_FBA[i] = level.get_node("IDE/F2/FunctionBlockArea")
+		var scope = level.progress_check_FBA[i].get_parent().name
+		
+		if scope == "Main" or scope.begins_with("F"):
+			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/FunctionBlockArea")
+		elif scope.begins_with("If"):
+			# TODO: how are we gonna know whether they're checking the if FBA or else FBA...
+			level.progress_check_FBA[i] = level.get_node("IDE/" + scope)
+		elif scope.begins_with("Loop"):
+			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/HighlightControl/FunctionBlockArea")
 	
 	
 func init_inventory():
