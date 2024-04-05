@@ -264,6 +264,7 @@ func init_IDE():
 	#If player pressed Restart
 	if IDEChildren.size() != 0:
 		var i = 0
+		#Replace current IDE sections with pre-Restart IDE sections
 		for block in IDE.get_children():
 			IDE.remove_child(block)
 			IDE.add_child(IDEChildren[i])
@@ -273,6 +274,7 @@ func init_IDE():
 		# Grab focus of last highlighted function
 		var function = IDE.get_node(GameStats.curr_function_highlight)
 		function.grab_focus()
+	#Only generates dropdown options once (when first entering level) for If & Loop sections
 	else:
 		options = generate_RHS_options()
 
