@@ -22,7 +22,7 @@ var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['R','K','K','K','K','D','D','D','D','B','D'],
+	['X','X','R','K','K','D','D','B','D','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
@@ -33,7 +33,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	DialogueManager.add_dialogue(self, "DataStructures/4 - IntroToArrays.txt")
+	DialogueManager.add_dialogue(self, "DataStructures/3 - IntroToQueues.txt")
 	
 
 func _process(delta):
@@ -44,7 +44,7 @@ func _process(delta):
 		
 		if level_win:
 			emit_signal("levelComplete")
-			$AcceptDialog.popup()
+			$PopupMenu.visible = true
 			level_win = false
 
 #Handles all button presses

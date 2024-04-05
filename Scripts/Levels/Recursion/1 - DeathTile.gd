@@ -39,7 +39,7 @@ func _process(_delta):
 	#If win con, then open door
 	if B1_Pressed:
 		emit_signal("levelComplete")
-		$AcceptDialog.popup()
+		$PopupMenu.visible = true
 		B1_Pressed = false
 		
 

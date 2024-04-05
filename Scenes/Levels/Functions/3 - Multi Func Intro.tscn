@@ -73,9 +73,9 @@ maxBlocks = 4
 
 [node name="Call_F2" parent="CodeBlockBar" instance=ExtResource( 6 )]
 
-[node name="AcceptDialog" parent="." instance=ExtResource( 3 )]
-
 [node name="TextBox" parent="." instance=ExtResource( 7 )]
+
+[node name="PopupMenu" parent="." instance=ExtResource( 3 )]
 
 [editable path="IDE"]
 [editable path="IDE/Main"]

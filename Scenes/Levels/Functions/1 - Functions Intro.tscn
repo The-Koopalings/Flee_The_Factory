@@ -61,9 +61,9 @@ position = Vector2( 0, -918 )
 
 [node name="Call_F1" parent="CodeBlockBar" instance=ExtResource( 11 )]
 
-[node name="AcceptDialog" parent="." instance=ExtResource( 9 )]
-
 [node name="TextBox" parent="." instance=ExtResource( 7 )]
+
+[node name="PopupMenu" parent="." instance=ExtResource( 9 )]
 
 [editable path="IDE"]
 [editable path="IDE/Main"]

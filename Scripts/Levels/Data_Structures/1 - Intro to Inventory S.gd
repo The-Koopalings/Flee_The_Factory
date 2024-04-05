@@ -13,27 +13,28 @@ var level_win = false
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check_arr = []
-onready var progress_check_FBA = []
+var progress_check_arr = [["Forward", "Pickup"], ["Forward", "Pickup", "UseItem"]]
+onready var progress_check_FBA = [MainFBA, MainFBA]
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','R','K','K','D','D','B','D','X','X'],
-	['X','X','X','X','X','X','X','X','X','X','X'],
+	['X','X','X','X','R','O',' ','X','X','X','X'],
+	['X','X','X','X','K','O',' ','X','X','X','X'],
+	['X','X','X','X','D','B','D','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
-var robotStartOrientation = PEP.Orientation.RIGHT
+var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	DialogueManager.add_dialogue(self, "DataStructures/3 - IntroToQueues.txt")
+	DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToInventory.txt")
+	$Inventory/Inventory_Arrow.visible = false
 	
 
 func _process(delta):
@@ -44,7 +45,7 @@ func _process(delta):
 		
 		if level_win:
 			emit_signal("levelComplete")
-			$AcceptDialog.popup()
+			$PopupMenu.visible = true
 			level_win = false
 
 #Handles all button presses

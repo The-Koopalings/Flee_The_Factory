@@ -21,11 +21,12 @@ var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 				  "ControlFlow 1": "res://Scenes/Levels/ProofOfConcept.tscn",
 				  "ControlFlow 2": "res://Scenes/Levels/ProofOfConcept.tscn",
 				  "ControlFlow 3": "res://Scenes/Levels/ProofOfConcept.tscn",
-				  "DataStructures 1": "res://Scenes/Levels/Data_Structures/1 - IntroToInventory.tscn",
-				  "DataStructures 2": "res://Scenes/Levels/Data_Structures/2 - IntroToStacks.tscn",
-				  "DataStructures 3": "res://Scenes/Levels/Data_Structures/3 - IntroToQueues.tscn",
-				  "DataStructures 4": "res://Scenes/Levels/Data_Structures/4 - IntroToArrays.tscn",}
+				  "DataStructures 1": "res://Scenes/Levels/Data_Structures/1 - Intro To Inventory S.tscn",
+				  "DataStructures 2": "res://Scenes/Levels/Data_Structures/2 - Intro To Stacks S.tscn",
+				  "DataStructures 3": "res://Scenes/Levels/Data_Structures/3 - Intro To Queues Q.tscn",
+				  "DataStructures 4": "res://Scenes/Levels/Data_Structures/4 - Intro To Arrays A.tscn",}
 
+var scene_array = []
 
 const X_START = 110
 const Y_START = 300
@@ -38,6 +39,8 @@ var current_scene = null
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
+	
+	init_scene_array()
 
 
 func change_scene(scene_name):
@@ -53,6 +56,8 @@ func change_scene(scene_name):
 
 
 func _deferred_change_scene(scene_name):
+	var scene
+	
 	# It is now safe to remove the current scene
 	current_scene.free()
 	
@@ -60,8 +65,11 @@ func _deferred_change_scene(scene_name):
 	DialogueManager.restart_dialogue()
 	
 	# Load the new scene.
-	var path = scene_path[scene_name]
-	var scene = ResourceLoader.load(path)
+	if scene_path.has(scene_name):
+		var path = scene_path[scene_name]
+		scene = ResourceLoader.load(path)
+	else:
+		scene = ResourceLoader.load(scene_name)
 
 	# Instance the new scene.
 	current_scene = scene.instance()
@@ -107,3 +115,38 @@ func change_to_level_scene(level_select, button_name):
 	var scene_key = stage_type + " " + level_number
 	
 	change_scene(scene_key)
+
+
+func init_scene_array():
+	scene_array.clear()
+	load_file_contents("res://Scenes/Levels/Tutorial")
+	load_file_contents("res://Scenes/Levels/Functions")
+	load_file_contents("res://Scenes/Levels/Recursion")
+	load_file_contents("res://Scenes/Levels/Control_Flow")
+	load_file_contents("res://Scenes/Levels/Data_Structures")
+
+
+func load_file_contents(path):
+	var dir = Directory.new()
+	
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		
+		while file_name != "":
+			if !dir.current_is_dir():
+				var scene_path = path + "/" + file_name
+				scene_array.push_back(scene_path)
+			
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+
+
+func change_to_next_level_scene(old_scene):
+	var index = scene_array.find(old_scene, 0) + 1
+	
+	# Last level should not go back to first tutorial level (index = scene_array.size() if next scene isn't found)
+	if index < scene_array.size():
+		var scene_path = scene_array[index]
+		change_scene(scene_path)
