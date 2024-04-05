@@ -271,9 +271,8 @@ func init_IDE():
 			i = i + 1
 		IDEChildren.clear()
 		
-		# Grab focus of last highlighted function
-		var function = IDE.get_node(GameStats.curr_function_highlight)
-		function.grab_focus()
+		# Grab focus of main
+		IDE.get_node("Main").grab_focus()
 	#Only generates dropdown options once (when first entering level) for If & Loop sections
 	else:
 		options = generate_RHS_options()

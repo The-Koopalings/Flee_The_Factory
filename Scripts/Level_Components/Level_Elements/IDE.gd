@@ -22,13 +22,9 @@ func _ready():
 	#Moves Run_Button to the bottom
 	move_child(get_child(1), get_child_count() - 1)
 	
-	# Grab focus of the current function that is highlighted
-	get_node(GameStats.curr_function_highlight).grab_focus()
+	# Grab focus of the main function
+	$Main.grab_focus()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 #Connected to Run_Button
 func _on_Button_pressed():

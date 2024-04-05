@@ -35,5 +35,4 @@ func _on_FunctionBlockControl_focus_exited():
 func _on_Clickable_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		grab_focus()
-		GameStats.curr_function_highlight = name
 
