@@ -270,9 +270,11 @@ func init_IDE():
 			IDE.add_child(IDEChildren[i])
 			i = i + 1
 		IDEChildren.clear()
-		
+		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEChildren
+		init_progress_check_FBA()
 		# Grab focus of main
 		IDE.get_node("Main").grab_focus()
+	
 	#Only generates dropdown options once (when first entering level) for If & Loop sections
 	else:
 		options = generate_RHS_options()
@@ -280,7 +282,10 @@ func init_IDE():
 	for child in IDE.get_children():
 		var type = child.name.rstrip("1234567890")
 		
-		#Ignore arrows, set numBlocks in FBAs/reconnect signals in case this is post-Restart
+		#Ignore arrows
+		#In case of Restart: Reconnect Run_Button signal to current IDE
+		#					 Set FBA.numBlocks to the number of code blocks in that FBA 
+		#					 (otherwise numBlocks would = 0 even if there are > 0 code blocks in that FBA)
 		if type.find("Arrow") != -1:
 			continue
 		elif type == "Run_Button":
@@ -337,6 +342,17 @@ func call_loop_reconnections(type, child):
 			codeBlock.connect_to_LoopBlock()
 	
 
+#Allows progress checks to work after Restart, progress_check_FBA elements need to point to pre-Restart FBAs
+func init_progress_check_FBA():
+	for i in range(level.progress_check_FBA.size()):
+		if level.progress_check_FBA[i].get_parent().name == "Main":
+			level.progress_check_FBA[i] = level.get_node("IDE/Main/FunctionBlockArea")
+		elif level.progress_check_FBA[i].get_parent().name == "F1":
+			level.progress_check_FBA[i] = level.get_node("IDE/F1/FunctionBlockArea")
+		elif level.progress_check_FBA[i].get_parent().name == "F2":
+			level.progress_check_FBA[i] = level.get_node("IDE/F2/FunctionBlockArea")
+	
+	
 func init_inventory():
 	level.get_node("Inventory").set_position(Vector2(865, 43))
 	
