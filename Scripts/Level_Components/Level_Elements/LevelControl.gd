@@ -1,6 +1,9 @@
 extends Control
 
 
+onready var Robot = get_node("../Grid/Robot")
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Update 2x speed button toggle after restarting scene to correctly indicate the saved speed
@@ -25,6 +28,9 @@ func _on_Restart_pressed():
 
 
 func _on_DoubleSpeed_toggled(button_pressed):
+	if GameStats.is_executing():
+		yield(Robot, "animationFinished")
+	
 	if button_pressed:
 		GameStats.run_speed = 0.25
 	else:

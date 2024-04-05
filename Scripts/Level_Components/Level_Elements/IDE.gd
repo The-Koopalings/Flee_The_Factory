@@ -35,6 +35,7 @@ func _on_Button_pressed():
 	#Check that the Run button hasn't been pressed yet
 	if !runPressed:
 		runPressed = true
+		GameStats.set_game_state(GameStats.State.EXECUTING)
 		print("Scopes: ", scopes)
 		enter_scope(scopes["Main"])
 		run_code()
