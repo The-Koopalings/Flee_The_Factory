@@ -348,15 +348,18 @@ func call_loop_reconnections(type, child):
 #Allows progress checks to work after Restart, progress_check_FBA elements need to point to pre-Restart FBAs
 func init_progress_check_FBA():
 	for i in range(level.progress_check_FBA.size()):
+		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
 		var scope = level.progress_check_FBA[i].get_parent().name
 		
 		if scope == "Main" or scope.begins_with("F"):
 			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/FunctionBlockArea")
-		elif scope.begins_with("If"):
-			# TODO: how are we gonna know whether they're checking the if FBA or else FBA...
-			level.progress_check_FBA[i] = level.get_node("IDE/" + scope)
-		elif scope.begins_with("Loop"):
-			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/HighlightControl/FunctionBlockArea")
+		else:
+			#For checking Ifs & Loops
+			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
+			if higherScope.begins_with("If"):
+				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/" + scope + "/FunctionBlockArea")
+			elif higherScope.begins_with("Loop"):
+				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/FunctionBlockArea")
 	
 	
 func init_inventory():
