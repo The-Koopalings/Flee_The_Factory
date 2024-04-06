@@ -285,8 +285,8 @@ script = ExtResource( 12 )
 margin_right = 1920.0
 
 [node name="F1" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 513.0
-margin_bottom = 788.0
+margin_top = 463.0
+margin_bottom = 738.0
 
 [node name="Label" parent="IDE/F1" index="0"]
 text = "F1"
@@ -301,8 +301,8 @@ text = "0/14"
 maxBlocks = 14
 
 [node name="F2" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 792.0
-margin_bottom = 1067.0
+margin_top = 742.0
+margin_bottom = 1017.0
 
 [node name="Label" parent="IDE/F2" index="0"]
 text = "F2"
