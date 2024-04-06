@@ -1,16 +1,47 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/Counter.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/IfBlock.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/ClearCodeButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=3]
+size = 45
+font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 210, 27.5 )
 
+[sub_resource type="DynamicFont" id=9]
+size = 45
+outline_size = 1
+outline_color = Color( 0, 0.231373, 0.482353, 1 )
+font_data = ExtResource( 6 )
+
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 243, 71.5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 45
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 45
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 45
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 45
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 45
+font_data = ExtResource( 6 )
 
 [node name="If1" type="Control"]
 margin_right = 480.0
@@ -31,10 +62,11 @@ mouse_filter = 2
 script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="If"]
-margin_right = 104.0
-margin_bottom = 16.0
-rect_scale = Vector2( 4, 4 )
-text = "If1"
+margin_left = 5.0
+margin_right = 118.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 3 )
+text = "IF1"
 
 [node name="FunctionBlockArea" type="Area2D" parent="If"]
 position = Vector2( 30, 50 )
@@ -70,12 +102,13 @@ mouse_filter = 2
 color = Color( 0, 0.231373, 0.482353, 1 )
 
 [node name="Counter" type="Label" parent="If"]
-margin_left = 177.5
-margin_top = 106.5
-margin_right = 227.5
-margin_bottom = 121.5
+margin_left = 2.0
+margin_top = 107.0
+margin_right = 952.0
+margin_bottom = 163.0
 rect_min_size = Vector2( 50, 15 )
-rect_scale = Vector2( 2.5, 2.5 )
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 9 )
 text = "0/7"
 align = 1
 script = ExtResource( 2 )
@@ -94,10 +127,10 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="If/LHS"]
-margin_top = 10.0
-margin_right = 35.0
-margin_bottom = 24.0
-rect_scale = Vector2( 3, 3 )
+margin_left = 2.0
+margin_right = 116.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 4 )
 text = "Front"
 align = 2
 
@@ -110,10 +143,11 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="If/Operator"]
-margin_top = 10.0
-margin_right = 18.0
-margin_bottom = 24.0
-rect_scale = Vector2( 3, 3 )
+margin_left = 4.0
+margin_top = 1.0
+margin_right = 60.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 5 )
 text = "=="
 align = 1
 
@@ -126,10 +160,11 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="If/RHS"]
-margin_top = 10.0
-margin_right = 51.0
-margin_bottom = 24.0
-rect_scale = Vector2( 3, 3 )
+margin_left = 2.0
+margin_top = -1.0
+margin_right = 174.0
+margin_bottom = 55.0
+custom_fonts/font = SubResource( 6 )
 text = "Blocked"
 
 [node name="ClearCode" parent="If" instance=ExtResource( 5 )]
@@ -151,10 +186,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Else"]
-margin_left = 30.0
+margin_left = 8.0
 margin_right = 134.0
-margin_bottom = 16.0
-rect_scale = Vector2( 4, 4 )
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 7 )
 text = "Else"
 
 [node name="FunctionBlockArea" type="Area2D" parent="Else"]
@@ -191,12 +226,13 @@ mouse_filter = 2
 color = Color( 0, 0.231373, 0.482353, 1 )
 
 [node name="Counter" type="Label" parent="Else"]
-margin_left = 177.5
-margin_top = 106.5
-margin_right = 227.5
-margin_bottom = 121.5
+margin_left = 1.0
+margin_top = 107.0
+margin_right = 959.0
+margin_bottom = 173.0
 rect_min_size = Vector2( 50, 15 )
-rect_scale = Vector2( 2.5, 2.5 )
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 8 )
 text = "0/7"
 align = 1
 script = ExtResource( 2 )

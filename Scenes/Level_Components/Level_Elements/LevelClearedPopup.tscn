@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/LevelClearedPopup.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Miscalleous/levelClear.tres" type="Theme" id=3]
 
 [sub_resource type="DynamicFont" id=2]
 size = 50
@@ -19,7 +20,7 @@ margin_left = 400.0
 margin_top = 300.0
 margin_right = 900.0
 margin_bottom = 600.0
-color = Color( 0.129412, 0.129412, 0.129412, 1 )
+color = Color( 0.0784314, 0.0196078, 0.054902, 1 )
 
 [node name="Label" type="Label" parent="ColorRect"]
 margin_left = 113.5
@@ -36,6 +37,7 @@ margin_right = 450.0
 margin_bottom = 167.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 1 )
 text = "Next Level"
 
@@ -46,6 +48,7 @@ margin_right = 450.0
 margin_bottom = 267.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 1 )
 text = "Exit to Level Select"
 
