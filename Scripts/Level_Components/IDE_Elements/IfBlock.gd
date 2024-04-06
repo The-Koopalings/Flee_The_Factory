@@ -15,7 +15,7 @@ func _ready():
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	
 	#Add options into LHS & Operator dropdowns
-	add_dropdown_options()
+#	add_dropdown_options()
 	
 	
 #NOTE: RHS options added in Level script

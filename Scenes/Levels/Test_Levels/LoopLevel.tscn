@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_73.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Tilesets/IndustrialTile_65.png" type="Texture" id=28]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Key.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Wall.tscn" type="PackedScene" id=30]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
@@ -292,6 +293,10 @@ parameters/playback = SubResource( 4 )
 
 [node name="DoorR" parent="Grid" instance=ExtResource( 13 )]
 
+[node name="Wall" parent="Grid" instance=ExtResource( 30 )]
+
+[node name="Wall2" parent="Grid" instance=ExtResource( 30 )]
+
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
@@ -371,4 +376,6 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [editable path="Grid/Obstacle2"]
 [editable path="Grid/Obstacle3"]
 [editable path="Grid/Door"]
+[editable path="IDE"]
+[editable path="IDE/Main"]
 [editable path="IDE/Loop2"]

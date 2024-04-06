@@ -27,6 +27,7 @@ margin_bottom = 509.0
 rect_min_size = Vector2( 480, 230 )
 focus_mode = 0
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 text = "RUN"
 
 [connection signal="pressed" from="Run_Button" to="." method="_on_Button_pressed"]

@@ -14,6 +14,8 @@ var level
 var IDE
 var robot
 var puzzleElements
+var codeBlocks = {}
+var IDEChildren = []
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -43,8 +45,8 @@ func loadLevel(_level):
 	
 	self.init_elements()
 	self.init_WCLs()
-	self.init_code_blocks_bar()
 	self.init_IDE()
+	self.init_code_blocks_bar()
 	self.update()
 	GameStats.set_game_state(GameStats.State.CODING)
 	
@@ -241,10 +243,14 @@ func init_code_blocks_bar():
 	for block in blocks:
 		var code_block_template = block.get_child(2)
 		code_block_template.startPos = Vector2(x, y)
+		code_block_template.connections()
 		if block.BLOCK_TYPE == "CALL":
 			var call_name = block.name.trim_prefix("Call_")
 			var texture = load("res://Assets/Objects/" + call_name + ".png")
 			block.get_node("Sprite").set_texture(texture)
+			#In case of Restart, allows Call_Loop code blocks to reconnect to pre-Restart IDE sections
+			if block.name.begins_with("Call_Loop"):
+				block.connect_to_LoopBlock()
 		
 		x += 110
 		
@@ -255,23 +261,60 @@ func init_code_blocks_bar():
 func init_IDE():
 	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
-	var options = generate_RHS_options()
+	var options = null
 	
+	#If player pressed Restart
+	if IDEChildren.size() != 0:
+		var i = 0
+		
+		#Replace current IDE sections with pre-Restart IDE sections
+		for block in IDE.get_children():
+			IDE.remove_child(block)
+			IDE.add_child(IDEChildren[i])
+			i = i + 1
+		IDEChildren.clear()
+		
+		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEChildren
+		init_progress_check_FBA()
+		
+		# Grab focus of main
+		IDE.get_node("Main").grab_focus()
 	
+	#Only generates dropdown options once (when first entering level) for If & Loop sections
+	else:
+		options = generate_RHS_options()
+
 	for child in IDE.get_children():
 		var type = child.name.rstrip("1234567890")
 		
-		#Ignore the Run Button and Arrow Highlights
-		if type == "Run_Button" or type.find("Arrow") != -1:
+		#Ignore arrows
+		#In case of Restart: Reconnect Run_Button signal to current IDE
+		#					 Set FBA.numBlocks to the number of code blocks in that FBA 
+		#					 (otherwise numBlocks would = 0 even if there are > 0 code blocks in that FBA)
+		if type.find("Arrow") != -1:
 			continue
-			
-		#Check if we need to add RHS options
-		if type == "If":
-			var RHS = child.get_node("If/RHS")
-			add_RHS_options(options, RHS)
+		elif type == "Run_Button":
+			child.connect("pressed", IDE, "_on_Button_pressed")
+		elif type == "If":
+			child.get_node("If").set_FBA_numBlocks()
+			child.get_node("Else").set_FBA_numBlocks()
 		elif type == "Loop":
-			var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
-			add_RHS_options(options, RHS)
+			child.get_node("HighlightControl").set_FBA_numBlocks()
+		else:
+			child.set_FBA_numBlocks()
+		
+		call_loop_reconnections(type, child)
+		
+		#Check if we need to add RHS options, shouldn't trigger after a Restart
+		if options:
+			if type == "If":
+				var RHS = child.get_node("If/RHS")
+				child.add_dropdown_options()
+				add_RHS_options(options, RHS)
+			elif type == "Loop":
+				var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
+				child.add_dropdown_options()
+				add_RHS_options(options, RHS)
 			
 		#Add the scope to list of scopes
 		IDE.scopes[child.name] = child
@@ -280,6 +323,47 @@ func init_IDE():
 	print(DEBUG_buffer)
 	
 
+#Reconnect signals in Call_Loop code blocks, needed after a Restart
+func call_loop_reconnections(type, child):
+	var code = []
+	if type.find("Arrow") != -1 or type == "Run_Button":
+		return
+	elif type == "If":
+		code = child.get_node("If/FunctionBlockArea").get_children()
+		for codeBlock in child.get_node("Else/FunctionBlockArea").get_children():
+			code.push_back(codeBlock)
+	elif type == "Loop":
+		code = child.get_node("HighlightControl/FunctionBlockArea").get_children()
+	else:
+		code = child.get_node("FunctionBlockArea").get_children()
+	
+	#Pop CollisionShape2D & ColorRect
+	code.pop_front()
+	code.pop_front()
+	
+	#Reconnect signals for Call_Loop code blocks
+	for codeBlock in code:
+		if codeBlock.name.begins_with("Call_Loop"):
+			codeBlock.connect_to_LoopBlock()
+	
+
+#Allows progress checks to work after Restart, progress_check_FBA elements need to point to pre-Restart FBAs
+func init_progress_check_FBA():
+	for i in range(level.progress_check_FBA.size()):
+		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
+		var scope = level.progress_check_FBA[i].get_parent().name
+		
+		if scope == "Main" or scope.begins_with("F"):
+			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/FunctionBlockArea")
+		else:
+			#For checking Ifs & Loops
+			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
+			if higherScope.begins_with("If"):
+				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/" + scope + "/FunctionBlockArea")
+			elif higherScope.begins_with("Loop"):
+				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/FunctionBlockArea")
+	
+	
 func init_inventory():
 	level.get_node("Inventory").set_position(Vector2(865, 43))
 	

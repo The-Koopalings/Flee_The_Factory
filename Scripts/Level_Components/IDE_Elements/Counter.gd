@@ -4,7 +4,7 @@ export var maxBlocks = 7
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	display(0)
+	display(get_node("../FunctionBlockArea").get_child_count() - 2)
 
 func display(numBlocks):
 	text = str(numBlocks) + "/" + str(maxBlocks)
