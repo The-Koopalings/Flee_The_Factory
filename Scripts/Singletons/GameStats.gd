@@ -2,6 +2,8 @@ extends Node
 
 signal robotDied
 
+var levelCompletion = {}
+
 enum State{
 	OUT_OF_LEVEL = -1,
 	CODING = 0,
@@ -48,4 +50,9 @@ func kill_robot():
 	
 	# Emit signal to Robot and IDE
 	emit_signal("robotDied")
+
+func init_levelCompletion():
+	for levelPaths in SceneSwapper.scene_array:
+		levelCompletion[levelPaths] = false
+#	print(levelCompletion)
 

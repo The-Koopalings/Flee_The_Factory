@@ -40,5 +40,9 @@ func _on_level_levelComplete():
 	$Sprite.set_texture(openDoorTexture)
 	get_node("WCLs").visible = false
 	
+	var root = get_tree().root
+	var level_path = root.get_child(root.get_child_count() - 1).filename
+	GameStats.levelCompletion[level_path] = true
+	
 	#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
 	$Sprite.set_scale(Vector2(1,1)) 

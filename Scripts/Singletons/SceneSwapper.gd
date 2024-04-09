@@ -21,10 +21,10 @@ var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 				  "ControlFlow 1": "res://Scenes/Levels/ProofOfConcept.tscn",
 				  "ControlFlow 2": "res://Scenes/Levels/ProofOfConcept.tscn",
 				  "ControlFlow 3": "res://Scenes/Levels/ProofOfConcept.tscn",
-				  "DataStructures 1": "res://Scenes/Levels/Data_Structures/1 - Intro To Inventory S.tscn",
-				  "DataStructures 2": "res://Scenes/Levels/Data_Structures/2 - Intro To Stacks S.tscn",
-				  "DataStructures 3": "res://Scenes/Levels/Data_Structures/3 - Intro To Queues Q.tscn",
-				  "DataStructures 4": "res://Scenes/Levels/Data_Structures/4 - Intro To Arrays A.tscn",}
+				  "DataStructures 1": "res://Scenes/Levels/Data_Structures/1 - Intro to Inventory S.tscn",
+				  "DataStructures 2": "res://Scenes/Levels/Data_Structures/2 - Intro to Stacks S.tscn",
+				  "DataStructures 3": "res://Scenes/Levels/Data_Structures/3 - Intro to Queues Q.tscn",
+				  "DataStructures 4": "res://Scenes/Levels/Data_Structures/4 - Intro to Arrays A.tscn",}
 
 var scene_array = []
 
@@ -41,6 +41,8 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	init_scene_array()
+	#Put it here instead of GameStats _ready() so scene_array will definitely be initialized
+	GameStats.init_levelCompletion()
 
 
 func change_scene(scene_name):
@@ -92,6 +94,8 @@ func load_back_button(level_select):
 
 
 func load_lvl_buttons(level_select):
+	var completedTheme = load("res://Scenes/Stage_Select/LevelCompletedButton.tres")
+	var stage_type = level_select.name.replace("Select", "")
 	var btn_nodes = get_tree().get_nodes_in_group("level_buttons")
 	var btn_count = 0
 	
@@ -99,6 +103,16 @@ func load_lvl_buttons(level_select):
 	var y_pos = Y_START
 	
 	for btn in btn_nodes:
+		#Set button color
+		var level_number = btn.text
+		var scene_key = stage_type + " " + level_number
+		var level_path = scene_path[scene_key]
+		if GameStats.levelCompletion[level_path]:
+			btn.set_theme(completedTheme)
+#		else:
+#			btn.set_theme(completeTexture)
+			
+		#Set button position
 		btn.rect_position = Vector2(x_pos, y_pos)
 		btn_count += 1
 		
@@ -140,7 +154,7 @@ func load_file_contents(path):
 			
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path.")
+		print("An error occurred when trying to access the path: ", path)
 
 
 func change_to_next_level_scene(old_scene):
