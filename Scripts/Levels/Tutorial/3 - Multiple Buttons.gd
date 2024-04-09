@@ -34,7 +34,10 @@ var robotStartOrientation = PEP.Orientation.DOWN
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Tutorial/3 - Multiple Buttons.txt")
+	var root = get_tree().root
+	var level_path = root.get_child(root.get_child_count() - 1).filename
+	if !GameStats.levelCompletion[level_path]:
+		DialogueManager.add_dialogue(self, "Tutorial/3 - Multiple Buttons.txt")
 
 
 func _process(delta):

@@ -15,8 +15,8 @@ var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 				  "Functions 1": "res://Scenes/Levels/Functions/1 - Functions Intro.tscn",
 				  "Functions 2": "res://Scenes/Levels/Functions/2 - L Shape.tscn",
 				  "Functions 3": "res://Scenes/Levels/Functions/3 - Multi Func Intro.tscn",
-				  "Recursion 1": "res://Scenes/Levels/ProofOfConcept.tscn",
-				  "Recursion 2": "res://Scenes/Levels/ProofOfConcept.tscn",
+				  "Recursion 1": "res://Scenes/Levels/Recursion/0 - Intro.tscn",
+				  "Recursion 2": "res://Scenes/Levels/Recursion/1 - DeathTile.tscn",
 				  "Recursion 3": "res://Scenes/Levels/ProofOfConcept.tscn",
 				  "ControlFlow 1": "res://Scenes/Levels/ProofOfConcept.tscn",
 				  "ControlFlow 2": "res://Scenes/Levels/ProofOfConcept.tscn",
@@ -107,10 +107,9 @@ func load_lvl_buttons(level_select):
 		var level_number = btn.text
 		var scene_key = stage_type + " " + level_number
 		var level_path = scene_path[scene_key]
+		#If the level is complete, then change button theme (only changes normal texture right now)
 		if GameStats.levelCompletion[level_path]:
 			btn.set_theme(completedTheme)
-#		else:
-#			btn.set_theme(completeTexture)
 			
 		#Set button position
 		btn.rect_position = Vector2(x_pos, y_pos)

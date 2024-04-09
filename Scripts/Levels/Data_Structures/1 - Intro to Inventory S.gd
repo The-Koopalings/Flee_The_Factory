@@ -33,7 +33,10 @@ var robotStartOrientation = PEP.Orientation.DOWN
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToInventory.txt")
+	var root = get_tree().root
+	var level_path = root.get_child(root.get_child_count() - 1).filename
+	if !GameStats.levelCompletion[level_path]:
+		DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToInventory.txt")
 	$Inventory/Inventory_Arrow.visible = false
 	
 
