@@ -2,7 +2,14 @@ extends Node
 
 signal robotDied
 
+#Keys: level paths (I.e. res://Scenes/Levels/Tutorial/blah)     
+#Values: true if level is completed, false if not
 var levelCompletion = {}
+
+#Check if we should play tutorial (I.e. if player exits level without completing, won't replay tutorial automatically)
+#Keys: level paths (like levelCompletion)     
+#Values: true if should play tutorial, false otherwise (I.e. if level completed or re-entered after not completing)
+var playTutorial = {}
 
 enum State{
 	OUT_OF_LEVEL = -1,
@@ -45,14 +52,20 @@ func is_terminated():
 	return (game_state == State.TERMINATED)
 
 func kill_robot():
-	# -Game state changes to terminated
+	#Game state changes to terminated
 	game_state = State.TERMINATED
 	
 	# Emit signal to Robot and IDE
 	emit_signal("robotDied")
 
 func init_levelCompletion():
-	for levelPaths in SceneSwapper.scene_array:
-		levelCompletion[levelPaths] = false
-#	print(levelCompletion)
+	for levelPath in SceneSwapper.scene_array:
+		levelCompletion[levelPath] = false
+		playTutorial[levelPath] = true
+
+func set_level_completed(levelPath):
+	levelCompletion[levelPath] = true
+	playTutorial[levelPath] = false
+
+
 

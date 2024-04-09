@@ -40,9 +40,10 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 func _ready():
 	PEP.loadLevel(self)
 	var root = get_tree().root
-	var level_path = root.get_child(root.get_child_count() - 1).filename
-	if !GameStats.levelCompletion[level_path]:
+	var levelPath = root.get_child(root.get_child_count() - 1).filename
+	if GameStats.playTutorial[levelPath]:
 		DialogueManager.add_dialogue(self, "Functions/3 - Multi Func Intro.txt")
+		GameStats.playTutorial[levelPath] = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

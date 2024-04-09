@@ -31,12 +31,14 @@ var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
+	var root = get_tree().root
+	var levelPath = root.get_child(root.get_child_count() - 1).filename
+	if GameStats.playTutorial[levelPath]:
+		DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToInventory.txt")
+		GameStats.playTutorial[levelPath] = false
+	
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	var root = get_tree().root
-	var level_path = root.get_child(root.get_child_count() - 1).filename
-	if !GameStats.levelCompletion[level_path]:
-		DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToInventory.txt")
 	$Inventory/Inventory_Arrow.visible = false
 	
 
