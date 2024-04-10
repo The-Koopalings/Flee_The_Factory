@@ -66,36 +66,12 @@ text = "Functions"
 align = 1
 valign = 1
 
-[node name="RecursionButton" type="TextureButton" parent="."]
+[node name="ControlFlowButton" type="TextureButton" parent="."]
 anchor_bottom = 1.0
 margin_left = 100.0
 margin_top = 480.0
 margin_right = 1820.0
 margin_bottom = 680.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 2 )
-expand = true
-
-[node name="Label" type="Label" parent="RecursionButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -198.0
-margin_top = -60.5
-margin_right = 198.0
-margin_bottom = 60.5
-custom_fonts/font = SubResource( 2 )
-text = "Recursion"
-align = 1
-valign = 1
-
-[node name="ControlFlowButton" type="TextureButton" parent="."]
-anchor_bottom = 1.0
-margin_left = 100.0
-margin_top = 680.0
-margin_right = 1820.0
-margin_bottom = 880.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 5 )
 expand = true
@@ -111,6 +87,30 @@ margin_right = 249.5
 margin_bottom = 60.5
 custom_fonts/font = SubResource( 2 )
 text = "Control Flow"
+align = 1
+valign = 1
+
+[node name="RecursionButton" type="TextureButton" parent="."]
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 680.0
+margin_right = 1820.0
+margin_bottom = 880.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="RecursionButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -198.0
+margin_top = -60.5
+margin_right = 198.0
+margin_bottom = 60.5
+custom_fonts/font = SubResource( 2 )
+text = "Recursion"
 align = 1
 valign = 1
 
@@ -146,7 +146,7 @@ margin_bottom = 110.0
 
 [connection signal="pressed" from="TutorialButton" to="." method="_on_TutorialButton_pressed"]
 [connection signal="pressed" from="FunctionsButton" to="." method="_on_FunctionsButton_pressed"]
-[connection signal="pressed" from="RecursionButton" to="." method="_on_RecursionButton_pressed"]
 [connection signal="pressed" from="ControlFlowButton" to="." method="_on_ControlFlowButton_pressed"]
+[connection signal="pressed" from="RecursionButton" to="." method="_on_RecursionButton_pressed"]
 [connection signal="pressed" from="DataStructuresButton" to="." method="_on_DataStructuresButton_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

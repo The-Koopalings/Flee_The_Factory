@@ -107,8 +107,8 @@ func init_scenes():
 	# Call in this order because it matters for the scene_array
 	load_file_contents("res://Scenes/Levels/Tutorial")
 	load_file_contents("res://Scenes/Levels/Functions")
-	load_file_contents("res://Scenes/Levels/Recursion")
 	load_file_contents("res://Scenes/Levels/Control_Flow")
+	load_file_contents("res://Scenes/Levels/Recursion")
 	load_file_contents("res://Scenes/Levels/Data_Structures")
 
 
