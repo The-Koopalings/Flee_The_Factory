@@ -41,3 +41,5 @@ valign = 1
 [node name="Button3" parent="." instance=ExtResource( 5 )]
 
 [node name="Button4" parent="." instance=ExtResource( 5 )]
+
+[node name="Button5" parent="." instance=ExtResource( 5 )]
