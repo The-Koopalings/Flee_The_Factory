@@ -8,6 +8,10 @@ signal levelComplete
 
 ##UNIQUE LEVEL VARIABLES
 var B1_Pressed = false
+
+signal dialogue_progress
+var progress_check_arr = []
+onready var progress_check_FBA = []
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES

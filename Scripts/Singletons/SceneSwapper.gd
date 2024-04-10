@@ -10,7 +10,8 @@ var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 				  "Control_Flow Select": "res://Scenes/Stage_Select/ControlFlowSelect.tscn",
 				  "Data_Structures Select": "res://Scenes/Stage_Select/DataStructuresSelect.tscn",}
 
-var scene_array = []
+# Keey track of order of levels using the key for the scene_path dict
+var scene_order = []
 
 const X_START = 110
 const Y_START = 300
@@ -25,6 +26,7 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	init_scenes()
+	print(scene_order)
 
 
 func change_scene(scene_name):
@@ -49,11 +51,8 @@ func _deferred_change_scene(scene_name):
 	DialogueManager.restart_dialogue()
 	
 	# Load the new scene.
-	if scene_path.has(scene_name):
-		var path = scene_path[scene_name]
-		scene = ResourceLoader.load(path)
-	else:
-		scene = ResourceLoader.load(scene_name)
+	var path = scene_path[scene_name]
+	scene = ResourceLoader.load(path)
 
 	# Instance the new scene.
 	current_scene = scene.instance()
@@ -102,7 +101,7 @@ func change_to_level_scene(level_select, button_name):
 
 
 func init_scenes():
-	scene_array.clear()
+	scene_order.clear()
 	
 	# Call in this order because it matters for the scene_array
 	load_file_contents("res://Scenes/Levels/Tutorial")
@@ -114,6 +113,7 @@ func init_scenes():
 
 func load_file_contents(path):
 	var dir = Directory.new()
+	var temp_arr = []
 	
 	if dir.open(path) == OK:
 		dir.list_dir_begin()
@@ -123,23 +123,37 @@ func load_file_contents(path):
 			if !dir.current_is_dir():
 				var file_path = path + "/" + file_name
 				
-				# Add to scene_array for next level flow
-				scene_array.push_back(file_path)
-				
 				# Add to scene_path dictionary
 				var level_num = file_name.get_slice(" ", 0)
 				var key = path.replace("res://Scenes/Levels/", "") + " " + level_num
 				scene_path[key] = file_path
+				
+				# Add key to array for next level flow
+				temp_arr.push_back(key)
 			
 			file_name = dir.get_next()
+		
+		# Sort array to account for level 10 coming before 2, etc.
+		temp_arr.sort_custom(self, "custom_comparison")
+		
+		# Append to scene order array
+		scene_order += temp_arr
 	else:
 		print("An error occurred when trying to access the path.")
 
 
+func custom_comparison(a, b):
+	a = int(a.get_slice(" ", 1))
+	b = int(b.get_slice(" ", 1))
+	
+	return a < b
+
+
 func change_to_next_level_scene(old_scene):
-	var index = scene_array.find(old_scene, 0) + 1
+	var index = scene_order.find(old_scene, 0) + 1
+	print(index)
 	
 	# Last level should not go back to first tutorial level (index = scene_array.size() if next scene isn't found)
-	if index < scene_array.size():
-		var scene_path = scene_array[index]
+	if index < scene_order.size():
+		var scene_path = scene_order[index]
 		change_scene(scene_path)

@@ -13,6 +13,10 @@ var B3_Pressed = false
 var B4_Pressed = false
 var B5_Pressed = false
 var B6_Pressed = false
+
+signal dialogue_progress
+var progress_check_arr = []
+onready var progress_check_FBA = []
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -49,7 +53,7 @@ func _process(_delta):
 	#If win con, then open door
 	if B1_Pressed and B2_Pressed and B3_Pressed and B4_Pressed and B5_Pressed and B6_Pressed:
 		emit_signal("levelComplete")
-		$AcceptDialog.popup()
+		$PopupMenu.visible = true
 		B1_Pressed = false
 		
 

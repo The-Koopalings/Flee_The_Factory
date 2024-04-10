@@ -18,7 +18,6 @@ var B2_Pressed = false
 var B4_Pressed = false
 
 signal dialogue_progress
-var progress_check = [false, false, false]
 var progress_check_arr = [["Forward", "Forward", "Interact", "RotateLeft"], ["Forward", "Forward", "Interact", "RotateLeft", "Call_F1"], ["Call_F1"]]
 onready var progress_check_FBA = [F1_FBA, F1_FBA, MainFBA]
 ##UNIQUE LEVEL VARIABLES
@@ -58,7 +57,7 @@ func _process(_delta):
 		
 		if level_win:
 			emit_signal("levelComplete")
-			$AcceptDialog.popup()
+			$PopupMenu.visible = true
 			level_win = false
 		
 
