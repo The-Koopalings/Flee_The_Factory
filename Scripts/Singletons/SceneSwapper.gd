@@ -8,23 +8,7 @@ var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 				  "Functions Select": "res://Scenes/Stage_Select/FunctionsSelect.tscn",
 				  "Recursion Select": "res://Scenes/Stage_Select/RecursionSelect.tscn",
 				  "Control_Flow Select": "res://Scenes/Stage_Select/ControlFlowSelect.tscn",
-				  "Data_Structures Select": "res://Scenes/Stage_Select/DataStructuresSelect.tscn",
-				  "Tutorial 1": "res://Scenes/Levels/Tutorial/1 - Game Intro.tscn",
-				  "Tutorial 2": "res://Scenes/Levels/Tutorial/2 - Rotations & Obstacles.tscn",
-				  "Tutorial 3": "res://Scenes/Levels/Tutorial/3 - Multiple Buttons.tscn",
-				  "Functions 1": "res://Scenes/Levels/Functions/1 - Functions Intro.tscn",
-				  "Functions 2": "res://Scenes/Levels/Functions/2 - L Shape.tscn",
-				  "Functions 3": "res://Scenes/Levels/Functions/3 - Multi Func Intro.tscn",
-				  "Recursion 1": "res://Scenes/Levels/Recursion/0 - Intro.tscn",
-				  "Recursion 2": "res://Scenes/Levels/Recursion/1 - DeathTile.tscn",
-				  "Recursion 3": "res://Scenes/Levels/ProofOfConcept.tscn",
-				  "ControlFlow 1": "res://Scenes/Levels/ProofOfConcept.tscn",
-				  "ControlFlow 2": "res://Scenes/Levels/ProofOfConcept.tscn",
-				  "ControlFlow 3": "res://Scenes/Levels/ProofOfConcept.tscn",
-				  "DataStructures 1": "res://Scenes/Levels/Data_Structures/1 - Intro to Inventory S.tscn",
-				  "DataStructures 2": "res://Scenes/Levels/Data_Structures/2 - Intro to Stacks S.tscn",
-				  "DataStructures 3": "res://Scenes/Levels/Data_Structures/3 - Intro to Queues Q.tscn",
-				  "DataStructures 4": "res://Scenes/Levels/Data_Structures/4 - Intro to Arrays A.tscn",}
+				  "Data_Structures Select": "res://Scenes/Stage_Select/DataStructuresSelect.tscn",}
 
 var scene_array = []
 
@@ -40,7 +24,7 @@ func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
-	init_scene_array()
+	init_scenes()
 	#Put it here instead of GameStats _ready() so scene_array will definitely be initialized
 	GameStats.init_levelCompletion()
 
@@ -130,8 +114,10 @@ func change_to_level_scene(level_select, button_name):
 	change_scene(scene_key)
 
 
-func init_scene_array():
+func init_scenes():
 	scene_array.clear()
+	
+	# Call in this order because it matters for the scene_array
 	load_file_contents("res://Scenes/Levels/Tutorial")
 	load_file_contents("res://Scenes/Levels/Functions")
 	load_file_contents("res://Scenes/Levels/Recursion")
@@ -146,10 +132,21 @@ func load_file_contents(path):
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		
+		# For the scene_path dict key
+		var level_num = 1
+		
 		while file_name != "":
 			if !dir.current_is_dir():
-				var scene_path = path + "/" + file_name
-				scene_array.push_back(scene_path)
+				var file_path = path + "/" + file_name
+				
+				# Add to scene_array for next level flow
+				scene_array.push_back(file_path)
+				
+				# Add to scene_path dictionary
+				var key = path.replace("res://Scenes/Levels/", "") + " " + str(level_num)
+				scene_path[key] = file_path
+				
+				level_num += 1
 			
 			file_name = dir.get_next()
 	else:
