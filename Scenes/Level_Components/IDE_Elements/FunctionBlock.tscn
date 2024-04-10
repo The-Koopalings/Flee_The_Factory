@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/ClearCodeButton.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 210, 84 )
+extents = Vector2( 210.5, 63 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 243, 140.5 )
