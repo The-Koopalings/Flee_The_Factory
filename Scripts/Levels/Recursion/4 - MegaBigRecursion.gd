@@ -3,7 +3,10 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
+onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var TextBox = get_node("TextBox")
 signal levelComplete
+var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
@@ -52,10 +55,10 @@ func _process(_delta):
 	#Check win con
 	#If win con, then open door
 	if B1_Pressed and B2_Pressed and B3_Pressed and B4_Pressed and B5_Pressed and B6_Pressed:
-		emit_signal("levelComplete")
-		$PopupMenu.visible = true
-		B1_Pressed = false
 		
+		if level_win:
+			emit_signal("levelComplete")
+			$PopupMenu.visible = true
 
 func _on_Button_buttonPressed(name):
 	match name:
@@ -71,3 +74,6 @@ func _on_Button_buttonPressed(name):
 			B5_Pressed = true
 		"Button6":
 			B6_Pressed = true
+	
+	if B1_Pressed and B2_Pressed and B3_Pressed and B4_Pressed and B5_Pressed and B6_Pressed:
+		level_win = true

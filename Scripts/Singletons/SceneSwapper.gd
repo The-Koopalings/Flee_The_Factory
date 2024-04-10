@@ -26,7 +26,6 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	init_scenes()
-	print(scene_order)
 
 
 func change_scene(scene_name):
@@ -151,9 +150,8 @@ func custom_comparison(a, b):
 
 func change_to_next_level_scene(old_scene):
 	var index = scene_order.find(old_scene, 0) + 1
-	print(index)
 	
 	# Last level should not go back to first tutorial level (index = scene_array.size() if next scene isn't found)
 	if index < scene_order.size():
-		var scene_path = scene_order[index]
-		change_scene(scene_path)
+		var new_scene = scene_order[index]
+		change_scene(new_scene)
