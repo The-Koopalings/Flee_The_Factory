@@ -336,7 +336,8 @@ func init_IDE():
 	buttons.get_node("Run_Button").connect("pressed", IDE, "_on_RunButton_pressed")
 
 	#Connect Clear All Button
-	buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
+	for scope in scopesContainer.get_children():
+		buttons.get_node("ClearAll_Button").connect("pressed", scope.get_node("ClearCode"), "on_pressed")
 	
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
