@@ -15,7 +15,7 @@ var IDE
 var robot
 var puzzleElements
 var codeBlocks = {}
-var IDEChildren = []
+var IDEScopes = []
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -265,17 +265,17 @@ func init_IDE():
 	var scopesContainer = IDE.get_node("Scopes")
 	
 	#If player pressed Restart
-	if IDEChildren.size() != 0:
+	if IDEScopes.size() != 0:
 		var i = 0
 		
 		#Replace current IDE sections with pre-Restart IDE sections
 		for block in scopesContainer.get_children():
 			scopesContainer.remove_child(block)
-			scopesContainer.add_child(IDEChildren[i])
+			scopesContainer.add_child(IDEScopes[i])
 			i = i + 1
-		IDEChildren.clear()
+		IDEScopes.clear()
 		
-		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEChildren
+		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
 		init_progress_check_FBA()
 		
 		# Grab focus of main
@@ -286,8 +286,8 @@ func init_IDE():
 		options = generate_RHS_options()
 
 	
-	for child in scopesContainer.get_children():
-		var type = child.name.rstrip("1234567890")
+	for scope in scopesContainer.get_children():
+		var type = scope.name.rstrip("1234567890")
 		
 		#Ignore arrows
 		#In case of Restart: Reconnect Run_Button signal to current IDE
@@ -296,28 +296,28 @@ func init_IDE():
 		if type.find("Arrow") != -1:
 			continue
 		elif type == "If":
-			child.get_node("If").set_FBA_numBlocks()
-			child.get_node("Else").set_FBA_numBlocks()
+			scope.get_node("If").set_FBA_numBlocks()
+			scope.get_node("Else").set_FBA_numBlocks()
 		elif type == "Loop":
-			child.get_node("HighlightControl").set_FBA_numBlocks()
+			scope.get_node("HighlightControl").set_FBA_numBlocks()
 		else:
-			child.set_FBA_numBlocks()
+			scope.set_FBA_numBlocks()
 		
-		call_loop_reconnections(type, child)
+		call_loop_reconnections(type, scope)
 		
 		#Check if we need to add RHS options, shouldn't trigger after a Restart
 		if options:
 			if type == "If":
-				var RHS = child.get_node("If/RHS")
-				child.add_dropdown_options()
+				var RHS = scope.get_node("If/RHS")
+				scope.add_dropdown_options()
 				add_RHS_options(options, RHS)
 			elif type == "Loop":
-				var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
-				child.add_dropdown_options()
+				var RHS = scope.get_node("HighlightControl/WhileConditional/RHS")
+				scope.add_dropdown_options()
 				add_RHS_options(options, RHS)
 			
 		#Add the scope to list of scopes
-		IDE.scopes[child.name] = child
+		IDE.scopes[scope.name] = scope
 	
 	#Move scopes in scene tree to be in the Scopes container if they aren't already
 	#Should technically only have 2 children, Scopes and Button containers
@@ -373,14 +373,14 @@ func init_progress_check_FBA():
 		var scope = level.progress_check_FBA[i].get_parent().name
 		
 		if scope == "Main" or scope.begins_with("F"):
-			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/FunctionBlockArea")
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/FunctionBlockArea")
 		else:
 			#For checking Ifs & Loops
 			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
 			if higherScope.begins_with("If"):
-				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/" + scope + "/FunctionBlockArea")
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/" + scope + "/FunctionBlockArea")
 			elif higherScope.begins_with("Loop"):
-				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/FunctionBlockArea")
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
 	
 	
 func init_inventory():

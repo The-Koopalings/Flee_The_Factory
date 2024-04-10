@@ -19,8 +19,8 @@ custom_constants/separation = 5
 alignment = 1
 
 [node name="Main" parent="Scopes" instance=ExtResource( 1 )]
-margin_top = 355.0
-margin_bottom = 595.0
+margin_top = 337.0
+margin_bottom = 612.0
 
 [node name="Label" parent="Scopes/Main" index="0"]
 margin_top = 13.0

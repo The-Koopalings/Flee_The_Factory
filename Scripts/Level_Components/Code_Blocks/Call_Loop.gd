@@ -21,7 +21,7 @@ func connect_to_LoopBlock():
 	
 	loopBlockNumber = loopBlockName.trim_prefix("Loop")
 
-	var loopBlockNode = get_node(PEP.get_path_to_grandpibling(self, "IDE/" + loopBlockName)) 
+	var loopBlockNode = get_node(PEP.get_path_to_grandpibling(self, "IDE/Scopes/" + loopBlockName)) 
 	status = loopBlockNode.connect("ChosenLoop", self, "on_loop_type_selected")
 	if status != 0:
 		printerr("Something went wrong trying to connect signals in ", name)

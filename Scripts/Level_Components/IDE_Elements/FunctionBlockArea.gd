@@ -65,7 +65,7 @@ func _on_FunctionBlockArea_input_event(_viewport, event, _shape_idx):
 func _on_CodeBlock_doubleClick(code_block):
 	if !highlight.visible:
 		return 
-
+		
 	if is_a_parent_of(code_block):
 		remove_block(code_block)
 	else:

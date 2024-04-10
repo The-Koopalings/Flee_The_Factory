@@ -27,7 +27,7 @@ func setup():
 		on_SlotNum_Selected(slotNum)
 		SelectSlotNum.get_popup().connect("id_pressed", self, "on_SlotNum_Selected")
 		#Add options if pre=Restart or parent is CodeBlockBar
-		if PEP.IDEChildren.size() == 0 or get_parent().name == "CodeBlockBar":
+		if PEP.IDEScopes.size() == 0 or get_parent().name == "CodeBlockBar":
 			SelectSlotNum.get_popup().add_item("0")
 			SelectSlotNum.get_popup().add_item("1")
 			SelectSlotNum.get_popup().add_item("2")
