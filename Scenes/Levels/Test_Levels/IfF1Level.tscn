@@ -299,8 +299,8 @@ parameters/playback = SubResource( 4 )
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 
 [node name="If1" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 1080.0
-margin_bottom = 1355.0
+margin_top = 1078.0
+margin_bottom = 1353.0
 __meta__ = {
 "_editor_description_": "Name this either IfElse1 or IfElse2"
 }
@@ -309,13 +309,15 @@ __meta__ = {
 text = "Else1"
 
 [node name="F1" parent="IDE" instance=ExtResource( 29 )]
-margin_top = 1360.0
-margin_bottom = 1590.0
+margin_left = 0.0
+margin_top = 1357.0
+margin_right = 480.0
+margin_bottom = 1595.0
 
 [node name="Label" parent="IDE/F1" index="0"]
 text = "F1"
 
-[node name="Counter" parent="IDE/F1" index="4"]
+[node name="Counter" parent="IDE/F1" index="2"]
 text = "0/21"
 maxBlocks = 21
 

@@ -11,7 +11,7 @@ outline_color = Color( 0.0862745, 0.356863, 0.121569, 1 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 50
+size = 40
 outline_size = 10
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
@@ -78,7 +78,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
 enabled_focus_mode = 0
-text = "Clear All"
+text = "CLEAR ALL"
 
 [connection signal="focus_entered" from="Scopes" to="Scopes" method="_on_Scopes_focus_entered"]
 [connection signal="mouse_entered" from="Scopes" to="Scopes" method="_on_Scopes_mouse_entered"]

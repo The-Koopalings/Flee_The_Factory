@@ -267,27 +267,50 @@ func init_IDE():
 	#If player pressed Restart
 	if IDEScopes.size() != 0:
 		var i = 0
-		
+		scopesContainer.remove_child(scopesContainer.get_child(0))
 		#Replace current IDE sections with pre-Restart IDE sections
-		for block in scopesContainer.get_children():
-			scopesContainer.remove_child(block)
-			scopesContainer.add_child(IDEScopes[i])
+		for container in IDEScopes:			
+			scopesContainer.add_child(container)
 			i = i + 1
 		IDEScopes.clear()
+		
+		print("Well ok...",scopesContainer.get_children())
+		#remove extra scopes outside of the Scopes Container
+		var children = IDE.get_children()
+		if children.size() > 2:
+			children.pop_front() #Remove Scopes container
+			while(children.front().name != "ButtonContainer"):
+				IDE.remove_child(children.front())
+				children.pop_front()
 		
 		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
 		init_progress_check_FBA()
 		
 		# Grab focus of main
-		scopesContainer.get_node("Main").grab_focus()
+		scopesContainer.get_node("Main/Main").grab_focus()
 	
 	#Only generates dropdown options once (when first entering level) for If & Loop sections
 	else:
 		options = generate_RHS_options()
 
-	
+	#Move scopes in scene tree to be in the Scopes container if they aren't already
+	#Should technically only have 2 children, Scopes and Button containers
+	var children = IDE.get_children()
+	if children.size() > 2:
+		children.pop_front() #Remove Scopes container
+		while(children.front().name != "ButtonContainer"):
+			IDE.remove_child(children.front())
+			var container = HBoxContainer.new()
+			container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			container.alignment = HBoxContainer.ALIGN_CENTER
+			container.name = children.front().name
+			container.add_child(children.front())
+			scopesContainer.add_child(container)
+			children.pop_front()
+			
+	#Generate IDE.scopes dictionary
 	for scope in scopesContainer.get_children():
-		scope = scope.get_child(0)
+		scope = scope.get_child(0) #Get the actual scope out of the nested container
 		var type = scope.name.rstrip("1234567890")
 		
 		#Ignore arrows
@@ -320,21 +343,6 @@ func init_IDE():
 		#Add the scope to list of scopes
 		IDE.scopes[scope.name] = scope
 	
-	#Move scopes in scene tree to be in the Scopes container if they aren't already
-	#Should technically only have 2 children, Scopes and Button containers
-	var children = IDE.get_children()
-	if children.size() > 2:
-		children.pop_front() #Remove Scopes container
-		while(children.front().name != "ButtonContainer"):
-			IDE.remove_child(children.front())
-			var container = HBoxContainer.new()
-			container.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			container.alignment = HBoxContainer.ALIGN_CENTER
-			container.name = children.front().name
-			container.add_child(children.front())
-			scopesContainer.add_child(container)
-			children.pop_front()
-	
 	
 	#init buttons
 	var buttons = IDE.get_node("ButtonContainer")
@@ -344,8 +352,9 @@ func init_IDE():
 	#Connect Clear All Button
 	for scope in scopesContainer.get_children():
 		#Coupling this with the existing ClearCode button in all scopes. (ie I'm being lazy)
-		buttons.get_node("ClearAll_Button").connect("pressed", scope.get_node("ClearCode"), "on_pressed")
-	
+		buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("ClearCode"), "on_pressed")
+		buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
+		
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
 	

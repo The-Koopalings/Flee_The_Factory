@@ -38,7 +38,8 @@ func _on_RunButton_pressed():
 		run_code()
 
 func _on_ClearAllButton_pressed():
-	print("CLEAR ALL BUTTON NOT IMPLEMENTED YET")
+	yield(get_tree().create_timer(0.001, false), "timeout") 
+	get_node("Scopes/Main/Main").grab_focus()
 	
 func enter_scope(node):
 	#If current IDE block node is not a Loop

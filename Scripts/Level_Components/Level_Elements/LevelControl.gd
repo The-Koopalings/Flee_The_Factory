@@ -21,9 +21,10 @@ func _on_Settings_pressed():
 func _on_Restart_pressed():
 	#Duplicate IDE sections to keep code blocks after Restart
 	var Scopes = get_node("../IDE/Scopes")
-	for block in Scopes.get_children():
-		PEP.IDEScopes.push_back(block.duplicate())
+	for container in Scopes.get_children():
+		PEP.IDEScopes.push_back(container.duplicate())
 
+	print("WAHOT", PEP.IDEScopes)
 	var Error = get_tree().reload_current_scene()
 	if Error != 0:
 		printerr("Error encountered on pressing Restart button. Error code: ", Error)

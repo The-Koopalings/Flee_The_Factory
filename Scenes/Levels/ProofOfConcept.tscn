@@ -285,8 +285,10 @@ script = ExtResource( 12 )
 margin_right = 1920.0
 
 [node name="F1" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 1090.0
-margin_bottom = 1330.0
+margin_left = 0.0
+margin_top = 1078.0
+margin_right = 480.0
+margin_bottom = 1316.0
 
 [node name="Label" parent="IDE/F1" index="0"]
 text = "F1"
@@ -296,24 +298,28 @@ __meta__ = {
 "_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input + shiftBlocks' range, var x, & var y if that number changes"
 }
 
-[node name="Counter" parent="IDE/F1" index="3"]
+[node name="Counter" parent="IDE/F1" index="2"]
 text = "0/14"
 maxBlocks = 14
 
 [node name="F2" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 1335.0
-margin_bottom = 1575.0
+margin_left = 0.0
+margin_top = 1320.0
+margin_right = 480.0
+margin_bottom = 1558.0
 
 [node name="Label" parent="IDE/F2" index="0"]
 text = "F2"
 
-[node name="Counter" parent="IDE/F2" index="3"]
+[node name="Counter" parent="IDE/F2" index="2"]
 text = "0/14"
 maxBlocks = 14
 
 [node name="F3" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 1580.0
-margin_bottom = 1820.0
+margin_left = 0.0
+margin_top = 1562.0
+margin_right = 480.0
+margin_bottom = 1800.0
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
 
