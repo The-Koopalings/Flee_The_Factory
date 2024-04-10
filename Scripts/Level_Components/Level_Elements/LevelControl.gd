@@ -45,10 +45,16 @@ func _on_DoubleSpeed_toggled(button_pressed):
 
 
 func _on_Help_pressed():
-	var level = get_node("..")
-	if level.has_tutorial:
+	#If there isn't anymore dialogue to display
+	if DialogueManager.dialogue_queue.size() == 0:
+		var level = get_node("..")
 		DialogueManager.restart_dialogue()
-		DialogueManager.add_dialogue(level, level.textPath)
-	else:
-		#Some code to bring up generic help dialogue for the stage
-		pass
+		if level.has_tutorial:
+			DialogueManager.add_dialogue(level, level.textPath)
+		else:
+			var root = get_tree().root
+			var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
+			#Gets name of folder directly above
+			#I.e. directory = "Recursion" or directory = "Control_Flow"
+			directory = directory.substr(20)
+			DialogueManager.add_dialogue(level, directory + "/generic.txt")

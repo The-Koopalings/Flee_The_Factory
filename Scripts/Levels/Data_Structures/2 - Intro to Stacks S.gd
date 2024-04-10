@@ -15,7 +15,7 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath = "DataStructures/2 - IntroToStacks.txt"
+var textPath = "Data_Structures/2 - IntroToStacks.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 

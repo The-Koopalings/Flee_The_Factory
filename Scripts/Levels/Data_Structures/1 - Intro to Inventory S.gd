@@ -15,7 +15,7 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["Forward", "Pickup"], ["Forward", "Pickup", "UseItem"]]
 onready var progress_check_FBA = [MainFBA, MainFBA]
-var textPath = "DataStructures/1 - IntroToInventory.txt"
+var textPath = "Data_Structures/1 - IntroToInventory.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
