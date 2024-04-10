@@ -1,0 +1,305 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/Counter.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/LoopBlock.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/ClearCodeButton.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 210, 84 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 243, 140.5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 15
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 5 )
+
+[node name="Loop1" type="Control"]
+margin_right = 480.0
+margin_bottom = 275.0
+rect_min_size = Vector2( 480, 275 )
+mouse_filter = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": "Name this either Loop1 or Loop2"
+}
+
+[node name="HighlightControl" type="Control" parent="."]
+margin_right = 480.0
+margin_bottom = 275.0
+rect_min_size = Vector2( 480, 275 )
+focus_mode = 1
+mouse_filter = 2
+script = ExtResource( 2 )
+
+[node name="FunctionBlockArea" type="Area2D" parent="HighlightControl"]
+position = Vector2( 30, 70 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input if that number changes"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HighlightControl/FunctionBlockArea"]
+position = Vector2( 210, 85 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="HighlightControl/FunctionBlockArea"]
+margin_right = 420.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 420, 170 )
+mouse_filter = 2
+color = Color( 0.137255, 0.423529, 0.431373, 1 )
+
+[node name="Highlight" type="ReferenceRect" parent="HighlightControl"]
+margin_right = 480.0
+margin_bottom = 275.0
+mouse_filter = 2
+border_color = Color( 1, 0.937255, 0, 1 )
+border_width = 5.0
+editor_only = false
+
+[node name="ColorRect" type="ColorRect" parent="HighlightControl"]
+show_behind_parent = true
+margin_right = 480.0
+margin_bottom = 275.0
+mouse_filter = 2
+color = Color( 0, 0.231373, 0.482353, 1 )
+
+[node name="Counter" type="Label" parent="HighlightControl"]
+margin_left = 177.5
+margin_top = 244.0
+margin_right = 227.5
+margin_bottom = 259.0
+rect_min_size = Vector2( 50, 15 )
+rect_scale = Vector2( 2.5, 2.5 )
+text = "0/7"
+align = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": "pos = (177,5, 244)
+for loop pos = (130, 244)"
+}
+
+[node name="Clickable" type="Area2D" parent="HighlightControl"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HighlightControl/Clickable"]
+position = Vector2( 240, 137.5 )
+shape = SubResource( 2 )
+
+[node name="ChooseLoopType" type="MenuButton" parent="HighlightControl"]
+margin_left = 173.0
+margin_right = 307.0
+margin_bottom = 36.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 3 )
+__meta__ = {
+"_editor_description_": "x = 173, y = 0 at start. After choosing pos = (5, 18), size = (134, 50)"
+}
+
+[node name="Label" type="Label" parent="HighlightControl/ChooseLoopType"]
+margin_right = 135.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 4 )
+text = "Loop1"
+align = 1
+__meta__ = {
+"_editor_description_": "after choose: pos = (0,0), size = (45, 18), scale = 3"
+}
+
+[node name="ForConditional" type="Control" parent="HighlightControl"]
+margin_left = 16.0
+margin_top = 35.0
+margin_right = 56.0
+margin_bottom = 75.0
+mouse_filter = 2
+
+[node name="LoopCounter" type="Label" parent="HighlightControl/ForConditional"]
+margin_left = 225.0
+margin_top = 209.0
+margin_right = 261.0
+margin_bottom = 223.0
+rect_scale = Vector2( 2.5, 2.5 )
+text = "i: 0"
+valign = 2
+
+[node name="Start" type="Label" parent="HighlightControl/ForConditional"]
+margin_top = 8.0
+margin_right = 33.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+text = "Start:"
+__meta__ = {
+"_editor_description_": "pos(0,0)"
+}
+
+[node name="StartValue" type="SpinBox" parent="HighlightControl/ForConditional"]
+margin_left = 70.0
+margin_top = 8.0
+margin_right = 144.0
+margin_bottom = 32.0
+mouse_default_cursor_shape = 2
+min_value = -99.0
+max_value = 99.0
+__meta__ = {
+"_editor_description_": "(82,5)"
+}
+
+[node name="Stop" type="Label" parent="HighlightControl/ForConditional"]
+margin_left = 145.0
+margin_top = 8.0
+margin_right = 178.0
+margin_bottom = 22.0
+rect_scale = Vector2( 2, 2 )
+text = "Stop:"
+__meta__ = {
+"_editor_description_": "pos (115,0)"
+}
+
+[node name="StopValue" type="SpinBox" parent="HighlightControl/ForConditional"]
+margin_left = 213.0
+margin_top = 8.0
+margin_right = 287.0
+margin_bottom = 32.0
+mouse_default_cursor_shape = 2
+min_value = -99.0
+max_value = 99.0
+__meta__ = {
+"_editor_description_": "(195,5)"
+}
+
+[node name="Step" type="Label" parent="HighlightControl/ForConditional"]
+margin_left = 288.0
+margin_top = 8.0
+margin_right = 321.0
+margin_bottom = 23.0
+rect_scale = Vector2( 2, 2 )
+text = "Step:"
+__meta__ = {
+"_editor_description_": "pos (227,0)"
+}
+
+[node name="StepOperator" type="MenuButton" parent="HighlightControl/ForConditional"]
+margin_left = 347.0
+margin_top = 5.0
+margin_right = 376.0
+margin_bottom = 35.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": "(306,0)"
+}
+
+[node name="Label" type="Label" parent="HighlightControl/ForConditional/StepOperator"]
+margin_right = 12.0
+margin_bottom = 14.0
+rect_scale = Vector2( 2.5, 2.5 )
+text = "+"
+align = 1
+valign = 2
+
+[node name="StepValue" type="SpinBox" parent="HighlightControl/ForConditional"]
+margin_left = 376.0
+margin_top = 8.0
+margin_right = 450.0
+margin_bottom = 32.0
+mouse_default_cursor_shape = 2
+min_value = 1.0
+max_value = 9.0
+value = 1.0
+__meta__ = {
+"_editor_description_": "(335,5)"
+}
+
+[node name="WhileConditional" type="Control" parent="HighlightControl"]
+margin_left = 80.0
+margin_top = 25.0
+margin_right = 120.0
+margin_bottom = 65.0
+mouse_filter = 2
+
+[node name="LHS" type="MenuButton" parent="HighlightControl/WhileConditional"]
+margin_left = 38.0
+margin_top = 17.0
+margin_right = 114.0
+margin_bottom = 45.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="HighlightControl/WhileConditional/LHS"]
+margin_right = 38.0
+margin_bottom = 17.0
+rect_scale = Vector2( 2, 2 )
+text = "Right"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Operator" type="MenuButton" parent="HighlightControl/WhileConditional"]
+margin_left = 117.0
+margin_top = 17.0
+margin_right = 167.0
+margin_bottom = 45.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="HighlightControl/WhileConditional/Operator"]
+margin_left = -4.0
+margin_top = 3.0
+margin_right = 22.0
+margin_bottom = 17.0
+rect_scale = Vector2( 2, 2 )
+text = "=="
+align = 1
+valign = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="RHS" type="MenuButton" parent="HighlightControl/WhileConditional"]
+margin_left = 170.0
+margin_top = 17.0
+margin_right = 299.0
+margin_bottom = 45.0
+focus_mode = 2
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="HighlightControl/WhileConditional/RHS"]
+margin_top = -5.0
+margin_right = 51.0
+margin_bottom = 12.0
+rect_scale = Vector2( 2, 2 )
+text = "Blocked"
+valign = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ClearCode" parent="HighlightControl" instance=ExtResource( 6 )]
+margin_left = 420.0
+margin_top = 3.0
+margin_right = 464.0
+margin_bottom = 41.0
+
+[connection signal="focus_entered" from="HighlightControl" to="HighlightControl" method="_on_FunctionBlockControl_focus_entered"]
+[connection signal="focus_exited" from="HighlightControl" to="HighlightControl" method="_on_FunctionBlockControl_focus_exited"]
+[connection signal="area_entered" from="HighlightControl/FunctionBlockArea" to="HighlightControl/FunctionBlockArea" method="_on_FunctionBlockArea_area_entered"]
+[connection signal="area_exited" from="HighlightControl/FunctionBlockArea" to="HighlightControl/FunctionBlockArea" method="_on_FunctionBlockArea_area_exited"]
+[connection signal="input_event" from="HighlightControl/FunctionBlockArea" to="HighlightControl/FunctionBlockArea" method="_on_FunctionBlockArea_input_event"]
+[connection signal="input_event" from="HighlightControl/Clickable" to="HighlightControl" method="_on_Clickable_input_event"]
+[connection signal="mouse_entered" from="HighlightControl/Clickable" to="HighlightControl" method="_on_Clickable_mouse_entered"]
+[connection signal="value_changed" from="HighlightControl/ForConditional/StartValue" to="." method="_on_StartValue_value_changed"]

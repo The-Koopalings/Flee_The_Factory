@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Level_Components/Level_Elements/Grid.gd" type="Script" id=4]
+
+[node name="Grid" type="Area2D"]
+script = ExtResource( 4 )
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 1

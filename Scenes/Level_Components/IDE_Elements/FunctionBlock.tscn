@@ -1,41 +1,91 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlockArea.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/Counter.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Level_Components/IDE_Elements/FunctionBlock.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/ClearCodeButton.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 207.5, 97 )
+extents = Vector2( 210, 84 )
 
-[node name="FunctionBlockControl" type="Control"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 243, 140.5 )
+
+[node name="F1" type="Control"]
 margin_right = 480.0
 margin_bottom = 275.0
 rect_min_size = Vector2( 480, 275 )
+focus_mode = 1
+mouse_filter = 2
+script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 140.0
 margin_right = 180.0
 margin_bottom = 20.0
 rect_scale = Vector2( 4, 4 )
-text = "FUNCTION"
+text = "FUNC1"
 align = 1
 
 [node name="FunctionBlockArea" type="Area2D" parent="."]
 position = Vector2( 30, 70 )
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input if that number changes"
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FunctionBlockArea"]
-position = Vector2( 210, 100 )
+position = Vector2( 210, 85 )
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="FunctionBlockArea"]
 margin_right = 420.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 420, 200 )
-color = Color( 0.0745098, 0.729412, 0.160784, 1 )
+margin_bottom = 170.0
+rect_min_size = Vector2( 420, 170 )
+mouse_filter = 2
+color = Color( 0.137255, 0.423529, 0.431373, 1 )
+
+[node name="Highlight" type="ReferenceRect" parent="."]
+margin_right = 480.0
+margin_bottom = 275.0
+mouse_filter = 2
+border_color = Color( 1, 0.937255, 0, 1 )
+border_width = 5.0
+editor_only = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 show_behind_parent = true
 margin_right = 480.0
 margin_bottom = 275.0
-color = Color( 0.129412, 0.823529, 0.12549, 1 )
+mouse_filter = 2
+color = Color( 0, 0.231373, 0.482353, 1 )
 
+[node name="Counter" type="Label" parent="."]
+margin_left = 177.5
+margin_top = 244.0
+margin_right = 227.5
+margin_bottom = 259.0
+rect_min_size = Vector2( 50, 15 )
+rect_scale = Vector2( 2.5, 2.5 )
+text = "0/7"
+align = 1
+script = ExtResource( 2 )
+
+[node name="Clickable" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Clickable"]
+position = Vector2( 240, 137.5 )
+shape = SubResource( 2 )
+
+[node name="ClearCode" parent="." instance=ExtResource( 4 )]
+margin_left = 420.0
+margin_top = 5.0
+margin_right = 464.0
+margin_bottom = 43.0
+
+[connection signal="focus_entered" from="." to="." method="_on_FunctionBlockControl_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_FunctionBlockControl_focus_exited"]
+[connection signal="area_entered" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_area_entered"]
+[connection signal="area_exited" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_area_exited"]
 [connection signal="input_event" from="FunctionBlockArea" to="FunctionBlockArea" method="_on_FunctionBlockArea_input_event"]
+[connection signal="input_event" from="Clickable" to="." method="_on_Clickable_input_event"]

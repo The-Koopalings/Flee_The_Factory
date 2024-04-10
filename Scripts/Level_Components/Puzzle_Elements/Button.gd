@@ -7,21 +7,13 @@ onready var tile_size = grid.tile_size
 var tileX
 var tileY
 
-var hit = false
-
 signal buttonPressed(name)
 
 # startPosition is now set by the Level
 # var startPosition = Vector2(1100,700)
 
 func _ready():
-	pass
-
-func _on_Button_body_entered(body):
-	hit = true
-
-func _on_Button_body_exited(body):
-	hit = false
+	$Highlight.visible = false
 
 func _on_Robot_interact(x, y):
 	if x == tileX and y == tileY:

@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Level_Components/Level_Elements/Inventory.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=2]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 42
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="Inventory" type="ColorRect"]
+margin_right = 480.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 505, -62 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "For variable type: Stack = 0, 1 = Queue, 2 = Array"
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+margin_right = 480.0
+margin_bottom = 96.0
+border_width = 3.2
+editor_only = false
+
+[node name="ItemSlots" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ItemSlot0" type="Label" parent="ItemSlots"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 96.0
+margin_bottom = 93.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="ItemSlot1" type="Label" parent="ItemSlots"]
+margin_left = 97.0
+margin_right = 193.0
+margin_bottom = 93.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="ItemSlot2" type="Label" parent="ItemSlots"]
+margin_left = 193.0
+margin_top = -1.0
+margin_right = 288.0
+margin_bottom = 95.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="ItemSlot3" type="Label" parent="ItemSlots"]
+margin_left = 290.0
+margin_top = 2.0
+margin_right = 382.0
+margin_bottom = 95.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "3"
+align = 1
+valign = 1
+
+[node name="ItemSlot4" type="Label" parent="ItemSlots"]
+margin_left = 386.0
+margin_top = 3.0
+margin_right = 478.0
+margin_bottom = 94.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "4"
+align = 1
+valign = 1
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 96, 0 )
+points = PoolVector2Array( 0, 0, 0, 96 )
+width = 2.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2( 192, 0 )
+points = PoolVector2Array( 0, 0, 0, 96 )
+width = 2.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Line2D3" type="Line2D" parent="."]
+position = Vector2( 288, 0 )
+points = PoolVector2Array( 0, 0, 0, 96 )
+width = 2.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Line2D4" type="Line2D" parent="."]
+position = Vector2( 384, 0 )
+points = PoolVector2Array( 0, 0, 0, 96 )
+width = 2.0
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = -58.0
+margin_right = 478.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Array"
+align = 1
+valign = 2

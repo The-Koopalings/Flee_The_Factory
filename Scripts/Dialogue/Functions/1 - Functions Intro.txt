@@ -1,0 +1,27 @@
+Talk about the main function having a restricted number of code blocks allowed.
+Explain what functions are.
+
+IDE
+HIGHLIGHT_FUNCTION_BLOCK
+Explain the function block.
+
+CODE_BLOCK
+Let's write a function block that will make Robby move two tiles forward and interact with the button. Please place the appropriate code blocks into the function code block.
+;
+
+Yay! Explain how calling functions work.
+
+HIGHLIGHT_CALL_F1
+Explain CALL_F1 code block.
+
+Place the CALL_F1 code block into Main.
+;
+
+Talk about the reusability of functions.
+Place another CALL_F1 code block into Main.
+;
+
+Press run.
+;
+
+Congrats! She call my function til I stack overflow.
