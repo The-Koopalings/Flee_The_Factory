@@ -330,6 +330,7 @@ func init_IDE():
 			var container = HBoxContainer.new()
 			container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			container.alignment = HBoxContainer.ALIGN_CENTER
+			container.name = children.front().name
 			container.add_child(children.front())
 			scopesContainer.add_child(container)
 			children.pop_front()

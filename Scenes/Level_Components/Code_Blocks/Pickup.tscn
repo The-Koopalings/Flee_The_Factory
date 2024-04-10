@@ -14,6 +14,7 @@ outline_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
 font_data = ExtResource( 4 )
 
 [node name="Pickup" type="Area2D"]
+z_index = 5
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true

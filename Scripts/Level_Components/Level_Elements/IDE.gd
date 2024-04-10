@@ -24,7 +24,7 @@ func _ready():
 	move_child(get_child(1), get_child_count() - 1)
 	
 	# Grab focus of the main function
-	$Scopes/Main.grab_focus()
+	$Scopes/Main/Main.grab_focus()
 
 
 #Connected to Run_Button

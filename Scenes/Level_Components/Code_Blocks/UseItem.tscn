@@ -13,6 +13,7 @@ size = 24
 font_data = ExtResource( 2 )
 
 [node name="UseItem" type="Area2D"]
+z_index = 5
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
