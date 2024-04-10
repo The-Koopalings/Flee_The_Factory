@@ -351,9 +351,16 @@ func init_IDE():
 
 	#Connect Clear All Button
 	for scope in scopesContainer.get_children():
+		var btnPath = "ClearAll_Button"
 		#Coupling this with the existing ClearCode button in all scopes. (ie I'm being lazy)
-		buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("ClearCode"), "on_pressed")
-		buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
+		if scope.name.begins_with("If"):
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("If/ClearCode"), "on_pressed")
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("Else/ClearCode"), "on_pressed")
+		elif scope.name.begins_with("Loop"):
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("HighlightControl/ClearCode"), "on_pressed")
+		elif scope.name.begins_with("F"):
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("ClearCode"), "on_pressed")
+	buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
 		
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
