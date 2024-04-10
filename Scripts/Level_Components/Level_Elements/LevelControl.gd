@@ -6,6 +6,8 @@ onready var Robot = get_node("../Grid/Robot")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Help.connect("pressed", self, "_on_Help_pressed")
+	
 	# Update 2x speed button toggle after restarting scene to correctly indicate the saved speed
 	if GameStats.run_speed == 0.25:
 		$DoubleSpeed.pressed = true
@@ -40,3 +42,13 @@ func _on_DoubleSpeed_toggled(button_pressed):
 		GameStats.run_speed = 0.25
 	else:
 		GameStats.run_speed = 0.50
+
+
+func _on_Help_pressed():
+	var level = get_node("..")
+	if level.has_tutorial:
+		DialogueManager.restart_dialogue()
+		DialogueManager.add_dialogue(level, level.textPath)
+	else:
+		#Some code to bring up generic help dialogue for the stage
+		pass

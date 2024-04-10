@@ -20,6 +20,8 @@ var b3_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["Forward", "Forward", "Forward", "Interact"], ["RotateRight", "Forward", "Forward", "RotateLeft"]]
 onready var progress_check_FBA = [F1_FBA, F2_FBA]
+var textPath = "Functions/3 - Multi Func Intro.txt"
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -42,7 +44,7 @@ func _ready():
 	var root = get_tree().root
 	var levelPath = root.get_child(root.get_child_count() - 1).filename
 	if GameStats.playTutorial[levelPath]:
-		DialogueManager.add_dialogue(self, "Functions/3 - Multi Func Intro.txt")
+		DialogueManager.add_dialogue(self, textPath)
 		GameStats.playTutorial[levelPath] = false
 
 

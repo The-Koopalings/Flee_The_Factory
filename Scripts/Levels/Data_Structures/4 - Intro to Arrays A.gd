@@ -15,6 +15,8 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
+var textPath = "DataStructures/4 - IntroToArrays.txt"
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -36,7 +38,7 @@ func _ready():
 	var root = get_tree().root
 	var levelPath = root.get_child(root.get_child_count() - 1).filename
 	if GameStats.playTutorial[levelPath]:
-		DialogueManager.add_dialogue(self, "DataStructures/4 - IntroToArrays.txt")
+		DialogueManager.add_dialogue(self, textPath)
 		GameStats.playTutorial[levelPath] = false
 	
 

@@ -18,6 +18,8 @@ var b2_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["Forward", "Forward", "Interact"], ["Call_F1"], ["Call_F1", "Call_F1"]]
 onready var progress_check_FBA = [F1_FBA, MainFBA, MainFBA]
+var textPath = "Functions/1 - Functions Intro.txt"
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -40,7 +42,7 @@ func _ready():
 	var root = get_tree().root
 	var levelPath = root.get_child(root.get_child_count() - 1).filename
 	if GameStats.playTutorial[levelPath]:
-		DialogueManager.add_dialogue(self, "Functions/1 - Functions Intro.txt")
+		DialogueManager.add_dialogue(self, textPath)
 		GameStats.playTutorial[levelPath] = false
 	
 	$IDE/F1_Arrow.visible = false
