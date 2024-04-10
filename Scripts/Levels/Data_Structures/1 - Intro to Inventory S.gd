@@ -33,12 +33,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
-	var root = get_tree().root
-	var levelPath = root.get_child(root.get_child_count() - 1).filename
-	if GameStats.playTutorial[levelPath]:
-		DialogueManager.add_dialogue(self, textPath)
-		GameStats.playTutorial[levelPath] = false
-	
+	DialogueManager.add_dialogue(self, textPath)
 	PEP.loadLevel(self)
 	PEP.init_inventory()
 	$Inventory/Inventory_Arrow.visible = false

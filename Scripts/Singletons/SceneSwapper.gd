@@ -78,7 +78,7 @@ func load_back_button(level_select):
 
 
 func load_lvl_buttons(level_select):
-	var completedTheme = load("res://Scenes/Stage_Select/LevelCompletedButton.tres")
+	var completedTheme = load("res://Themes/LevelCompletedButton.tres")
 	var stage_type = level_select.name.replace("Select", "")
 	var btn_nodes = get_tree().get_nodes_in_group("level_buttons")
 	var btn_count = 0

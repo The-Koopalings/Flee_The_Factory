@@ -39,11 +39,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	var root = get_tree().root
-	var levelPath = root.get_child(root.get_child_count() - 1).filename
-	if GameStats.playTutorial[levelPath]:
-		DialogueManager.add_dialogue(self, textPath)
-		GameStats.playTutorial[levelPath] = false
+	DialogueManager.add_dialogue(self, textPath)
 	
 	$IDE/F1_Arrow.visible = false
 

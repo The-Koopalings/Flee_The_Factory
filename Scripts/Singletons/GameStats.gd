@@ -11,6 +11,9 @@ var levelCompletion = {}
 #Values: true if should play tutorial, false otherwise (I.e. if level completed or re-entered after not completing)
 var playTutorial = {}
 
+#Used to instance SavableGameStats in order to save above levelCompletion + playTutorial
+var savableGameStats
+
 enum State{
 	OUT_OF_LEVEL = -1,
 	CODING = 0,
@@ -25,6 +28,9 @@ enum State{
 var run_speed = 0.50
 
 var game_state = State.OUT_OF_LEVEL
+
+func _ready():
+	savableGameStats = SavableGameStats.new()
 
 func is_double_speed():
 	return true if run_speed == 0.25 else false
@@ -66,6 +72,13 @@ func init_levelCompletion():
 func set_level_completed(levelPath):
 	levelCompletion[levelPath] = true
 	playTutorial[levelPath] = false
+#	save_GameStats()
 
-
+func save_GameStats():
+	savableGameStats.levelCompletion = self.levelCompletion
+	savableGameStats.playTutorial = self.playTutorial
+	
+	var result = ResourceSaver.save("./save_data/GameStats.res", savableGameStats)
+	if result != OK:
+		printerr("GameStats didn't save correctly to ./save_data/GameStats.res")
 

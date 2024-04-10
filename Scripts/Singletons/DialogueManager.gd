@@ -24,8 +24,13 @@ var check_index = 0  # Only check for currently yielding user action checkpoint
 
 # Load and display dialogue
 func add_dialogue(level, file_path):
-	load_dialogue(file_path)
-	display_dialogue(level)
+	var root = level.get_tree().root
+	var levelPath = root.get_child(root.get_child_count() - 1).filename
+	if GameStats.playTutorial[levelPath]:
+		load_dialogue(file_path)
+		display_dialogue(level)
+		GameStats.playTutorial[levelPath] = false
+	
 
 
 # Helper function to load dialogue from a text file
