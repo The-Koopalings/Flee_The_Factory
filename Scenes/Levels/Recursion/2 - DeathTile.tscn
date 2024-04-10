@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/IfBlock.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/Levels/Recursion/1 - DeathTile.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Levels/Recursion/2 - DeathTile.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=12]
@@ -20,7 +20,7 @@
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallFunction.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CallIf.tscn" type="PackedScene" id=19]
 
-[node name="1 - DeathTile" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource( 9 )
 
 [node name="Grid" parent="." instance=ExtResource( 1 )]
@@ -31,11 +31,11 @@ script = ExtResource( 9 )
 
 [node name="Virus2" parent="Grid" instance=ExtResource( 13 )]
 
-[node name="Virus3" parent="Grid" instance=ExtResource( 13 )]
-
 [node name="Door" parent="Grid" instance=ExtResource( 12 )]
 
 [node name="Button1" parent="Grid" instance=ExtResource( 11 )]
+
+[node name="Virus3" parent="Grid" instance=ExtResource( 13 )]
 
 [node name="IDE" parent="." instance=ExtResource( 4 )]
 
@@ -48,20 +48,20 @@ margin_top = 513.0
 margin_bottom = 788.0
 
 [node name="Counter" parent="IDE/F1" index="4"]
-text = "0/6"
-maxBlocks = 6
+text = "0/3"
+maxBlocks = 3
 
 [node name="If1" parent="IDE" instance=ExtResource( 7 )]
 margin_top = 792.0
 margin_bottom = 1067.0
 
 [node name="Counter" parent="IDE/If1/If" index="4"]
-text = "0/2"
-maxBlocks = 2
+text = "0/1"
+maxBlocks = 1
 
 [node name="Counter" parent="IDE/If1/Else" index="4"]
-text = "0/2"
-maxBlocks = 2
+text = "0/1"
+maxBlocks = 1
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 2 )]
 

@@ -14,6 +14,7 @@ var openDoorTexture = preload("res://Assets/Miscalleous/completion.png")
 func _ready():
 	set_color()
 	$Highlight.visible = false
+	$Sprite.texture = load("res://Assets/Placeholders/Door_Closed.png")
 
 
 func set_color():
