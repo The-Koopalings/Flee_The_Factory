@@ -302,13 +302,25 @@ parameters/playback = SubResource( 4 )
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 margin_right = 1920.0
 
+[node name="Scopes" parent="IDE" index="0"]
+margin_top = 0.0
+margin_bottom = 950.0
+
+[node name="ButtonContainer" parent="IDE" index="1"]
+margin_top = 954.0
+margin_bottom = 1074.0
+
 [node name="Loop1" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 1080.0
-margin_bottom = 1355.0
+margin_left = 0.0
+margin_top = 1078.0
+margin_right = 480.0
+margin_bottom = 1316.0
 
 [node name="Loop2" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 1360.0
-margin_bottom = 1635.0
+margin_left = 0.0
+margin_top = 1320.0
+margin_right = 480.0
+margin_bottom = 1558.0
 
 [node name="Label" parent="IDE/Loop2/HighlightControl/ChooseLoopType" index="1"]
 text = "Loop2"
@@ -377,5 +389,5 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [editable path="Grid/Obstacle3"]
 [editable path="Grid/Door"]
 [editable path="IDE"]
-[editable path="IDE/Scopes/Main"]
+[editable path="IDE/Scopes/Main/Main"]
 [editable path="IDE/Loop2"]

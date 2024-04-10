@@ -100,7 +100,7 @@ func on_CLT_option_selected(id):
 				ChooseLoopTypeLabel.text = "While1"
 			elif self.name == "Loop2":
 				ChooseLoopTypeLabel.text = "While2"
-			Counter.set_position(Vector2(177.5, 244)) #Move the code block counter to the middle
+			#Counter.set_position(Vector2(177.5, 244)) #Move the code block counter to the middle
 			WhileConditional.set_visible(true)
 			ForConditional.set_visible(false)
 			type = "While"
@@ -110,12 +110,12 @@ func on_CLT_option_selected(id):
 				ChooseLoopTypeLabel.text = "For1"
 			elif self.name == "Loop2":
 				ChooseLoopTypeLabel.text = "For2"
-			Counter.set_position(Vector2(130, 244)) #Move the code block counter slightly left
+			#Counter.set_position(Vector2(130, 244)) #Move the code block counter slightly left
 			ForConditional.set_visible(true)
 			WhileConditional.set_visible(false)
 			type = "For"
 			emit_signal("ChosenLoop", "For")
-			
+
 
 
 func on_LHS_option_selected(id):

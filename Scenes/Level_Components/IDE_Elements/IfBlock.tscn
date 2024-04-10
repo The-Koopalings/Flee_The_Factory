@@ -12,7 +12,7 @@ size = 40
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 30
+size = 25
 font_data = ExtResource( 6 )
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -28,11 +28,11 @@ font_data = ExtResource( 6 )
 extents = Vector2( 230, 61 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 30
+size = 25
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 30
+size = 25
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=7]
