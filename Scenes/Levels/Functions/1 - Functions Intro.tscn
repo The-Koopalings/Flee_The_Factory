@@ -36,12 +36,17 @@ script = ExtResource( 15 )
 
 [node name="IDE" parent="." instance=ExtResource( 13 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
-maxBlocks = 2
+[node name="Scopes" parent="IDE" index="0"]
+margin_top = 472.0
+margin_bottom = 712.0
+
+[node name="ButtonContainer" parent="IDE" index="1"]
+margin_top = 716.0
+margin_bottom = 836.0
 
 [node name="F1" parent="IDE" instance=ExtResource( 14 )]
-margin_top = 513.0
-margin_bottom = 788.0
+margin_top = 840.0
+margin_bottom = 1080.0
 
 [node name="Counter" parent="IDE/F1" index="4"]
 maxBlocks = 3
@@ -66,5 +71,5 @@ position = Vector2( 0, -918 )
 [node name="PopupMenu" parent="." instance=ExtResource( 9 )]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main"]
 [editable path="IDE/F1"]

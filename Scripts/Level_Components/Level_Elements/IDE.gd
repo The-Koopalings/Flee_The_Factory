@@ -18,16 +18,16 @@ var runPressed = false
 func _ready():
 	#Spacing between function blocks
 	add_constant_override("separation", 5)
-	
+	#add_spacer(true)
 	#Moves Run_Button to the bottom
 	move_child(get_child(1), get_child_count() - 1)
 	
 	# Grab focus of the main function
-	$Main.grab_focus()
+	$Scopes/Main.grab_focus()
 
 
 #Connected to Run_Button
-func _on_Button_pressed():
+func _on_RunButton_pressed():
 	#Check that the Run button hasn't been pressed yet
 	if !runPressed:
 		runPressed = true
@@ -36,7 +36,9 @@ func _on_Button_pressed():
 		enter_scope(scopes["Main"])
 		run_code()
 
-
+func _on_ClearAllButton_pressed():
+	print("CLEAR ALL BUTTON NOT IMPLEMENTED YET")
+	
 func enter_scope(node):
 	#If current IDE block node is not a Loop
 	if !is_loop(node.name): 

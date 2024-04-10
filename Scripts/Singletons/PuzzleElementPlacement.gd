@@ -262,15 +262,16 @@ func init_IDE():
 	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
 	var options = null
+	var scopesContainer = IDE.get_node("Scopes")
 	
 	#If player pressed Restart
 	if IDEChildren.size() != 0:
 		var i = 0
 		
 		#Replace current IDE sections with pre-Restart IDE sections
-		for block in IDE.get_children():
-			IDE.remove_child(block)
-			IDE.add_child(IDEChildren[i])
+		for block in scopesContainer.get_children():
+			scopesContainer.remove_child(block)
+			scopesContainer.add_child(IDEChildren[i])
 			i = i + 1
 		IDEChildren.clear()
 		
@@ -278,13 +279,14 @@ func init_IDE():
 		init_progress_check_FBA()
 		
 		# Grab focus of main
-		IDE.get_node("Main").grab_focus()
+		scopesContainer.get_node("Main").grab_focus()
 	
 	#Only generates dropdown options once (when first entering level) for If & Loop sections
 	else:
 		options = generate_RHS_options()
 
-	for child in IDE.get_children():
+	
+	for child in scopesContainer.get_children():
 		var type = child.name.rstrip("1234567890")
 		
 		#Ignore arrows
@@ -293,8 +295,6 @@ func init_IDE():
 		#					 (otherwise numBlocks would = 0 even if there are > 0 code blocks in that FBA)
 		if type.find("Arrow") != -1:
 			continue
-		elif type == "Run_Button":
-			child.connect("pressed", IDE, "_on_Button_pressed")
 		elif type == "If":
 			child.get_node("If").set_FBA_numBlocks()
 			child.get_node("Else").set_FBA_numBlocks()
@@ -318,7 +318,26 @@ func init_IDE():
 			
 		#Add the scope to list of scopes
 		IDE.scopes[child.name] = child
-		
+	
+	#Move scopes in scene tree to be in the Scopes container if they aren't already
+	#Should technically only have 2 children, Scopes and Button containers
+	var children = IDE.get_children()
+	if children.size() > 2:
+		children.pop_front() #Remove Scopes container
+		while(children.front().name != "ButtonContainer"):
+			IDE.remove_child(children.front())
+			scopesContainer.add_child(children.front())
+			children.pop_front()
+	
+	
+	#init buttons
+	var buttons = IDE.get_node("ButtonContainer")
+	#Connect Run Button
+	buttons.get_node("Run_Button").connect("pressed", IDE, "_on_RunButton_pressed")
+
+	#Connect Clear All Button
+	buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
+	
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
 	
@@ -326,7 +345,7 @@ func init_IDE():
 #Reconnect signals in Call_Loop code blocks, needed after a Restart
 func call_loop_reconnections(type, child):
 	var code = []
-	if type.find("Arrow") != -1 or type == "Run_Button":
+	if type.find("Arrow") != -1 or type == "ButtonContainer":
 		return
 	elif type == "If":
 		code = child.get_node("If/FunctionBlockArea").get_children()
