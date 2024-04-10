@@ -85,6 +85,10 @@ func move(dir):
 				#position.y -= 4/GameStats.run_speed
 				#linear_velocity.y -= (tile_size/GameStats.run_speed)
 				#$AnimationPlayer.play("walk_up")
+		#In case Robert hits the border, he can't get stuck there
+		if tileX > tileXMax or tileY > tileYMax or tileX < 0 or tileY < 0:
+			moving = false
+			animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
 	else:
 		moving = false
 		animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())

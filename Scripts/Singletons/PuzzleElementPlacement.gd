@@ -300,6 +300,7 @@ func init_IDE():
 			child.get_node("Else").set_FBA_numBlocks()
 		elif type == "Loop":
 			child.get_node("HighlightControl").set_FBA_numBlocks()
+			child.reset_loopCount()
 		else:
 			child.set_FBA_numBlocks()
 		
