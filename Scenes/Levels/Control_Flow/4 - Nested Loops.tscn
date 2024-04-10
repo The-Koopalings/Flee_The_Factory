@@ -49,107 +49,26 @@ margin_top = 513.0
 margin_bottom = 788.0
 
 [node name="Counter" parent="IDE/Loop1/HighlightControl" index="3"]
-maxBlocks = 1
+maxBlocks = 4
 
 [node name="ChooseLoopType" parent="IDE/Loop1/HighlightControl" index="5"]
 focus_mode = 2
 
-[node name="PopupMenu2" type="PopupMenu" parent="IDE/Loop1/HighlightControl/ChooseLoopType" index="0"]
-input_pass_on_modal_close_click = false
-
-[node name="PopupMenu3" type="PopupMenu" parent="IDE/Loop1/HighlightControl/ChooseLoopType" index="1"]
-input_pass_on_modal_close_click = false
-
-[node name="LineEdit2" type="LineEdit" parent="IDE/Loop1/HighlightControl/ForConditional/StartValue" index="0"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -16.0
-mouse_filter = 1
-text = "0"
-
-[node name="Timer2" type="Timer" parent="IDE/Loop1/HighlightControl/ForConditional/StartValue" index="1"]
-
-[node name="LineEdit3" type="LineEdit" parent="IDE/Loop1/HighlightControl/ForConditional/StartValue" index="2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "0"
-
-[node name="Timer3" type="Timer" parent="IDE/Loop1/HighlightControl/ForConditional/StartValue" index="3"]
-
-[node name="LineEdit2" type="LineEdit" parent="IDE/Loop1/HighlightControl/ForConditional/StopValue" index="0"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -16.0
-mouse_filter = 1
-text = "0"
-
-[node name="Timer2" type="Timer" parent="IDE/Loop1/HighlightControl/ForConditional/StopValue" index="1"]
-
-[node name="LineEdit3" type="LineEdit" parent="IDE/Loop1/HighlightControl/ForConditional/StopValue" index="2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "0"
-
-[node name="Timer3" type="Timer" parent="IDE/Loop1/HighlightControl/ForConditional/StopValue" index="3"]
-
 [node name="StepOperator" parent="IDE/Loop1/HighlightControl/ForConditional" index="6"]
 focus_mode = 2
-
-[node name="PopupMenu2" type="PopupMenu" parent="IDE/Loop1/HighlightControl/ForConditional/StepOperator" index="0"]
-input_pass_on_modal_close_click = false
-
-[node name="PopupMenu3" type="PopupMenu" parent="IDE/Loop1/HighlightControl/ForConditional/StepOperator" index="1"]
-input_pass_on_modal_close_click = false
-
-[node name="LineEdit2" type="LineEdit" parent="IDE/Loop1/HighlightControl/ForConditional/StepValue" index="0"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -16.0
-mouse_filter = 1
-text = "1"
-
-[node name="Timer2" type="Timer" parent="IDE/Loop1/HighlightControl/ForConditional/StepValue" index="1"]
-
-[node name="LineEdit3" type="LineEdit" parent="IDE/Loop1/HighlightControl/ForConditional/StepValue" index="2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-text = "1"
-
-[node name="Timer3" type="Timer" parent="IDE/Loop1/HighlightControl/ForConditional/StepValue" index="3"]
 
 [node name="LHS" parent="IDE/Loop1/HighlightControl/WhileConditional" index="0"]
 focus_mode = 2
 
-[node name="PopupMenu2" type="PopupMenu" parent="IDE/Loop1/HighlightControl/WhileConditional/LHS" index="0"]
-input_pass_on_modal_close_click = false
-
-[node name="PopupMenu3" type="PopupMenu" parent="IDE/Loop1/HighlightControl/WhileConditional/LHS" index="1"]
-input_pass_on_modal_close_click = false
-
 [node name="Operator" parent="IDE/Loop1/HighlightControl/WhileConditional" index="1"]
 focus_mode = 2
-
-[node name="PopupMenu2" type="PopupMenu" parent="IDE/Loop1/HighlightControl/WhileConditional/Operator" index="0"]
-input_pass_on_modal_close_click = false
-
-[node name="PopupMenu3" type="PopupMenu" parent="IDE/Loop1/HighlightControl/WhileConditional/Operator" index="1"]
-input_pass_on_modal_close_click = false
-
-[node name="PopupMenu2" type="PopupMenu" parent="IDE/Loop1/HighlightControl/WhileConditional/RHS" index="0"]
-input_pass_on_modal_close_click = false
-
-[node name="PopupMenu3" type="PopupMenu" parent="IDE/Loop1/HighlightControl/WhileConditional/RHS" index="1"]
-input_pass_on_modal_close_click = false
 
 [node name="Loop2" parent="IDE" instance=ExtResource( 14 )]
 margin_top = 792.0
 margin_bottom = 1067.0
 
 [node name="Counter" parent="IDE/Loop2/HighlightControl" index="3"]
-maxBlocks = 4
+maxBlocks = 1
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 16 )]
 
