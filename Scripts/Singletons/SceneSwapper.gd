@@ -119,9 +119,6 @@ func load_file_contents(path):
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		
-		# For the scene_path dict key
-		var level_num = 1
-		
 		while file_name != "":
 			if !dir.current_is_dir():
 				var file_path = path + "/" + file_name
@@ -130,10 +127,9 @@ func load_file_contents(path):
 				scene_array.push_back(file_path)
 				
 				# Add to scene_path dictionary
-				var key = path.replace("res://Scenes/Levels/", "") + " " + str(level_num)
+				var level_num = file_name.get_slice(" ", 0)
+				var key = path.replace("res://Scenes/Levels/", "") + " " + level_num
 				scene_path[key] = file_path
-				
-				level_num += 1
 			
 			file_name = dir.get_next()
 	else:
