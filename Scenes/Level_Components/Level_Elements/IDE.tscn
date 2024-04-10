@@ -15,6 +15,7 @@ script = ExtResource( 2 )
 margin_right = 480.0
 margin_bottom = 950.0
 rect_min_size = Vector2( 480, 950 )
+mouse_filter = 2
 custom_constants/separation = 5
 alignment = 1
 
@@ -27,6 +28,10 @@ margin_top = 13.0
 margin_right = 186.0
 margin_bottom = 31.0
 text = "MAIN"
+
+[node name="ClearCode" parent="Scopes/Main" index="6"]
+text = "CLEAR"
+icon = null
 
 [node name="ButtonContainer" type="HBoxContainer" parent="."]
 margin_top = 955.0
@@ -58,6 +63,8 @@ mouse_default_cursor_shape = 2
 enabled_focus_mode = 0
 text = "Clear All"
 
+[connection signal="focus_entered" from="Scopes" to="Scopes" method="_on_Scopes_focus_entered"]
+[connection signal="mouse_entered" from="Scopes" to="Scopes" method="_on_Scopes_mouse_entered"]
 [connection signal="pressed" from="ButtonContainer/Run_Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ButtonContainer/ClearAll_Button" to="." method="_on_Button_pressed"]
 
