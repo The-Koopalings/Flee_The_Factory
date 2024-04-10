@@ -287,6 +287,7 @@ func init_IDE():
 
 	
 	for scope in scopesContainer.get_children():
+		scope = scope.get_child(0)
 		var type = scope.name.rstrip("1234567890")
 		
 		#Ignore arrows
@@ -326,7 +327,11 @@ func init_IDE():
 		children.pop_front() #Remove Scopes container
 		while(children.front().name != "ButtonContainer"):
 			IDE.remove_child(children.front())
-			scopesContainer.add_child(children.front())
+			var container = HBoxContainer.new()
+			container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			container.alignment = HBoxContainer.ALIGN_CENTER
+			container.add_child(children.front())
+			scopesContainer.add_child(container)
 			children.pop_front()
 	
 	
@@ -337,6 +342,7 @@ func init_IDE():
 
 	#Connect Clear All Button
 	for scope in scopesContainer.get_children():
+		#Coupling this with the existing ClearCode button in all scopes. (ie I'm being lazy)
 		buttons.get_node("ClearAll_Button").connect("pressed", scope.get_node("ClearCode"), "on_pressed")
 	
 	print("SCOPES: ", IDE.scopes.keys())

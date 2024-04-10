@@ -16,16 +16,16 @@ onready var counter = get_node("../Counter")
 
 var numBlocks = 0
 var rowSize = 7
-var blockSize = 60 #Replace with actual codeblock size
-var xOffset = 30
-var yOffset = 50
+var blockSize = 50 
+var xOffset = 28
+var yOffset = 28
 
 #To prevent removing a code block if it was dragged out of FBA, but dragged and dropped back into FBA
 var blockToAdd = null
 var blockToRemove = null
 var isDeletingBlock = false
 
-onready var highlight = get_node("../Highlight")
+onready var highlight = get_node("../Clickable/Highlight")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

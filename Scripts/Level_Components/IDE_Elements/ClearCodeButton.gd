@@ -13,4 +13,5 @@ func _ready():
 
 func on_pressed():
 	get_node("../FunctionBlockArea").clear_code()
+	get_node("..").grab_focus()
 	

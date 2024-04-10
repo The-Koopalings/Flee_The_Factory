@@ -302,25 +302,13 @@ parameters/playback = SubResource( 4 )
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 margin_right = 1920.0
 
-[node name="Scopes" parent="IDE" index="0"]
-margin_top = 155.0
-margin_bottom = 395.0
-
-[node name="Main" parent="IDE/Scopes" index="0"]
-margin_top = 0.0
-margin_bottom = 240.0
-
-[node name="ButtonContainer" parent="IDE" index="1"]
-margin_top = 400.0
-margin_bottom = 520.0
-
 [node name="Loop1" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 525.0
-margin_bottom = 800.0
+margin_top = 1080.0
+margin_bottom = 1355.0
 
 [node name="Loop2" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 805.0
-margin_bottom = 1080.0
+margin_top = 1360.0
+margin_bottom = 1635.0
 
 [node name="Label" parent="IDE/Loop2/HighlightControl/ChooseLoopType" index="1"]
 text = "Loop2"

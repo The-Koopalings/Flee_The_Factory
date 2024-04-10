@@ -17,7 +17,7 @@ var runPressed = false
 
 func _ready():
 	#Spacing between function blocks
-	add_constant_override("separation", 5)
+	#add_constant_override("separation", 5)
 	#add_spacer(true)
 	
 	#Moves Run_Button to the bottom

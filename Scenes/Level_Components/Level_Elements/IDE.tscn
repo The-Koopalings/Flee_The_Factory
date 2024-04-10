@@ -21,31 +21,37 @@ margin_left = 1440.0
 margin_right = 480.0
 margin_bottom = 1080.0
 mouse_filter = 2
-custom_constants/separation = 5
+alignment = 1
 script = ExtResource( 2 )
 
 [node name="Scopes" type="VBoxContainer" parent="."]
+margin_top = 3.0
 margin_right = 480.0
-margin_bottom = 950.0
-rect_min_size = Vector2( 480, 950 )
+margin_bottom = 953.0
+grow_vertical = 2
+rect_min_size = Vector2( 460, 950 )
 mouse_filter = 2
-custom_constants/separation = 5
+custom_constants/separation = 0
 alignment = 1
 
-[node name="Main" parent="Scopes" instance=ExtResource( 1 )]
-margin_top = 337.0
-margin_bottom = 612.0
+[node name="Main" type="HBoxContainer" parent="Scopes"]
+margin_top = 356.0
+margin_right = 480.0
+margin_bottom = 594.0
+mouse_filter = 2
+alignment = 1
 
-[node name="Label" parent="Scopes/Main" index="0"]
-margin_top = 13.0
-margin_right = 186.0
-margin_bottom = 31.0
+[node name="Main" parent="Scopes/Main" instance=ExtResource( 1 )]
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" parent="Scopes/Main/Main" index="0"]
 text = "MAIN"
 
 [node name="ButtonContainer" type="HBoxContainer" parent="."]
-margin_top = 955.0
+margin_top = 957.0
 margin_right = 480.0
-margin_bottom = 1075.0
+margin_bottom = 1077.0
 grow_horizontal = 0
 grow_vertical = 0
 custom_constants/separation = 0
@@ -79,4 +85,4 @@ text = "Clear All"
 [connection signal="pressed" from="ButtonContainer/Run_Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ButtonContainer/ClearAll_Button" to="." method="_on_Button_pressed"]
 
-[editable path="Scopes/Main"]
+[editable path="Scopes/Main/Main"]

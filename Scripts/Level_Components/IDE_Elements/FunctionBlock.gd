@@ -4,7 +4,7 @@ onready var codeArea = get_node("FunctionBlockArea")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Highlight.visible = false
+	$Clickable/Highlight.visible = false
 
 
 func get_code():
@@ -25,15 +25,14 @@ func set_FBA_numBlocks():
 
 
 func _on_FunctionBlockControl_focus_entered():
-	$Highlight.visible = true
+	$Clickable/Highlight.visible = true
 
 
 
 func _on_FunctionBlockControl_focus_exited():
-	$Highlight.visible = false
+	$Clickable/Highlight.visible = false
 
 
 func _on_Clickable_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		grab_focus()
-
