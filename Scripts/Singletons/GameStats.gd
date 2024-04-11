@@ -64,12 +64,17 @@ func kill_robot():
 	# Emit signal to Robot and IDE
 	emit_signal("robotDied")
 
+#Check if save file exists, if not then do the current code but with savableGameStats vars instead
+#If file exists then load it in with ResourceLoader, set it to savableGameStats
+#Create Resource for settings stuff too after this
 func init_levelCompletion():
 	for key in SceneSwapper.scene_order:
 		var levelPath = SceneSwapper.scene_path[key]
 		levelCompletion[levelPath] = false
 		playTutorial[levelPath] = true
 
+#TODO: swap levelCompletion + playTutorial for the savableGameStats version of it
+#Do the same in DialogueManager and SceneSwapper, delete levelCompletion + playTutorial from this script
 func set_level_completed(levelPath):
 	levelCompletion[levelPath] = true
 	playTutorial[levelPath] = false

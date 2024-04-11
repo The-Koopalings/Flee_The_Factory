@@ -36,7 +36,7 @@ onready var ray = $RayCast2D
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 
 func _ready():
-	$Highlight.visible = true
+	pass
 	
 #Event handler for movement via keyboard	
 func _unhandled_input(event):
@@ -150,32 +150,29 @@ func _on_RotateLeft_rotateLeftSignal():
 	orientation = (orientation - 1) % 4
 	if orientation < 0:
 		orientation = 3
-	move_highlight()
+	set_idle_direction()
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
 	#$Sprite.rotation += PI/2
 	orientation = (orientation + 1) % 4
-	move_highlight()
+	set_idle_direction()
 
 #Interact
 func _on_Interact_interactSignal():
 	emit_signal("interact", tileX, tileY)
 	###############MAYBE???? DO A JUMP?????######################
 
-func move_highlight():
+#Used so Robert faces the right direction on rotations
+func set_idle_direction():
 	var dir = get_direction()
 	if dir == "ui_up":
-		$Highlight.set_position(Vector2(-48, -144))
 		$AnimationPlayer.play("idle_up")
 	elif dir == "ui_left":
-		$Highlight.set_position(Vector2(-144, -48))
 		$AnimationPlayer.play("idle_left")
 	elif dir == "ui_down":
-		$Highlight.set_position(Vector2(-48, 48))
 		$AnimationPlayer.play("idle_down")
 	elif dir == "ui_right":
-		$Highlight.set_position(Vector2(48, -48)) 
 		$AnimationPlayer.play("idle_right")
 	
 
