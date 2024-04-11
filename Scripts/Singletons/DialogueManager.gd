@@ -36,10 +36,10 @@ var check_index = 0  # Only check for currently yielding user action checkpoint
 func add_dialogue(level, file_path):
 	var root = level.get_tree().root
 	var levelPath = root.get_child(root.get_child_count() - 1).filename
-	if GameStats.playTutorial[levelPath]:
+	if GameStats.savableGameStats.playTutorial[levelPath]:
 		load_dialogue(file_path)
 		display_dialogue(level)
-		GameStats.playTutorial[levelPath] = false
+		GameStats.savableGameStats.playTutorial[levelPath] = false
 	
 
 

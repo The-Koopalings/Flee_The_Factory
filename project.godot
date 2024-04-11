@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "SavableGameStats",
 "language": "GDScript",
 "path": "res://Resources/SavableGameStats.gd"
+}, {
+"base": "Resource",
+"class": "SavableSettings",
+"language": "GDScript",
+"path": "res://Resources/SavableSettings.gd"
 } ]
 _global_script_class_icons={
-"SavableGameStats": ""
+"SavableGameStats": "",
+"SavableSettings": ""
 }
 
 [application]

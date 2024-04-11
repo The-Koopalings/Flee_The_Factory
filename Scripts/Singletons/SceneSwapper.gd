@@ -90,7 +90,7 @@ func load_lvl_buttons(level_select):
 		var scene_key = stage_type + " " + level_number
 		var level_path = scene_path[scene_key]
 		#If the level is complete, then change button theme (only changes normal texture right now)
-		if GameStats.levelCompletion[level_path]:
+		if GameStats.savableGameStats.levelCompletion[level_path]:
 			btn.set_theme(completedTheme)
 			
 		#Set button position

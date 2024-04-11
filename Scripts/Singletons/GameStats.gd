@@ -2,17 +2,11 @@ extends Node
 
 signal robotDied
 
-#Keys: level paths (I.e. res://Scenes/Levels/Tutorial/blah)     
-#Values: true if level is completed, false if not
-var levelCompletion = {}
-
-#Check if we should play tutorial (I.e. if player exits level without completing, won't replay tutorial automatically)
-#Keys: level paths (like levelCompletion)     
-#Values: true if should play tutorial, false otherwise (I.e. if level completed or re-entered after not completing)
-var playTutorial = {}
-
-#Used to instance SavableGameStats in order to save above levelCompletion + playTutorial
+#Used to instance SavableGameStats in order to save levelCompletion + playTutorial
+#Reference res://Resources/SavableGameStats.gd for more info on levelCompletion & playTutorial variables
 var savableGameStats
+
+const saveFilePath = "user://GameStats.res" 
 
 enum State{
 	OUT_OF_LEVEL = -1,
@@ -29,8 +23,8 @@ var run_speed = 0.50
 
 var game_state = State.OUT_OF_LEVEL
 
-func _ready():
-	savableGameStats = SavableGameStats.new()
+#func _ready():
+#	savableGameStats = SavableGameStats.new()
 
 func is_double_speed():
 	return true if run_speed == 0.25 else false
@@ -64,27 +58,29 @@ func kill_robot():
 	# Emit signal to Robot and IDE
 	emit_signal("robotDied")
 
-#Check if save file exists, if not then do the current code but with savableGameStats vars instead
-#If file exists then load it in with ResourceLoader, set it to savableGameStats
-#Create Resource for settings stuff too after this
+
+#If save file exists, load in data from there, if not then initialize dicts in savableGameStats
 func init_levelCompletion():
-	for key in SceneSwapper.scene_order:
-		var levelPath = SceneSwapper.scene_path[key]
-		levelCompletion[levelPath] = false
-		playTutorial[levelPath] = true
+	#If file exists, load data from file
+	if ResourceLoader.exists(saveFilePath):
+		savableGameStats = ResourceLoader.load(saveFilePath)
+		if !savableGameStats:
+			printerr("Loaded in savableGameStats is null")
+	else:
+		savableGameStats = SavableGameStats.new()
+		for key in SceneSwapper.scene_order:
+			var levelPath = SceneSwapper.scene_path[key]
+			savableGameStats.levelCompletion[levelPath] = false
+			savableGameStats.playTutorial[levelPath] = true
 
-#TODO: swap levelCompletion + playTutorial for the savableGameStats version of it
-#Do the same in DialogueManager and SceneSwapper, delete levelCompletion + playTutorial from this script
 func set_level_completed(levelPath):
-	levelCompletion[levelPath] = true
-	playTutorial[levelPath] = false
-#	save_GameStats()
+	savableGameStats.levelCompletion[levelPath] = true
+	savableGameStats.playTutorial[levelPath] = false
+	save_GameStats()
 
+#Only activates upon level completion 
 func save_GameStats():
-	savableGameStats.levelCompletion = self.levelCompletion
-	savableGameStats.playTutorial = self.playTutorial
-	
-	var result = ResourceSaver.save("./save_data/GameStats.res", savableGameStats)
+	var result = ResourceSaver.save(saveFilePath, savableGameStats)
 	if result != OK:
-		printerr("GameStats didn't save correctly to ./save_data/GameStats.res")
+		printerr("GameStats didn't save correctly to ", saveFilePath)
 
