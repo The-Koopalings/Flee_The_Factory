@@ -137,7 +137,7 @@ func load_file_contents(path):
 				
 				# Add to scene_path dictionary
 				var level_num = file_name.get_slice(" ", 0)
-				var key = path.replace("res://Scenes/Levels/", "") + " " + level_num
+				var key = path.replace("res://Scenes/Levels/", "") + " " + level_num #i.e. "Control_Flow 1"
 				scene_path[key] = file_path
 				
 				# Add key to array for next level flow
@@ -151,7 +151,7 @@ func load_file_contents(path):
 		# Append to scene order array
 		scene_order += temp_arr
 	else:
-		print("An error occurred when trying to access the path: ", path)
+		printerr("An error occurred when trying to access the path: ", path)
 
 
 func custom_comparison(a, b):

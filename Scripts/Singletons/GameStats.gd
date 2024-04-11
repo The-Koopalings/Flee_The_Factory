@@ -65,7 +65,8 @@ func kill_robot():
 	emit_signal("robotDied")
 
 func init_levelCompletion():
-	for levelPath in SceneSwapper.scene_array:
+	for key in SceneSwapper.scene_order:
+		var levelPath = SceneSwapper.scene_path[key]
 		levelCompletion[levelPath] = false
 		playTutorial[levelPath] = true
 
