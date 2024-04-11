@@ -36,7 +36,8 @@ onready var ray = $RayCast2D
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 
 func _ready():
-	$Highlight.visible = true
+	#$Highlight.visible = true
+	pass
 	
 #Event handler for movement via keyboard	
 func _unhandled_input(event):

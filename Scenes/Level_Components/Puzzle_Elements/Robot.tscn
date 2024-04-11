@@ -214,6 +214,7 @@ frame = 6
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="Highlight" type="ReferenceRect" parent="."]
+visible = false
 margin_left = -48.0
 margin_top = 48.0
 margin_right = 48.0

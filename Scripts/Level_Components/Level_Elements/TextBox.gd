@@ -4,7 +4,6 @@ const CHAR_READ_RATE = 0.03
 
 onready var textbox_container = $TextBoxContainer
 onready var start_symbol = $TextBoxContainer/DialogueContainer/HBoxContainer/Start
-onready var end_symbol = $TextBoxContainer/DialogueContainer/End
 onready var text = $TextBoxContainer/DialogueContainer/HBoxContainer/Text
 
 # Keep track of what state the text box is currently in
@@ -48,11 +47,9 @@ func _process(_delta):
 			if Input.is_action_just_pressed("ui_select"):
 				text.percent_visible = 1.0
 				$Tween.remove_all()
-				end_symbol.text = "(Press SPACEBAR to continue)"
 				change_state(State.END)
 		State.END:
 			if Input.is_action_just_pressed("ui_select"):
-				end_symbol.text = ""
 				if text_queue.empty():
 					hide_textbox()
 				change_state(State.READY)
@@ -65,7 +62,6 @@ func queue_text(dialogue):
 
 func hide_textbox():
 	start_symbol.text = ""
-	end_symbol.text = ""
 	text.text = ""
 	textbox_container.hide()
 
@@ -89,7 +85,6 @@ func display_text():
 
 
 func _on_Tween_tween_all_completed():
-	end_symbol.text = "(Press SPACEBAR to continue)"
 	change_state(State.END)
 
 
