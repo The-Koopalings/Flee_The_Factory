@@ -17,8 +17,11 @@ func _ready():
 func _on_Next_Level_pressed():
 	var root = get_tree().root
 	var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
+	directory = directory.substr(20)
 	
-	SceneSwapper.change_to_next_level_scene(directory + "/" + level.name + ".tscn")
+	var level_num = level.name.get_slice(" ", 0)
+	
+	SceneSwapper.change_to_next_level_scene(directory + " " + level_num)
 
 
 func _on_Exit_Level_pressed():
@@ -28,4 +31,5 @@ func _on_Exit_Level_pressed():
 	var root = get_tree().root
 	var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
 	directory = directory.substr(20)
+	
 	SceneSwapper.change_scene(directory + " Select")

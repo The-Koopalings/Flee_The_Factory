@@ -1,0 +1,19 @@
+Calling is a cool thing to do. Main can call F1, F1 can call F2, and I can call ur mom.
+But did you know that functions can also call themselves?
+With this new concept, I can introduce you to the wonderful world of Recursion!
+
+CODE_BLOCK
+To start, let's walk me down 2 tiles, interact with the button, and rotate to the left. Please place the appropriate code blocks into Function 1.
+;
+
+Awesome! Explain recursion.
+Let's place a F1 code block into Function 1. This means that Function 1 will now call itself repeatedly until the base case is fulfilled (the level is completed).
+;
+
+Finally, let's have Main call Function 1.
+;
+
+Now press run and watch me move it, move it!
+;
+
+Wahoo! ur mom is a lovely lady.

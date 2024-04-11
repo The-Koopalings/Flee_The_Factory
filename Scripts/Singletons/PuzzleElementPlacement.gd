@@ -43,6 +43,7 @@ func loadLevel(_level):
 	self.IDE = level.get_node("IDE")
 	self.halftile = Grid.tile_size/2
 	
+	print(DEBUG_buffer)
 	self.init_elements()
 	self.init_WCLs()
 	self.init_IDE()
@@ -300,6 +301,7 @@ func init_IDE():
 			child.get_node("Else").set_FBA_numBlocks()
 		elif type == "Loop":
 			child.get_node("HighlightControl").set_FBA_numBlocks()
+			child.reset_loopCount()
 		else:
 			child.set_FBA_numBlocks()
 		
