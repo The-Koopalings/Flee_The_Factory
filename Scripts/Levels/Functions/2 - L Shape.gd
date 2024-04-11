@@ -16,7 +16,7 @@ signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
 var textPath = "Functions/2 - L Shape.txt"
-var has_tutorial = true
+var has_tutorial = false
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES

@@ -45,19 +45,19 @@ func _on_DoubleSpeed_toggled(button_pressed):
 
 
 func _on_Help_pressed():
-	#If there isn't anymore dialogue to display
-	if DialogueManager.dialogue_queue.size() == 0:
-		var level = get_node("..")
-		var root = get_tree().root
-		DialogueManager.restart_dialogue()
-		
-		if level.has_tutorial:
+	var level = get_node("..")
+	var root = get_tree().root
+	
+	if level.has_tutorial:
+		#If there isn't anymore dialogue to display
+		if DialogueManager.dialogue_queue.size() == 0:
+			DialogueManager.restart_dialogue()
 			var levelPath = root.get_child(root.get_child_count() - 1).filename
 			GameStats.playTutorial[levelPath] = true
 			DialogueManager.add_dialogue(level, level.textPath)
-		else:
-			var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
-			#Gets name of folder directly above
-			#I.e. directory = "Recursion" or directory = "Control_Flow"
-			directory = directory.substr(20)
-			DialogueManager.add_dialogue(level, directory + "/generic.txt")
+	else: #Will display generic help dialogue based on directory level is in
+		var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
+		#Gets name of folder directly above
+		#I.e. directory = "Recursion" or directory = "Control_Flow"
+		directory = directory.substr(20)
+		DialogueManager.display_generic_dialogue(level, directory)
