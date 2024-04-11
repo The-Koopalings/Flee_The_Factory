@@ -2,14 +2,14 @@ extends Node
 
 var dialogue_queue = []
 
-var generic_dialogue = {"Tutorial": ["Remember: Press the button(s) to open the door & win the level. I can only press it if I am standing on top of a button and an Interact code block is executed"],
+var generic_dialogue = {"Tutorial": ["Remember: Press the button(s) to open the door & win the level. I can only press it if I am standing on top of a button and an Interact code block is executed."],
 					"Functions": ["Remember: Executing/calling a function will execute all of the code blocks in it. Also, functions can call other functions."],
 					"Control_Flow": ["Remember: You can set the conditions for If statements and While loops.",
 									 "When conditions are true, If statements execute the code underneath If, when false it'll execute code under Else.",
 									 "When conditions are true for While loops, it will execute the code in it until the conditions are false.",
 									 "You can set how many times a For loop will execute by setting what i (the loop counter) should start at, what number i should stop at, and how much i increases with each loop."],
 					"Recursion": ["Remember: Functions can call themselves and will stop once the level is complete."],
-					"Data_Structures": ["Remember: Stacks are LIFO (last in, first out), Queues are FIFO (first in, first out), and you have to keep track of the index you put an item into and use for Arrays"]
+					"Data_Structures": ["Remember: Stacks are LIFO (last in, first out), Queues are FIFO (first in, first out), and you have to keep track of the index you put an item into and use for Arrays."]
 					}
 
 var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",

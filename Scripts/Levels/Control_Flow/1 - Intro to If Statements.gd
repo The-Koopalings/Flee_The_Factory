@@ -15,7 +15,7 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath =  "Functions/1 - Functions Intro.txt"
+var textPath =  "Control_Flow/1 - Functions Intro.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
