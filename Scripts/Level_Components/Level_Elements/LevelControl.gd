@@ -50,11 +50,12 @@ func _on_Help_pressed():
 	
 	if level.has_tutorial:
 		#If there isn't anymore dialogue to display
-		if DialogueManager.dialogue_queue.size() == 0:
-			DialogueManager.restart_dialogue()
-			var levelPath = root.get_child(root.get_child_count() - 1).filename
-			GameStats.savableGameStats.playTutorial[levelPath] = true
-			DialogueManager.add_dialogue(level, level.textPath)
+#		if DialogueManager.dialogue_queue.size() == 0:
+		DialogueManager.restart_dialogue()
+#		level.TextBox.text_queue.clear()
+		var levelPath = root.get_child(root.get_child_count() - 1).filename
+		GameStats.savableGameStats.playTutorial[levelPath] = true
+		DialogueManager.add_dialogue(level, level.textPath)
 	else: #Will display generic help dialogue based on directory level is in
 		var directory = root.get_child(root.get_child_count() - 1).filename.get_base_dir()
 		#Gets name of folder directly above
