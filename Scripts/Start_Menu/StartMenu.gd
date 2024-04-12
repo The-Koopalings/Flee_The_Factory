@@ -22,6 +22,7 @@ func _on_StartButton_pressed():
 
 func _on_ExitButton_pressed():
 	SettingsMenu.save_settings()
+	GameStats.save_GameStats()
 	get_tree().quit()
 
 
