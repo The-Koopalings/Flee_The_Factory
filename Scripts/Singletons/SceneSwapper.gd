@@ -10,8 +10,12 @@ var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 				  "Control_Flow Select": "res://Scenes/Stage_Select/ControlFlowSelect.tscn",
 				  "Data_Structures Select": "res://Scenes/Stage_Select/DataStructuresSelect.tscn",}
 
-# Keey track of order of levels using the key for the scene_path dict
+# Keep track of order of levels using the key for the scene_path dict
 var scene_order = []
+
+#Keeps track of how many levels are in each stage
+#Keys: stage name (same as the directory name), value: number of levels it has
+var stageLevelCounts = {}
 
 const X_START = 110
 const Y_START = 300
@@ -115,7 +119,7 @@ func change_to_level_scene(level_select, button_name):
 func init_scenes():
 	scene_order.clear()
 	
-	# Call in this order because it matters for the scene_array
+	# Call in this order because it matters for the scene_array + stageLevelCounts
 	load_file_contents("res://Scenes/Levels/Tutorial")
 	load_file_contents("res://Scenes/Levels/Functions")
 	load_file_contents("res://Scenes/Levels/Control_Flow")
@@ -126,6 +130,8 @@ func init_scenes():
 func load_file_contents(path):
 	var dir = Directory.new()
 	var temp_arr = []
+	var stage = path.replace("res://Scenes/Levels/", "")
+	var levelCount = 0
 	
 	if dir.open(path) == OK:
 		dir.list_dir_begin()
@@ -133,11 +139,12 @@ func load_file_contents(path):
 		
 		while file_name != "":
 			if !dir.current_is_dir():
+				levelCount += 1
 				var file_path = path + "/" + file_name
 				
 				# Add to scene_path dictionary
 				var level_num = file_name.get_slice(" ", 0)
-				var key = path.replace("res://Scenes/Levels/", "") + " " + level_num #i.e. "Control_Flow 1"
+				var key = stage + " " + level_num #i.e. "Control_Flow 1"
 				scene_path[key] = file_path
 				
 				# Add key to array for next level flow
@@ -150,6 +157,9 @@ func load_file_contents(path):
 		
 		# Append to scene order array
 		scene_order += temp_arr
+		
+		#Add stage key & levelCount value to stageLevelCounts
+		stageLevelCounts[stage] = levelCount
 	else:
 		printerr("An error occurred when trying to access the path: ", path)
 
