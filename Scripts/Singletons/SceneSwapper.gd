@@ -26,7 +26,7 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	init_scenes()
-	#Put it here instead of GameStats _ready() so scene_array will definitely be initialized
+	#Put it here instead of GameStats _ready() so scene_order will definitely be initialized
 	GameStats.init_levelCompletion()
 
 
