@@ -15,6 +15,8 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["Forward", "Pickup"], ["Forward", "Pickup", "UseItem"]]
 onready var progress_check_FBA = [MainFBA, MainFBA]
+var textPath = "Data_Structures/1 - IntroToInventory.txt"
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -31,9 +33,9 @@ var robotStartOrientation = PEP.Orientation.DOWN
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
+	DialogueManager.add_dialogue(self, textPath)
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	DialogueManager.add_dialogue(self, "DataStructures/1 - IntroToInventory.txt")
 	$Inventory/Inventory_Arrow.visible = false
 	
 

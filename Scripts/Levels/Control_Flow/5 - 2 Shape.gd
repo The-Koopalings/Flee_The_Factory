@@ -15,6 +15,8 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
+var textPath =  "Control_Flow/5 - 2 Shape.txt"
+var has_tutorial = false
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -34,7 +36,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	#DialogueManager.add_dialogue(self, "Functions/1 - Functions Intro.txt")
+	#DialogueManager.add_dialogue(self, textPath)
 	
 	# Put here for now since current IDE doesn't allow 3 blocks
 	var runBtn = get_node("IDE/Run_Button").duplicate()

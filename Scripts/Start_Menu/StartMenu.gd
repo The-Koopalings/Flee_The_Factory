@@ -21,6 +21,7 @@ func _on_StartButton_pressed():
 
 
 func _on_ExitButton_pressed():
+	SettingsMenu.save_settings()
 	get_tree().quit()
 
 

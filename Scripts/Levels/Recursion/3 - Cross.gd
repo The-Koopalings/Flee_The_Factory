@@ -18,6 +18,8 @@ var B4_Pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
+var textPath =  "Recursion/3 - Cross.txt"
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -42,6 +44,7 @@ var robotStartOrientation = PEP.Orientation.UP
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
+#	DialogueManager.add_dialogue(self, textPath)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

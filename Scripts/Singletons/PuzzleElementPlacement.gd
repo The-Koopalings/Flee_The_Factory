@@ -136,7 +136,7 @@ func init_elements():
 					if type == "Robot":
 						#node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
 						node.orientation = robotStartOrientation
-						node.move_highlight()
+						node.set_idle_direction()
 						GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
