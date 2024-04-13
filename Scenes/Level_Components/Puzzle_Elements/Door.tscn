@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/Door.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Miscalleous/door.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Objects/Doors/finalDoor_closed.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/WCLs.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -16,7 +16,7 @@ Use factors of 48 to center an object's position on a tile"
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1, 0.822 )
+scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 2 )
 
 [node name="Highlight" type="ReferenceRect" parent="."]
