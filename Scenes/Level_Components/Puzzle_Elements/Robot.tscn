@@ -213,16 +213,6 @@ frame = 6
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
-[node name="Highlight" type="ReferenceRect" parent="."]
-visible = false
-margin_left = -48.0
-margin_top = 48.0
-margin_right = 48.0
-margin_bottom = 144.0
-border_color = Color( 1, 1, 0, 1 )
-border_width = 4.0
-editor_only = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle_down = SubResource( 2 )
 anims/idle_left = SubResource( 3 )

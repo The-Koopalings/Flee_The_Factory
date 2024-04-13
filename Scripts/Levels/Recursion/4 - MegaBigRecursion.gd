@@ -20,6 +20,8 @@ var B6_Pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
+var textPath =  "Recursion/4 - MegaBigRecursion"
+var has_tutorial = false
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -44,6 +46,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
+#	DialogueManager.add_dialogue(self, textPath)
 	
 	#We don't have room for 3 scopes yet, so I'm just doing this
 	var runBtn = get_node("IDE/Run_Button").duplicate()
