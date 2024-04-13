@@ -18,9 +18,9 @@ func set_color():
 	color = name.substr(3, 1)
 	match color:
 		"R":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Red_Key.png"))
+			$Sprite.set_texture(load("res://Assets/Objects/Keys/red_key.png"))
 		"G":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Green_Key.png"))
+			$Sprite.set_texture(load("res://Assets/Objects/Keys/green_key.png"))
 		"B":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Blue_Key.png"))
+			$Sprite.set_texture(load("res://Assets/Objects/Keys/blue_key.png"))
 

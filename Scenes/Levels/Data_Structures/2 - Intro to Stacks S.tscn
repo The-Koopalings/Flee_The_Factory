@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/Levels/Data_Structures/2 - Intro to Stacks S.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=2]
@@ -19,10 +19,6 @@
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateRight.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelClearedPopup.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Assets/Objects/Doors/redDoor.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Objects/Doors/blueDoor.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Objects/Keys/blue_key.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Objects/Keys/red_key.png" type="Texture" id=23]
 
 [node name="2 - Intro to Stacks S" type="Node2D"]
 script = ExtResource( 1 )
@@ -37,29 +33,15 @@ script = ExtResource( 1 )
 
 [node name="DoorR" parent="Grid" instance=ExtResource( 19 )]
 
-[node name="Red door" type="Sprite" parent="Grid/DoorR"]
-scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 20 )
-
 [node name="DoorB" parent="Grid" instance=ExtResource( 19 )]
-
-[node name="Blue Door" type="Sprite" parent="Grid/DoorB"]
-scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 21 )
 
 [node name="Door" parent="Grid" instance=ExtResource( 19 )]
 
 [node name="KeyB" parent="Grid" instance=ExtResource( 8 )]
-
-[node name="Blue Key" type="Sprite" parent="Grid/KeyB"]
-scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 22 )
+scale = Vector2( 1, 1 )
 
 [node name="KeyR" parent="Grid" instance=ExtResource( 8 )]
-
-[node name="Red Key" type="Sprite" parent="Grid/KeyR"]
-scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 23 )
+scale = Vector2( 1, 1 )
 
 [node name="Level Control" parent="." instance=ExtResource( 13 )]
 
