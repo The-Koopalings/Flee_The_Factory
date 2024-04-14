@@ -13,7 +13,16 @@ func set_stages():
 	var stages = get_children()
 	stages.erase($BackButton)
 	
+	var i = 0
 	for stage in stages:
+		#Set label on top of everything, messes up posiitons so that needs to be corrected
+		var label = stage.get_node("Label")
+		label.set_as_toplevel(true)
+		var labelPos = label.get_position() + Vector2(100, (200*i) + 80)
+		label.set_position(labelPos)
+		i += 1
+		
+		#Add the windows for quick view of progression per stage
 		var stageName = stage.name.replace("Button", "")
 		set_windows(stage, SceneSwapper.stageLevelCounts[stageName])
 	
