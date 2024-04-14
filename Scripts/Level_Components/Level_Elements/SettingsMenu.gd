@@ -120,10 +120,11 @@ func exit_level_pressed():
 
 func exit_game_pressed():
 	save_settings()
+	GameStats.save_GameStats()
 	get_tree().quit()
 	
 
-#When game is closed, save settings
+#When game is closed via the window's X button, save settings
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		save_settings()

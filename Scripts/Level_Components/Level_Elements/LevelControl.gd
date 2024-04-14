@@ -9,7 +9,7 @@ func _ready():
 	$Help.connect("pressed", self, "_on_Help_pressed")
 	
 	# Update 2x speed button toggle after restarting scene to correctly indicate the saved speed
-	if GameStats.run_speed == 0.25:
+	if GameStats.savableGameStats.run_speed == 0.25:
 		$DoubleSpeed.pressed = true
 	else:
 		$DoubleSpeed.pressed = false
@@ -39,9 +39,9 @@ func _on_DoubleSpeed_toggled(button_pressed):
 		yield(Robot, "animationFinished")
 	
 	if button_pressed:
-		GameStats.run_speed = 0.25
+		GameStats.savableGameStats.run_speed = 0.25
 	else:
-		GameStats.run_speed = 0.50
+		GameStats.savableGameStats.run_speed = 0.50
 
 
 func _on_Help_pressed():
