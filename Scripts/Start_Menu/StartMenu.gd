@@ -17,6 +17,8 @@ func _ready():
 
 
 func _on_StartButton_pressed():
+	#Play button press sound
+	ButtonPress.play()
 	SceneSwapper.change_scene("Stage Select")
 
 
@@ -27,4 +29,5 @@ func _on_ExitButton_pressed():
 
 
 func _on_CreditsButton_pressed():
+	ButtonPress.play()
 	SceneSwapper.change_scene("Credits")

@@ -11,6 +11,7 @@ func _on_BackButton_pressed():
 
 
 func _on_LevelButton_pressed(name):
+	ButtonPress.play()
 	SceneSwapper.change_to_level_scene(self, name)
 
 

@@ -38,6 +38,9 @@ DialogueManager="*res://Scripts/Singletons/DialogueManager.gd"
 SceneSwapper="*res://Scripts/Singletons/SceneSwapper.gd"
 GlobalWE="*res://Scenes/Level_Components/Level_Elements/WorldEnvironment.tscn"
 SettingsMenu="*res://Scenes/Level_Components/Level_Elements/SettingsMenu.tscn"
+ButtonPress="*res://Scenes/AudioStreams/ButtonPress.tscn"
+ButtonPress3="*res://Scenes/AudioStreams/ButtonPress3.tscn"
+ButtonPress2="*res://Scenes/AudioStreams/ButtonPress2.tscn"
 
 [display]
 

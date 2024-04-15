@@ -64,16 +64,16 @@ func setup():
 func music_volume_changed(value: float):
 	musicVolumeLabel.text = "Music Volume\n" + str(value) + "%"
 	savableSettings.musicVolume = value
-	var volume = value / 100.0
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 4 * volume)
+	var volume = linear2db(value / 100.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), volume)
 	
 
 #Test functionality once sound effects have been added
 func sound_effects_volume_changed(value: float):
 	soundEffectsVolumeLabel.text = "Sound Effects Volume\n" + str(value) + "%"
 	savableSettings.soundVolume = value
-	var volume = value / 100.0
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SoundEffects"), 4 * volume)
+	var volume = linear2db(value / 100.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SoundEffects"), volume)
 	
 
 func brightness_changed(value: float):
@@ -102,11 +102,13 @@ func reset_brightness():
 	
 
 func continue_pressed():
+	ButtonPress3.play()
 	get_tree().paused = false
 	visible = false
 	
 
 func exit_level_pressed():
+	ButtonPress3.play()
 	get_tree().paused = false
 	visible = false
 	GameStats.set_game_state(GameStats.State.OUT_OF_LEVEL)

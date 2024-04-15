@@ -51,22 +51,27 @@ func set_windows(stage, levelCount):
 	
 
 func _on_FunctionsButton_pressed():
+	ButtonPress.play()
 	SceneSwapper.change_scene("Functions Select")
 
 
 func _on_RecursionButton_pressed():
+	ButtonPress.play()
 	SceneSwapper.change_scene("Recursion Select")
 
 
 func _on_ControlFlowButton_pressed():
+	ButtonPress.play()
 	SceneSwapper.change_scene("Control_Flow Select")
 
 
 func _on_DataStructuresButton_pressed():
+	ButtonPress.play()
 	SceneSwapper.change_scene("Data_Structures Select")
 
 
 func _on_TutorialButton_pressed():
+	ButtonPress.play()
 	SceneSwapper.change_scene("Tutorial Select")
 
 

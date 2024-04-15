@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_household_door_chain_slide_lock_or_unlock_001_12580.mp3-4a2d9360ea9b9a5147788112f1d66019.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/zapsplat_household_door_chain_slide_lock_or_unlock_001_12580.mp3"
+dest_files=[ "res://.import/zapsplat_household_door_chain_slide_lock_or_unlock_001_12580.mp3-4a2d9360ea9b9a5147788112f1d66019.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
