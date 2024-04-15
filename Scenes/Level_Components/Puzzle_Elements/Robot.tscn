@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Animations/Robby.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/Robot.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sounds/science_fiction_robot_movement_single_001.mp3" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 49.5, 47 )
@@ -229,3 +230,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 16 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( 0, 0 )
+
+[node name="SoundMove" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "SoundEffects"

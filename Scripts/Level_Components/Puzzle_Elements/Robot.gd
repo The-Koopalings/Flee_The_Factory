@@ -55,6 +55,7 @@ func move(dir):
 	ray.force_raycast_update()
 	
 	if !ray.is_colliding():
+		$SoundMove.play()
 		moving = true
 		#position += vector_position
 		start_position = position
@@ -105,6 +106,7 @@ func _process(delta):
 	if !moving:
 #		var facing = 'idle_' + direction
 #		$AnimationPlayer.play(facing)
+		$SoundMove.stop()
 		animation_mode.travel("Idle")
 		emit_signal("animationFinished") #Allows code execution to continue if front is blocked, doesn't work if put in move() for some reason?
 	else:
