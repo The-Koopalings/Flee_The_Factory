@@ -39,10 +39,10 @@ func _ready():
 	pass
 	
 #Event handler for movement via keyboard	
-func _unhandled_input(event):
-	for dir in inputs.keys():
-		if event.is_action_pressed(dir):
-			move(dir)
+#func _unhandled_input(event):
+#	for dir in inputs.keys():
+#		if event.is_action_pressed(dir):
+#			move(dir)
 
 # Controls movement of the robot
 func move(dir):
