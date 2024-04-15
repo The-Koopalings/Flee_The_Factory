@@ -31,7 +31,7 @@ editor_only = false
 
 [node name="SoundPressed" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-volume_db = 6.0
+volume_db = 12.0
 bus = "SoundEffects"
 
 [connection signal="body_entered" from="." to="." method="_on_Button_body_entered"]

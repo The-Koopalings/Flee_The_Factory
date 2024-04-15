@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Assets/Sounds/zapsplat_science_fiction_cyberpunk_robot_cute_beep_001_64554.mp3" type="AudioStream" id=1]
-
-[node name="ButtonPress" type="AudioStreamPlayer"]
-pause_mode = 2
-stream = ExtResource( 1 )
-bus = "SoundEffects"

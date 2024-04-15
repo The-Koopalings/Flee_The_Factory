@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Music/450539__x3nus__homeback.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Singletons/NonLevelMusic.gd" type="Script" id=2]
+
+[node name="NonLevelMusic" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -5.0
+bus = "Music"
+script = ExtResource( 2 )

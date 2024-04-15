@@ -224,6 +224,7 @@ func get_object_in_direction(dir: String):
 
 #Virus (killed via GameStats)
 func _on_GameStats_robotDied():
+	$SoundDeath.play()
 	#Temporary action just so there's a visual indicator
 	#Should be replaced with some animation or something else to better show Robby dying
 	$Sprite.set_texture(deadRobotTexture) 
