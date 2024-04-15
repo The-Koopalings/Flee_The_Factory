@@ -16,13 +16,13 @@ var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",
 					  "HIGHLIGHT_RUN": "IDE/Run_Arrow",
 					  "HIGHLIGHT_FUNCTION_BLOCK": "IDE/F1_Arrow",
 					  "HIGHLIGHT_INVENTORY": "Inventory/Inventory_Arrow",
-					  "HIGHLIGHT_FORWARD": "CodeBlockBar/Forward/CodeBlock/Highlight",
-					  "HIGHLIGHT_INTERACT": "CodeBlockBar/Interact/CodeBlock/Highlight",
-					  "HIGHLIGHT_ROTATE_LEFT": "CodeBlockBar/RotateLeft/CodeBlock/Highlight",
-					  "HIGHLIGHT_ROTATE_RIGHT": "CodeBlockBar/RotateRight/CodeBlock/Highlight",
-					  "HIGHLIGHT_CALL_F1": "CodeBlockBar/Call_F1/CodeBlock/Highlight",
-					  "HIGHLIGHT_PICKUP": "CodeBlockBar/Pickup/CodeBlock/Highlight",
-					  "HIGHLIGHT_USEITEM": "CodeBlockBar/UseItem/CodeBlock/Highlight",
+					  "HIGHLIGHT_FORWARD": "CodeBlockBar/Forward/CodeBlock/Arrow",
+					  "HIGHLIGHT_INTERACT": "CodeBlockBar/Interact/CodeBlock/Arrow",
+					  "HIGHLIGHT_ROTATE_LEFT": "CodeBlockBar/RotateLeft/CodeBlock/Arrow",
+					  "HIGHLIGHT_ROTATE_RIGHT": "CodeBlockBar/RotateRight/CodeBlock/Arrow",
+					  "HIGHLIGHT_CALL_F1": "CodeBlockBar/Call_F1/CodeBlock/Arrow",
+					  "HIGHLIGHT_PICKUP": "CodeBlockBar/Pickup/CodeBlock/Arrow",
+					  "HIGHLIGHT_USEITEM": "CodeBlockBar/UseItem/CodeBlock/Arrow",
 					  "HIGHLIGHT_BUTTON": "Grid/Button/Highlight",
 					  "HIGHLIGHT_KEYR": "Grid/KeyR/Highlight",
 					  "HIGHLIGHT_DOOR": "Grid/Door/Highlight",
@@ -97,6 +97,7 @@ func highlight_manager(dialogue, level):
 	var component_highlight = level.get_node(path_to_highlight)
 	
 	component_highlight.visible = true
+	
 	return component_highlight
 
 # Checks if user completed the correct action before the next line of dialogue is triggered

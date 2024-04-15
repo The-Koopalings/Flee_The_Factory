@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Code_Block_Template.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29.5, 28.5 )
@@ -27,6 +28,12 @@ grow_vertical = 2
 mouse_filter = 2
 border_width = 4.0
 editor_only = false
+
+[node name="Arrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -80 )
+rotation = 3.14159
+texture = ExtResource( 2 )
 
 [connection signal="input_event" from="." to="." method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_CodeBlock_mouse_entered"]

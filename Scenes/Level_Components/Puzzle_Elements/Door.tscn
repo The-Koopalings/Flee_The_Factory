@@ -20,10 +20,10 @@ Use factors of 48 to center an object's position on a tile"
 texture = ExtResource( 2 )
 
 [node name="Highlight" type="ReferenceRect" parent="."]
-margin_left = -40.0
-margin_top = -40.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = -45.0
+margin_top = -45.0
+margin_right = 45.0
+margin_bottom = 45.0
 mouse_filter = 2
 border_width = 4.0
 editor_only = false
