@@ -19,7 +19,7 @@ enum State{
 
 # Set code run speed for robot animations
 # 0.50 is for normal and 0.25 is for double speed
-var run_speed = 0.50
+#var run_speed = 0.50
 
 var game_state = State.OUT_OF_LEVEL
 
@@ -27,7 +27,7 @@ var game_state = State.OUT_OF_LEVEL
 #	savableGameStats = SavableGameStats.new()
 
 func is_double_speed():
-	return true if run_speed == 0.25 else false
+	return true if savableGameStats.run_speed == 0.25 else false
 
 func get_game_state():
 	return game_state
@@ -57,8 +57,9 @@ func kill_robot():
 	
 	# Emit signal to Robot and IDE
 	emit_signal("robotDied")
+	
 
-
+#Called in SceneSwapper's _ready() because we want scene_order to be initialized first in case there's no save file
 #If save file exists, load in data from there, if not then initialize dicts in savableGameStats
 func init_levelCompletion():
 	#If file exists, load data from file
@@ -72,13 +73,21 @@ func init_levelCompletion():
 			var levelPath = SceneSwapper.scene_path[key]
 			savableGameStats.levelCompletion[levelPath] = false
 			savableGameStats.playTutorial[levelPath] = true
+	
+
+#When game is closed via the window's X button, save GameStats
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		save_GameStats()
+	
 
 func set_level_completed(levelPath):
 	savableGameStats.levelCompletion[levelPath] = true
 	savableGameStats.playTutorial[levelPath] = false
 	save_GameStats()
+	
 
-#Only activates upon level completion 
+#Activates upon level completion or closing the game
 func save_GameStats():
 	var result = ResourceSaver.save(saveFilePath, savableGameStats)
 	if result != OK:

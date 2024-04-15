@@ -12,3 +12,7 @@ export var levelCompletion = {}
 #Keys: level paths (like levelCompletion)     
 #Values: true if should play tutorial, false otherwise (I.e. if level completed or re-entered after not completing)
 export var playTutorial = {}
+
+# Set code run speed for robot animations
+# 0.50 is for normal and 0.25 is for double speed
+export var run_speed = 0.50

@@ -119,14 +119,14 @@ func _process(delta):
 			#position += 4/GameStats.run_speed
 			if (position.x != end_position.x):
 				if (position.x - end_position.x) > 0:
-					position.x -= 0.75/GameStats.run_speed
+					position.x -= 0.75/GameStats.savableGameStats.run_speed
 				else:
-					position.x += 0.75/GameStats.run_speed
+					position.x += 0.75/GameStats.savableGameStats.run_speed
 			if (position.y != end_position.y):
 				if (position.y - end_position.y) > 0:
-					position.y -= 0.75/GameStats.run_speed
+					position.y -= 0.75/GameStats.savableGameStats.run_speed
 				else:
-					position.y += 0.75/GameStats.run_speed
+					position.y += 0.75/GameStats.savableGameStats.run_speed
 			#Clamping grid
 			position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
 			position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
