@@ -18,7 +18,6 @@ var B4_Pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath =  "Recursion/3 - Cross.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 

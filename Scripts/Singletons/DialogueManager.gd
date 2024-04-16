@@ -33,24 +33,27 @@ var check_progress = false  # Boolean check to fix yielding bug
 var check_index = 0  # Only check for currently yielding user action checkpoint
 
 # Load and display dialogue
-func add_dialogue(level, file_path):
+func add_dialogue(level):
 	var root = level.get_tree().root
 	var levelPath = root.get_child(root.get_child_count() - 1).filename
 	
 	if GameStats.savableGameStats.playTutorial[levelPath]:
 		level.TextBox.set_default_pos()
-		load_dialogue(file_path)
+		load_dialogue(levelPath)
 		display_dialogue(level)
 		GameStats.savableGameStats.playTutorial[levelPath] = false
 	
 
 
 # Helper function to load dialogue from a text file
-func load_dialogue(file_path):
-	var path_to_dialogue = "res://Scripts/Dialogue/"
+func load_dialogue(level_path):
+	# Get path for dialogue based on level path
+	var dialogue_path = level_path.replace("Scenes", "Scripts")
+	dialogue_path = dialogue_path.replace("Levels", "Dialogue")
+	dialogue_path = dialogue_path.replace(".tscn", ".txt")
 	
 	var file = File.new()
-	file.open(path_to_dialogue + file_path, file.READ)
+	file.open(dialogue_path, file.READ)
 	
 	while !file.eof_reached():
 		var line = file.get_line()

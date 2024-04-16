@@ -20,7 +20,6 @@ var B6_Pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath =  "Recursion/4 - MegaBigRecursion"
 var has_tutorial = false
 ##UNIQUE LEVEL VARIABLES
 

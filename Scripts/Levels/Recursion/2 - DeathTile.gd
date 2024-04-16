@@ -15,7 +15,6 @@ var B1_Pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath =  "Recursion/2 - DeathTile.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
@@ -41,7 +40,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
-#	DialogueManager.add_dialogue(self, textPath)
+#	DialogueManager.add_dialogue(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

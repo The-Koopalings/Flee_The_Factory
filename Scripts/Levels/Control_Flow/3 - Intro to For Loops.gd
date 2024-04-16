@@ -18,7 +18,6 @@ var b4_pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath =  "Control_Flow/3 - Intro to For Loops"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
