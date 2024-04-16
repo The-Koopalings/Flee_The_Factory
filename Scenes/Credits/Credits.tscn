@@ -1,6 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Music/686610__seth_makes_sounds__bubbglegum-pop-song.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Credits/Credits.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Stage_Select/BackButton.tscn" type="PackedScene" id=3]
 
 [node name="Credits" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 644.0
@@ -9,3 +14,10 @@ margin_right = 745.0
 margin_bottom = 57.0
 rect_scale = Vector2( 6, 6 )
 text = "Credits Yeehaw!"
+
+[node name="CreditsMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 4.0
+bus = "Music"
+
+[node name="BackButton" parent="." instance=ExtResource( 3 )]

@@ -1,9 +1,6 @@
 extends AudioStreamPlayer
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var inCredits = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +9,7 @@ func _ready():
 
 
 func _process(delta):
-	if GameStats.is_out_of_level() and !playing:
+	if GameStats.is_out_of_level() and !playing and !inCredits:
 		play()
-	elif !GameStats.is_out_of_level():
+	elif !GameStats.is_out_of_level() or inCredits:
 		stop()
