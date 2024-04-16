@@ -240,6 +240,7 @@ bus = "SoundEffects"
 
 [node name="SoundDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = 12.0
 bus = "SoundEffects"
 
 [node name="SoundTurn" type="AudioStreamPlayer" parent="."]
