@@ -69,6 +69,11 @@ func display_dialogue(level):
 	for dialogue in dialogue_queue:
 		if dialogue == ";":
 			check_progress = true
+			
+			# Hide textbox if we are just waiting on level completion
+			if check_index == level.progress_check_FBA.size():
+				level.TextBox.hide_textbox()
+			
 			yield(level, "dialogue_progress")
 		elif dialogue.begins_with("HIGHLIGHT_"):
 			last_highlight = highlight_manager(dialogue, level)
