@@ -148,6 +148,7 @@ func _on_Forward_forwardSignal():
 
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
+	$SoundTurn.play()
 	#$Sprite.rotation -= PI/2
 	orientation = (orientation - 1) % 4
 	if orientation < 0:
@@ -156,6 +157,7 @@ func _on_RotateLeft_rotateLeftSignal():
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
+	$SoundTurn.play()
 	#$Sprite.rotation += PI/2
 	orientation = (orientation + 1) % 4
 	set_idle_direction()

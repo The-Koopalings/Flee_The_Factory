@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_science_fiction_android_servo_robot_movement_003_11528.mp3-f754067acd681a37b6b753e9eb5e8aca.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/zapsplat_science_fiction_android_servo_robot_movement_003_11528.mp3"
+dest_files=[ "res://.import/zapsplat_science_fiction_android_servo_robot_movement_003_11528.mp3-f754067acd681a37b6b753e9eb5e8aca.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

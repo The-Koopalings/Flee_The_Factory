@@ -7,6 +7,7 @@ func _ready():
 
 
 func _on_BackButton_pressed():
+	ButtonPress3.play()
 	SceneSwapper.change_scene("Stage Select")
 
 

@@ -76,4 +76,5 @@ func _on_TutorialButton_pressed():
 
 
 func _on_BackButton_pressed():
+	ButtonPress3.play()
 	SceneSwapper.change_scene("Start Menu")

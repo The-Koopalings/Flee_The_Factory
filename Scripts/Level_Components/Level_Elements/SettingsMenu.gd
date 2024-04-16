@@ -90,14 +90,17 @@ func set_sliders():
 	
 
 func reset_music_volume():
+	ButtonPress3.play()
 	musicVolumeSlider.value = mvStartVal
 	
 
 func reset_sound_effects_volume():
+	ButtonPress3.play()
 	soundEffectsVolumeSlider.value = sevStartVal
 	
 
 func reset_brightness():
+	ButtonPress3.play()
 	brightnessSlider.value = bStartVal
 	
 
