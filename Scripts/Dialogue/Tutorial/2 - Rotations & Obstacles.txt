@@ -7,9 +7,9 @@ This is called an [color=yellow]Obstacle[/color]. Similar to a Wall, I [color=re
 CODE_BLOCK
 Now let's go over the 2 new code blocks.
 HIGHLIGHT_ROTATE_LEFT
-This is called [color=yellow]Rotate Left[/color]. This will make me rotate to my left/to my left side.
+This is called [color=yellow]Rotate Left[/color]. This will make me rotate to [color=yellow]my[/color] left.
 HIGHLIGHT_ROTATE_RIGHT
-This is called [color=yellow]Rotate Right[/color]. This will make me rotate to my right/to my right side.
+This is called [color=yellow]Rotate Right[/color]. This will make me rotate to [color=yellow]my[/color] right.
 
 Now, let's [color=yellow]rotate me to the left[/color] so that I no longer face the obstacle.
 ;
