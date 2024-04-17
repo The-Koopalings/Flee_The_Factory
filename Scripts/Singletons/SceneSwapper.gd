@@ -12,8 +12,8 @@ var scene_path = {"Start Menu": "res://Scenes/Start_Menu/StartMenu.tscn",
 
 var scene_array = []
 
-const X_START = 110
-const Y_START = 300
+const X_START = 500
+const Y_START = 450
 const X_SPACE = 300
 const Y_SPACE = 300
 
