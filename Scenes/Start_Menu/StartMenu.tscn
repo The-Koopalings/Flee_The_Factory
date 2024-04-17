@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/Miscalleous/button.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Backgrounds/finalbgbutbigger.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scenes/Start_Menu/StartMenu.tres" type="Theme" id=4]
@@ -31,7 +30,7 @@ custom_fonts/font = SubResource( 1 )
 text = "Flee the Factory"
 align = 1
 
-[node name="StartButton" type="TextureButton" parent="."]
+[node name="StartButton" type="Button" parent="."]
 margin_left = 620.0
 margin_top = 360.0
 margin_right = 1435.0
@@ -39,8 +38,6 @@ margin_bottom = 512.0
 rect_scale = Vector2( 0.8, 0.8 )
 mouse_default_cursor_shape = 2
 theme = ExtResource( 4 )
-texture_normal = ExtResource( 1 )
-stretch_mode = 3
 
 [node name="Label" type="Label" parent="StartButton"]
 anchor_bottom = 1.0
@@ -49,15 +46,14 @@ custom_fonts/font = SubResource( 2 )
 text = "Start"
 align = 1
 
-[node name="ExitButton" type="TextureButton" parent="."]
+[node name="ExitButton" type="Button" parent="."]
 margin_left = 620.0
 margin_top = 590.0
 margin_right = 1435.0
 margin_bottom = 742.0
 rect_scale = Vector2( 0.8, 0.8 )
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 1 )
-stretch_mode = 3
+theme = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="ExitButton"]
 anchor_bottom = 1.0
@@ -66,15 +62,14 @@ custom_fonts/font = SubResource( 2 )
 text = "Exit"
 align = 1
 
-[node name="CreditsButton" type="TextureButton" parent="."]
+[node name="CreditsButton" type="Button" parent="."]
 margin_left = 620.0
 margin_top = 820.0
 margin_right = 1435.0
 margin_bottom = 972.0
 rect_scale = Vector2( 0.8, 0.8 )
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 1 )
-stretch_mode = 3
+theme = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="CreditsButton"]
 anchor_bottom = 1.0
