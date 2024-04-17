@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Backgrounds/itsthefinalbackground.png" type="Texture" id=2]
@@ -12,12 +12,10 @@ outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=3]
-
 [node name="StageSelect" type="Node2D"]
 script = ExtResource( 6 )
 
-[node name="TutorialButton" type="TextureButton" parent="."]
+[node name="TutorialButton" type="Button" parent="."]
 anchor_bottom = 1.0
 margin_left = 100.0
 margin_top = 80.0
@@ -25,7 +23,6 @@ margin_right = 1820.0
 margin_bottom = 280.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 3 )
-expand = true
 
 [node name="Label" type="Label" parent="TutorialButton"]
 anchor_left = 0.5
@@ -42,15 +39,14 @@ text = "Tutorial"
 align = 1
 valign = 1
 
-[node name="FunctionsButton" type="TextureButton" parent="."]
+[node name="FunctionsButton" type="Button" parent="."]
 anchor_bottom = 1.0
 margin_left = 100.0
 margin_top = 280.0
 margin_right = 1820.0
 margin_bottom = 480.0
 mouse_default_cursor_shape = 2
-theme = SubResource( 3 )
-expand = true
+theme = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="FunctionsButton"]
 anchor_left = 0.5
@@ -66,14 +62,14 @@ text = "Functions"
 align = 1
 valign = 1
 
-[node name="RecursionButton" type="TextureButton" parent="."]
+[node name="RecursionButton" type="Button" parent="."]
 anchor_bottom = 1.0
 margin_left = 100.0
 margin_top = 480.0
 margin_right = 1820.0
 margin_bottom = 680.0
 mouse_default_cursor_shape = 2
-expand = true
+theme = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="RecursionButton"]
 anchor_left = 0.5
@@ -89,14 +85,14 @@ text = "Recursion"
 align = 1
 valign = 1
 
-[node name="ControlFlowButton" type="TextureButton" parent="."]
+[node name="ControlFlowButton" type="Button" parent="."]
 anchor_bottom = 1.0
 margin_left = 100.0
 margin_top = 680.0
 margin_right = 1820.0
 margin_bottom = 880.0
 mouse_default_cursor_shape = 2
-expand = true
+theme = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="ControlFlowButton"]
 anchor_left = 0.5
@@ -112,14 +108,14 @@ text = "Control Flow"
 align = 1
 valign = 1
 
-[node name="DataStructuresButton" type="TextureButton" parent="."]
+[node name="DataStructuresButton" type="Button" parent="."]
 anchor_bottom = 1.0
 margin_left = 100.0
 margin_top = 880.0
 margin_right = 1820.0
 margin_bottom = 1080.0
 mouse_default_cursor_shape = 2
-expand = true
+theme = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="DataStructuresButton"]
 anchor_left = 0.5
