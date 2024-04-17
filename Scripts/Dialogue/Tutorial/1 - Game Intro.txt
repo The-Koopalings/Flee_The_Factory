@@ -1,31 +1,77 @@
-Welcome to Flee the Factory! Robby the Robot is trapped in our elaborate factory and it is your job to help him escape.
-To help Robby, you must program him to move across the factory floor and reach the exit.
+Hey you! Yeah, I'm talking to [color=yellow]you[/color] human!!
+How's it going, the name's Robby. [wave amp=50.0 freq=5.0 connected=1]Robby the Robot[/wave]. I can't move by myself so I've been trapped here for who knows how long.
+Looks like you're also trapped in this stupid factory, but hey I think we can escape together if you just control me from up where you are!
 
 HIGHLIGHT_BUTTON
-Explain button
+All you have to do is help me press that [color=red]big red button[/color].
 
 HIGHLIGHT_DOOR
-Explain door
+Then the [color=yellow]exit door[/color] will open.
+
+Before we go over how you can do that, let's go over the basics of the control panel UI.
+
+HIGHLIGHT_sETTINGS
+First off, this button on the top-left is the [color=yellow]Settings button[/color]. Pressing this will pull up the [color=yellow]Settings menu[/color] where you can change [color=yellow]Music and Sound Effect volumes[/color], as well as [color=yellow]Brightness[/color].
+You can also [color=yellow]exit the level[/color] from there, or even [color=yellow]exit the game[/color]
+
+HIGHLIGHT_RESTART
+This is the [color=yellow]Restart button[/color]. 
+Clicking this will restart the [color=yellow]entire level[/color], [color=red]except[/color] for the [color=yellow]IDE[/color] on the right (we'll get to what that is later).
+
+HIGHLIGHT_HELP
+This is the [color=yellow]Help button[/color].
+This will either [color=yellow]restart the Tutorial[/color] on that level, or if there [color=red]isn't a tutorial[/color], then it will give [color=red]some general advice[/color].
+
+HIGHLIGHT_2X_SPEED
+This is the [color=yellow]2x Speed toggle button[/color].
+Currently, this is [color=red]off[/color] so I am moving at my [color=red]normal speed[/color], however if you turn this toggle [color=green]on[/color], then I will move at [color=green]double my normal speed[/color].
+
+Alright let's move on to what's on the factory floor!
+Firstly, all the tiles around me, except for the one in front of me, are [color=yellow]walls[/color]. I [color=red]can't move past[/color] them.
+The tile [color=yellow]in front of me[/color], is a [color=yellow]walkable area[/color] though.
+
+HIGHLIGHT_BUTTON
+Next, this is the [color=red]button[/color] which you need to help me [color=yellow]press to open[/color] the exit door.
+
+HIGHLIGHT_DOOR
+And this is the [color=yellow]exit door[/color]. It has [color=yellow]lights[/colors] on it to indicate [color=yellow]how many buttons[/color] we need to press to get it to open. The light will [color=yellow]light up[/color] when a button is [color=yellow]pressed[/color].
+
+Finally, let's get to how you can move me around.
+You'll need to [color=yellow]program[/color] me, which you can do by putting [color=yellow]code blocks[/color] into the [color=yellow]IDE[/color].
+
+CODE_BLOCK
+The icons below are [color=yellow]code blocks[/color]. These are what you will use to program me to move.
+[color=yellow]Code blocks[/color] can be thought of as [color=yellow]instructions[/color].
+
+HIGHLIGHT_FORWARD
+This code block is a [color=yellow]Forward[/color] code block, which will instruct me to go [color=yellow]forward in the direction I am facing[/color]. 
+So right now, Forward would make me move to the right as that's the direction I am facing.
+
+HIGHLIGHT_INTERACT
+This is an [color=yellow]Interact[/color] code block, which will instruct me to [color=yellow]interact with an interactable object[/color] that is on the [color=yellow]same tile[/color] as me.
+[color=red]Buttons[/color] are [color=yellow]interactable objects[/color], so the [color=yellow]Interact code block[/color] would allow me to [color=yellow]press buttons[/color].
+
+Code blocks will only make me move if you place them into the [color=yellow]IDE[/color] area.
 
 IDE
 HIGHLIGHT_IDE
-This is the IDE.
-Explain Main function
+This is the [color=yellow]IDE[/color].
+HIGHLIGHT_IDE
+Right now, it only has something that we call the [color=yellow]"Main" function[/color].
+HIGHLIGHT_IDE
+You can put [color=yellow]code blocks[/color] into [color=yellow]Main[/color] and the code blocks in it will automatically be executed from left to right, top to bottom, once you press the [color=green]"Run button"[/color] here.
+HIGHLIGHT_IDE
+At the bottom of Main, you can see the [color=yellow]code block counter[/color]. It shows [color=yellow]how many code blocks are in Main[/color] as well as the [color=yellow]max number of code blocks[/color] you can put in it.
+4 is the max number of code blocks you can put into Main for this level.
 
 CODE_BLOCK
-These are code blocks. This is what you use to control Robby's movements.
-
-HIGHLIGHT_FORWARD
-Explain forward code block
-HIGHLIGHT_INTERACT
-Explain interact code block
-
-To place the code blocks into the IDE, you can drag and drop them. Let's move one forward code block into the Main function.
+To place the code blocks into the IDE, you can [color=yellow]drag and drop[/color] or [color=yellow]double click[/color] them. You can do the same to [color=red]remove[/color] them from the IDE.
+Let's move [color=yellow]one Forward[/color] code block into the Main function.
 ;
-Great! As you can see, Robby has to move 3 tiles to reach the button and interact with it. Let's move two more forward code blocks and one interact code block into the Main function.
+Great! As you can see, Robby has to move 3 tiles to reach the button and interact with it. Let's move [color=yellow]two more Forward[/color] code blocks and [color=yellow]one Interact[/color] code block into the Main function.
 ;
 
 HIGHLIGHT_RUN
-Now that we have programmed Robby, let's press the run button to run our code and see him move.
+Now that you have programmed me, let's press the [color=yellow]Run button[/color] to run our code and see me move.
 ;
-Congratulations! You have helped Robby get one step closer to fleeing the factory (roll credits lol).
+Congratulations! You've got us one step closer to freedom.
