@@ -43,7 +43,6 @@ func loadLevel(_level):
 	self.IDE = level.get_node("IDE")
 	self.halftile = Grid.tile_size/2
 	
-	print(DEBUG_buffer)
 	self.init_elements()
 	self.init_WCLs()
 	self.init_IDE()
@@ -136,7 +135,7 @@ func init_elements():
 					if type == "Robot":
 						#node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
 						node.orientation = robotStartOrientation
-						node.set_idle_direction()
+						node.move_highlight()
 						GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
@@ -301,7 +300,6 @@ func init_IDE():
 			child.get_node("Else").set_FBA_numBlocks()
 		elif type == "Loop":
 			child.get_node("HighlightControl").set_FBA_numBlocks()
-			child.reset_loopCount()
 		else:
 			child.set_FBA_numBlocks()
 		

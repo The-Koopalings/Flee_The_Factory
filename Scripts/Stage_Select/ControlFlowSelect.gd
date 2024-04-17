@@ -8,7 +8,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	SceneSwapper.init_buttons(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,13 +16,9 @@ func _ready():
 #	pass
 
 
-func _on_StartButton_pressed():
+func _on_BackButton_pressed():
 	SceneSwapper.change_scene("Stage Select")
 
 
-func _on_ExitButton_pressed():
-	get_tree().quit()
-
-
-func _on_CreditsButton_pressed():
-	SceneSwapper.change_scene("Credits")
+func _on_LevelButton_pressed(name):
+	SceneSwapper.change_to_level_scene(self, name)

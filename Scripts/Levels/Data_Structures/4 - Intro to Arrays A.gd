@@ -15,8 +15,6 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath = "Data_Structures/4 - IntroToArrays.txt"
-var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -35,7 +33,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self, "DataStructures/4 - IntroToArrays.txt")
 	
 
 func _process(delta):

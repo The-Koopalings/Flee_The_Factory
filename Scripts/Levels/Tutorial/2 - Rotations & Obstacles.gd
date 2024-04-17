@@ -15,8 +15,6 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["RotateLeft"], ["RotateLeft", "Forward"], ["RotateLeft", "Forward", "RotateRight"]]
 onready var progress_check_FBA = [MainFBA, MainFBA, MainFBA]
-var textPath = "Tutorial/2 - Rotations & Obstacles.txt"
-var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 
@@ -35,7 +33,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self, "Tutorial/2 - Rotations & Obstacles.txt")
 
 
 func _process(delta):

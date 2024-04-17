@@ -1,4 +1,0 @@
-Remember: You can set the conditions for If statements and While loops. 
-When conditions are true, If statements execute the code underneath If, when false it'll execute code under Else.
-When conditions are true for While loops, it will execute the code in it until the conditions are false.
-You can set how many times a For loop will execute by setting what i should start at, what number i should stop at, and how much i increases with each loop.

@@ -8,22 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Resource",
-"class": "SavableGameStats",
-"language": "GDScript",
-"path": "res://Resources/SavableGameStats.gd"
-}, {
-"base": "Resource",
-"class": "SavableSettings",
-"language": "GDScript",
-"path": "res://Resources/SavableSettings.gd"
-} ]
-_global_script_class_icons={
-"SavableGameStats": "",
-"SavableSettings": ""
-}
-
 [application]
 
 config/name="Flee The Factory"

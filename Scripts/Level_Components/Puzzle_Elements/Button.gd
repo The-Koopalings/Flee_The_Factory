@@ -17,5 +17,4 @@ func _ready():
 
 func _on_Robot_interact(x, y):
 	if x == tileX and y == tileY:
-		$SoundPressed.play()
 		emit_signal("buttonPressed", name)

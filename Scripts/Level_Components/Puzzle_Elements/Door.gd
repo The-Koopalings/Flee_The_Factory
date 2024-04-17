@@ -37,13 +37,8 @@ func set_color():
 	
 
 func _on_level_levelComplete():
-	$SoundUnlock.play()
 	$Sprite.set_texture(openDoorTexture)
 	get_node("WCLs").visible = false
-	
-	var root = get_tree().root
-	var levelPath = root.get_child(root.get_child_count() - 1).filename
-	GameStats.set_level_completed(levelPath)
 	
 	#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
 	$Sprite.set_scale(Vector2(1,1)) 

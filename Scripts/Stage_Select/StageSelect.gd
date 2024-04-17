@@ -1,80 +1,36 @@
 extends Node2D
 
-var levelCompletedTheme = load("res://Themes/LevelCompletedButton.tres")
-var levelUncompletedTheme = load("res://Themes/LevelUncompletedButton.tres")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_stages()
-	
+	pass # Replace with function body.
 
-#Calls set_windows() on all stage buttons in the scene
-func set_stages():
-	var stages = get_children()
-	stages.erase($BackButton)
-	
-	var i = 0
-	for stage in stages:
-		#Set label on top of everything, messes up posiitons so that needs to be corrected
-		var label = stage.get_node("Label")
-		label.set_as_toplevel(true)
-		var labelPos = label.get_position() + Vector2(100, (200*i) + 80)
-		label.set_position(labelPos)
-		i += 1
-		
-		#Add the windows for quick view of progression per stage
-		var stageName = stage.name.replace("Button", "")
-		set_windows(stage, SceneSwapper.stageLevelCounts[stageName])
-	
 
-#Adds windows based on how many levels there are in the stage, yellow if level is completed, gray if not
-func set_windows(stage, levelCount):
-	var stageName = stage.name.replace("Button", "")
-	var windowSize = Vector2(75, 75)
-	var posx = 50
-	var posy = 15
-	
-	for i in range(1, levelCount + 1):
-		#Set position & size of window
-		var window = Panel.new()
-		window.set_position(Vector2(posx + (100 * (i - 1)), posy))
-		window.set_size(windowSize)
-		
-		#Set theme/color of window
-		var levelPath = SceneSwapper.scene_path[stageName + " " + str(i)]
-		if GameStats.savableGameStats.levelCompletion[levelPath]:
-			window.set_theme(levelCompletedTheme)
-		else:
-			window.set_theme(levelUncompletedTheme)
-		
-		stage.add_child(window)
-	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
 
 func _on_FunctionsButton_pressed():
-	ButtonPress.play()
 	SceneSwapper.change_scene("Functions Select")
 
 
 func _on_RecursionButton_pressed():
-	ButtonPress.play()
 	SceneSwapper.change_scene("Recursion Select")
 
 
 func _on_ControlFlowButton_pressed():
-	ButtonPress.play()
 	SceneSwapper.change_scene("Control_Flow Select")
 
 
 func _on_DataStructuresButton_pressed():
-	ButtonPress.play()
 	SceneSwapper.change_scene("Data_Structures Select")
 
 
 func _on_TutorialButton_pressed():
-	ButtonPress.play()
 	SceneSwapper.change_scene("Tutorial Select")
 
 
 func _on_BackButton_pressed():
-	ButtonPress3.play()
 	SceneSwapper.change_scene("Start Menu")

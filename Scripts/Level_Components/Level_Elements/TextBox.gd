@@ -3,6 +3,8 @@ extends CanvasLayer
 const CHAR_READ_RATE = 0.03
 
 onready var textbox_container = $TextBoxContainer
+onready var start_symbol = $TextBoxContainer/DialogueContainer/HBoxContainer/Start
+onready var end_symbol = $TextBoxContainer/DialogueContainer/End
 onready var text = $TextBoxContainer/DialogueContainer/HBoxContainer/Text
 
 # Keep track of what state the text box is currently in
@@ -11,8 +13,8 @@ enum State {
 	READING,
 	END,
 }
-var current_state = State.READY
 
+var current_state = State.READY
 var text_queue = []
 signal user_action
 
@@ -46,9 +48,11 @@ func _process(_delta):
 			if Input.is_action_just_pressed("ui_select"):
 				text.percent_visible = 1.0
 				$Tween.remove_all()
+				end_symbol.text = "(Press SPACEBAR to continue)"
 				change_state(State.END)
 		State.END:
 			if Input.is_action_just_pressed("ui_select"):
+				end_symbol.text = ""
 				if text_queue.empty():
 					hide_textbox()
 				change_state(State.READY)
@@ -60,11 +64,14 @@ func queue_text(dialogue):
 
 
 func hide_textbox():
+	start_symbol.text = ""
+	end_symbol.text = ""
 	text.text = ""
 	textbox_container.hide()
 
 
 func show_textbox():
+	start_symbol.text = "*"
 	textbox_container.show()
 
 
@@ -72,7 +79,7 @@ func display_text():
 	# Get next text from the queue
 	var dialogue = text_queue.pop_front()
 	
-	text.bbcode_text = dialogue
+	text.text = dialogue
 	text.percent_visible = 0.0
 	show_textbox()
 	
@@ -82,6 +89,7 @@ func display_text():
 
 
 func _on_Tween_tween_all_completed():
+	end_symbol.text = "(Press SPACEBAR to continue)"
 	change_state(State.END)
 
 
