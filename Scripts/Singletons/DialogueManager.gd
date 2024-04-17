@@ -27,7 +27,11 @@ var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",
 					  "HIGHLIGHT_KEYR": "Grid/KeyR/Highlight",
 					  "HIGHLIGHT_DOOR": "Grid/Door/Highlight",
 					  "HIGHLIGHT_DOORR": "Grid/DoorR/Highlight",
-					  "HIGHLIGHT_OBSTACLE": "Grid/Obstacle/Highlight"}
+					  "HIGHLIGHT_OBSTACLE": "Grid/Obstacle/Highlight",
+					  "HIGHLIGHT_SETTINGS": "Level Control/Settings/Arrow",
+					  "HIGHLIGHT_RESTART": "Level Control/Restart/Arrow",
+					  "HIGHLIGHT_HELP": "Level Control/Help/Arrow",
+					  "HIGHLIGHT_2X_SPEED": "Level Control/DoubleSpeed/Arrow"}
 
 var check_progress = false  # Boolean check to fix yielding bug
 var check_index = 0  # Only check for currently yielding user action checkpoint
