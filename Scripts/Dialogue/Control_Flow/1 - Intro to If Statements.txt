@@ -7,14 +7,18 @@ Explain If-Else block.
 CODE_BLOCK
 Explain if code block.
 
-Do you see the pattern we have here? First let's place two forward code blocks into F1.
-#;
+Do you see the pattern we have here on this floor? My little brain is braining right now and I have an idea.
+First let's place two forward code blocks into F1.
+;
 
 Now let's set the condition of the If statement to front != blocked. Click the text for each different variable to open up a drop down menu and select the correct option.
-# Should yield here but I don't have the code working for it yet.
+;
 
-Now, if Robby is facing the wall, he should rotate to face the vertical path. Otherwise, he should press the button. Let's place a rotate right code block into the If statement and an interact code block into the Else statement.
-# Should yield here but I don't have the code working for it yet.
+Now, if Robby is facing the wall, he should rotate to face the vertical path. Otherwise, he should press the button. Let's place a rotate right code block into the If statement.
+;
+
+Let's also place an interact code block into the Else statement.
+;
 
 Finally, let's call the if statement in F1.
 #;
@@ -22,6 +26,6 @@ Finally, let's call the if statement in F1.
 Can you see what's going on here? The first time we call F1 in main, Robby will walk forwards 2 tiles and face the wall. Since the if condition is fulfilled, he will rotate right.
 The next time we call F1, Robby will walk fowards 2 tiles again. However, the if condition will not be satisfied this time so the Else statement will execute instead.
 Place 2 F1 code blocks into Main and press run when you're ready!
-#;
+;
 
 I never control my flow when I see ur mom.

@@ -99,6 +99,7 @@ func restart_dialogue():
 	check_index = 0
 	check_progress = false
 
+
 # Manages visual highlight for current game component we are describing
 func highlight_manager(dialogue, level):
 	var path_to_highlight = highlight_path[dialogue]
@@ -110,13 +111,24 @@ func highlight_manager(dialogue, level):
 
 # Checks if user completed the correct action before the next line of dialogue is triggered
 func dialogue_progress_check(level):
-	if check_index < level.progress_check_arr.size():
+	# Get level's variables for more readable code
+	var FBA_arr = level.progress_check_FBA
+	var code_block_arr = level.progress_check_arr
+	
+	if check_index < code_block_arr.size():
 		var i = check_index
 		
-		if check_progress and fba_children_check(level.progress_check_FBA[i], level.progress_check_arr[i]):
-			level.emit_signal("dialogue_progress")
-			check_progress = false
-			check_index += 1
+		if check_progress:
+			# Call fba_children_check if we are checking for the right code blocks in a function
+			if FBA_arr[i] is Area2D and fba_children_check(FBA_arr[i], code_block_arr[i]):
+				level.emit_signal("dialogue_progress")
+				check_progress = false
+				check_index += 1
+			# Call conditional_check if we are checking that the user put the right conditions on control flow
+			elif FBA_arr[i] is Control and conditional_check(FBA_arr[i], code_block_arr[i]):
+				level.emit_signal("dialogue_progress")
+				check_progress = false
+				check_index += 1
 
 
 # Helper function to check to see if the right code blocks are dropped into FBA in the expected order
@@ -138,8 +150,23 @@ func fba_children_check(FBA, block_names_arr):
 			if name.begins_with("Call_F1") and block_names_arr[i] != "Call_F1":
 				passed_check = false
 				break
+			elif name.begins_with("Call_F2") and block_names_arr[i] != "Call_F2":
+				passed_check = false
+				break
+			elif name.begins_with("Call_F3") and block_names_arr[i] != "Call_F3":
+				passed_check = false
+				break
 		elif name.rstrip("0123456789") != block_names_arr[i]:
 			passed_check = false
 			break
 	
 	return passed_check and code_blocks.size() == block_names_arr.size()
+
+
+func conditional_check(FB, block_names_arr):
+	if FB.name == "If":
+		var LHS = FB.get_node("LHS/Label").text
+		var op = FB.get_node("Operator/Label").text
+		var RHS = FB.get_node("RHS/Label").text
+		
+		return LHS == block_names_arr[0] and op == block_names_arr[1] and RHS == block_names_arr[2]
