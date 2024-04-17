@@ -45,7 +45,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
-#	DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self)
 	
 	#We don't have room for 3 scopes yet, so I'm just doing this
 	var runBtn = get_node("IDE/Run_Button").duplicate()
@@ -54,9 +54,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	DialogueManager.dialogue_progress_check(self)
 	#Check win con
 	#If win con, then open door
 	if B1_Pressed and B2_Pressed and B3_Pressed and B4_Pressed and B5_Pressed and B6_Pressed:
+		emit_signal("dialogue_progress")
 		
 		if level_win:
 			emit_signal("levelComplete")

@@ -18,7 +18,7 @@ var B4_Pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var has_tutorial = true
+var has_tutorial = false
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -43,13 +43,15 @@ var robotStartOrientation = PEP.Orientation.UP
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
-#	DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	DialogueManager.dialogue_progress_check(self)
 	#Check win con
 	#If win con, then open door
 	if B1_Pressed and B2_Pressed and B3_Pressed and B4_Pressed:
+		emit_signal("dialogue_progress")
 		
 		if level_win:
 			emit_signal("levelComplete")
