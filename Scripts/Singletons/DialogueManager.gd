@@ -147,13 +147,11 @@ func fba_children_check(FBA, block_names_arr):
 		var name = code_blocks[i].name
 		
 		if name.begins_with("Call"):
-			if name.begins_with("Call_F1") and block_names_arr[i] != "Call_F1":
-				passed_check = false
-				break
-			elif name.begins_with("Call_F2") and block_names_arr[i] != "Call_F2":
-				passed_check = false
-				break
-			elif name.begins_with("Call_F3") and block_names_arr[i] != "Call_F3":
+			# Erase "_#" from the end of the code block name
+			var erase_index = name.find_last("_")
+			name.erase(erase_index, 2)
+			
+			if name != block_names_arr[i]:
 				passed_check = false
 				break
 		elif name.rstrip("0123456789") != block_names_arr[i]:
@@ -164,9 +162,15 @@ func fba_children_check(FBA, block_names_arr):
 
 
 func conditional_check(FB, block_names_arr):
-	if FB.name == "If":
+	# Check if and while conditions
+	if FB.name == "If" or FB.name.begins_with("While"):
 		var LHS = FB.get_node("LHS/Label").text
 		var op = FB.get_node("Operator/Label").text
 		var RHS = FB.get_node("RHS/Label").text
 		
 		return LHS == block_names_arr[0] and op == block_names_arr[1] and RHS == block_names_arr[2]
+	# Check that the right loop is selected
+	elif FB.name.begins_with("Loop"):
+		var loop_type = FB.get_node("HighlightControl/ChooseLoopType/Label").text
+		
+		return loop_type.rstrip("0123456789") == block_names_arr[0]

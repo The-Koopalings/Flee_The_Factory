@@ -1,0 +1,31 @@
+I'm a little loopy right now. Ha ha, get it? Loopy? No?
+Well, that's probably because you're too stupid to understand the joke! Silly goose, you don't know what loops are yet!
+
+IDE
+This is a loop block. Explain loop block.
+Now you can click the Loop text to select which type of loop you want to use for this level. Please click and select the While loop.
+;
+
+Explain while loop.
+
+CODE_BLOCK
+Explain While code block.
+
+Now let's set the condition for the while loop. We want to keep moving until I am on the tile with the button.
+Let's make the condition tile != button.
+;
+
+Awesome! Now the code blocks in the while loop will continue to execute until the condition is fulfilled.
+Place one forward code block into the while loop.
+;
+
+Now let's call the while loop in Main so I can move to the button tile.
+;
+
+Finally, make sure to interact with the button.
+;
+
+Now let's press run and see me move my little legs.
+;
+
+Wow, what a loop dee loop ride that was! Also, for fun, you can see if you can solve this floor using a different while condition!

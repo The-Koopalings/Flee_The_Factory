@@ -18,8 +18,8 @@ onready var Else_FBA = get_node("IDE/If1/Else/FunctionBlockArea")
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check_arr = [["Forward", "Forward"], ["Front", "!=", "Blocked"], ["RotateRight"], ["Interact"]]
-onready var progress_check_FBA = [F1_FBA, If_Block, If_FBA, Else_FBA]
+var progress_check_arr = [["Forward", "Forward"], ["Front", "==", "Blocked"], ["RotateRight"], ["Interact"], ["Forward", "Forward", "Call_If1"]]
+onready var progress_check_FBA = [F1_FBA, If_Block, If_FBA, Else_FBA, F1_FBA]
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
