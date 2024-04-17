@@ -5,8 +5,7 @@ CODE_BLOCK
 Let's program [color=yellow]Func1[/color] to walk me [color=yellow]forward 3 tiles[/color] and [color=yellow]press the first button[/color].
 ;
 
-Huzzah! Now let's program [color=yellow]Func2[/color] to [color=yellow]walk me down 2 tiles and rotate me when needed[/color].
-(Hint: I shouldn't be facing the wall at the end of this function.)
+Huzzah! Now let's program [color=yellow]Func2[/color] to [color=yellow]walk me down 2 tiles and rotate me when needed[/color]. (Hint: I shouldn't be facing the wall at the end of this function.)
 ;
 
 Now let's see if you can call the functions in the right order in Main to walk me to the door. Press Run when you're ready!
