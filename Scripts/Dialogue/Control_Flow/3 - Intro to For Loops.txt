@@ -1,0 +1,29 @@
+FOREEEEEEEEEEEE!
+Haha just kidding, we're not playing golf right now! The only thing I play with is ur mom's coochie.
+
+IDE
+Now let's learn about for loops. These work very differently from while loops!
+Click the Loop text and select the for loop option.
+;
+
+Explain for loop.
+
+CODE_BLOCK
+First let's place 2 forward code blocks and 1 interact code block into the for loop.
+;
+
+Now let's set the conditions for the for loop counter. 
+See how there's 4 buttons ahead of me? I want to repeat the code blocks in the loop 4 times.
+First let's keep the start counter at 0. It is standard practice to start at 0 instead of 1 due to the way indexes work in Arrays. However, this is a topic we will learn later because you are still too stupid right now. For now, just remember to start at 0.
+Next, let's set stop to 4 and the step counter to +1.
+;
+
+We chose these numbers so that the loop will execute 4 times. It is important to note that i will increase from 0 -> 1 -> 2 -> 3, but will stop before reaching 4.
+
+Finally, let's call the for loop in Main.
+;
+
+Press run to see me go, go, go!
+;
+
+HOORIZZY! You have now learned the basics of control flow. As a fun challenge, try replaying this level using a while loop instead!

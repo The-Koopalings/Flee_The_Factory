@@ -132,7 +132,7 @@ func dialogue_progress_check(level):
 
 
 # Helper function to check to see if the right code blocks are dropped into FBA in the expected order
-func fba_children_check(FBA, block_names_arr):
+func fba_children_check(FBA, block_arr):
 	var code_blocks = FBA.get_children()
 	code_blocks.pop_front()    # first 2 children aren't code blocks
 	code_blocks.pop_front()
@@ -141,7 +141,7 @@ func fba_children_check(FBA, block_names_arr):
 	
 	for i in range(0, code_blocks.size()):
 		# Edge case: more code blocks are in the FBA than what we are checking for
-		if i >= block_names_arr.size():
+		if i >= block_arr.size():
 			break
 		
 		var name = code_blocks[i].name
@@ -151,26 +151,34 @@ func fba_children_check(FBA, block_names_arr):
 			var erase_index = name.find_last("_")
 			name.erase(erase_index, 2)
 			
-			if name != block_names_arr[i]:
+			if name != block_arr[i]:
 				passed_check = false
 				break
-		elif name.rstrip("0123456789") != block_names_arr[i]:
+		elif name.rstrip("0123456789") != block_arr[i]:
 			passed_check = false
 			break
 	
-	return passed_check and code_blocks.size() == block_names_arr.size()
+	return passed_check and code_blocks.size() == block_arr.size()
 
 
-func conditional_check(FB, block_names_arr):
+func conditional_check(FB, block_arr):
 	# Check if and while conditions
 	if FB.name == "If" or FB.name.begins_with("While"):
 		var LHS = FB.get_node("LHS/Label").text
 		var op = FB.get_node("Operator/Label").text
 		var RHS = FB.get_node("RHS/Label").text
 		
-		return LHS == block_names_arr[0] and op == block_names_arr[1] and RHS == block_names_arr[2]
+		return LHS == block_arr[0] and op == block_arr[1] and RHS == block_arr[2]
+	# Check for conditions
+	elif FB.name.begins_with("For"):
+		var start = FB.get_node("StartValue").value
+		var stop = FB.get_node("StopValue").value
+		var op = FB.get_node("StepOperator/Label").text
+		var step = FB.get_node("StepValue").value
+		
+		return start == block_arr[0] and stop == block_arr[1] and op == block_arr[2] and step == block_arr[3]
 	# Check that the right loop is selected
 	elif FB.name.begins_with("Loop"):
 		var loop_type = FB.get_node("HighlightControl/ChooseLoopType/Label").text
 		
-		return loop_type.rstrip("0123456789") == block_names_arr[0]
+		return loop_type.rstrip("0123456789") == block_arr[0]

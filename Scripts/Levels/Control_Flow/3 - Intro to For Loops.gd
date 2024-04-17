@@ -10,14 +10,18 @@ var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
+onready var Loop_Block = get_node("IDE/Loop1")
+onready var For_Block = get_node("IDE/Loop1/HighlightControl/ForConditional")
+onready var Loop_FBA = get_node("IDE/Loop1/HighlightControl/FunctionBlockArea")
+
 var b1_pressed = false
 var b2_pressed = false
 var b3_pressed = false
 var b4_pressed = false
 
 signal dialogue_progress
-var progress_check_arr = []
-onready var progress_check_FBA = []
+var progress_check_arr = [["For"], ["Forward", "Forward", "Interact"], [0, 4, "+", 1], ["Call_Loop1"]]
+onready var progress_check_FBA = [Loop_Block, Loop_FBA, For_Block, MainFBA]
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
@@ -38,12 +42,12 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	#DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#DialogueManager.dialogue_progress_check(self)
+	DialogueManager.dialogue_progress_check(self)
 	
 	if b1_pressed and b2_pressed and b3_pressed and b4_pressed:
 		emit_signal("dialogue_progress")
