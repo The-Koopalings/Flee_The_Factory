@@ -1,21 +1,21 @@
 You might have noticed that my inventory has changed modes.
-Now it is in [color=green]"Queue"[/color] mode, which is indicated by it being green and having the words "Queue" above it.
+Now it is in [color=green]"Queue"[/color] mode, which is indicated by it being [color=green]green[/color] and having the words "Queue" above it.
 In this mode, my inventory acts like a queue data structure. Let me explain more about queues.
-Queues are a type of data structure that works on the principle of [color=yellow]"first in first out"[/color], or FIFO.
-Meaning, the first item (or earliest item) that was put into a queue will be the first that is taken out (or used). Queues are kind of like the [color=yellow]opposite[/color] of stacks in that way.
+Queues are a type of data structure that works on the principle of [color=yellow]"first in first out"[/color], or [color=yellow]FIFO[/color].
+Meaning, the first item (or earliest item) that was put into a queue will be the first that is taken out (or used). Queues are kind of like the [color=yellow]opposite of stacks[/color] in that way.
 
 CODE_BLOCK
 Now, let's go over how [color=yellow]Pickup[/color] and [color=yellow]UseItem[/color] work for Queue mode.
 
 HIGHLIGHT_PICKUP
-Pickup in Queue mode works exactly the same as in Stack mode. 
+[color=yellow]Pickup[/color] in Queue mode works [color=yellow]exactly the same[/color] as in Stack mode. 
 HIGHLIGHT_PICKUP
-Pickup automatically places a picked-up item into the [color=yellow]smallest, or leftmost,[/color] available index & if my inventory is full then I can't pickup the item.
+[color=yellow]Pickup[/color] automatically places a picked-up item into the [color=yellow]smallest, or leftmost,[/color] available index & if my inventory is full then I can't pickup the item.
 
 HIGHLIGHT_USEITEM
-UseItem works differently in Queue mode because it follows the [color=yellow]FIFO[/color] principle of queues.
+[color=yellow]UseItem[/color] works differently in Queue mode because it follows the [color=yellow]FIFO[/color] principle of queues.
 HIGHLIGHT_USEITEM
-UseItem will try to use the [color=yellow]earliest[/color] picked up item in my inventory AKA the item at [color=yellow]index 0.[/color]
+[color=yellow]UseItem[/color] will try to use the [color=yellow]earliest[/color] picked up item in my inventory AKA the item at [color=yellow]index 0.[/color]
 HIGHLIGHT_USEITEM
 If the item is used up, then everything in my inventory will be [color=yellow]shifted 1 index to the left[/color] (or in math terms (their current index - 1)). So the item at index 1 will now be in index 0, the item at index 2 will be in index 1, and so on so forth.
 

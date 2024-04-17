@@ -16,11 +16,13 @@ func _ready():
 	
 
 func _on_Settings_pressed():
+	ButtonPress2.play()
 	SettingsMenu.visible = true
 	get_tree().paused = true
 
 
 func _on_Restart_pressed():
+	ButtonPress2.play()
 	#Duplicate IDE sections to keep code blocks after Restart
 	var IDE = get_node("../IDE")
 	for block in IDE.get_children():
@@ -35,6 +37,7 @@ func _on_Restart_pressed():
 
 
 func _on_DoubleSpeed_toggled(button_pressed):
+#	AltButtonPress.play()
 	if GameStats.is_executing():
 		yield(Robot, "animationFinished")
 	
@@ -45,6 +48,7 @@ func _on_DoubleSpeed_toggled(button_pressed):
 
 
 func _on_Help_pressed():
+	ButtonPress2.play()
 	var level = get_node("..")
 	var root = get_tree().root
 	

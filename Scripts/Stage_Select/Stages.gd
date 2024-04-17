@@ -7,10 +7,12 @@ func _ready():
 
 
 func _on_BackButton_pressed():
+	ButtonPress3.play()
 	SceneSwapper.change_scene("Stage Select")
 
 
 func _on_LevelButton_pressed(name):
+	ButtonPress.play()
 	SceneSwapper.change_to_level_scene(self, name)
 
 

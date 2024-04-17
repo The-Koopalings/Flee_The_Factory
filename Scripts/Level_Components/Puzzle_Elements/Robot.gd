@@ -39,10 +39,10 @@ func _ready():
 	pass
 	
 #Event handler for movement via keyboard	
-func _unhandled_input(event):
-	for dir in inputs.keys():
-		if event.is_action_pressed(dir):
-			move(dir)
+#func _unhandled_input(event):
+#	for dir in inputs.keys():
+#		if event.is_action_pressed(dir):
+#			move(dir)
 
 # Controls movement of the robot
 func move(dir):
@@ -55,6 +55,7 @@ func move(dir):
 	ray.force_raycast_update()
 	
 	if !ray.is_colliding():
+		$SoundMove.play()
 		moving = true
 		#position += vector_position
 		start_position = position
@@ -105,6 +106,7 @@ func _process(delta):
 	if !moving:
 #		var facing = 'idle_' + direction
 #		$AnimationPlayer.play(facing)
+		$SoundMove.stop()
 		animation_mode.travel("Idle")
 		emit_signal("animationFinished") #Allows code execution to continue if front is blocked, doesn't work if put in move() for some reason?
 	else:
@@ -146,6 +148,7 @@ func _on_Forward_forwardSignal():
 
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
+	$SoundTurn.play()
 	#$Sprite.rotation -= PI/2
 	orientation = (orientation - 1) % 4
 	if orientation < 0:
@@ -154,6 +157,7 @@ func _on_RotateLeft_rotateLeftSignal():
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
+	$SoundTurn.play()
 	#$Sprite.rotation += PI/2
 	orientation = (orientation + 1) % 4
 	set_idle_direction()
@@ -222,6 +226,7 @@ func get_object_in_direction(dir: String):
 
 #Virus (killed via GameStats)
 func _on_GameStats_robotDied():
+	$SoundDeath.play()
 	#Temporary action just so there's a visual indicator
 	#Should be replaced with some animation or something else to better show Robby dying
 	$Sprite.set_texture(deadRobotTexture) 

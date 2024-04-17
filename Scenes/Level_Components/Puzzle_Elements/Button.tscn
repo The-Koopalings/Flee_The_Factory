@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Objects/button.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/Button.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sounds/zapsplat_vehicles_car_hazard_warning_button_press_interior_nissan_patrol_2019_001_55358.mp3" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -27,6 +28,11 @@ margin_bottom = 40.0
 mouse_filter = 2
 border_width = 3.0
 editor_only = false
+
+[node name="SoundPressed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 12.0
+bus = "SoundEffects"
 
 [connection signal="body_entered" from="." to="." method="_on_Button_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Button_body_exited"]
