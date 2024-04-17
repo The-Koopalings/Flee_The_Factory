@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/TextBox.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Robby/waveWITHBG.png" type="Texture" id=4]
-
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -18,11 +16,19 @@ border_color = Color( 1, 1, 1, 1 )
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=7]
 size = 30
-font_data = ExtResource( 1 )
+font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 30
 font_data = ExtResource( 2 )
 
@@ -87,23 +93,18 @@ margin_top = 68.0
 margin_right = 1595.0
 margin_bottom = 275.0
 
-[node name="Start" type="Label" parent="TextBoxContainer/DialogueContainer/HBoxContainer"]
-margin_right = 13.0
-margin_bottom = 37.0
-size_flags_vertical = 0
-custom_fonts/font = SubResource( 2 )
-text = "*"
-
-[node name="Text" type="Label" parent="TextBoxContainer/DialogueContainer/HBoxContainer"]
-margin_left = 17.0
+[node name="Text" type="RichTextLabel" parent="TextBoxContainer/DialogueContainer/HBoxContainer"]
 margin_right = 1345.0
 margin_bottom = 207.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 3 )
+custom_fonts/mono_font = SubResource( 7 )
+custom_fonts/italics_font = SubResource( 9 )
+custom_fonts/bold_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "ur mom"
 text = "ur mom"
-autowrap = true
-clip_text = true
 
 [node name="PictureContainer" type="MarginContainer" parent="TextBoxContainer"]
 margin_right = 1620.0
@@ -112,13 +113,6 @@ custom_constants/margin_right = 1375
 custom_constants/margin_top = 25
 custom_constants/margin_left = 25
 custom_constants/margin_bottom = 25
-
-[node name="Panel" type="Panel" parent="TextBoxContainer/PictureContainer"]
-visible = false
-margin_left = 25.0
-margin_top = 25.0
-margin_right = 245.0
-margin_bottom = 275.0
 
 [node name="Sprite" type="Sprite" parent="TextBoxContainer/PictureContainer"]
 position = Vector2( 127, 145 )
@@ -132,13 +126,6 @@ custom_constants/margin_right = 25
 custom_constants/margin_top = 25
 custom_constants/margin_left = 250
 custom_constants/margin_bottom = 225
-
-[node name="Panel" type="Panel" parent="TextBoxContainer/HeaderContainer"]
-visible = false
-margin_left = 250.0
-margin_top = 25.0
-margin_right = 1595.0
-margin_bottom = 75.0
 
 [node name="Robby" type="Label" parent="TextBoxContainer/HeaderContainer"]
 margin_left = 250.0

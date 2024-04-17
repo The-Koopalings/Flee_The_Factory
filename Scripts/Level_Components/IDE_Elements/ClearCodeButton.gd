@@ -12,5 +12,6 @@ func _ready():
 	
 
 func on_pressed():
+	ButtonPress3.play()
 	get_node("../FunctionBlockArea").clear_code()
 	

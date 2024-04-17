@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_science_fiction_robot_beep_001_44828.mp3-df16b05c6cf9d166534aff254505cd49.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/zapsplat_science_fiction_robot_beep_001_44828.mp3"
+dest_files=[ "res://.import/zapsplat_science_fiction_robot_beep_001_44828.mp3-df16b05c6cf9d166534aff254505cd49.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

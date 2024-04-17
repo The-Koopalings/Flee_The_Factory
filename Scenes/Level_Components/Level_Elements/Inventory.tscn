@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/Inventory.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Sounds/zapsplat_multimedia_alert_action_collect_pick_up_point_or_item_79293.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sounds/zapsplat_household_door_chain_slide_lock_or_unlock_001_12580.mp3" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 42
@@ -117,3 +119,11 @@ custom_fonts/font = SubResource( 2 )
 text = "Array"
 align = 1
 valign = 2
+
+[node name="SoundPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "SoundEffects"
+
+[node name="SoundUnlockDoor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "SoundEffects"

@@ -18,6 +18,8 @@ var b2_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["Forward", "Forward", "Interact"], ["Call_F1"], ["Call_F1", "Call_F1"]]
 onready var progress_check_FBA = [F1_FBA, MainFBA, MainFBA]
+var textPath = "Functions/1 - Functions Intro.txt"
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -37,7 +39,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Functions/1 - Functions Intro.txt")
+	DialogueManager.add_dialogue(self, textPath)
 	
 	$IDE/F1_Arrow.visible = false
 

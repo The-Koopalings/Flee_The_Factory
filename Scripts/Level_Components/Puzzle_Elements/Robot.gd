@@ -36,13 +36,13 @@ onready var ray = $RayCast2D
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 
 func _ready():
-	$Highlight.visible = true
+	pass
 	
 #Event handler for movement via keyboard	
-func _unhandled_input(event):
-	for dir in inputs.keys():
-		if event.is_action_pressed(dir):
-			move(dir)
+#func _unhandled_input(event):
+#	for dir in inputs.keys():
+#		if event.is_action_pressed(dir):
+#			move(dir)
 
 # Controls movement of the robot
 func move(dir):
@@ -55,6 +55,7 @@ func move(dir):
 	ray.force_raycast_update()
 	
 	if !ray.is_colliding():
+		$SoundMove.play()
 		moving = true
 		#position += vector_position
 		start_position = position
@@ -85,6 +86,10 @@ func move(dir):
 				#position.y -= 4/GameStats.run_speed
 				#linear_velocity.y -= (tile_size/GameStats.run_speed)
 				#$AnimationPlayer.play("walk_up")
+		#In case Robert hits the border, he can't get stuck there
+		if tileX > tileXMax or tileY > tileYMax or tileX < 0 or tileY < 0:
+			moving = false
+			animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
 	else:
 		moving = false
 		animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
@@ -101,6 +106,7 @@ func _process(delta):
 	if !moving:
 #		var facing = 'idle_' + direction
 #		$AnimationPlayer.play(facing)
+		$SoundMove.stop()
 		animation_mode.travel("Idle")
 		emit_signal("animationFinished") #Allows code execution to continue if front is blocked, doesn't work if put in move() for some reason?
 	else:
@@ -115,14 +121,14 @@ func _process(delta):
 			#position += 4/GameStats.run_speed
 			if (position.x != end_position.x):
 				if (position.x - end_position.x) > 0:
-					position.x -= 0.75/GameStats.run_speed
+					position.x -= 0.75/GameStats.savableGameStats.run_speed
 				else:
-					position.x += 0.75/GameStats.run_speed
+					position.x += 0.75/GameStats.savableGameStats.run_speed
 			if (position.y != end_position.y):
 				if (position.y - end_position.y) > 0:
-					position.y -= 0.75/GameStats.run_speed
+					position.y -= 0.75/GameStats.savableGameStats.run_speed
 				else:
-					position.y += 0.75/GameStats.run_speed
+					position.y += 0.75/GameStats.savableGameStats.run_speed
 			#Clamping grid
 			position.x = clamp(position.x, start_x +  tile_size/2, end_x - tile_size/2)
 			position.y = clamp(position.y, start_y + tile_size/2, end_y - tile_size/2)
@@ -142,36 +148,35 @@ func _on_Forward_forwardSignal():
 
 #RotateLeft
 func _on_RotateLeft_rotateLeftSignal():
+	$SoundTurn.play()
 	#$Sprite.rotation -= PI/2
 	orientation = (orientation - 1) % 4
 	if orientation < 0:
 		orientation = 3
-	move_highlight()
+	set_idle_direction()
 
 #RotateRight
 func _on_RotateRight_rotateRightSignal():
+	$SoundTurn.play()
 	#$Sprite.rotation += PI/2
 	orientation = (orientation + 1) % 4
-	move_highlight()
+	set_idle_direction()
 
 #Interact
 func _on_Interact_interactSignal():
 	emit_signal("interact", tileX, tileY)
 	###############MAYBE???? DO A JUMP?????######################
 
-func move_highlight():
+#Used so Robert faces the right direction on rotations
+func set_idle_direction():
 	var dir = get_direction()
 	if dir == "ui_up":
-		$Highlight.set_position(Vector2(-48, -144))
 		$AnimationPlayer.play("idle_up")
 	elif dir == "ui_left":
-		$Highlight.set_position(Vector2(-144, -48))
 		$AnimationPlayer.play("idle_left")
 	elif dir == "ui_down":
-		$Highlight.set_position(Vector2(-48, 48))
 		$AnimationPlayer.play("idle_down")
 	elif dir == "ui_right":
-		$Highlight.set_position(Vector2(48, -48)) 
 		$AnimationPlayer.play("idle_right")
 	
 
@@ -221,6 +226,7 @@ func get_object_in_direction(dir: String):
 
 #Virus (killed via GameStats)
 func _on_GameStats_robotDied():
+	$SoundDeath.play()
 	#Temporary action just so there's a visual indicator
 	#Should be replaced with some animation or something else to better show Robby dying
 	$Sprite.set_texture(deadRobotTexture) 
