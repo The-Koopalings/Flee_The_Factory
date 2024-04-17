@@ -92,6 +92,9 @@ func display_generic_dialogue(level, directory):
 	for dialogue in generic_dialogue[directory]:
 		level.TextBox.queue_text(dialogue)
 		yield(level.TextBox, "user_action")
+	
+	# Hide text box after last generic dialogue is shown
+	level.TextBox.hide_textbox()
 
 
 func restart_dialogue():
