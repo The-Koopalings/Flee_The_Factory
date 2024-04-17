@@ -17,8 +17,8 @@ var scene_order = []
 #Keys: stage name (same as the directory name), value: number of levels it has
 var stageLevelCounts = {}
 
-const X_START = 450
-const Y_START = 400
+const X_START = 110
+const Y_START = 300
 const X_SPACE = 300
 const Y_SPACE = 300
 
