@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Credits/Credits.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Credits/Credits.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Backgrounds/Credits.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/Stage_Select/BackButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Music/686610__seth_makes_sounds__bubbglegum-pop-song.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 144
@@ -18,16 +20,16 @@ margin_right = 1470.0
 margin_bottom = 217.0
 custom_fonts/font = SubResource( 1 )
 text = "Credits Yeehaw!"
+align = 1
 
 [node name="CreditsMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
+stream = ExtResource( 5 )
 volume_db = 4.0
 bus = "Music"
-
-[node name="BackButton" parent="." instance=ExtResource( 3 )]
-align = 1
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 888, 644.185 )
 z_index = -1
 texture = ExtResource( 2 )
+
+[node name="BackButton" parent="." instance=ExtResource( 4 )]
