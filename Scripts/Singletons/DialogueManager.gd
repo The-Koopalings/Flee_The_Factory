@@ -178,7 +178,7 @@ func conditional_check(FB, block_arr):
 		
 		return start == block_arr[0] and stop == block_arr[1] and op == block_arr[2] and step == block_arr[3]
 	# Check that the right loop is selected
-	elif FB.name.begins_with("Loop"):
-		var loop_type = FB.get_node("HighlightControl/ChooseLoopType/Label").text
+	elif FB.name.begins_with("Highlight"):
+		var loop_type = FB.get_node("ChooseLoopType/Label").text
 		
 		return loop_type.rstrip("0123456789") == block_arr[0]

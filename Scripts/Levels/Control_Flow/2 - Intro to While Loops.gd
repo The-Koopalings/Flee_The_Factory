@@ -10,7 +10,7 @@ var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL 
-onready var Loop_Block = get_node("IDE/Loop1")
+onready var Loop_Block = get_node("IDE/Loop1/HighlightControl")
 onready var While_Block = get_node("IDE/Loop1/HighlightControl/WhileConditional")
 onready var Loop_FBA = get_node("IDE/Loop1/HighlightControl/FunctionBlockArea")
 

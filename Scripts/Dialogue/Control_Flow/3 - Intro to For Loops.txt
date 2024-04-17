@@ -12,7 +12,7 @@ CODE_BLOCK
 First let's place 2 forward code blocks and 1 interact code block into the for loop.
 ;
 
-Now let's set the conditions for the for loop counter. 
+Now let's set the conditions for the for loop counter.
 See how there's 4 buttons ahead of me? I want to repeat the code blocks in the loop 4 times.
 First let's keep the start counter at 0. It is standard practice to start at 0 instead of 1 due to the way indexes work in Arrays. However, this is a topic we will learn later because you are still too stupid right now. For now, just remember to start at 0.
 Next, let's set stop to 4 and the step counter to +1.

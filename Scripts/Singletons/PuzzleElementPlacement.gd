@@ -357,10 +357,15 @@ func init_progress_check_FBA():
 		
 		if scope == "Main" or scope.begins_with("F"):
 			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/FunctionBlockArea")
+		elif scope.begins_with("If") or scope.begins_with("Loop"):
+			var itself = level.progress_check_FBA[i].name
+			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/" + itself)
 		else:
 			#For checking Ifs & Loops
 			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
 			if higherScope.begins_with("If"):
+				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/" + scope + "/FunctionBlockArea")
+			elif higherScope.begins_with("Else"):
 				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/" + scope + "/FunctionBlockArea")
 			elif higherScope.begins_with("Loop"):
 				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/FunctionBlockArea")
