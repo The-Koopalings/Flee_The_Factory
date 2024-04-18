@@ -17,7 +17,7 @@ text = "Credits Yeehaw!"
 
 [node name="CreditsMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-volume_db = 4.0
+volume_db = 6.0
 bus = "Music"
 
 [node name="BackButton" parent="." instance=ExtResource( 3 )]
