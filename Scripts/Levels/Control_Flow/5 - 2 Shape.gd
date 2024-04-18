@@ -15,7 +15,6 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath =  "Control_Flow/5 - 2 Shape.txt"
 var has_tutorial = false
 ##UNIQUE LEVEL VARIABLES
 
@@ -36,7 +35,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	#DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self)
 	
 	# Put here for now since current IDE doesn't allow 3 blocks
 	var runBtn = get_node("IDE/Run_Button").duplicate()
@@ -46,7 +45,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#DialogueManager.dialogue_progress_check(self)
+	DialogueManager.dialogue_progress_check(self)
 	
 	if btn_pressed:
 		emit_signal("dialogue_progress")

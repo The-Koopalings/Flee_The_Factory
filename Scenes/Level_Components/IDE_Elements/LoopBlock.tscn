@@ -99,6 +99,7 @@ margin_right = 307.0
 margin_bottom = 36.0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 3 )
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": "x = 173, y = 0 at start. After choosing pos = (5, 18), size = (134, 50)"
 }
@@ -191,6 +192,7 @@ margin_top = 5.0
 margin_right = 376.0
 margin_bottom = 35.0
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": "(306,0)"
 }
@@ -229,6 +231,7 @@ margin_top = 17.0
 margin_right = 114.0
 margin_bottom = 45.0
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": ""
 }
@@ -250,6 +253,7 @@ margin_top = 17.0
 margin_right = 167.0
 margin_bottom = 45.0
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": ""
 }
@@ -272,8 +276,8 @@ margin_left = 170.0
 margin_top = 17.0
 margin_right = 299.0
 margin_bottom = 45.0
-focus_mode = 2
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": ""
 }
