@@ -64,16 +64,17 @@ This is the [color=yellow]IDE[/color].
 HIGHLIGHT_IDE
 Right now, it only has something that we call the [color=yellow]"Main" function[/color].
 HIGHLIGHT_IDE
-You can put [color=yellow]code blocks[/color] into [color=yellow]Main[/color] and the code blocks in it will automatically be executed from left to right, top to bottom, once you press the [color=green]"Run button"[/color] here.
+You can put [color=yellow]code blocks[/color] into [color=yellow]Main[/color] and the code blocks in it will automatically be executed from left to right, top to bottom, once you press the [color=green]"Run button"[/color] below.
 HIGHLIGHT_IDE
 At the bottom of Main, you can see the [color=yellow]code block counter[/color]. It shows [color=yellow]how many code blocks are in Main[/color] as well as the [color=yellow]max number of code blocks[/color] you can put in it.
 4 is the max number of code blocks you can put into Main for this level.
 
 HIGHLIGHT_CLEAR_CODE
-As mentioned before, upon [color=yellow]Restart[/color], the [color=yellow]IDE is unaffected[/color]. To [color=red]clear all of the code blocks in Main[/color], press the [color=red]Clear button[/color] on the right.
+As mentioned before, upon [color=yellow]Restart[/color], the [color=yellow]IDE is unaffected[/color]. To [color=red]clear all of the code blocks in Main[/color], press the [color=red]Clear button[/color] on the top-right.
 
 CODE_BLOCK
-Moving on, to place code blocks into the IDE, you can either [color=yellow]drag and drop[/color] or [color=yellow]double click[/color] them. You can do the same to [color=red]remove[/color] them from the IDE.
+Moving on, to place code blocks into the IDE, you can either [color=yellow]drag and drop[/color] or [color=yellow]double click[/color] them. To [color=yellow]double click[/color] it into an IDE section, that specific [color=yellow]IDE section[/color] will have to be [color=yellow]highlighted[/color] first, which you can do by [color=yellow]clicking on the section[/color]. 
+You can do either [color=red]drag and drop[/color] or [color=red]double click[/color] code blocks to [color=red]remove[/color] them from the IDE as well.
 Let's move [color=yellow]one Forward[/color] code block into the Main function.
 ;
 Great! As you can see, Robby has to move 3 tiles to reach the button and interact with it. Let's move [color=yellow]two more Forward[/color] code blocks and [color=yellow]one Interact[/color] code block into the Main function.
