@@ -1,4 +1,4 @@
-Not all floors will contain a straight path to the door! Remember that I will only move forward in the direction that I am facing.
+Not all rooms will contain a straight path to the door! Remember that I will only move forward in the direction that I am facing.
 
 Let's go over the new object on the factory floor.
 HIGHLIGHT_OBSTACLE

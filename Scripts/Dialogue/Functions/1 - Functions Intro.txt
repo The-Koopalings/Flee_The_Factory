@@ -1,5 +1,5 @@
 Hey pal, do you remember how we talked about Main having a [color=yellow]limit[/color] on the [color=yellow]amount of code blocks[/color] you can put into it?
-Well, that can be a problem for us since sometimes, that means we can't exit the floor by [color=yellow]only[/color] putting code blocks into Main.
+Well, that can be a problem for us since sometimes, that means we can't exit the room by [color=yellow]only[/color] putting code blocks into Main.
 Luckily, we can work around that by relying on other sections of the IDE.
 
 IDE

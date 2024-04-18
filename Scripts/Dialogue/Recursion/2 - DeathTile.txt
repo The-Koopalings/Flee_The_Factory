@@ -1,6 +1,7 @@
-Oh no! What is this I spot ahead? Is that... a [color=red]virus[/color]!?
+Oh no! What is this I spot ahead? Is that... a [wave amp=50.0 freq=5.0 connected=1][color=red]virus[/color][/wave]!?
 
 CODE_BLOCK
+HIGHLIGHT_VIRUS
 [color=red]Viruses[/color] are a [color=red]dangerous[/color] type of tile.
 If I am [color=yellow]on top[/color] of a [color=red]virus[/color] tile, make sure I [color=red]DON'T[/color] [color=yellow]interact[/color] with it! Otherwise my systems will get [color=red]corrupted[/color] and I'll shut down.
 

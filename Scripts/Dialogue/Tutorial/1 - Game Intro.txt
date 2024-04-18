@@ -77,7 +77,7 @@ Moving on, to place code blocks into the IDE, you can either [color=yellow]drag 
 You can do either [color=red]drag and drop[/color] or [color=red]double click[/color] code blocks to [color=red]remove[/color] them from the IDE as well.
 Let's move [color=yellow]one Forward[/color] code block into the Main function.
 ;
-Great! As you can see, Robby has to move 3 tiles to reach the button and interact with it. Let's move [color=yellow]two more Forward[/color] code blocks and [color=yellow]one Interact[/color] code block into the Main function.
+Great! As you can see, I have to move 3 tiles to reach the button and interact with it. Let's move [color=yellow]two more Forward[/color] code blocks and [color=yellow]one Interact[/color] code block into the Main function.
 ;
 
 HIGHLIGHT_RUN

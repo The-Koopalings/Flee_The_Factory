@@ -15,7 +15,7 @@ Awesome! Now place a [color=yellow]CALL_F1[/color] code block into [color=yellow
 Finally, let's have [color=yellow]Main call Func1[/color].
 ;
 
-Now press [/color]Run[/color] and watch me move it, move it!
+Now press [color=yellow]Run[/color] and watch me move it, move it!
 ;
 
 Usually recursion would have me re-cursing, but then I got caught and now I have to do some reversing.

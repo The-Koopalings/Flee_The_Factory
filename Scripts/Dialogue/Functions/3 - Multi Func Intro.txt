@@ -1,5 +1,5 @@
 Some levels will require you to code more than 1 function.
-Using my X-ray vision, I can see that there's 2 different patterns on this floor. We'll have to program 2 different functions to deal with these.
+Using my X-ray vision, I can see that there's 2 different patterns in this room. We'll have to program 2 different functions to deal with these.
 
 CODE_BLOCK
 Let's program [color=yellow]Func1[/color] to walk me [color=yellow]forward 3 tiles[/color] and [color=yellow]press the first button[/color].
