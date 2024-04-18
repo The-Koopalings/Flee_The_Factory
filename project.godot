@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Flee The Factory"
-run/main_scene="res://Scenes/Levels/Test_Levels/3Loops.tscn"
+run/main_scene="res://Scenes/Levels/Test_Levels/3Ifs.tscn"
 config/icon="res://icon.png"
 
 [autoload]

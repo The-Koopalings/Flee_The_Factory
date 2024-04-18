@@ -271,6 +271,15 @@ func init_IDE():
 		#Replace current IDE sections with pre-Restart IDE sections
 		for container in IDEScopes:			
 			scopesContainer.add_child(container)
+			var scope = container.get_child(0)
+			if scope.name.begins_with("F") or scope.name == "Main":
+				scope.get_node("FunctionBlockArea").reset_CodeBlock_positions()
+			elif scope.name.begins_with("If"):
+				scope.get_node("If/FunctionBlockArea").reset_CodeBlock_positions()
+				scope.get_node("Else/FunctionBlockArea").reset_CodeBlock_positions()
+			elif scope.name.begins_with("Loop"):
+				scope.get_node("HighlightControl/FunctionBlockArea").reset_CodeBlock_positions()
+				pass
 			i = i + 1
 		IDEScopes.clear()
 		
@@ -282,7 +291,7 @@ func init_IDE():
 				if child.name == "ButtonContainer" or child.name == "Scopes":
 					pass
 				else:
-					IDE.remove_child(children.front())
+					IDE.remove_child(child)
 
 		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
 		init_progress_check_FBA()

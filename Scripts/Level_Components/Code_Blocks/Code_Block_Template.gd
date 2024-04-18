@@ -28,6 +28,7 @@ func connections():
 	IDE.connect("executed", self, "_on_IDE_executed") 
 	
 	# Connect double click signal to all function blocks
+	
 	for scope in IDE.get_node("Scopes").get_children():
 		scope = scope.get_child(0)
 		if scope.name == "Run_Button":

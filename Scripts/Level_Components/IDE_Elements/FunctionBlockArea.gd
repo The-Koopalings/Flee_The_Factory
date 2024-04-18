@@ -17,8 +17,8 @@ onready var counter = get_node("../Counter")
 var numBlocks = 0
 var rowSize = 7
 var blockSize = 50 
-var xOffset = 28
-var yOffset = 28
+var xOffset = 25
+var yOffset = 25
 
 #To prevent removing a code block if it was dragged out of FBA, but dragged and dropped back into FBA
 var blockToAdd = null
@@ -170,4 +170,18 @@ func shift_blocks(startIndex):
 		childNode.position = Vector2(x, y)
 		#Set CodeBlock's startPos to current global position
 		childNode.get_child(2).startPos = childNode.global_position 
+		
+func reset_CodeBlock_positions():
+	var codeblocks = get_children()
+	codeblocks.pop_front()
+	codeblocks.pop_front()
+	
+	var n = 0
+	
+	for code in codeblocks:
+		var x = xOffset + blockSize * (n % rowSize) 
+		var y = yOffset + blockSize * int(n / rowSize) + 2
+		code.position = Vector2(x,y)
+		code.get_child(2).startPos = code.global_position
+		n += 1
 		
