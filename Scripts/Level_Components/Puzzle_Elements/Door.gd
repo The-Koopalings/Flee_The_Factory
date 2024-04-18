@@ -37,6 +37,7 @@ func set_color():
 	
 
 func _on_level_levelComplete():
+	$SoundUnlock.play()
 	$Sprite.set_texture(openDoorTexture)
 	get_node("WCLs").visible = false
 	

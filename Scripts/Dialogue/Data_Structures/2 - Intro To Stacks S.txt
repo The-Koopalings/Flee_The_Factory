@@ -1,21 +1,21 @@
 Hey partner look at our inventory.
-As you can see it's still on [color=red]"Stack"[/color] mode. You can tell that's the case by either the color of the inventory (red for stacks), or by the name of it at the top of the inventory.
+As you can see it's still on [color=red]"Stack"[/color] mode. You can tell that's the case by either the color of the inventory ([color=red]red for stacks[/color]), or by the name of it at the top of the inventory.
 Now let me explain what being in [color=red]"Stack"[/color] mode means exactly.
 As explained last time, the inventory modes make my inventory act like different types of data structures. A stack is a type of data structure.
-Stacks work on the principle of [color=yellow]"last in, first out"[/color], or LIFO, meaning if you wanted to take (or use) something out of a stack, then the last item put into the stack would be taken out (or used) first.
+Stacks work on the principle of [color=yellow]"last in, first out"[/color], or [color=yellow]LIFO[/color], meaning if you wanted to take (or use) something out of a stack, then the last item put into the stack would be taken out (or used) first.
 Now let me explain how this mode's [color=yellow]Pickup[/color] and [color=yellow]UseItem[/color] work.
 
 CODE_BLOCK
 
 HIGHLIGHT_PICKUP
-Since we are in [color=red]Stack[/color] mode, Pickup automatically places a picked-up item into the [color=yellow]smallest, or leftmost,[/color] available index.
+Since we are in [color=red]Stack[/color] mode, [color=yellow]Pickup[/color] automatically places a picked-up item into the [color=yellow]smallest, or leftmost,[/color] available index.
 HIGHLIGHT_PICKUP
 If I try to pickup an item while my inventory is full, then I can't pick it up and nothing happens.
 
 HIGHLIGHT_USEITEM
-UseItem, however, will try to use the [color=yellow]biggest, or rightmost,[/color] occupied index. AKA the item that was last put into the inventory.
+[color=yellow]UseItem[/color], however, will try to use the [color=yellow]biggest, or rightmost,[/color] occupied index. AKA the item that was last put into the inventory.
 HIGHLIGHT_USEITEM
-This imitates the LIFO principle of stacks, which is why we call this mode the Stack mode.
+This imitates the [color=yellow]LIFO principle[/color] of stacks, which is why we call this mode the Stack mode.
 
 To get to the exit, we will have to keep in mind the [color=yellow]stack concept of LIFO[/color]. Always remember that for stacks, the [color=yellow]last[/color] item put in is the [color=yellow]first[/color] to be used!
 ;

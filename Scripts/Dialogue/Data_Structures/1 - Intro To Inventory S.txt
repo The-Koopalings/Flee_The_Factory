@@ -1,13 +1,13 @@
 Looks like I got a new module installed and now I have an [color=yellow]inventory![/color]
 
 HIGHLIGHT_INVENTORY
-In the top-right you can see my [color=yellow]inventory.[/color]
+In the [color=yellow]top-right[/color] you can see my [color=yellow]inventory.[/color]
 
 HIGHLIGHT_INVENTORY
 You can think of the inventory as a [color=yellow]"data structure"[/color], or something that you can store, organize, or get data from. In our case, items are like "data" in the inventory.
 
 HIGHLIGHT_INVENTORY
-My inventory actually has 3 different modes which we will cover more in-depth later on. These modes will make the inventory act like 3 common types of data structures. Right now, we are on [color=red]"Stack"[/color] mode.
+My inventory actually has [color=yellow]3 different modes[/color] which we will cover more in-depth later on. These modes will make the inventory act like 3 common types of data structures. Right now, we are on [color=red]"Stack"[/color] mode.
 
 HIGHLIGHT_INVENTORY
 As you can see, my inventory has a total of 5 slots, but slot numbers start at 0.
@@ -42,7 +42,7 @@ Again, you can probably guess that this will be used to use an item in our inven
 To unlock a Door, I have to [color=yellow]face the Door[/color], then [color=yellow]UseItem[/color] will have to be activated.
 The item that will be used with UseItem depends on my inventory mode, but since we only have 1 item, we don't need to worry about this yet.
 An important thing to remember here is that once an item is used correctly, it will disappear from my inventory and [color=yellow]cannot be used again[/color] (unless you Restart the level).
-Items used incorrectly (like if you try to open a [color=green]green Door[/color] with a [color=red]red Key[/color]) will not disappear.
+Items used [color=yellow]incorrectly[/color] (like if you try to open a [color=green]green Door[/color] with a [color=red]red Key[/color]) will not disappear.
 For now, place a [color=yellow]UseItem[/color] code block into Main.
 ;
 
