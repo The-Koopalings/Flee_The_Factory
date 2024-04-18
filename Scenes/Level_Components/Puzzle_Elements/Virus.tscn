@@ -14,3 +14,11 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Highlight" type="ReferenceRect" parent="."]
+margin_left = -32.25
+margin_top = -32.25
+margin_right = 32.75
+margin_bottom = 32.75
+border_width = 4.0
+editor_only = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Scripts/Levels/Tutorial/1 - Game Intro.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelClearedPopup.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/Arrow.tscn" type="PackedScene" id=15]
 
 [node name="1 - Game Intro" type="Node2D"]
 script = ExtResource( 12 )
@@ -45,6 +46,11 @@ texture = ExtResource( 13 )
 position = Vector2( 234, 614 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
+
+[node name="Clear_Code_Arrow" parent="IDE" instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 370, 25 )
+rotation = 1.5708
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 8 )]
 
