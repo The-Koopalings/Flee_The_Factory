@@ -70,6 +70,9 @@ margin_bottom = 1067.0
 [node name="Counter" parent="IDE/Loop2/HighlightControl" index="3"]
 maxBlocks = 1
 
+[node name="Label" parent="IDE/Loop2/HighlightControl/ChooseLoopType" index="1"]
+text = "Loop2"
+
 [node name="CodeBlockBar" parent="." instance=ExtResource( 16 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 9 )]

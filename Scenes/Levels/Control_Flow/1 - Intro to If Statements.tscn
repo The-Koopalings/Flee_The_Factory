@@ -54,6 +54,9 @@ margin_bottom = 1067.0
 [node name="Counter" parent="IDE/If1/If" index="4"]
 maxBlocks = 1
 
+[node name="Label" parent="IDE/If1/If/LHS" index="1"]
+text = "Tile"
+
 [node name="Counter" parent="IDE/If1/Else" index="4"]
 maxBlocks = 1
 

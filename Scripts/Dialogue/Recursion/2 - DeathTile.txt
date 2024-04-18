@@ -1,0 +1,13 @@
+Oh no! What is this I spot ahead? Is that... a virus!?
+
+CODE_BLOCK
+Explain virus
+If I am on top of a virus tile, make sure I don't interact with it! Otherwise my systems will get corrupted and I'll shut down.
+
+Hmmm... I'm thinking right now. What if we use an if statement to help us...
+If I am standing on top of a virus tile, move me forward. Otherwise, have me interact with a button tile.
+You feel me right now? And remember, we can use recursion to beat this!
+Good luck and please don't kill me...
+;
+
+Oh thank god I'm alive, I really thought you were gonna kill me! Oops, I mean hooray! I knew you could do it!

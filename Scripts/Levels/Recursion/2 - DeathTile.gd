@@ -15,7 +15,6 @@ var B1_Pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath =  "Recursion/2 - DeathTile.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
@@ -29,7 +28,7 @@ var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['R',' ','V',' ','V',' ','B',' ','V',' ','D'],
+	['X','R','V',' ','V',' ','B',' ','V','D','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
@@ -41,13 +40,16 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Automatically set the positions of each element based on where they are on the grid.
 func _ready():
 	PEP.loadLevel(self)
-#	DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	DialogueManager.dialogue_progress_check(self)
+	
 	#Check win con
 	#If win con, then open door
 	if B1_Pressed:
+		emit_signal("dialogue_progress")
 		
 		if level_win:
 			emit_signal("levelComplete")

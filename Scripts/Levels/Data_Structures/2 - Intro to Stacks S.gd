@@ -15,7 +15,6 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = []
 onready var progress_check_FBA = []
-var textPath = "Data_Structures/2 - IntroToStacks.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
@@ -35,7 +34,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 func _ready():
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self)
 	
 
 func _process(delta):

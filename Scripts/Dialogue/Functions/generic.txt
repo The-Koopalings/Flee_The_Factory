@@ -1,1 +1,0 @@
-Remember: Executing/calling a function will execute all of the code blocks in it. Also, functions can call other functions.
