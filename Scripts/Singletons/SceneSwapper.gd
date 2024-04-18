@@ -125,6 +125,7 @@ func init_scenes():
 	load_file_contents("res://Scenes/Levels/Control_Flow")
 	load_file_contents("res://Scenes/Levels/Recursion")
 	load_file_contents("res://Scenes/Levels/Data_Structures")
+	scene_order.push_back("Credits")
 
 
 func load_file_contents(path):

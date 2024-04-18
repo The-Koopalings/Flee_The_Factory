@@ -23,11 +23,19 @@ var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",
 					  "HIGHLIGHT_CALL_F1": "CodeBlockBar/Call_F1/CodeBlock/Arrow",
 					  "HIGHLIGHT_PICKUP": "CodeBlockBar/Pickup/CodeBlock/Arrow",
 					  "HIGHLIGHT_USEITEM": "CodeBlockBar/UseItem/CodeBlock/Arrow",
+					  "HIGHLIGHT_CALL_IF1": "CodeBlockBar/Call_If1/CodeBlock/Arrow",
+					  "HIGHLIGHT_CALL_LOOP1": "CodeBlockBar/Call_Loop1/CodeBlock/Arrow",
 					  "HIGHLIGHT_BUTTON": "Grid/Button/Highlight",
 					  "HIGHLIGHT_KEYR": "Grid/KeyR/Highlight",
 					  "HIGHLIGHT_DOOR": "Grid/Door/Highlight",
 					  "HIGHLIGHT_DOORR": "Grid/DoorR/Highlight",
-					  "HIGHLIGHT_OBSTACLE": "Grid/Obstacle/Highlight"}
+					  "HIGHLIGHT_OBSTACLE": "Grid/Obstacle/Highlight",
+					  "HIGHLIGHT_VIRUS": "Grid/Virus/Highlight",
+					  "HIGHLIGHT_SETTINGS": "Level Control/Settings/Arrow",
+					  "HIGHLIGHT_RESTART": "Level Control/Restart/Arrow",
+					  "HIGHLIGHT_HELP": "Level Control/Help/Arrow",
+					  "HIGHLIGHT_2X_SPEED": "Level Control/DoubleSpeed/Arrow",
+					  "HIGHLIGHT_CLEAR_CODE": "IDE/Clear_Code_Arrow"}
 
 var check_progress = false  # Boolean check to fix yielding bug
 var check_index = 0  # Only check for currently yielding user action checkpoint

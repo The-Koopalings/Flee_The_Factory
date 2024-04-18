@@ -34,7 +34,7 @@ script = ExtResource( 9 )
 
 [node name="Button1" parent="Grid" instance=ExtResource( 11 )]
 
-[node name="Virus1" parent="Grid" instance=ExtResource( 13 )]
+[node name="Virus" parent="Grid" instance=ExtResource( 13 )]
 
 [node name="Virus2" parent="Grid" instance=ExtResource( 13 )]
 

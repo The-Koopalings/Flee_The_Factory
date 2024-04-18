@@ -1,12 +1,13 @@
-Oh no! What is this I spot ahead? Is that... a virus!?
+Oh no! What is this I spot ahead? Is that... a [wave amp=50.0 freq=5.0 connected=1][color=red]virus[/color][/wave]!?
 
 CODE_BLOCK
-Explain virus
-If I am on top of a virus tile, make sure I don't interact with it! Otherwise my systems will get corrupted and I'll shut down.
+HIGHLIGHT_VIRUS
+[color=red]Viruses[/color] are a [color=red]dangerous[/color] type of tile.
+If I am [color=yellow]on top[/color] of a [color=red]virus[/color] tile, make sure I [color=red]DON'T[/color] [color=yellow]interact[/color] with it! Otherwise my systems will get [color=red]corrupted[/color] and I'll shut down.
 
-Hmmm... I'm thinking right now. What if we use an if statement to help us...
-If I am standing on top of a virus tile, move me forward. Otherwise, have me interact with a button tile.
-You feel me right now? And remember, we can use recursion to beat this!
+Hmmm... I'm thinking right now. What if we use an [color=yellow]if statement[/color] to help us...
+If I am [color=yellow]standing on[/color] top of a [color=red]virus[/color] tile, move me [color=yellow]forward[/color]. [color=yellow]Otherwise[/color], have me [color=yellow]interact with a button[/color] tile.
+You feel me right now? And remember, we can use [color=yellow]recursion[/color] to beat this!
 Good luck and please don't kill me...
 ;
 

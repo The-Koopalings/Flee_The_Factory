@@ -1,27 +1,38 @@
-Talk about the main function having a restricted number of code blocks allowed.
-Explain what functions are.
+Hey pal, do you remember how we talked about Main having a [color=yellow]limit[/color] on the [color=yellow]amount of code blocks[/color] you can put into it?
+Well, that can be a problem for us since sometimes, that means we can't exit the room by [color=yellow]only[/color] putting code blocks into Main.
+Luckily, we can work around that by relying on other sections of the IDE.
 
 IDE
 HIGHLIGHT_FUNCTION_BLOCK
-Explain the function block.
+As you can see here in the IDE, there is another section other than Main.
+HIGHLIGHT_FUNCTION_BLOCK
+We call these [color=yellow]functions[/color]. This specific function's name is [color=yellow]Func1[/color] or [color=yellow]F1[/color] for short. [color=yellow]Main[/color] is also a function, but a [color=yellow]special type of function[/color].
+Regular [color=yellow]functions[/color] work very similarly to Main except, the code in it will [color=red]NOT[/color] run automatically when the [color=yellow]Run button[/color] is pressed.
+Another difference between Main and a regular function is that [color=yellow]functions[/color] can be [color=yellow]"called"[/color], or used, by other IDE sections.
+This means that Main, for example, can [color=yellow]call[/color] F1, which will [color=yellow]execute the code blocks[/color] in [color=yellow]F1[/color]. 
+In a way, calling a function is similar to calling for help from a friend. 
+If we use F1's help in Main (AKA we call F1 in Main), then we can open the door!
+Keep in mind though that [color=yellow]functions also have a code block limit[/color].
 
 CODE_BLOCK
-Let's write a function block that will make Robby move two tiles forward and interact with the button. Please place the appropriate code blocks into the function code block.
-;
-
-Yay! Explain how calling functions work.
+Now, how exactly are you supposed to call F1?
 
 HIGHLIGHT_CALL_F1
-Explain CALL_F1 code block.
+Well, here is a code block that we'll call [color=yellow]CALL_F1[/color]. If you put this into another IDE section, then it will [color=yellow]call and execute the code blocks in F1[/color].
 
-Place the CALL_F1 code block into Main.
+Now, let's write a [color=yellow]function[/color] that will make me move [color=yellow]two tiles forward and interact[/color] with the button. Please place the appropriate code blocks into the IDE's function block.
 ;
 
-Talk about the reusability of functions.
-Place another CALL_F1 code block into Main.
+Yay! Now, place the [color=yellow]CALL_F1[/color] code block into [color=yellow]Main[/color].
 ;
 
-Press run.
+Something to note about [color=yellow]functions[/color] is that they are [color=yellow]reuseable[/color]. So, you can call a function multiple times.
+This is especially [color=yellow]useful[/color] if you need me to move in a [color=yellow]pattern[/color].
+
+Place [color=yellow]another CALL_F1[/color] code block into [color=yellow]Main[/color].
 ;
 
-Congrats! She call my function til I stack overflow.
+Press [color=yellow]Run[/color].
+;
+
+Congrats! I bet you're always the coolest at a function.
