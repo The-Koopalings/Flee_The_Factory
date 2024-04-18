@@ -10,20 +10,25 @@ Then the [color=yellow]exit door[/color] will open.
 
 Before we go over how you can do that, let's go over the basics of the control panel UI.
 
-HIGHLIGHT_sETTINGS
+HIGHLIGHT_SETTINGS
 First off, this button on the top-left is the [color=yellow]Settings button[/color]. Pressing this will pull up the [color=yellow]Settings menu[/color] where you can change [color=yellow]Music and Sound Effect volumes[/color], as well as [color=yellow]Brightness[/color].
+HIGHLIGHT_SETTINGS
 You can also [color=yellow]exit the level[/color] from there, or even [color=yellow]exit the game[/color]
 
 HIGHLIGHT_RESTART
 This is the [color=yellow]Restart button[/color]. 
+HIGHLIGHT_RESTART
 Clicking this will restart the [color=yellow]entire level[/color], [color=red]except[/color] for the [color=yellow]IDE[/color] on the right (we'll get to what that is later).
 
 HIGHLIGHT_HELP
 This is the [color=yellow]Help button[/color].
+HIGHLIGHT_HELP
 This will either [color=yellow]restart the Tutorial[/color] on that level, or if there [color=red]isn't a tutorial[/color], then it will give [color=red]some general advice[/color].
 
+CODE_BLOCK
 HIGHLIGHT_2X_SPEED
 This is the [color=yellow]2x Speed toggle button[/color].
+HIGHLIGHT_2X_SPEED
 Currently, this is [color=red]off[/color] so I am moving at my [color=red]normal speed[/color], however if you turn this toggle [color=green]on[/color], then I will move at [color=green]double my normal speed[/color].
 
 Alright let's move on to what's on the factory floor!
@@ -34,7 +39,7 @@ HIGHLIGHT_BUTTON
 Next, this is the [color=red]button[/color] which you need to help me [color=yellow]press to open[/color] the exit door.
 
 HIGHLIGHT_DOOR
-And this is the [color=yellow]exit door[/color]. It has [color=yellow]lights[/colors] on it to indicate [color=yellow]how many buttons[/color] we need to press to get it to open. The light will [color=yellow]light up[/color] when a button is [color=yellow]pressed[/color].
+And this is the [color=yellow]exit door[/color]. It has [color=yellow]lights[/color] on it to indicate [color=yellow]how many buttons[/color] we need to press to get it to open. The light will [color=yellow]light up[/color] when a button is [color=yellow]pressed[/color].
 
 Finally, let's get to how you can move me around.
 You'll need to [color=yellow]program[/color] me, which you can do by putting [color=yellow]code blocks[/color] into the [color=yellow]IDE[/color].
