@@ -18,7 +18,7 @@ First let's keep the start counter at 0. It is standard practice to start at 0 i
 Next, let's set stop to 4 and the step counter to +1.
 ;
 
-We chose these numbers so that the loop will execute 4 times. It is important to note that i will increase from 0 -> 1 -> 2 -> 3, but will stop before reaching 4.
+We chose these numbers so that the loop will execute 4 times. It is important to note that i will increase from by 1 each time it executes and stop once it reaches 4 (or until the exit door opens).
 
 Finally, let's call the for loop in Main.
 ;
