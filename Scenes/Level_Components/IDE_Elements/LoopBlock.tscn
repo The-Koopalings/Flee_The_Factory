@@ -135,12 +135,37 @@ border_color = Color( 1, 0.937255, 0, 1 )
 border_width = 3.0
 editor_only = false
 
+[node name="BorderTop" type="Line2D" parent="HighlightControl/Clickable"]
+z_as_relative = false
+points = PoolVector2Array( 0, 0, 460, 0 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="BorderLeft" type="Line2D" parent="HighlightControl/Clickable"]
+z_as_relative = false
+points = PoolVector2Array( 0, 0, 0, 238 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="BorderRight" type="Line2D" parent="HighlightControl/Clickable"]
+z_as_relative = false
+points = PoolVector2Array( 460, 0, 460, 238 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
+[node name="BorderBottom" type="Line2D" parent="HighlightControl/Clickable"]
+z_as_relative = false
+points = PoolVector2Array( 0, 238, 460, 238 )
+width = 2.0
+default_color = Color( 0, 0, 0, 1 )
+
 [node name="ChooseLoopType" type="MenuButton" parent="HighlightControl"]
 margin_left = 5.0
 margin_right = 125.0
 margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 3 )
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": "x = 173, y = 0 at start. After choosing pos = (5, 18), size = (134, 50)"
 }
@@ -300,6 +325,7 @@ margin_left = 10.0
 margin_right = 90.0
 margin_bottom = 50.0
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": ""
 }
@@ -320,6 +346,7 @@ margin_left = 85.0
 margin_right = 120.0
 margin_bottom = 50.0
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": ""
 }
@@ -339,8 +366,8 @@ __meta__ = {
 margin_left = 120.0
 margin_right = 220.0
 margin_bottom = 50.0
-focus_mode = 2
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": ""
 }

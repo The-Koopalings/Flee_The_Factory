@@ -278,11 +278,12 @@ func init_IDE():
 		#remove extra scopes outside of the Scopes Container
 		var children = IDE.get_children()
 		if children.size() > 2:
-			children.pop_front() #Remove Scopes container
-			while(children.front().name != "ButtonContainer"):
-				IDE.remove_child(children.front())
-				children.pop_front()
-		
+			for child in children:
+				if child.name == "ButtonContainer" or child.name == "Scopes":
+					pass
+				else:
+					IDE.remove_child(children.front())
+
 		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
 		init_progress_check_FBA()
 		
@@ -297,16 +298,17 @@ func init_IDE():
 	#Should technically only have 2 children, Scopes and Button containers
 	var children = IDE.get_children()
 	if children.size() > 2:
-		children.pop_front() #Remove Scopes container
-		while(children.front().name != "ButtonContainer"):
-			IDE.remove_child(children.front())
-			var container = HBoxContainer.new()
-			container.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			container.alignment = HBoxContainer.ALIGN_CENTER
-			container.name = children.front().name
-			container.add_child(children.front())
-			scopesContainer.add_child(container)
-			children.pop_front()
+		for child in children:
+			if child.name == "ButtonContainer" or child.name == "Scopes":
+				pass
+			else:
+				IDE.remove_child(child)
+				var container = HBoxContainer.new()
+				container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				container.alignment = HBoxContainer.ALIGN_CENTER
+				container.name = child.name
+				container.add_child(child)
+				scopesContainer.add_child(container)
 			
 	#Generate IDE.scopes dictionary
 	for scope in scopesContainer.get_children():
