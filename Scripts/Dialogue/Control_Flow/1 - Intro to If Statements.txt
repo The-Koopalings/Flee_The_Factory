@@ -8,24 +8,25 @@ CODE_BLOCK
 Explain if code block.
 
 Do you see the pattern we have here on this floor? My little brain is braining right now and I have an idea.
-First let's place two forward code blocks into F1.
+First let's place [color=yellow]two Forward[/color] code blocks into [color=yellow]Func1[/color].
 ;
 
-Now let's set the condition of the If statement to front == blocked. Click the text for each different variable to open up a drop down menu and select the correct option.
+Now let's set the [color=yellow]condition[/color] of the [color=yellow]If statement[/color] to [color=yellow]front == blocked[/color] (meaning if my front is blocked by an [color=yellow]Obstacle[/color] or [color=yellow]Wall[/color]). Click the text for each different variable to open up a drop down menu and select the correct option.
 ;
 
-Now, if Robby is facing the wall, he should rotate to face the vertical path. Otherwise, he should press the button. Let's place a rotate right code block into the If statement.
+Keep in mind that [color=green]==[/color] means [color=green]equal to[/color] and that [color=red]!=[/color] means [color=red]not equal to[/color]
+Now, if Robby is facing the wall, he should rotate to face the vertical path. Otherwise, he should press the button. Let's place a [color=yellow]Rotate Right[/color] code block into the [color=yellow]if statement[/color].
 ;
 
-Let's also place an interact code block into the Else statement.
+Let's also place an [color=yellow]Interact[/color] code block into the [color=yellow]else statement[/color].
 ;
 
-Finally, let's call the if statement in F1.
+Finally, let's call the [color=yellow]if statement[/color] in [color=yellow]Func1[/color].
 ;
 
-Can you see what's going on here? The first time we call F1 in main, Robby will walk forwards 2 tiles and face the wall. Since the if condition is fulfilled, he will rotate right.
-The next time we call F1, Robby will walk fowards 2 tiles again. However, the if condition will not be satisfied this time so the Else statement will execute instead.
-Place 2 F1 code blocks into Main and press run when you're ready!
+Can you see what's going on here? The [color=yellow]first time we call Func1[/color] in Main, I will walk forwards 2 tiles and face the wall. Since the [color=green]if condition is fulfilled[/color], I will [color=green]rotate right[/color].
+The [color=yellow]next time we call Func1[/color], I will walk fowards 2 tiles again. However, the [color=red]if condition will not be satisfied[/color] this time so the [color=red]else statement[/color] will execute instead.
+Now, place [color=yellow]2 Func1[/color] code blocks into Main and press [color=yellow]Run[/color] when you're ready!
 ;
 
-I never control my flow when I see ur mom.
+Hooray! To be honest, [color=yellow]if[/color] we weren't stuck here, then I don't know what [color=yellow]else[/color] I would be doing.
