@@ -41,6 +41,9 @@ func _process(_delta):
 				else:
 					display_text()
 					change_state(State.READING)
+			else:
+				if DialogueManager.dialogue_queue.empty():
+					hide_textbox()
 		State.READING:
 			# Press space to display all text right away
 			if Input.is_action_just_pressed("ui_select"):
@@ -49,8 +52,6 @@ func _process(_delta):
 				change_state(State.END)
 		State.END:
 			if Input.is_action_just_pressed("ui_select"):
-				if text_queue.empty():
-					hide_textbox()
 				change_state(State.READY)
 				emit_signal("user_action")
 

@@ -1,0 +1,24 @@
+Similar to how functions can call other functions, loops can also call other loops! Let me show you show two nested for loops work.
+
+IDE
+Click Loop1 and change it to a for loop.
+;
+
+Now click Loop2 and change it to a for loop.
+;
+
+CODE_BLOCK
+Let's use For2 to walk me down 6 tiles to the bottom left button. Use your previously learned knowledge to set the start, stop, and step values!
+;
+
+Now let's place a forward code block into For2.
+;
+
+Next, let's call For2 in For1.
+;
+
+Do you see what I'm trying to do here? Since I'm such an amazing teacher, you can totally do the rest of the level on your own now.
+Just keep in mind how there's 4 buttons on this floor...
+;
+
+She nest my loop until I O(n^2). For more practice on loops, try beating this level with different nested loops! You can nest a while loop into a for loop, a for loop into a while loop, or a while loop into another while loop!

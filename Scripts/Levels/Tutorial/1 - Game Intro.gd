@@ -15,7 +15,6 @@ var btn_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Interact"]]
 onready var progress_check_FBA = [MainFBA, MainFBA]
-var textPath = "Tutorial/1 - Game Intro.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
@@ -34,7 +33,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self)
 	
 	$IDE/IDE_Arrow.visible = false
 	$IDE/Run_Arrow.visible = false

@@ -20,7 +20,6 @@ var b3_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["Forward", "Forward", "Forward", "Interact"], ["RotateRight", "Forward", "Forward", "RotateLeft"]]
 onready var progress_check_FBA = [F1_FBA, F2_FBA]
-var textPath = "Functions/3 - Multi Func Intro.txt"
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
@@ -41,7 +40,7 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, textPath)
+	DialogueManager.add_dialogue(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

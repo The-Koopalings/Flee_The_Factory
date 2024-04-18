@@ -1,1 +1,0 @@
-Remember: Press the button(s) to open the door & win the level. I can only press it if I am standing on top of a button and an Interact code block is executed

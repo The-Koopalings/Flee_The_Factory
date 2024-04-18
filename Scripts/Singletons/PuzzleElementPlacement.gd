@@ -354,16 +354,27 @@ func init_progress_check_FBA():
 	for i in range(level.progress_check_FBA.size()):
 		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
 		var scope = level.progress_check_FBA[i].get_parent().name
+		var itself = level.progress_check_FBA[i].name
 		
 		if scope == "Main" or scope.begins_with("F"):
 			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/FunctionBlockArea")
+		elif itself == "If" or scope.begins_with("Loop"):
+			#For If conditional checks + Loop type selection checks
+			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/" + itself)
 		else:
 			#For checking Ifs & Loops
 			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
 			if higherScope.begins_with("If"):
+				#Should account for If & Else FBAs
 				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/" + scope + "/FunctionBlockArea")
 			elif higherScope.begins_with("Loop"):
-				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/FunctionBlockArea")
+				if itself == "FunctionBlockArea":
+					level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/FunctionBlockArea")
+				elif itself == "ForConditional" or itself == "WhileConditional":
+					#For While & For Loop conditional checks
+					level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/" + itself)
+			
+				
 	
 	
 func init_inventory():
