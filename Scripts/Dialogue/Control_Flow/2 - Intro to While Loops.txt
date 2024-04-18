@@ -6,7 +6,7 @@ This is a loop block. Explain loop block.
 Now you can click the Loop text to select which type of loop you want to use for this level. Please click and select the While loop.
 ;
 
-Explain while loop.
+Explain while loop. smth smth about iterations, iterate whatever
 
 CODE_BLOCK
 Explain While code block.

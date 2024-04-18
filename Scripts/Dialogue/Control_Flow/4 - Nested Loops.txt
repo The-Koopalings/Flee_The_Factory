@@ -1,12 +1,12 @@
 Similar to how functions can call other functions, [color=yellow]loops can also call other loops[/color]! 
 We call a loop inside of another loop a [color=yellow]nested loop[/color].
-Let me show you how [color=yellow]nested for-loops[/color] work.
+Let me show you how [color=yellow]nested for loops[/color] work.
 
 IDE
-Click [color=yellow]Loop1[/color] and change it to a [color=yellow]for-loop[/color].
+Click [color=yellow]Loop1[/color] and change it to a [color=yellow]for loop[/color].
 ;
 
-Now click [color=yellow]Loop2[/color] and change it to a [color=yellow]for-loop[/color] as well.
+Now click [color=yellow]Loop2[/color] and change it to a [color=yellow]for loop[/color] as well.
 ;
 
 CODE_BLOCK
