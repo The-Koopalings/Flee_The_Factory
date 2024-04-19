@@ -371,7 +371,7 @@ func init_IDE():
 			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("Else/ClearCode"), "on_pressed")
 		elif scope.name.begins_with("Loop"):
 			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("HighlightControl/ClearCode"), "on_pressed")
-		elif scope.name.begins_with("F"):
+		elif scope.name.begins_with("F") or scope.name == "Main":
 			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("ClearCode"), "on_pressed")
 	buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
 	
