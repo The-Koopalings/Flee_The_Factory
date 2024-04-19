@@ -1,0 +1,37 @@
+We're onto our next control flow topic, [color=yellow]loops[/color]!
+
+IDE
+This is a [color=yellow]loop block[/color]. Essentially, it will continue executing the code (AKA looping through the code) inside of it until a condition is met.
+There are 2 types of loops we will discuss, but for now let's talk about [color=yellow]while loops[/color].
+Now you can [color=yellow]click[/color] the [color=yellow]Loop text[/color] to [color=yellow]select[/color] which [color=yellow]type of loop[/color] you want to use for this level. Please click and select the [color=yellow]while loop[/color].
+;
+
+[color=yellow]While loops[/color] are a type of loop that will continue looping [color=yellow]until the condition[/color] you set is [color=red]false[/color].
+Something to keep in mind is that an [color=yellow]iteration[/color] of a loop also means the execution of all code blocks in the loop. A [color=yellow]"loop"[/color] of a loop means the same as well.
+
+CODE_BLOCK
+Now let's talk about the new [color=yellow]CALL_LOOP[/color] code block.
+HIGHLIGHT_LOOP1
+This is a [color=yellow]CALL_LOOP1[/color] code block which you can use to call on Loop1.
+HIGHLIGHT_LOOP1
+You may have noticed that once you [color=yellow]selected the Loop type[/color] as [color=yellow]"While"[/color], the code block changed to match that. It will do the same for the other type of loop as well.
+
+Now let's set the [color=yellow]condition[/color] (below the While1 text) for the [color=yellow]while loop[/color]. We want to keep moving until I am on the tile with the button.
+Remember that the symbol [color=green]==[/color] means [color=green]equal to[/color], and [color=red]!=[/color] means [color=red]not equal to[/color].
+Let's make the condition [color=yellow]tile != button[/color]. This means that while the [color=yellow]tile I am on[/color] is [color=yellow]NOT[/color] a [color=red]button[/color], keep executing the loop's code.
+;
+
+Awesome! Now the code blocks in the while loop will continue to execute until the condition is false.
+Place [color=yellow]one Forward[/color] code block into the [color=yellow]while loop[/color]. This means that while the tile I am on isn't a button, I should move forward.
+;
+
+Now let's [color=yellow]call the while loop[/color] in [color=yellow]Main[/color] so I can move to the button tile.
+;
+
+Finally, make sure to [color=yellow]interact[/color] with the button.
+;
+
+Now let's press [color=yellow]Run[/color] and see me move my little legs.
+;
+
+Wow, what a loop dee loop ride that was! Also, for fun, you can see if you can solve this floor using a [color=yellow]different while condition[/color]!

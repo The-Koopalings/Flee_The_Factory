@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_science_fiction_cyberpunk_robot_cute_beep_001_64554.mp3-5b0816f4ab415b33cea9cf14b70918ca.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/zapsplat_science_fiction_cyberpunk_robot_cute_beep_001_64554.mp3"
+dest_files=[ "res://.import/zapsplat_science_fiction_cyberpunk_robot_cute_beep_001_64554.mp3-5b0816f4ab415b33cea9cf14b70918ca.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

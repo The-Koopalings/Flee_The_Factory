@@ -43,6 +43,7 @@ func loadLevel(_level):
 	self.IDE = level.get_node("IDE")
 	self.halftile = Grid.tile_size/2
 	
+	print(DEBUG_buffer)
 	self.init_elements()
 	self.init_WCLs()
 	self.init_IDE()
@@ -135,7 +136,7 @@ func init_elements():
 					if type == "Robot":
 						#node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
 						node.orientation = robotStartOrientation
-						node.move_highlight()
+						node.set_idle_direction()
 						GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
@@ -335,6 +336,7 @@ func init_IDE():
 			scope.get_node("Else").set_FBA_numBlocks()
 		elif type == "Loop":
 			scope.get_node("HighlightControl").set_FBA_numBlocks()
+			scope.reset_loopCount()
 		else:
 			scope.set_FBA_numBlocks()
 		
@@ -406,16 +408,27 @@ func init_progress_check_FBA():
 	for i in range(level.progress_check_FBA.size()):
 		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
 		var scope = level.progress_check_FBA[i].get_parent().name
+		var itself = level.progress_check_FBA[i].name
 		
 		if scope == "Main" or scope.begins_with("F"):
 			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/FunctionBlockArea")
+		elif itself == "If" or scope.begins_with("Loop"):
+			#For If conditional checks + Loop type selection checks
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/" + itself)
 		else:
 			#For checking Ifs & Loops
 			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
 			if higherScope.begins_with("If"):
+				#Should account for If & Else FBAs
 				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/" + scope + "/FunctionBlockArea")
 			elif higherScope.begins_with("Loop"):
-				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
+				if itself == "FunctionBlockArea":
+					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
+				elif itself == "ForConditional" or itself == "WhileConditional":
+					#For While & For Loop conditional checks
+					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/" + itself)
+			
+				
 	
 	
 func init_inventory():

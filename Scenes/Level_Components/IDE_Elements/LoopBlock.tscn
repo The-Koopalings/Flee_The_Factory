@@ -259,6 +259,7 @@ margin_top = 26.0
 margin_right = 206.0
 margin_bottom = 50.0
 mouse_default_cursor_shape = 2
+enabled_focus_mode = 0
 __meta__ = {
 "_editor_description_": "(306,0)"
 }

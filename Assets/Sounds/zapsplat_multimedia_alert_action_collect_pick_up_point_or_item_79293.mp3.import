@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/zapsplat_multimedia_alert_action_collect_pick_up_point_or_item_79293.mp3-5f07c637121b0d357daab48da44b5241.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/zapsplat_multimedia_alert_action_collect_pick_up_point_or_item_79293.mp3"
+dest_files=[ "res://.import/zapsplat_multimedia_alert_action_collect_pick_up_point_or_item_79293.mp3-5f07c637121b0d357daab48da44b5241.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

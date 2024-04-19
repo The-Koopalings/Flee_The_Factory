@@ -17,6 +17,7 @@ var b2_pressed = false
 signal dialogue_progress
 var progress_check_arr = [["Forward", "Forward", "Interact"]]
 onready var progress_check_FBA = [MainFBA]
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -34,7 +35,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Tutorial/3 - Multiple Buttons.txt")
+	DialogueManager.add_dialogue(self)
 
 
 func _process(delta):

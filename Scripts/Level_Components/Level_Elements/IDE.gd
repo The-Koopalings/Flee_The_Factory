@@ -31,6 +31,10 @@ func _ready():
 func _on_RunButton_pressed():
 	#Check that the Run button hasn't been pressed yet
 	if !runPressed:
+		#Play button pressed sound, wait until it's finished to run
+		ButtonPress3.play()
+		yield(get_tree().create_timer(0.5), "timeout")
+		#Run code
 		runPressed = true
 		GameStats.set_game_state(GameStats.State.EXECUTING)
 		print("Scopes: ", scopes)
@@ -85,7 +89,7 @@ func enter_scope(node):
 
 	#Will execute from back to front, so invert
 	code.invert()
-	yield(get_tree().create_timer(GameStats.run_speed/2, false), "timeout") 
+	yield(get_tree().create_timer(GameStats.savableGameStats.run_speed/2, false), "timeout") 
 
 func run_code():
 	var block
@@ -110,7 +114,7 @@ func run_code():
 				yield(Robot, "animationFinished")
 			
 			if block.BLOCK_TYPE == "CODE":
-				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+				yield(get_tree().create_timer(GameStats.savableGameStats.run_speed, false), "timeout") 
 			elif block.BLOCK_TYPE == "CALL":
 				var call_name = block.name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
 				if is_loop(call_name):

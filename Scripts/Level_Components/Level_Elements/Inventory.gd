@@ -53,6 +53,7 @@ func move_to_inventory(item, slotNum):
 		var itemSlots = $ItemSlots.get_children()
 		for itemSlot in itemSlots:
 			if itemSlot.get_child_count() == 0:
+				$SoundPickup.play()
 				itemSlot.text = ""
 				Grid.remove_child(item)
 				itemSlot.add_child(item)
@@ -68,7 +69,8 @@ func move_to_inventory(item, slotNum):
 		Grid.remove_child(item)
 		if itemSlot.get_child_count() != 0:
 			itemSlot.get_child(0).queue_free()
-			
+		
+		$SoundPickup.play()
 		itemSlot.add_child(item)
 		item.global_position = itemSlot.get_global_position() + Vector2(48, 48)
 		item.z_index = 99
@@ -94,6 +96,7 @@ func on_useItem(slotNum):
 			if !item:
 				continue
 			elif item and item.name.substr(3, 1) == object.name.substr(4, 1): #Key is same color as Door
+				$SoundUnlockDoor.play()
 				PEP.tiles[object.tileY][object.tileX] = ' '
 				item.queue_free()
 				object.queue_free()
@@ -105,6 +108,7 @@ func on_useItem(slotNum):
 		itemSlot = get_node("ItemSlots/ItemSlot0")
 		item = itemSlot.get_child(0)
 		if item and item.name.substr(3, 1) == object.name.substr(4, 1):
+			$SoundUnlockDoor.play()
 			PEP.tiles[object.tileY][object.tileX] = ' '
 			item.queue_free()
 			object.queue_free()
@@ -120,6 +124,7 @@ func on_useItem(slotNum):
 		item = itemSlot.get_child(0)
 		#If the key is the same color as the door, then queue_free the door & key
 		if item and item.name.substr(3, 1) == object.name.substr(4, 1):
+			$SoundUnlockDoor.play()
 			PEP.tiles[object.tileY][object.tileX] = ' '
 			item.queue_free()
 			object.queue_free()
