@@ -19,4 +19,5 @@ func _ready():
 func on_BackButton_pressed():
 	NonLevelMusic.inCredits = false
 	LevelMusic.inCredits = false
+	ButtonPress3.play()
 	SceneSwapper.change_scene("Start Menu")
