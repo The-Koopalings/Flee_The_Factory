@@ -3,7 +3,7 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-onready var MainFBA = get_node("IDE/Scopes/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 onready var TextBox = get_node("TextBox")
 signal levelComplete
 var level_win = false

@@ -34,12 +34,14 @@ script = ExtResource( 12 )
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 
 [node name="IDE_Arrow" type="Sprite" parent="IDE"]
+visible = false
 position = Vector2( -104, 200 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
 
 [node name="Run_Arrow" type="Sprite" parent="IDE"]
+visible = false
 position = Vector2( 234, 614 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )

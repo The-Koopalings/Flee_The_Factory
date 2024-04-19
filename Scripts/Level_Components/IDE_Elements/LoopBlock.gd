@@ -32,7 +32,7 @@ onready var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot"))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$HighlightControl/ChooseLoopType/Label.text = self.name
+#	$HighlightControl/ChooseLoopType/Label.text = self.name
 	
 	connections()
 #	add_dropdown_options()

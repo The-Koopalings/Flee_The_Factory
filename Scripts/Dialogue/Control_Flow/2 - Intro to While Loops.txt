@@ -11,9 +11,9 @@ Something to keep in mind is that an [color=yellow]iteration[/color] of a loop a
 
 CODE_BLOCK
 Now let's talk about the new [color=yellow]CALL_LOOP[/color] code block.
-HIGHLIGHT_LOOP1
+HIGHLIGHT_CALL_LOOP1
 This is a [color=yellow]CALL_LOOP1[/color] code block which you can use to call on Loop1.
-HIGHLIGHT_LOOP1
+HIGHLIGHT_CALL_LOOP1
 You may have noticed that once you [color=yellow]selected the Loop type[/color] as [color=yellow]"While"[/color], the code block changed to match that. It will do the same for the other type of loop as well.
 
 Now let's set the [color=yellow]condition[/color] (below the While1 text) for the [color=yellow]while loop[/color]. We want to keep moving until I am on the tile with the button.

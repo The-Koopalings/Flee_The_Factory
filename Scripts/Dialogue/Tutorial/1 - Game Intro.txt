@@ -29,7 +29,7 @@ CODE_BLOCK
 HIGHLIGHT_2X_SPEED
 This is the [color=yellow]2x Speed toggle button[/color].
 HIGHLIGHT_2X_SPEED
-Currently, this is [color=red]off[/color] so I am moving at my [color=red]normal speed[/color], however if you turn this toggle [color=green]on[/color], then I will move at [color=green]double my normal speed[/color].
+When this is [color=red]off[/color] I will move at my [color=red]normal speed[/color], however if you turn this toggle [color=green]on[/color], then I will move at [color=green]double my normal speed[/color].
 
 Alright let's move on to what's on the factory floor!
 Firstly, all the tiles around me, except for the one in front of me, are [color=yellow]walls[/color]. I [color=red]can't move past[/color] them.

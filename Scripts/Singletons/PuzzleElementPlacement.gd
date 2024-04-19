@@ -280,7 +280,6 @@ func init_IDE():
 				scope.get_node("Else/FunctionBlockArea").reset_CodeBlock_positions()
 			elif scope.name.begins_with("Loop"):
 				scope.get_node("HighlightControl/FunctionBlockArea").reset_CodeBlock_positions()
-				pass
 			i = i + 1
 		IDEScopes.clear()
 		
@@ -294,8 +293,8 @@ func init_IDE():
 				else:
 					IDE.remove_child(child)
 
-		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
-		init_progress_check_FBA()
+#		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
+#		init_progress_check_FBA()
 		
 		# Grab focus of main
 		scopesContainer.get_node("Main/Main").grab_focus()
@@ -375,7 +374,9 @@ func init_IDE():
 		elif scope.name.begins_with("F"):
 			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("ClearCode"), "on_pressed")
 	buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
-		
+	
+	#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
+	init_progress_check_FBA()
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
 	
@@ -404,31 +405,80 @@ func call_loop_reconnections(type, child):
 			codeBlock.connect_to_LoopBlock()
 	
 
-#Allows progress checks to work after Restart, progress_check_FBA elements need to point to pre-Restart FBAs
+#Puts correct FBA/conditional nodes into level.progress_check_FBA array
+#The array starts with Strings in the format: "Loop1_FBA" or "Loop1_Block", Block ending denotes conditional node
 func init_progress_check_FBA():
 	for i in range(level.progress_check_FBA.size()):
+		#Whether to get the FBA or the conditional node of a scope
+		var type = ""
+		#The num for F1 would be 1
+		var num = ""
+		var scopeType = level.progress_check_FBA[i]
+		
+		#Check whether we need to get the FBA or the conditional node
+		if scopeType.find("FBA") != -1:
+			scopeType = level.progress_check_FBA[i].replace("FBA", "")
+			type = "FBA"
+		elif scopeType.find("Block") != -1:
+			scopeType = level.progress_check_FBA[i].replace("Block", "")
+			type = "Block"
+		
+		#Only relevant for non-Main scopes
+		if scopeType != "Main":
+			#Get the number, should only be a single-digit, 2nd to last index, EX: Loop1_
+			num = scopeType.substr(scopeType.length() - 2, 1)
+			scopeType = scopeType.rstrip("_").rstrip("0123456789")
+		
+		#Main & F scopeTypes will always be FBA
+		if scopeType == "Main":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Main/Main/FunctionBlockArea")
+		elif scopeType == "F":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/F" + num + "/F" + num + "/FunctionBlockArea")
+		#If scopeType can be either FBA or conditional node
+		elif scopeType == "If":
+			if type == "FBA":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/If/FunctionBlockArea")
+			elif type == "Block":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/If")
+				print("if block: ", level.progress_check_FBA[i])
+		#Else scopeType will always be FBA
+		elif scopeType == "Else":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/Else/FunctionBlockArea")
+		#Loop scopeType can be either FBA or conditional
+		elif scopeType == "Loop":
+			if type == "FBA":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/FunctionBlockArea")
+			elif type == "Block":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl")
+		#For & While scopeTypes will only always be conditional nodes
+		elif scopeType == "For":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/ForConditional")
+		elif scopeType == "While":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/WhileConditional")
+		
+		
 		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
-		var scope = level.progress_check_FBA[i].get_parent().name
-		
-		var itself = level.progress_check_FBA[i].name
-		
-		if scope == "Main" or scope.begins_with("F"):
-			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/FunctionBlockArea")
-		elif itself == "If" or scope.begins_with("Loop"):
-			#For If conditional checks + Loop type selection checks
-			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/" + itself)
-		else:
-			#For checking Ifs & Loops
-			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
-			if higherScope.begins_with("If"):
-				#Should account for If & Else FBAs
-				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/" + scope + "/FunctionBlockArea")
-			elif higherScope.begins_with("Loop"):
-				if itself == "FunctionBlockArea":
-					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
-				elif itself == "ForConditional" or itself == "WhileConditional":
-					#For While & For Loop conditional checks
-					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/" + itself)
+#		var scope = level.progress_check_FBA[i].get_parent().name
+#
+#		var itself = level.progress_check_FBA[i].name
+#
+#		if scope == "Main" or scope.begins_with("F"):
+#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/FunctionBlockArea")
+#		elif itself == "If" or scope.begins_with("Loop"):
+#			#For If conditional checks + Loop type selection checks
+#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/" + itself)
+#		else:
+#			#For checking Ifs & Loops
+#			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
+#			if higherScope.begins_with("If"):
+#				#Should account for If & Else FBAs
+#				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/" + scope + "/FunctionBlockArea")
+#			elif higherScope.begins_with("Loop"):
+#				if itself == "FunctionBlockArea":
+#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
+#				elif itself == "ForConditional" or itself == "WhileConditional":
+#					#For While & For Loop conditional checks
+#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/" + itself)
 	
 func init_inventory():
 	level.get_node("Inventory").set_position(Vector2(865, 43))

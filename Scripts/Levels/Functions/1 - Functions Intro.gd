@@ -3,14 +3,14 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-onready var MainFBA = get_node("IDE/Scopes/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 onready var TextBox = get_node("TextBox")
 signal levelComplete
 var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
-onready var F1_FBA = get_node("IDE/F1/FunctionBlockArea")
+onready var F1_FBA = "F1_FBA"
 
 var b1_pressed = false
 var b2_pressed = false
@@ -40,7 +40,7 @@ func _ready():
 	PEP.loadLevel(self)
 	DialogueManager.add_dialogue(self)
 	
-	$IDE/F1_Arrow.visible = false
+#	$IDE/F1_Arrow.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

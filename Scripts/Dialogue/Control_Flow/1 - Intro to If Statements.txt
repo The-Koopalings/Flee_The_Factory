@@ -5,6 +5,7 @@ IDE
 Explain If-Else block.
 
 CODE_BLOCK
+HIGHLIGHT_CALL_IF1
 Explain if code block.
 
 Do you see the pattern we have here on this floor? My little brain is braining right now and I have an idea.
