@@ -2,7 +2,7 @@ extends Control
 
 
 onready var Robot = get_node("../Grid/Robot")
-
+var sceneRootName
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,10 +14,22 @@ func _ready():
 	else:
 		$DoubleSpeed.pressed = false
 	
+	check_if_on_Start_Menu()
+
+
+func check_if_on_Start_Menu():
+	var root = get_tree().root
+	sceneRootName = root.get_child(root.get_child_count() - 1).name
+	
+	if sceneRootName == "StartMenu":
+		$Restart.visible = false
+		$DoubleSpeed.visible = false
+		$Help.visible = false
+
 
 func _on_Settings_pressed():
 	ButtonPress2.play()
-	SettingsMenu.visible = true
+	SettingsMenu.set_to_visible(sceneRootName)
 	get_tree().paused = true
 
 
