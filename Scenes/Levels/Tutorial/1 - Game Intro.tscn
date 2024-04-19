@@ -33,9 +33,6 @@ script = ExtResource( 12 )
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
-maxBlocks = 4
-
 [node name="IDE_Arrow" type="Sprite" parent="IDE"]
 position = Vector2( -104, 200 )
 rotation = 1.5708
@@ -66,4 +63,4 @@ rotation = 1.5708
 [connection signal="buttonPressed" from="Grid/Button" to="." method="_on_Button_buttonPressed"]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]

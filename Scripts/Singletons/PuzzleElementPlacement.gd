@@ -319,6 +319,7 @@ func init_IDE():
 				container.name = child.name
 				container.add_child(child)
 				scopesContainer.add_child(container)
+				
 			
 	#Generate IDE.scopes dictionary
 	for scope in scopesContainer.get_children():
@@ -408,6 +409,7 @@ func init_progress_check_FBA():
 	for i in range(level.progress_check_FBA.size()):
 		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
 		var scope = level.progress_check_FBA[i].get_parent().name
+		
 		var itself = level.progress_check_FBA[i].name
 		
 		if scope == "Main" or scope.begins_with("F"):
@@ -427,9 +429,6 @@ func init_progress_check_FBA():
 				elif itself == "ForConditional" or itself == "WhileConditional":
 					#For While & For Loop conditional checks
 					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/" + itself)
-			
-				
-	
 	
 func init_inventory():
 	level.get_node("Inventory").set_position(Vector2(865, 43))
