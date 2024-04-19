@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Miscalleous/button.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Backgrounds/finalbgbutbigger.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelControl.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Start_Menu/StartMenu.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
@@ -85,6 +86,8 @@ align = 1
 position = Vector2( 961, 544 )
 z_index = -97
 texture = ExtResource( 2 )
+
+[node name="Level Control" parent="." instance=ExtResource( 4 )]
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
