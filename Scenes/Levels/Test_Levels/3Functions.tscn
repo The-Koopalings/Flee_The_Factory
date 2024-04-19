@@ -274,7 +274,7 @@ script = ExtResource( 12 )
 
 [node name="Robot" parent="Grid" instance=ExtResource( 9 )]
 
-[node name="AnimationTree" parent="Grid/Robot" index="5"]
+[node name="AnimationTree" parent="Grid/Robot" index="4"]
 parameters/playback = SubResource( 4 )
 
 [node name="Obstacle" parent="Grid" instance=ExtResource( 10 )]
