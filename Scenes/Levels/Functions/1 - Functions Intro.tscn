@@ -55,7 +55,7 @@ maxBlocks = 3
 
 [node name="_F1_Arrow" type="Sprite" parent="IDE"]
 visible = false
-position = Vector2( -106, 392 )
+position = Vector2( -106, -110 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )

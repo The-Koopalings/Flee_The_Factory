@@ -18,8 +18,8 @@ onready var Else_FBA = "Else1_FBA"
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check_arr = [["Forward", "Forward"], ["Front", "==", "Blocked"], ["RotateRight"], ["Interact"], ["Forward", "Forward", "Call_If1"]]
-onready var progress_check_FBA = [F1_FBA, If_Block, If_FBA, Else_FBA, F1_FBA]
+var progress_check_arr = [["Forward", "Forward"], ["Front", "==", "Blocked"], ["RotateRight"], ["Interact"], ["Forward", "Forward", "Call_If1"], ["Call_F1", "Call_F1"]]
+onready var progress_check_FBA = [F1_FBA, If_Block, If_FBA, Else_FBA, F1_FBA, MainFBA]
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 

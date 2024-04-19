@@ -35,7 +35,8 @@ var highlight_path = {"HIGHLIGHT_IDE": "IDE/Scopes/IDE_Arrow/IDE_Arrow",
 					  "HIGHLIGHT_RESTART": "Level Control/Restart/Arrow",
 					  "HIGHLIGHT_HELP": "Level Control/Help/Arrow",
 					  "HIGHLIGHT_2X_SPEED": "Level Control/DoubleSpeed/Arrow",
-					  "HIGHLIGHT_CLEAR_CODE": "IDE/Scopes/Clear_Code_Arrow/Clear_Code_Arrow"}
+					  "HIGHLIGHT_CLEAR_CODE": "IDE/Scopes/Clear_Code_Arrow/Clear_Code_Arrow",
+					  "HIGHLIGHT_CLEAR_ALL": "IDE/Scopes/Clear_All_Arrow/Clear_All_Arrow"}
 
 var check_progress = false  # Boolean check to fix yielding bug
 var check_index = 0  # Only check for currently yielding user action checkpoint

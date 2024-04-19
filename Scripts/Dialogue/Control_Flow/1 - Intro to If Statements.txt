@@ -27,7 +27,10 @@ Finally, let's call the [color=yellow]if statement[/color] in [color=yellow]Func
 
 Can you see what's going on here? The [color=yellow]first time we call Func1[/color] in Main, I will walk forwards 2 tiles and face the wall. Since the [color=green]if condition is fulfilled[/color], I will [color=green]rotate right[/color].
 The [color=yellow]next time we call Func1[/color], I will walk fowards 2 tiles again. However, the [color=red]if condition will not be satisfied[/color] this time so the [color=red]else statement[/color] will execute instead.
-Now, place [color=yellow]2 Func1[/color] code blocks into Main and press [color=yellow]Run[/color] when you're ready!
+Now, place [color=yellow]2 F1[/color] code blocks into Main
+;
+
+Press [color=yellow]Run[/color] when you're ready!
 ;
 
 Hooray! To be honest, [color=yellow]if[/color] we weren't stuck here, then I don't know what [color=yellow]else[/color] I would be doing.

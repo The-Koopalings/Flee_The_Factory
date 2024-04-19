@@ -71,6 +71,8 @@ At the bottom of Main, you can see the [color=yellow]code block counter[/color].
 
 HIGHLIGHT_CLEAR_CODE
 As mentioned before, upon [color=yellow]Restart[/color], the [color=yellow]IDE is unaffected[/color]. To [color=red]clear all of the code blocks in Main[/color], press the [color=red]Clear button[/color] on the top-right.
+HIGHLIGHT_CLEAR_ALL
+Alternatively, in later rooms you may want to use the [color=blue]Clear All[/color] button to [color=red]clear all of the code blocks in the IDE[/color], rather than just 1 section of it.
 
 CODE_BLOCK
 Moving on, to place code blocks into the IDE, you can either [color=yellow]drag and drop[/color] or [color=yellow]double click[/color] them. To [color=yellow]double click[/color] it into an IDE section, that specific [color=yellow]IDE section[/color] will have to be [color=yellow]highlighted[/color] first, which you can do by [color=yellow]clicking on the section[/color]. 
