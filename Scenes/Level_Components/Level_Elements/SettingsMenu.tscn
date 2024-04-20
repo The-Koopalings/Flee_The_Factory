@@ -50,7 +50,7 @@ color = Color( 0, 0, 0, 0.25098 )
 margin_right = 1082.0
 margin_bottom = 646.0
 mouse_filter = 2
-color = Color( 0.254902, 0.317647, 0.427451, 1 )
+color = Color( 0.964706, 0.517647, 0.937255, 1 )
 
 [node name="Sliders" type="Control" parent="."]
 margin_left = 7.0

@@ -3,23 +3,23 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 onready var TextBox = get_node("TextBox")
 signal levelComplete
 var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
-onready var F1_FBA = get_node("IDE/F1/FunctionBlockArea")
-onready var If_Block = get_node("IDE/If1/If")
-onready var If_FBA = get_node("IDE/If1/If/FunctionBlockArea")
-onready var Else_FBA = get_node("IDE/If1/Else/FunctionBlockArea")
+onready var F1_FBA = "F1_FBA"
+onready var If_Block = "If1_Block"
+onready var If_FBA = "If1_FBA"
+onready var Else_FBA = "Else1_FBA"
 
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check_arr = [["Forward", "Forward"], ["Front", "==", "Blocked"], ["RotateRight"], ["Interact"], ["Forward", "Forward", "Call_If1"]]
-onready var progress_check_FBA = [F1_FBA, If_Block, If_FBA, Else_FBA, F1_FBA]
+var progress_check_arr = [["Forward", "Forward"], ["Front", "==", "Blocked"], ["RotateRight"], ["Interact"], ["Forward", "Forward", "Call_If1"], ["Call_F1", "Call_F1"]]
+onready var progress_check_FBA = [F1_FBA, If_Block, If_FBA, Else_FBA, F1_FBA, MainFBA]
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 

@@ -33,24 +33,35 @@ script = ExtResource( 12 )
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 4
 
 [node name="IDE_Arrow" type="Sprite" parent="IDE"]
-position = Vector2( -104, 200 )
+visible = false
+position = Vector2( -104, -125 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
 
 [node name="Run_Arrow" type="Sprite" parent="IDE"]
-position = Vector2( 234, 614 )
+visible = false
+position = Vector2( 120, 290 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Clear_All_Arrow" type="Sprite" parent="IDE"]
+visible = false
+position = Vector2( 350, 290 )
+rotation = 3.14159
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
 
 [node name="Clear_Code_Arrow" parent="IDE" instance=ExtResource( 15 )]
 visible = false
-position = Vector2( 370, 25 )
+position = Vector2( 350, -210 )
 rotation = 1.5708
+z_index = 4
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 8 )]
 
@@ -66,4 +77,4 @@ rotation = 1.5708
 [connection signal="buttonPressed" from="Grid/Button" to="." method="_on_Button_buttonPressed"]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]

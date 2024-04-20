@@ -3,16 +3,16 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 onready var TextBox = get_node("TextBox")
 signal levelComplete
 var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL 
-onready var Loop_Block = get_node("IDE/Loop1/HighlightControl")
-onready var While_Block = get_node("IDE/Loop1/HighlightControl/WhileConditional")
-onready var Loop_FBA = get_node("IDE/Loop1/HighlightControl/FunctionBlockArea")
+onready var Loop_Block = "Loop1_Block"
+onready var While_Block = "While1_Block"
+onready var Loop_FBA = "Loop1_FBA"
 
 var btn_pressed = false
 

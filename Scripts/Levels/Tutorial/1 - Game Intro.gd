@@ -3,7 +3,7 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 onready var TextBox = get_node("TextBox")
 signal levelComplete
 var level_win = false
@@ -35,8 +35,8 @@ func _ready():
 	PEP.loadLevel(self)
 	DialogueManager.add_dialogue(self)
 	
-	$IDE/IDE_Arrow.visible = false
-	$IDE/Run_Arrow.visible = false
+#	$IDE/IDE_Arrow/IDE_Arrow.visible = false
+#	$IDE/Run_Arrow/Run_Arrow.visible = false
 
 
 func _process(delta):

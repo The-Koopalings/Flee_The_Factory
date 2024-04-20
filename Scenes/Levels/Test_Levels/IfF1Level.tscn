@@ -297,11 +297,12 @@ parameters/playback = SubResource( 4 )
 [node name="LevelControl" parent="." instance=ExtResource( 2 )]
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
-margin_right = 1920.0
 
 [node name="If1" parent="IDE" instance=ExtResource( 11 )]
-margin_top = 513.0
-margin_bottom = 788.0
+margin_left = 0.0
+margin_top = 1078.0
+margin_right = 480.0
+margin_bottom = 1316.0
 __meta__ = {
 "_editor_description_": "Name this either IfElse1 or IfElse2"
 }
@@ -310,11 +311,17 @@ __meta__ = {
 text = "Else1"
 
 [node name="F1" parent="IDE" instance=ExtResource( 29 )]
-margin_top = 792.0
-margin_bottom = 1067.0
+margin_left = 0.0
+margin_top = 1320.0
+margin_right = 480.0
+margin_bottom = 1558.0
 
 [node name="Label" parent="IDE/F1" index="0"]
 text = "F1"
+
+[node name="Counter" parent="IDE/F1" index="2"]
+text = "0/21"
+maxBlocks = 21
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
 

@@ -39,24 +39,36 @@ script = ExtResource( 17 )
 
 [node name="IDE" parent="." instance=ExtResource( 13 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
+[node name="Scopes" parent="IDE" index="0"]
+margin_top = 0.0
+margin_bottom = 950.0
+
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 5
 
-[node name="F1" parent="IDE" instance=ExtResource( 15 )]
-margin_top = 513.0
-margin_bottom = 788.0
+[node name="ButtonContainer" parent="IDE" index="1"]
+margin_top = 954.0
+margin_bottom = 1074.0
 
-[node name="Counter" parent="IDE/F1" index="4"]
+[node name="F1" parent="IDE" instance=ExtResource( 15 )]
+margin_left = 0.0
+margin_top = 1078.0
+margin_right = 480.0
+margin_bottom = 1316.0
+
+[node name="Counter" parent="IDE/F1" index="2"]
 maxBlocks = 4
 
 [node name="F2" parent="IDE" instance=ExtResource( 15 )]
-margin_top = 792.0
-margin_bottom = 1067.0
+margin_left = 0.0
+margin_top = 1320.0
+margin_right = 480.0
+margin_bottom = 1558.0
 
 [node name="Label" parent="IDE/F2" index="0"]
 text = "FUNC2"
 
-[node name="Counter" parent="IDE/F2" index="4"]
+[node name="Counter" parent="IDE/F2" index="2"]
 maxBlocks = 4
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 1 )]
@@ -78,6 +90,6 @@ maxBlocks = 4
 [node name="PopupMenu" parent="." instance=ExtResource( 3 )]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]
 [editable path="IDE/F1"]
 [editable path="IDE/F2"]

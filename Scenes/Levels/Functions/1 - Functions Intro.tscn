@@ -36,18 +36,29 @@ script = ExtResource( 15 )
 
 [node name="IDE" parent="." instance=ExtResource( 13 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
+[node name="Scopes" parent="IDE" index="0"]
+margin_top = 0.0
+margin_bottom = 950.0
+
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 2
 
-[node name="F1" parent="IDE" instance=ExtResource( 14 )]
-margin_top = 513.0
-margin_bottom = 788.0
+[node name="ButtonContainer" parent="IDE" index="1"]
+margin_top = 954.0
+margin_bottom = 1074.0
 
-[node name="Counter" parent="IDE/F1" index="4"]
+[node name="F1" parent="IDE" instance=ExtResource( 14 )]
+margin_left = 0.0
+margin_top = 1078.0
+margin_right = 480.0
+margin_bottom = 1316.0
+
+[node name="Counter" parent="IDE/F1" index="2"]
 maxBlocks = 3
 
-[node name="F1_Arrow" type="Sprite" parent="IDE"]
-position = Vector2( -106, 392 )
+[node name="_F1_Arrow" type="Sprite" parent="IDE"]
+visible = false
+position = Vector2( -106, -110 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
@@ -66,5 +77,5 @@ position = Vector2( 0, -918 )
 [node name="PopupMenu" parent="." instance=ExtResource( 9 )]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]
 [editable path="IDE/F1"]

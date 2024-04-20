@@ -37,17 +37,27 @@ script = ExtResource( 1 )
 
 [node name="IDE" parent="." instance=ExtResource( 17 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
+[node name="Scopes" parent="IDE" index="0"]
+margin_top = 0.0
+margin_bottom = 950.0
+
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 2
+
+[node name="ButtonContainer" parent="IDE" index="1"]
+margin_top = 954.0
+margin_bottom = 1074.0
 
 [node name="Loop1" parent="IDE" instance=ExtResource( 16 )]
-margin_top = 513.0
-margin_bottom = 788.0
+margin_left = 0.0
+margin_top = 1078.0
+margin_right = 480.0
+margin_bottom = 1316.0
 
-[node name="Counter" parent="IDE/Loop1/HighlightControl" index="3"]
+[node name="Counter" parent="IDE/Loop1/HighlightControl" index="2"]
 maxBlocks = 2
 
-[node name="ChooseLoopType" parent="IDE/Loop1/HighlightControl" index="5"]
+[node name="ChooseLoopType" parent="IDE/Loop1/HighlightControl" index="4"]
 focus_mode = 2
 
 [node name="StepOperator" parent="IDE/Loop1/HighlightControl/ForConditional" index="6"]
@@ -60,20 +70,24 @@ focus_mode = 2
 focus_mode = 2
 
 [node name="Loop2" parent="IDE" instance=ExtResource( 16 )]
-margin_top = 792.0
-margin_bottom = 1067.0
+margin_left = 0.0
+margin_top = 1320.0
+margin_right = 480.0
+margin_bottom = 1558.0
 
-[node name="Counter" parent="IDE/Loop2/HighlightControl" index="3"]
+[node name="Counter" parent="IDE/Loop2/HighlightControl" index="2"]
 maxBlocks = 1
 
 [node name="If1" parent="IDE" instance=ExtResource( 18 )]
-margin_top = 1071.0
-margin_bottom = 1346.0
+margin_left = 0.0
+margin_top = 1562.0
+margin_right = 480.0
+margin_bottom = 1800.0
 
-[node name="Counter" parent="IDE/If1/If" index="4"]
+[node name="Counter" parent="IDE/If1/If" index="5"]
 maxBlocks = 1
 
-[node name="Counter" parent="IDE/If1/Else" index="4"]
+[node name="Counter" parent="IDE/If1/Else" index="3"]
 maxBlocks = 1
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 10 )]
@@ -96,8 +110,9 @@ maxBlocks = 1
 
 [node name="PopupMenu" parent="." instance=ExtResource( 15 )]
 
+[editable path="Grid"]
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]
 [editable path="IDE/Loop1"]
 [editable path="IDE/Loop2"]
 [editable path="IDE/If1"]

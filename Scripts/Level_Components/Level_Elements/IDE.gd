@@ -17,17 +17,18 @@ var runPressed = false
 
 func _ready():
 	#Spacing between function blocks
-	add_constant_override("separation", 5)
+	#add_constant_override("separation", 5)
+	#add_spacer(true)
 	
 	#Moves Run_Button to the bottom
 	move_child(get_child(1), get_child_count() - 1)
 	
 	# Grab focus of the main function
-	$Main.grab_focus()
+	$Scopes/Main/Main.grab_focus()
 
 
 #Connected to Run_Button
-func _on_Button_pressed():
+func _on_RunButton_pressed():
 	#Check that the Run button hasn't been pressed yet
 	if !runPressed:
 		#Play button pressed sound, wait until it's finished to run
@@ -40,7 +41,11 @@ func _on_Button_pressed():
 		enter_scope(scopes["Main"])
 		run_code()
 
-
+func _on_ClearAllButton_pressed():
+	ButtonPress3.play()
+	yield(get_tree().create_timer(0.001, false), "timeout") 
+	get_node("Scopes/Main/Main").grab_focus()
+	
 func enter_scope(node):
 	#If current IDE block node is not a Loop
 	if !is_loop(node.name): 

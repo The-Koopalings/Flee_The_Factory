@@ -14,4 +14,5 @@ func _ready():
 func on_pressed():
 	ButtonPress3.play()
 	get_node("../FunctionBlockArea").clear_code()
+	get_node("..").grab_focus()
 	

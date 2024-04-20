@@ -4,8 +4,14 @@ onready var codeArea = get_node("FunctionBlockArea")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Highlight.visible = false
-
+	$Clickable/Highlight.visible = false
+	$Clickable/BorderTop.visible = true
+	$Clickable/BorderLeft.visible = true
+	$Clickable/BorderBottom.visible = true
+	$Clickable/BorderRight.visible = true
+	
+	if self.name.begins_with("F"):
+		$Label.text = self.name		
 
 func get_code():
 	var code = codeArea.get_children()
@@ -25,14 +31,22 @@ func set_FBA_numBlocks():
 
 
 func _on_FunctionBlockControl_focus_entered():
-	$Highlight.visible = true
+	$Clickable/Highlight.visible = true
+	$Clickable/BorderTop.visible = false
+	$Clickable/BorderLeft.visible = false
+	$Clickable/BorderBottom.visible = false
+	$Clickable/BorderRight.visible = false
+
 
 
 func _on_FunctionBlockControl_focus_exited():
-	$Highlight.visible = false
+	$Clickable/Highlight.visible = false
+	$Clickable/BorderTop.visible = true
+	$Clickable/BorderLeft.visible = true
+	$Clickable/BorderBottom.visible = true
+	$Clickable/BorderRight.visible = true
 
 
 func _on_Clickable_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		grab_focus()
-
