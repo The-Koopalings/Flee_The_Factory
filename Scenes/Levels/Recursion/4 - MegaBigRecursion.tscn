@@ -66,6 +66,9 @@ script = ExtResource( 20 )
 margin_top = 0.0
 margin_bottom = 950.0
 
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
+maxBlocks = 1
+
 [node name="ButtonContainer" parent="IDE" index="1"]
 margin_top = 954.0
 margin_bottom = 1074.0

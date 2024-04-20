@@ -38,6 +38,9 @@ script = ExtResource( 16 )
 
 [node name="IDE" parent="." instance=ExtResource( 15 )]
 
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
+maxBlocks = 5
+
 [node name="CodeBlockBar" parent="." instance=ExtResource( 11 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 10 )]

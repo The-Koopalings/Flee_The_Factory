@@ -42,6 +42,7 @@ func _on_RunButton_pressed():
 		run_code()
 
 func _on_ClearAllButton_pressed():
+	ButtonPress3.play()
 	yield(get_tree().create_timer(0.001, false), "timeout") 
 	get_node("Scopes/Main/Main").grab_focus()
 	

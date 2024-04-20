@@ -33,6 +33,9 @@ script = ExtResource( 12 )
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
+maxBlocks = 4
+
 [node name="IDE_Arrow" type="Sprite" parent="IDE"]
 visible = false
 position = Vector2( -104, -125 )
