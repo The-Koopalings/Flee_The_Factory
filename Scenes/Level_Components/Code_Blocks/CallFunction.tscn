@@ -8,7 +8,6 @@
 extents = Vector2( 29.5, 28.5 )
 
 [node name="Call_F1" type="Area2D"]
-z_index = 5
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

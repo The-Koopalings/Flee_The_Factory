@@ -40,7 +40,6 @@ text = "FUNC1"
 
 [node name="FunctionBlockArea" type="Area2D" parent="."]
 position = Vector2( 52, 50 )
-z_index = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Code for this assumes it has 2 non-code block children, change input_event() get_child() parameter input if that number changes"

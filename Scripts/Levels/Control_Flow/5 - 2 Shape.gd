@@ -37,10 +37,6 @@ func _ready():
 	PEP.loadLevel(self)
 	DialogueManager.add_dialogue(self)
 	
-	# Put here for now since current IDE doesn't allow 3 blocks
-	var runBtn = get_node("IDE/Run_Button").duplicate()
-	self.add_child(runBtn)
-	runBtn.rect_position = Vector2(960, 0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
