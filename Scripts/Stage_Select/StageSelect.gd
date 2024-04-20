@@ -37,6 +37,7 @@ func set_windows(stage, levelCount):
 	for i in range(1, levelCount + 1):
 		#Set position & size of window
 		var window = Panel.new()
+#		window.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		window.set_position(Vector2(posx + (100 * (i - 1)), posy))
 		window.set_size(windowSize)
 		
