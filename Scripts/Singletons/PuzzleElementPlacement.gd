@@ -500,7 +500,7 @@ func generate_RHS_options():
 	var types = puzzleElements.keys()
 	var options = ["Blocked"]
 	for type in types:
-		if type == "Obstacle" || type == "Robot":
+		if type == "Obstacle" || type == "Robot" || type == "ColorRect":
 			continue
 		options.push_back(type)
 	options.sort()
