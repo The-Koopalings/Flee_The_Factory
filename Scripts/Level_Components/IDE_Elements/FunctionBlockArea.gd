@@ -18,7 +18,7 @@ var numBlocks = 0
 var rowSize = 7
 var blockSize = 50 
 var xOffset = 30
-var yOffset = 50
+var yOffset = 30
 
 #To prevent removing a code block if it was dragged out of FBA, but dragged and dropped back into FBA
 var blockToAdd = null
@@ -121,6 +121,9 @@ func add_block(block):
 		numBlocks += 1
 		add_child(child, true)
 		counter.display(numBlocks)
+		print("FBA global position: ", global_position)
+		print("Code blocks global position: ", child.global_position)
+		print("Code blocks position: ", child.position)
 	
 	blockToAdd = null
 		
