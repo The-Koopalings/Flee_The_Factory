@@ -5,5 +5,6 @@
 
 [node name="LevelMusic" type="AudioStreamPlayer"]
 stream = ExtResource( 2 )
+volume_db = 3.0
 bus = "Music"
 script = ExtResource( 1 )
