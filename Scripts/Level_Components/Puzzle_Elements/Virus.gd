@@ -13,7 +13,7 @@ signal robotDied()
 # var startPosition = Vector2(1100,700)
 
 func _ready():
-	pass
+	$Highlight.visible = false
 
 func _on_Robot_interact(x, y):
 	if x == tileX and y == tileY:

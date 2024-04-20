@@ -1,24 +1,26 @@
-Similar to how functions can call other functions, loops can also call other loops! Let me show you show two nested for loops work.
+Similar to how functions can call other functions, [color=yellow]loops can also call other loops[/color]! 
+We call a loop inside of another loop a [color=yellow]nested loop[/color].
+Let me show you how [color=yellow]nested for loops[/color] work.
 
 IDE
-Click Loop1 and change it to a for loop.
+Click [color=yellow]Loop1[/color] and change it to a [color=yellow]for loop[/color].
 ;
 
-Now click Loop2 and change it to a for loop.
+Now click [color=yellow]Loop2[/color] and change it to a [color=yellow]for loop[/color] as well.
 ;
 
 CODE_BLOCK
-Let's use For2 to walk me down 6 tiles to the bottom left button. Use your previously learned knowledge to set the start, stop, and step values!
+Let's use [color=yellow]For2[/color] to [color=yellow]walk me down 6 tiles[/color] to the bottom left button. Use your previously learned knowledge to set the start, stop, and step values!
 ;
 
-Now let's place a forward code block into For2.
+Now let's place a [color=yellow]Forward[/color] code block into [color=yellow]For2[/color].
 ;
 
-Next, let's call For2 in For1.
+Next, let's [color=yellow]call For2[/color] in [color=yellow]For1[/color].
 ;
 
 Do you see what I'm trying to do here? Since I'm such an amazing teacher, you can totally do the rest of the level on your own now.
 Just keep in mind how there's 4 buttons on this floor...
 ;
 
-She nest my loop until I O(n^2). For more practice on loops, try beating this level with different nested loops! You can nest a while loop into a for loop, a for loop into a while loop, or a while loop into another while loop!
+Nice job! I bet birds would love it in here. For more practice on loops, try beating this level with [color=yellow]different nested loops[/color]! You can nest a [color=yellow]while loop into a for loop[/color], a [color=green]for loop into a while loop[/color], or a [color=blue]while loop into another while loop[/color]!

@@ -141,6 +141,18 @@ func save_settings():
 		printerr("Settings values didn't save correctly to ", saveFilePath)
 	
 
+func set_to_visible(sceneRootName: String):
+	#On the Start Menu, don't display ExitLevel and ExitGame buttons + change Continue button's position
+	if sceneRootName == "StartMenu":
+		$Buttons/Continue.set_position(Vector2(400, 380)) 
+		$Buttons/ExitLevel.visible = false
+		$Buttons/ExitGame.visible = false
+		visible = true
+	else:
+		$Buttons/Continue.set_position(Vector2(400, 300))
+		$Buttons/ExitLevel.visible = true
+		$Buttons/ExitGame.visible = true
+		visible = true
 #func stage_select_pressed():
 #	get_tree().paused = false
 #	visible = false
