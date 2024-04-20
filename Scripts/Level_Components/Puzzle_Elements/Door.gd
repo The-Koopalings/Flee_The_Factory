@@ -8,7 +8,7 @@ var tileX
 var tileY
 var color
 
-var openDoorTexture = preload("res://Assets/Miscalleous/completion.png")
+var openDoorTexture = preload("res://Assets/Objects/Doors/finalDoor_open.png")
 
 
 func _ready():
@@ -24,14 +24,14 @@ func set_color():
 	
 	match color:
 		"R":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Red_Door.png"))
-			$Sprite.set_scale(Vector2(0.25,0.25))
+			$Sprite.set_texture(load("res://Assets/Objects/Doors/redDoor.png"))
+			$Sprite.set_scale(Vector2(0.85,0.85))
 		"G":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Green_Door.png"))
-			$Sprite.set_scale(Vector2(0.25,0.25))
+			$Sprite.set_texture(load("res://Assets/Objects/Doors/greenDoor.png"))
+			$Sprite.set_scale(Vector2(0.85,0.85))
 		"B":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Blue_Door.png"))
-			$Sprite.set_scale(Vector2(0.25,0.25))
+			$Sprite.set_texture(load("res://Assets/Objects/Doors/blueDoor.png"))
+			$Sprite.set_scale(Vector2(0.85,0.85))
 		_:
 			color = ""
 	

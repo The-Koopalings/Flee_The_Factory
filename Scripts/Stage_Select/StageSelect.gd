@@ -31,7 +31,7 @@ func set_stages():
 func set_windows(stage, levelCount):
 	var stageName = stage.name.replace("Button", "")
 	var windowSize = Vector2(75, 75)
-	var posx = 50
+	var posx = 450
 	var posy = 15
 	
 	for i in range(1, levelCount + 1):

@@ -38,8 +38,10 @@ script = ExtResource( 1 )
 [node name="Door" parent="Grid" instance=ExtResource( 19 )]
 
 [node name="KeyB" parent="Grid" instance=ExtResource( 8 )]
+scale = Vector2( 1, 1 )
 
 [node name="KeyR" parent="Grid" instance=ExtResource( 8 )]
+scale = Vector2( 1, 1 )
 
 [node name="Level Control" parent="." instance=ExtResource( 13 )]
 
