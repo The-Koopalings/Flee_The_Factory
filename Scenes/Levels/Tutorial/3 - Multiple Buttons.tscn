@@ -40,7 +40,7 @@ script = ExtResource( 16 )
 
 [node name="IDE" parent="." instance=ExtResource( 9 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 9
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 2 )]
@@ -63,4 +63,4 @@ maxBlocks = 9
 [connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button2_buttonPressed"]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]

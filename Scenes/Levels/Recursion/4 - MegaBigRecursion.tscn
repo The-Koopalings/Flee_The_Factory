@@ -62,27 +62,40 @@ script = ExtResource( 20 )
 
 [node name="IDE" parent="." instance=ExtResource( 19 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
-text = "0/1"
+[node name="Scopes" parent="IDE" index="0"]
+margin_top = 0.0
+margin_bottom = 950.0
+
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 1
 
+[node name="ButtonContainer" parent="IDE" index="1"]
+margin_top = 954.0
+margin_bottom = 1074.0
+
 [node name="Loop1" parent="IDE" instance=ExtResource( 16 )]
-margin_top = 513.0
-margin_bottom = 788.0
+margin_left = 0.0
+margin_top = 1078.0
+margin_right = 480.0
+margin_bottom = 1316.0
 
 [node name="F1" parent="IDE" instance=ExtResource( 1 )]
-margin_top = 792.0
-margin_bottom = 1067.0
+margin_left = 0.0
+margin_top = 1320.0
+margin_right = 480.0
+margin_bottom = 1558.0
 
-[node name="Counter" parent="IDE/F1" index="4"]
+[node name="Counter" parent="IDE/F1" index="2"]
 text = "0/14"
 maxBlocks = 14
 
 [node name="F2" parent="IDE" instance=ExtResource( 1 )]
-margin_top = 1071.0
-margin_bottom = 1346.0
+margin_left = 0.0
+margin_top = 1562.0
+margin_right = 480.0
+margin_bottom = 1800.0
 
-[node name="Counter" parent="IDE/F2" index="4"]
+[node name="Counter" parent="IDE/F2" index="2"]
 text = "0/21"
 maxBlocks = 21
 
@@ -107,7 +120,7 @@ maxBlocks = 21
 [node name="TextBox" parent="." instance=ExtResource( 11 )]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]
 [editable path="IDE/Loop1"]
 [editable path="IDE/F1"]
 [editable path="IDE/F2"]

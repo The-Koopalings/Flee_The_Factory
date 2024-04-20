@@ -325,6 +325,12 @@ margin_bottom = 1558.0
 [node name="Label" parent="IDE/Loop2/HighlightControl/ChooseLoopType" index="1"]
 text = "Loop2"
 
+[node name="Loop3" parent="IDE" instance=ExtResource( 11 )]
+margin_left = 0.0
+margin_top = 1562.0
+margin_right = 480.0
+margin_bottom = 1800.0
+
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 7 )]

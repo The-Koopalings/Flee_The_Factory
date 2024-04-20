@@ -36,10 +36,11 @@ func _on_Settings_pressed():
 func _on_Restart_pressed():
 	ButtonPress2.play()
 	#Duplicate IDE sections to keep code blocks after Restart
-	var IDE = get_node("../IDE")
-	for block in IDE.get_children():
-		PEP.IDEChildren.push_back(block.duplicate())
+	var Scopes = get_node("../IDE/Scopes")
+	for container in Scopes.get_children():
+		PEP.IDEScopes.push_back(container.duplicate())
 
+	print("WAHOT", PEP.IDEScopes)
 	var Error = get_tree().reload_current_scene()
 	if Error != 0:
 		printerr("Error encountered on pressing Restart button. Error code: ", Error)

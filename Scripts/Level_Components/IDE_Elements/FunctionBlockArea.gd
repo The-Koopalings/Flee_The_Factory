@@ -16,7 +16,7 @@ onready var counter = get_node("../Counter")
 
 var numBlocks = 0
 var rowSize = 7
-var blockSize = 60 #Replace with actual codeblock size
+var blockSize = 50 
 var xOffset = 30
 var yOffset = 50
 
@@ -25,7 +25,7 @@ var blockToAdd = null
 var blockToRemove = null
 var isDeletingBlock = false
 
-onready var highlight = get_node("../Highlight")
+onready var highlight = get_node("../Clickable/Highlight")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,7 +65,7 @@ func _on_FunctionBlockArea_input_event(_viewport, event, _shape_idx):
 func _on_CodeBlock_doubleClick(code_block):
 	if !highlight.visible:
 		return 
-
+		
 	if is_a_parent_of(code_block):
 		remove_block(code_block)
 	else:
@@ -170,4 +170,18 @@ func shift_blocks(startIndex):
 		childNode.position = Vector2(x, y)
 		#Set CodeBlock's startPos to current global position
 		childNode.get_child(2).startPos = childNode.global_position 
+		
+func reset_CodeBlock_positions():
+	var codeblocks = get_children()
+	codeblocks.pop_front()
+	codeblocks.pop_front()
+	
+	var n = 0
+	
+	for code in codeblocks:
+		var x = xOffset + blockSize * (n % rowSize) 
+		var y = yOffset + blockSize * int(n / rowSize) + 2
+		code.position = Vector2(x,y)
+		code.get_child(2).startPos = code.global_position
+		n += 1
 		

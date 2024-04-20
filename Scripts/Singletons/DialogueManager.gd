@@ -12,9 +12,9 @@ var generic_dialogue = {"Tutorial": ["Remember: Press the button(s) to open the 
 					"Data_Structures": ["Remember: Stacks are LIFO (last in, first out), Queues are FIFO (first in, first out), and you have to keep track of the index you put an item into and use for Arrays."]
 					}
 
-var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",
-					  "HIGHLIGHT_RUN": "IDE/Run_Arrow",
-					  "HIGHLIGHT_FUNCTION_BLOCK": "IDE/F1_Arrow",
+var highlight_path = {"HIGHLIGHT_IDE": "IDE/Scopes/IDE_Arrow/IDE_Arrow",
+					  "HIGHLIGHT_RUN": "IDE/Scopes/Run_Arrow/Run_Arrow",
+					  "HIGHLIGHT_FUNCTION_BLOCK": "IDE/Scopes/_F1_Arrow/_F1_Arrow",
 					  "HIGHLIGHT_INVENTORY": "Inventory/Inventory_Arrow",
 					  "HIGHLIGHT_FORWARD": "CodeBlockBar/Forward/CodeBlock/Arrow",
 					  "HIGHLIGHT_INTERACT": "CodeBlockBar/Interact/CodeBlock/Arrow",
@@ -35,7 +35,8 @@ var highlight_path = {"HIGHLIGHT_IDE": "IDE/IDE_Arrow",
 					  "HIGHLIGHT_RESTART": "Level Control/Restart/Arrow",
 					  "HIGHLIGHT_HELP": "Level Control/Help/Arrow",
 					  "HIGHLIGHT_2X_SPEED": "Level Control/DoubleSpeed/Arrow",
-					  "HIGHLIGHT_CLEAR_CODE": "IDE/Clear_Code_Arrow"}
+					  "HIGHLIGHT_CLEAR_CODE": "IDE/Scopes/Clear_Code_Arrow/Clear_Code_Arrow",
+					  "HIGHLIGHT_CLEAR_ALL": "IDE/Scopes/Clear_All_Arrow/Clear_All_Arrow"}
 
 var check_progress = false  # Boolean check to fix yielding bug
 var check_index = 0  # Only check for currently yielding user action checkpoint
@@ -116,7 +117,7 @@ func highlight_manager(dialogue, level):
 	var path_to_highlight = highlight_path[dialogue]
 	var component_highlight = level.get_node(path_to_highlight)
 	
-	component_highlight.visible = true
+	component_highlight.visible = true  
 	
 	return component_highlight
 

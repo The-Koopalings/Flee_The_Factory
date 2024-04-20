@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Button.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Obstacle.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Level_Components/IDE_Elements/LoopBlock.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Levels/TestLevel.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=14]
@@ -274,7 +274,7 @@ script = ExtResource( 12 )
 
 [node name="Robot" parent="Grid" instance=ExtResource( 9 )]
 
-[node name="AnimationTree" parent="Grid/Robot" index="5"]
+[node name="AnimationTree" parent="Grid/Robot" index="4"]
 parameters/playback = SubResource( 4 )
 
 [node name="Obstacle" parent="Grid" instance=ExtResource( 10 )]
@@ -310,20 +310,23 @@ margin_bottom = 950.0
 margin_top = 954.0
 margin_bottom = 1074.0
 
-[node name="Loop1" parent="IDE" instance=ExtResource( 11 )]
+[node name="F1" parent="IDE" instance=ExtResource( 11 )]
 margin_left = 0.0
 margin_top = 1078.0
 margin_right = 480.0
 margin_bottom = 1316.0
 
-[node name="Loop2" parent="IDE" instance=ExtResource( 11 )]
+[node name="F2" parent="IDE" instance=ExtResource( 11 )]
 margin_left = 0.0
 margin_top = 1320.0
 margin_right = 480.0
 margin_bottom = 1558.0
 
-[node name="Label" parent="IDE/Loop2/HighlightControl/ChooseLoopType" index="1"]
-text = "Loop2"
+[node name="F3" parent="IDE" instance=ExtResource( 11 )]
+margin_left = 0.0
+margin_top = 1562.0
+margin_right = 480.0
+margin_bottom = 1800.0
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 4 )]
 
@@ -390,4 +393,3 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [editable path="Grid/Door"]
 [editable path="IDE"]
 [editable path="IDE/Scopes/Main/Main"]
-[editable path="IDE/Loop2"]

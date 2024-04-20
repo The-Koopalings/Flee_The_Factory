@@ -15,7 +15,7 @@ var IDE
 var robot
 var puzzleElements
 var codeBlocks = {}
-var IDEChildren = []
+var IDEScopes = []
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -263,30 +263,67 @@ func init_IDE():
 	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
 	var options = null
+	var scopesContainer = IDE.get_node("Scopes")
 	
 	#If player pressed Restart
-	if IDEChildren.size() != 0:
+	if IDEScopes.size() != 0:
 		var i = 0
-		
+		scopesContainer.remove_child(scopesContainer.get_child(0))
 		#Replace current IDE sections with pre-Restart IDE sections
-		for block in IDE.get_children():
-			IDE.remove_child(block)
-			IDE.add_child(IDEChildren[i])
+		for container in IDEScopes:			
+			scopesContainer.add_child(container)
+			var scope = container.get_child(0)
+			if scope.name.begins_with("F") or scope.name == "Main":
+				scope.get_node("FunctionBlockArea").reset_CodeBlock_positions()
+			elif scope.name.begins_with("If"):
+				scope.get_node("If/FunctionBlockArea").reset_CodeBlock_positions()
+				scope.get_node("Else/FunctionBlockArea").reset_CodeBlock_positions()
+			elif scope.name.begins_with("Loop"):
+				scope.get_node("HighlightControl/FunctionBlockArea").reset_CodeBlock_positions()
 			i = i + 1
-		IDEChildren.clear()
+		IDEScopes.clear()
 		
-		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEChildren
-		init_progress_check_FBA()
+		print("Well ok...",scopesContainer.get_children())
+		#remove extra scopes outside of the Scopes Container
+		var children = IDE.get_children()
+		if children.size() > 2:
+			for child in children:
+				if child.name == "ButtonContainer" or child.name == "Scopes":
+					pass
+				else:
+					IDE.remove_child(child)
+
+#		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
+#		init_progress_check_FBA()
 		
 		# Grab focus of main
-		IDE.get_node("Main").grab_focus()
+		scopesContainer.get_node("Main/Main").grab_focus()
 	
 	#Only generates dropdown options once (when first entering level) for If & Loop sections
 	else:
 		options = generate_RHS_options()
 
-	for child in IDE.get_children():
-		var type = child.name.rstrip("1234567890")
+	#Move scopes in scene tree to be in the Scopes container if they aren't already
+	#Should technically only have 2 children, Scopes and Button containers
+	var children = IDE.get_children()
+	if children.size() > 2:
+		for child in children:
+			if child.name == "ButtonContainer" or child.name == "Scopes":
+				pass
+			else:
+				IDE.remove_child(child)
+				var container = HBoxContainer.new()
+				container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				container.alignment = HBoxContainer.ALIGN_CENTER
+				container.name = child.name
+				container.add_child(child)
+				scopesContainer.add_child(container)
+				
+			
+	#Generate IDE.scopes dictionary
+	for scope in scopesContainer.get_children():
+		scope = scope.get_child(0) #Get the actual scope out of the nested container
+		var type = scope.name.rstrip("1234567890")
 		
 		#Ignore arrows
 		#In case of Restart: Reconnect Run_Button signal to current IDE
@@ -294,33 +331,52 @@ func init_IDE():
 		#					 (otherwise numBlocks would = 0 even if there are > 0 code blocks in that FBA)
 		if type.find("Arrow") != -1:
 			continue
-		elif type == "Run_Button":
-			child.connect("pressed", IDE, "_on_Button_pressed")
 		elif type == "If":
-			child.get_node("If").set_FBA_numBlocks()
-			child.get_node("Else").set_FBA_numBlocks()
+			scope.get_node("If").set_FBA_numBlocks()
+			scope.get_node("Else").set_FBA_numBlocks()
 		elif type == "Loop":
-			child.get_node("HighlightControl").set_FBA_numBlocks()
-			child.reset_loopCount()
+			scope.get_node("HighlightControl").set_FBA_numBlocks()
+			scope.reset_loopCount()
 		else:
-			child.set_FBA_numBlocks()
+			scope.set_FBA_numBlocks()
 		
-		call_loop_reconnections(type, child)
+		call_loop_reconnections(type, scope)
 		
 		#Check if we need to add RHS options, shouldn't trigger after a Restart
 		if options:
 			if type == "If":
-				var RHS = child.get_node("If/RHS")
-				child.add_dropdown_options()
+				var RHS = scope.get_node("If/RHS")
+				scope.add_dropdown_options()
 				add_RHS_options(options, RHS)
 			elif type == "Loop":
-				var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
-				child.add_dropdown_options()
+				var RHS = scope.get_node("HighlightControl/WhileConditional/RHS")
+				scope.add_dropdown_options()
 				add_RHS_options(options, RHS)
 			
 		#Add the scope to list of scopes
-		IDE.scopes[child.name] = child
-		
+		IDE.scopes[scope.name] = scope
+	
+	
+	#init buttons
+	var buttons = IDE.get_node("ButtonContainer")
+	#Connect Run Button
+	buttons.get_node("Run_Button").connect("pressed", IDE, "_on_RunButton_pressed")
+
+	#Connect Clear All Button
+	for scope in scopesContainer.get_children():
+		var btnPath = "ClearAll_Button"
+		#Coupling this with the existing ClearCode button in all scopes. (ie I'm being lazy)
+		if scope.name.begins_with("If"):
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("If/ClearCode"), "on_pressed")
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("Else/ClearCode"), "on_pressed")
+		elif scope.name.begins_with("Loop"):
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("HighlightControl/ClearCode"), "on_pressed")
+		elif scope.name.begins_with("F") or scope.name == "Main":
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("ClearCode"), "on_pressed")
+	buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
+	
+	#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
+	init_progress_check_FBA()
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
 	
@@ -328,7 +384,7 @@ func init_IDE():
 #Reconnect signals in Call_Loop code blocks, needed after a Restart
 func call_loop_reconnections(type, child):
 	var code = []
-	if type.find("Arrow") != -1 or type == "Run_Button":
+	if type.find("Arrow") != -1 or type == "ButtonContainer":
 		return
 	elif type == "If":
 		code = child.get_node("If/FunctionBlockArea").get_children()
@@ -349,33 +405,80 @@ func call_loop_reconnections(type, child):
 			codeBlock.connect_to_LoopBlock()
 	
 
-#Allows progress checks to work after Restart, progress_check_FBA elements need to point to pre-Restart FBAs
+#Puts correct FBA/conditional nodes into level.progress_check_FBA array
+#The array starts with Strings in the format: "Loop1_FBA" or "Loop1_Block", Block ending denotes conditional node
 func init_progress_check_FBA():
 	for i in range(level.progress_check_FBA.size()):
-		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
-		var scope = level.progress_check_FBA[i].get_parent().name
-		var itself = level.progress_check_FBA[i].name
+		#Whether to get the FBA or the conditional node of a scope
+		var type = ""
+		#The num for F1 would be 1
+		var num = ""
+		var scopeType = level.progress_check_FBA[i]
 		
-		if scope == "Main" or scope.begins_with("F"):
-			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/FunctionBlockArea")
-		elif itself == "If" or scope.begins_with("Loop"):
-			#For If conditional checks + Loop type selection checks
-			level.progress_check_FBA[i] = level.get_node("IDE/" + scope + "/" + itself)
-		else:
-			#For checking Ifs & Loops
-			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
-			if higherScope.begins_with("If"):
-				#Should account for If & Else FBAs
-				level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/" + scope + "/FunctionBlockArea")
-			elif higherScope.begins_with("Loop"):
-				if itself == "FunctionBlockArea":
-					level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/FunctionBlockArea")
-				elif itself == "ForConditional" or itself == "WhileConditional":
-					#For While & For Loop conditional checks
-					level.progress_check_FBA[i] = level.get_node("IDE/" + higherScope + "/HighlightControl/" + itself)
-			
-				
-	
+		#Check whether we need to get the FBA or the conditional node
+		if scopeType.find("FBA") != -1:
+			scopeType = level.progress_check_FBA[i].replace("FBA", "")
+			type = "FBA"
+		elif scopeType.find("Block") != -1:
+			scopeType = level.progress_check_FBA[i].replace("Block", "")
+			type = "Block"
+		
+		#Only relevant for non-Main scopes
+		if scopeType != "Main":
+			#Get the number, should only be a single-digit, 2nd to last index, EX: Loop1_
+			num = scopeType.substr(scopeType.length() - 2, 1)
+			scopeType = scopeType.rstrip("_").rstrip("0123456789")
+		
+		#Main & F scopeTypes will always be FBA
+		if scopeType == "Main":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Main/Main/FunctionBlockArea")
+		elif scopeType == "F":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/F" + num + "/F" + num + "/FunctionBlockArea")
+		#If scopeType can be either FBA or conditional node
+		elif scopeType == "If":
+			if type == "FBA":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/If/FunctionBlockArea")
+			elif type == "Block":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/If")
+				print("if block: ", level.progress_check_FBA[i])
+		#Else scopeType will always be FBA
+		elif scopeType == "Else":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/Else/FunctionBlockArea")
+		#Loop scopeType can be either FBA or conditional
+		elif scopeType == "Loop":
+			if type == "FBA":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/FunctionBlockArea")
+			elif type == "Block":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl")
+		#For & While scopeTypes will only always be conditional nodes
+		elif scopeType == "For":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/ForConditional")
+		elif scopeType == "While":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/WhileConditional")
+		
+		
+		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
+#		var scope = level.progress_check_FBA[i].get_parent().name
+#
+#		var itself = level.progress_check_FBA[i].name
+#
+#		if scope == "Main" or scope.begins_with("F"):
+#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/FunctionBlockArea")
+#		elif itself == "If" or scope.begins_with("Loop"):
+#			#For If conditional checks + Loop type selection checks
+#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/" + itself)
+#		else:
+#			#For checking Ifs & Loops
+#			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
+#			if higherScope.begins_with("If"):
+#				#Should account for If & Else FBAs
+#				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/" + scope + "/FunctionBlockArea")
+#			elif higherScope.begins_with("Loop"):
+#				if itself == "FunctionBlockArea":
+#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
+#				elif itself == "ForConditional" or itself == "WhileConditional":
+#					#For While & For Loop conditional checks
+#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/" + itself)
 	
 func init_inventory():
 	level.get_node("Inventory").set_position(Vector2(865, 43))
@@ -397,7 +500,7 @@ func generate_RHS_options():
 	var types = puzzleElements.keys()
 	var options = ["Blocked"]
 	for type in types:
-		if type == "Obstacle" || type == "Robot":
+		if type == "Obstacle" || type == "Robot" || type == "ColorRect":
 			continue
 		options.push_back(type)
 	options.sort()

@@ -54,14 +54,24 @@ script = ExtResource( 18 )
 
 [node name="IDE" parent="." instance=ExtResource( 11 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
+[node name="Scopes" parent="IDE" index="0"]
+margin_top = 0.0
+margin_bottom = 950.0
+
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 4
 
-[node name="F1" parent="IDE" instance=ExtResource( 17 )]
-margin_top = 463.0
-margin_bottom = 738.0
+[node name="ButtonContainer" parent="IDE" index="1"]
+margin_top = 954.0
+margin_bottom = 1074.0
 
-[node name="Counter" parent="IDE/F1" index="4"]
+[node name="F1" parent="IDE" instance=ExtResource( 17 )]
+margin_left = 0.0
+margin_top = 1078.0
+margin_right = 480.0
+margin_bottom = 1316.0
+
+[node name="Counter" parent="IDE/F1" index="2"]
 maxBlocks = 4
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 1 )]
@@ -81,5 +91,5 @@ maxBlocks = 4
 [node name="PopupMenu" parent="." instance=ExtResource( 7 )]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]
 [editable path="IDE/F1"]

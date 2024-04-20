@@ -14,6 +14,7 @@ func _ready():
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	
+	$If/Label.text = self.name
 	#Add options into LHS & Operator dropdowns
 #	add_dropdown_options()
 	

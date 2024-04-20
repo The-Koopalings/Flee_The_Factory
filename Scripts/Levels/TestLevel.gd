@@ -7,6 +7,7 @@ signal levelComplete
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES
+var progress_check_FBA = []
 var b1_pressed = false
 var b2_pressed = false
 var b3_pressed = false

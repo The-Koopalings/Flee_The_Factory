@@ -3,7 +3,7 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 onready var TextBox = get_node("TextBox")
 signal levelComplete
 var level_win = false
@@ -46,11 +46,6 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 func _ready():
 	PEP.loadLevel(self)
 	DialogueManager.add_dialogue(self)
-	
-	#We don't have room for 3 scopes yet, so I'm just doing this
-	var runBtn = get_node("IDE/Run_Button").duplicate()
-	self.add_child(runBtn)
-	runBtn.rect_position = Vector2(960, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
