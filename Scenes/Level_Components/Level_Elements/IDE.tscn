@@ -48,6 +48,9 @@ grow_vertical = 0
 [node name="Label" parent="Scopes/Main/Main" index="0"]
 text = "MAIN"
 
+[node name="ColorRect" parent="Scopes/Main/Main/FunctionBlockArea" index="1"]
+visible = false
+
 [node name="ButtonContainer" type="HBoxContainer" parent="."]
 margin_top = 957.0
 margin_right = 480.0
