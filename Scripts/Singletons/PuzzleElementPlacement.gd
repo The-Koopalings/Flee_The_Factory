@@ -234,7 +234,7 @@ func init_WCLs():
 
 #Set position of code blocks on CodeBlockBar
 func init_code_blocks_bar():
-	var x = 90
+	var x = 145
 	var y = 1008
 	
 	var blocks = CodeBlockBar.get_children()
@@ -253,7 +253,7 @@ func init_code_blocks_bar():
 			if block.name.begins_with("Call_Loop"):
 				block.connect_to_LoopBlock()
 		
-		x += 110
+		x += 96
 		
 	print("CODE BLOCKS: ", blocks)
 	print(DEBUG_buffer)
