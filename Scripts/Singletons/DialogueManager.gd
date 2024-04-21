@@ -12,10 +12,15 @@ var generic_dialogue = {"Tutorial": ["Remember: Press the button(s) to open the 
 					"Data_Structures": ["Remember: Stacks are LIFO (last in, first out), Queues are FIFO (first in, first out), and you have to keep track of the index you put an item into and use for Arrays."]
 					}
 
-var highlight_path = {"HIGHLIGHT_IDE": "IDE/Scopes/IDE_Arrow/IDE_Arrow",
-					  "HIGHLIGHT_RUN": "IDE/Scopes/Run_Arrow/Run_Arrow",
-					  "HIGHLIGHT_FUNCTION_BLOCK": "IDE/Scopes/_F1_Arrow/_F1_Arrow",
-					  "HIGHLIGHT_INVENTORY": "Inventory/Inventory_Arrow",
+var highlight_path = {"HIGHLIGHT_IDE": "IDE_Arrow",
+					  "HIGHLIGHT_RUN": "Run_Arrow",
+					  "HIGHLIGHT_CLEAR_CODE": "Clear_Code_Arrow",
+					  "HIGHLIGHT_CLEAR_ALL": "Clear_All_Arrow",
+					  "HIGHLIGHT_IF_BLOCK": "If_Arrow",
+					  "HIGHLIGHT_ELSE_BLOCK": "Else_Arrow",
+					  "HIGHLIGHT_LOOP_BLOCK": "Loop_Arrow",
+					  "HIGHLIGHT_FUNCTION_BLOCK": "F1_Arrow",
+					  "HIGHLIGHT_INVENTORY": "Inventory_Arrow",
 					  "HIGHLIGHT_FORWARD": "CodeBlockBar/Forward/CodeBlock/Arrow",
 					  "HIGHLIGHT_INTERACT": "CodeBlockBar/Interact/CodeBlock/Arrow",
 					  "HIGHLIGHT_ROTATE_LEFT": "CodeBlockBar/RotateLeft/CodeBlock/Arrow",
@@ -31,15 +36,10 @@ var highlight_path = {"HIGHLIGHT_IDE": "IDE/Scopes/IDE_Arrow/IDE_Arrow",
 					  "HIGHLIGHT_DOORR": "Grid/DoorR/Highlight",
 					  "HIGHLIGHT_OBSTACLE": "Grid/Obstacle/Highlight",
 					  "HIGHLIGHT_VIRUS": "Grid/Virus/Highlight",
-					  "HIGHLIGHT_SETTINGS": "Level Control/Settings/Arrow",
-					  "HIGHLIGHT_RESTART": "Level Control/Restart/Arrow",
-					  "HIGHLIGHT_HELP": "Level Control/Help/Arrow",
-					  "HIGHLIGHT_2X_SPEED": "Level Control/DoubleSpeed/Arrow",
-					  "HIGHLIGHT_CLEAR_CODE": "IDE/Scopes/Clear_Code_Arrow/Clear_Code_Arrow",
-					  "HIGHLIGHT_CLEAR_ALL": "IDE/Scopes/Clear_All_Arrow/Clear_All_Arrow",
-					  "HIGHLIGHT_IF_BLOCK": "If_Arrow",
-					  "HIGHLIGHT_ELSE_BLOCK": "Else_Arrow",
-					  "HIGHLIGHT_LOOP_BLOCK": "Loop_Arrow"}
+					  "HIGHLIGHT_SETTINGS": "Settings_Arrow",
+					  "HIGHLIGHT_RESTART": "Restart_Arrow",
+					  "HIGHLIGHT_HELP": "Help_Arrow",
+					  "HIGHLIGHT_2X_SPEED": "DoubleSpeed_Arrow",}
 
 var check_progress = false  # Boolean check to fix yielding bug
 var check_index = 0  # Only check for currently yielding user action checkpoint

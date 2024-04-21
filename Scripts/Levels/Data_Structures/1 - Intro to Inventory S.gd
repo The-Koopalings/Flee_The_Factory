@@ -35,7 +35,6 @@ func _ready():
 	DialogueManager.add_dialogue(self)
 	PEP.loadLevel(self)
 	PEP.init_inventory()
-	$Inventory/Inventory_Arrow.visible = false
 	
 
 func _process(delta):
