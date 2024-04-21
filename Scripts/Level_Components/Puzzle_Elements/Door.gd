@@ -37,13 +37,20 @@ func set_color():
 	
 
 func _on_level_levelComplete():
-	$SoundUnlock.play()
-	$Sprite.set_texture(openDoorTexture)
-	get_node("WCLs").visible = false
+	#Only applicable to exit door, prevents unopened doors to change texture upon level completion
+	if color == "":
+		$SoundUnlock.play()
+		$Sprite.set_texture(openDoorTexture)
+		get_node("WCLs").visible = false
 	
-	var root = get_tree().root
-	var levelPath = root.get_child(root.get_child_count() - 1).filename
-	GameStats.set_level_completed(levelPath)
+		var root = get_tree().root
+		var levelPath = root.get_child(root.get_child_count() - 1).filename
+		GameStats.set_level_completed(levelPath)
+		
+		#Make sure For loop's i increments properly, only if the last code block in the loop opened the exit door
+		var IDE = get_node(PEP.get_path_to_grandpibling(self, "IDE"))
+		if IDE.is_loop() and IDE.code.size() == 0:
+			IDE.currentNode.increment_loopCount()
 	
-	#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
-	$Sprite.set_scale(Vector2(1,1)) 
+		#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
+		$Sprite.set_scale(Vector2(1,1)) 
