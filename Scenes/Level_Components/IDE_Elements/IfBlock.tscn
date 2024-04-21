@@ -24,12 +24,6 @@ outline_size = 1
 outline_color = Color( 0, 0.231373, 0.482353, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 45
-outline_size = 1
-outline_color = Color( 0, 0.231373, 0.482353, 1 )
-font_data = ExtResource( 6 )
-
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 230, 61 )
 
@@ -47,26 +41,6 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 20
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 45
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 45
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 45
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 45
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 45
 font_data = ExtResource( 6 )
 
 [node name="If1" type="Control"]

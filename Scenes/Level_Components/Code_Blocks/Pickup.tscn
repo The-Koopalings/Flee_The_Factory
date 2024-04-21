@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Pickup.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Objects/Pickup.PNG" type="Texture" id=2]
+[ext_resource path="res://Assets/Objects/Code_Blocks/Pick_Up.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CodeBlock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=4]
 
@@ -27,7 +27,6 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.5, 9.53674e-07 )
-scale = Vector2( 0.232653, 0.262136 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
