@@ -10,35 +10,42 @@ var previousCode = null
 var currentNode = null #Current IDE section node
 var looping: bool = false 
 var singleLoopCompleted: bool = false #True means loop can increment
+onready var Robot = get_node("../Grid/Robot")
 
 #To allow for only 1 press of Run unless the scene is restarted
 var runPressed = false
 
 func _ready():
 	#Spacing between function blocks
-	add_constant_override("separation", 5)
+	#add_constant_override("separation", 5)
+	#add_spacer(true)
 	
 	#Moves Run_Button to the bottom
 	move_child(get_child(1), get_child_count() - 1)
 	
-	# Grab focus of Main Function
-	$Main.grab_focus()
+	# Grab focus of the main function
+	$Scopes/Main/Main.grab_focus()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 #Connected to Run_Button
-func _on_Button_pressed():
+func _on_RunButton_pressed():
 	#Check that the Run button hasn't been pressed yet
 	if !runPressed:
+		#Play button pressed sound, wait until it's finished to run
+		ButtonPress3.play()
+		yield(get_tree().create_timer(0.5), "timeout")
+		#Run code
 		runPressed = true
+		GameStats.set_game_state(GameStats.State.EXECUTING)
 		print("Scopes: ", scopes)
 		enter_scope(scopes["Main"])
 		run_code()
 
-
+func _on_ClearAllButton_pressed():
+	ButtonPress3.play()
+	yield(get_tree().create_timer(0.001, false), "timeout") 
+	get_node("Scopes/Main/Main").grab_focus()
+	
 func enter_scope(node):
 	#If current IDE block node is not a Loop
 	if !is_loop(node.name): 
@@ -83,7 +90,7 @@ func enter_scope(node):
 
 	#Will execute from back to front, so invert
 	code.invert()
-	yield(get_tree().create_timer(GameStats.run_speed/2, false), "timeout") 
+	yield(get_tree().create_timer(GameStats.savableGameStats.run_speed/2, false), "timeout") 
 
 func run_code():
 	var block
@@ -104,9 +111,11 @@ func run_code():
 			emit_signal("executed", previousCode)
 			block.send_signal()
 			previousCode = block
+			if block.name.begins_with("Forward"):
+				yield(Robot, "animationFinished")
 			
 			if block.BLOCK_TYPE == "CODE":
-				yield(get_tree().create_timer(GameStats.run_speed, false), "timeout") 
+				yield(get_tree().create_timer(GameStats.savableGameStats.run_speed, false), "timeout") 
 			elif block.BLOCK_TYPE == "CALL":
 				var call_name = block.name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
 				if is_loop(call_name):

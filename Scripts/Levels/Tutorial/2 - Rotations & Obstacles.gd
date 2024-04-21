@@ -4,7 +4,7 @@ extends Node2D
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
 onready var TextBox = get_node("TextBox")
-onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 signal levelComplete
 var level_win = false
 ##UNIVERSAL LEVEL VARIABLES 
@@ -13,9 +13,9 @@ var level_win = false
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check = [false, false, false]
 var progress_check_arr = [["RotateLeft"], ["RotateLeft", "Forward"], ["RotateLeft", "Forward", "RotateRight"]]
 onready var progress_check_FBA = [MainFBA, MainFBA, MainFBA]
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 
@@ -34,7 +34,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Tutorial/2 - Rotations & Obstacles.txt")
+	DialogueManager.add_dialogue(self)
 
 
 func _process(delta):
@@ -45,7 +45,7 @@ func _process(delta):
 		
 		if level_win:
 			emit_signal("levelComplete")
-			$AcceptDialog.popup()
+			$PopupMenu.visible = true
 			level_win = false
 
 

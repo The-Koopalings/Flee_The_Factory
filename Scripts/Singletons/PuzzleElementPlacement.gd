@@ -2,6 +2,7 @@ extends Node2D
 
 var DEBUG_buffer = "~~~~~~~~~~~~~~~"
 var wallScene = preload("res://Scenes/Level_Components/Puzzle_Elements/Wall.tscn")
+var WCLScene = preload("res://Scenes/Level_Components/Puzzle_Elements/WinConditionLight.tscn")
 var maxRows = 7 #Number of Rows (Cells per Column)
 var maxCols = 11  #Numbers of Columns (Cells per Row)
 var tiles = []
@@ -13,6 +14,8 @@ var level
 var IDE
 var robot
 var puzzleElements
+var codeBlocks = {}
+var IDEScopes = []
 signal buttonPressed(name)
 
 var TileToTypeMapping = {
@@ -40,14 +43,19 @@ func loadLevel(_level):
 	self.IDE = level.get_node("IDE")
 	self.halftile = Grid.tile_size/2
 	
+	print(DEBUG_buffer)
 	self.init_elements()
-	self.init_code_blocks_bar()
+	self.init_WCLs()
 	self.init_IDE()
+	self.init_code_blocks_bar()
 	self.update()
 	GameStats.set_game_state(GameStats.State.CODING)
+	
 
 #Draws the borders of the grid+
 func _draw():
+	if GameStats.game_state == GameStats.State.OUT_OF_LEVEL:
+		return
 #	var tileCount = 0
 	var rowIndex = 0
 	var colIndex = 0
@@ -126,12 +134,18 @@ func init_elements():
 					node.position = Vector2(x, y)	
 					#If it's a special element, do special thing to it
 					if type == "Robot":
-						node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
-						node.move_highlight()
+						#node.get_node("Sprite").rotation_degrees = robotStartOrientation*90
+						node.orientation = robotStartOrientation
+						node.set_idle_direction()
 						GameStats.connect("robotDied", node, "_on_GameStats_robotDied")
 					elif type == "Button":
 						robot.connect("interact",node,"_on_Robot_interact")
 						node.connect("buttonPressed", level, "_on_Button_buttonPressed")
+						#Setup WinConditionLight
+						var wcl = WCLScene.instance()
+						var wcls = level.get_node("Grid/Door/WCLs")
+						wcls.add_child(wcl)
+						node.connect("buttonPressed", wcls, "on_button_pressed")
 					elif type == "Virus":
 						robot.connect("interact",node,"_on_Robot_interact")
 					elif type == "Door":
@@ -180,6 +194,44 @@ func generate_elements_dict():
 	
 	return elements
 
+func init_WCLs():
+	var positions = []
+	var wcls = level.get_node("Grid/Door/WCLs")
+	var wclChildren = wcls.get_children()
+	var wclCount = wcls.get_child_count()
+	
+	if wclCount == 1:
+		return
+	elif wclCount == 2:
+		positions.push_back(Vector2(-10, 0))
+		positions.push_back(Vector2(10, 0))
+	elif wclCount == 3:
+		positions.push_back(Vector2(-15, 0))
+		positions.push_back(Vector2(0, 0))
+		positions.push_back(Vector2(15, 0))
+	elif wclCount == 4:
+		positions.push_back(Vector2(-10, -10))
+		positions.push_back(Vector2(10, -10))
+		positions.push_back(Vector2(-10, 10))
+		positions.push_back(Vector2(10, 10))
+	elif wclCount == 5:
+		positions.push_back(Vector2(-15, -10))
+		positions.push_back(Vector2(0, -10))
+		positions.push_back(Vector2(15, -10))
+		positions.push_back(Vector2(-10, 10))
+		positions.push_back(Vector2(10, 10))
+	elif wclCount == 6:
+		positions.push_back(Vector2(-15, -10))
+		positions.push_back(Vector2(0, -10))
+		positions.push_back(Vector2(15, -10))
+		positions.push_back(Vector2(-15, 10))
+		positions.push_back(Vector2(0, 10))
+		positions.push_back(Vector2(15, 10))
+	
+	for wcl in wclChildren:
+		wcl.position = positions.pop_front()
+	
+
 #Set position of code blocks on CodeBlockBar
 func init_code_blocks_bar():
 	var x = 90
@@ -192,10 +244,14 @@ func init_code_blocks_bar():
 	for block in blocks:
 		var code_block_template = block.get_child(2)
 		code_block_template.startPos = Vector2(x, y)
+		code_block_template.connections()
 		if block.BLOCK_TYPE == "CALL":
 			var call_name = block.name.trim_prefix("Call_")
 			var texture = load("res://Assets/Objects/" + call_name + ".png")
 			block.get_node("Sprite").set_texture(texture)
+			#In case of Restart, allows Call_Loop code blocks to reconnect to pre-Restart IDE sections
+			if block.name.begins_with("Call_Loop"):
+				block.connect_to_LoopBlock()
 		
 		x += 110
 		
@@ -206,31 +262,224 @@ func init_code_blocks_bar():
 func init_IDE():
 	GameStats.connect("robotDied", IDE, "_on_GameStats_robotDied")
 	level.connect("levelComplete", IDE, "_on_level_levelComplete")
-	var options = generate_RHS_options()
+	var options = null
+	var scopesContainer = IDE.get_node("Scopes")
 	
-	
-	for child in IDE.get_children():
-		var type = child.name.rstrip("1234567890")
+	#If player pressed Restart
+	if IDEScopes.size() != 0:
+		var i = 0
+		scopesContainer.remove_child(scopesContainer.get_child(0))
+		#Replace current IDE sections with pre-Restart IDE sections
+		for container in IDEScopes:			
+			scopesContainer.add_child(container)
+			var scope = container.get_child(0)
+			if scope.name.begins_with("F") or scope.name == "Main":
+				scope.get_node("FunctionBlockArea").reset_CodeBlock_positions()
+			elif scope.name.begins_with("If"):
+				scope.get_node("If/FunctionBlockArea").reset_CodeBlock_positions()
+				scope.get_node("Else/FunctionBlockArea").reset_CodeBlock_positions()
+			elif scope.name.begins_with("Loop"):
+				scope.get_node("HighlightControl/FunctionBlockArea").reset_CodeBlock_positions()
+			i = i + 1
+		IDEScopes.clear()
 		
-		#Ignore the Run Button and Arrow Highlights
-		if type == "Run_Button" or type.find("Arrow") != -1:
-			continue
+		print("Well ok...",scopesContainer.get_children())
+		#remove extra scopes outside of the Scopes Container
+		var children = IDE.get_children()
+		if children.size() > 2:
+			for child in children:
+				if child.name == "ButtonContainer" or child.name == "Scopes":
+					pass
+				else:
+					IDE.remove_child(child)
+
+#		#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
+#		init_progress_check_FBA()
+		
+		# Grab focus of main
+		scopesContainer.get_node("Main/Main").grab_focus()
+	
+	#Only generates dropdown options once (when first entering level) for If & Loop sections
+	else:
+		options = generate_RHS_options()
+
+	#Move scopes in scene tree to be in the Scopes container if they aren't already
+	#Should technically only have 2 children, Scopes and Button containers
+	var children = IDE.get_children()
+	if children.size() > 2:
+		for child in children:
+			if child.name == "ButtonContainer" or child.name == "Scopes":
+				pass
+			else:
+				IDE.remove_child(child)
+				var container = HBoxContainer.new()
+				container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				container.alignment = HBoxContainer.ALIGN_CENTER
+				container.name = child.name
+				container.add_child(child)
+				scopesContainer.add_child(container)
+				
 			
-		#Check if we need to add RHS options
-		if type == "If":
-			var RHS = child.get_node("If/RHS")
-			add_RHS_options(options, RHS)
+	#Generate IDE.scopes dictionary
+	for scope in scopesContainer.get_children():
+		scope = scope.get_child(0) #Get the actual scope out of the nested container
+		var type = scope.name.rstrip("1234567890")
+		
+		#Ignore arrows
+		#In case of Restart: Reconnect Run_Button signal to current IDE
+		#					 Set FBA.numBlocks to the number of code blocks in that FBA 
+		#					 (otherwise numBlocks would = 0 even if there are > 0 code blocks in that FBA)
+		if type.find("Arrow") != -1:
+			continue
+		elif type == "If":
+			scope.get_node("If").set_FBA_numBlocks()
+			scope.get_node("Else").set_FBA_numBlocks()
 		elif type == "Loop":
-			var RHS = child.get_node("HighlightControl/WhileConditional/RHS")
-			add_RHS_options(options, RHS)
+			scope.get_node("HighlightControl").set_FBA_numBlocks()
+			scope.reset_loopCount()
+		else:
+			scope.set_FBA_numBlocks()
+		
+		call_loop_reconnections(type, scope)
+		
+		#Check if we need to add RHS options, shouldn't trigger after a Restart
+		if options:
+			if type == "If":
+				var RHS = scope.get_node("If/RHS")
+				scope.add_dropdown_options()
+				add_RHS_options(options, RHS)
+			elif type == "Loop":
+				var RHS = scope.get_node("HighlightControl/WhileConditional/RHS")
+				scope.add_dropdown_options()
+				add_RHS_options(options, RHS)
 			
 		#Add the scope to list of scopes
-		IDE.scopes[child.name] = child
-		
+		IDE.scopes[scope.name] = scope
+	
+	
+	#init buttons
+	var buttons = IDE.get_node("ButtonContainer")
+	#Connect Run Button
+	buttons.get_node("Run_Button").connect("pressed", IDE, "_on_RunButton_pressed")
+
+	#Connect Clear All Button
+	for scope in scopesContainer.get_children():
+		var btnPath = "ClearAll_Button"
+		#Coupling this with the existing ClearCode button in all scopes. (ie I'm being lazy)
+		if scope.name.begins_with("If"):
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("If/ClearCode"), "on_pressed")
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("Else/ClearCode"), "on_pressed")
+		elif scope.name.begins_with("Loop"):
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("HighlightControl/ClearCode"), "on_pressed")
+		elif scope.name.begins_with("F") or scope.name == "Main":
+			buttons.get_node("ClearAll_Button").connect("pressed", scope.get_child(0).get_node("ClearCode"), "on_pressed")
+	buttons.get_node("ClearAll_Button").connect("pressed", IDE, "_on_ClearAllButton_pressed")
+	
+	#Makes sure FBAs in level.progress_check_FBA are the ones in IDEScopes
+	init_progress_check_FBA()
 	print("SCOPES: ", IDE.scopes.keys())
 	print(DEBUG_buffer)
 	
 
+#Reconnect signals in Call_Loop code blocks, needed after a Restart
+func call_loop_reconnections(type, child):
+	var code = []
+	if type.find("Arrow") != -1 or type == "ButtonContainer":
+		return
+	elif type == "If":
+		code = child.get_node("If/FunctionBlockArea").get_children()
+		for codeBlock in child.get_node("Else/FunctionBlockArea").get_children():
+			code.push_back(codeBlock)
+	elif type == "Loop":
+		code = child.get_node("HighlightControl/FunctionBlockArea").get_children()
+	else:
+		code = child.get_node("FunctionBlockArea").get_children()
+	
+	#Pop CollisionShape2D & ColorRect
+	code.pop_front()
+	code.pop_front()
+	
+	#Reconnect signals for Call_Loop code blocks
+	for codeBlock in code:
+		if codeBlock.name.begins_with("Call_Loop"):
+			codeBlock.connect_to_LoopBlock()
+	
+
+#Puts correct FBA/conditional nodes into level.progress_check_FBA array
+#The array starts with Strings in the format: "Loop1_FBA" or "Loop1_Block", Block ending denotes conditional node
+func init_progress_check_FBA():
+	for i in range(level.progress_check_FBA.size()):
+		#Whether to get the FBA or the conditional node of a scope
+		var type = ""
+		#The num for F1 would be 1
+		var num = ""
+		var scopeType = level.progress_check_FBA[i]
+		
+		#Check whether we need to get the FBA or the conditional node
+		if scopeType.find("FBA") != -1:
+			scopeType = level.progress_check_FBA[i].replace("FBA", "")
+			type = "FBA"
+		elif scopeType.find("Block") != -1:
+			scopeType = level.progress_check_FBA[i].replace("Block", "")
+			type = "Block"
+		
+		#Only relevant for non-Main scopes
+		if scopeType != "Main":
+			#Get the number, should only be a single-digit, 2nd to last index, EX: Loop1_
+			num = scopeType.substr(scopeType.length() - 2, 1)
+			scopeType = scopeType.rstrip("_").rstrip("0123456789")
+		
+		#Main & F scopeTypes will always be FBA
+		if scopeType == "Main":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Main/Main/FunctionBlockArea")
+		elif scopeType == "F":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/F" + num + "/F" + num + "/FunctionBlockArea")
+		#If scopeType can be either FBA or conditional node
+		elif scopeType == "If":
+			if type == "FBA":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/If/FunctionBlockArea")
+			elif type == "Block":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/If")
+				print("if block: ", level.progress_check_FBA[i])
+		#Else scopeType will always be FBA
+		elif scopeType == "Else":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/If" + num + "/If" + num + "/Else/FunctionBlockArea")
+		#Loop scopeType can be either FBA or conditional
+		elif scopeType == "Loop":
+			if type == "FBA":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/FunctionBlockArea")
+			elif type == "Block":
+				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl")
+		#For & While scopeTypes will only always be conditional nodes
+		elif scopeType == "For":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/ForConditional")
+		elif scopeType == "While":
+			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/WhileConditional")
+		
+		
+		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
+#		var scope = level.progress_check_FBA[i].get_parent().name
+#
+#		var itself = level.progress_check_FBA[i].name
+#
+#		if scope == "Main" or scope.begins_with("F"):
+#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/FunctionBlockArea")
+#		elif itself == "If" or scope.begins_with("Loop"):
+#			#For If conditional checks + Loop type selection checks
+#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/" + itself)
+#		else:
+#			#For checking Ifs & Loops
+#			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
+#			if higherScope.begins_with("If"):
+#				#Should account for If & Else FBAs
+#				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/" + scope + "/FunctionBlockArea")
+#			elif higherScope.begins_with("Loop"):
+#				if itself == "FunctionBlockArea":
+#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
+#				elif itself == "ForConditional" or itself == "WhileConditional":
+#					#For While & For Loop conditional checks
+#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/" + itself)
+	
 func init_inventory():
 	level.get_node("Inventory").set_position(Vector2(865, 43))
 	
@@ -251,7 +500,7 @@ func generate_RHS_options():
 	var types = puzzleElements.keys()
 	var options = ["Blocked"]
 	for type in types:
-		if type == "Obstacle" || type == "Robot":
+		if type == "Obstacle" || type == "Robot" || type == "ColorRect":
 			continue
 		options.push_back(type)
 	options.sort()

@@ -1,0 +1,5 @@
+Seems like the factory might be slightly [color=yellow]cross[/color] with us. [font=res://Fonts/smallKimberly.tres]teehee[/font]
+Remember: use [color=yellow]recursion[/color] to solve this level. Use the [color=yellow]pattern[/color] for this floor to come up with a solution.
+;
+
+Hooray!! That's another room we can [color=yellow]cross[/color] off. [font=res://Fonts/smallKimberly.tres]hehe[/font]

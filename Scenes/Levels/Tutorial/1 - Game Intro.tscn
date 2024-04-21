@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Level_Components/TextBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/TextBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/CodeBlockBar.tscn" type="PackedScene" id=8]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Forward.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Levels/Tutorial/1 - Game Intro.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/LevelClearedPopup.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/Arrow.tscn" type="PackedScene" id=15]
 
 [node name="1 - Game Intro" type="Node2D"]
 script = ExtResource( 12 )
@@ -31,19 +33,35 @@ script = ExtResource( 12 )
 
 [node name="IDE" parent="." instance=ExtResource( 3 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 4
 
 [node name="IDE_Arrow" type="Sprite" parent="IDE"]
-position = Vector2( -104, 200 )
+visible = false
+position = Vector2( -104, -125 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
 
 [node name="Run_Arrow" type="Sprite" parent="IDE"]
-position = Vector2( 234, 614 )
+visible = false
+position = Vector2( 120, 290 )
+rotation = 3.14159
 scale = Vector2( 2, 2 )
 texture = ExtResource( 13 )
+
+[node name="Clear_All_Arrow" type="Sprite" parent="IDE"]
+visible = false
+position = Vector2( 350, 290 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Clear_Code_Arrow" parent="IDE" instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 350, -210 )
+rotation = 1.5708
+z_index = 4
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 8 )]
 
@@ -51,19 +69,12 @@ texture = ExtResource( 13 )
 
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 7 )]
 
-[node name="AcceptDialog" type="AcceptDialog" parent="."]
-margin_left = 490.0
-margin_top = 381.0
-margin_right = 596.0
-margin_bottom = 439.0
-rect_scale = Vector2( 3, 3 )
-window_title = ""
-dialog_text = "Level Cleared!"
-
 [node name="TextBox" parent="." instance=ExtResource( 5 )]
+
+[node name="PopupMenu" parent="." instance=ExtResource( 14 )]
 
 [connection signal="interact" from="Grid/Robot" to="Grid/Button" method="_on_Robot_interact"]
 [connection signal="buttonPressed" from="Grid/Button" to="." method="_on_Button_buttonPressed"]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]

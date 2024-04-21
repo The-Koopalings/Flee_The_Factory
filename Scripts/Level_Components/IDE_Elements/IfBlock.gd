@@ -14,8 +14,9 @@ func _ready():
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	
+	$If/Label.text = self.name
 	#Add options into LHS & Operator dropdowns
-	add_dropdown_options()
+#	add_dropdown_options()
 	
 	
 #NOTE: RHS options added in Level script
@@ -92,7 +93,7 @@ func check_conditions():
 		if object:
 			objectName = object.name.rstrip("0123456789")
 			if objectName.substr(0, 3) == "Key":
-				objectName = objectName.rstrip("RGBrgb")
+				objectName = objectName.rstrip("RGB")
 		if objectName == "Obstacle" or is_wall(dir): 
 			objectName = "Blocked"
 	elif LHSLabel.text == "Tile":

@@ -2,7 +2,7 @@ extends Control
 
 signal ChosenLoop
 #What type of loop this is, either While or For
-var type = ""
+var type
 #Keep track of i for For loops
 var loopCount: int = 0
 
@@ -32,12 +32,13 @@ onready var Robot = get_node(PEP.get_path_to_grandpibling(self, "Grid/Robot"))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	connections()
-	add_dropdown_options()
+#	$HighlightControl/ChooseLoopType/Label.text = self.name
 	
-	#Set visibility of Conditional nodes to false
-	WhileConditional.set_visible(false)
-	ForConditional.set_visible(false)
+	connections()
+#	add_dropdown_options()
+
+	#Set visibility of Conditional nodes appropriately
+	set_conditional_visibility()
 
 
 #NOTE: ChosenLoop connections are located in Loop.gd
@@ -48,7 +49,23 @@ func connections():
 	Operator.get_popup().connect("id_pressed", self, "on_Operator_option_selected")
 	RHS.get_popup().connect("id_pressed", self, "on_RHS_option_selected")
 	StepOperator.get_popup().connect("id_pressed", self, "on_StepOperator_option_selected")
+	
 
+func set_conditional_visibility():
+	type = ChooseLoopTypeLabel.text.rstrip("0123456789")
+	if type == "Loop":
+		type = ""
+	if type == "While":
+		WhileConditional.set_visible(true)
+		ForConditional.set_visible(false)
+	elif type == "For":
+		WhileConditional.set_visible(false)
+		ForConditional.set_visible(true)
+	else:
+		WhileConditional.set_visible(false)
+		ForConditional.set_visible(false)
+		type == ""
+	
 
 #NOTE: RHS options added in Level script
 func add_dropdown_options():
@@ -81,26 +98,23 @@ func on_CLT_option_selected(id):
 	#Change CLT text & LTL text, move Counter, & make appropriate Conditional nodes visible
 	match id:
 		0:
-			if self.name == "Loop1":
-				ChooseLoopTypeLabel.text = "While1"
-			elif self.name == "Loop2":
-				ChooseLoopTypeLabel.text = "While2"
-			Counter.set_position(Vector2(177.5, 244)) #Move the code block counter to the middle
+			var loopNum = self.name.trim_prefix("Loop")
+			ChooseLoopTypeLabel.text = "While"+loopNum
+			
+			#Counter.set_position(Vector2(177.5, 244)) #Move the code block counter to the middle
 			WhileConditional.set_visible(true)
 			ForConditional.set_visible(false)
 			type = "While"
 			emit_signal("ChosenLoop", "While")
 		1:
-			if self.name == "Loop1":
-				ChooseLoopTypeLabel.text = "For1"
-			elif self.name == "Loop2":
-				ChooseLoopTypeLabel.text = "For2"
-			Counter.set_position(Vector2(130, 244)) #Move the code block counter slightly left
+			var loopNum = self.name.trim_prefix("Loop")
+			ChooseLoopTypeLabel.text = "For"+loopNum
+			#Counter.set_position(Vector2(130, 244)) #Move the code block counter slightly left
 			ForConditional.set_visible(true)
 			WhileConditional.set_visible(false)
 			type = "For"
 			emit_signal("ChosenLoop", "For")
-			
+
 
 
 func on_LHS_option_selected(id):
@@ -115,7 +129,7 @@ func on_LHS_option_selected(id):
 			LHSLabel.text = "Left"
 		4:
 			LHSLabel.text = "Right"
-	
+
 
 func on_Operator_option_selected(id):
 	match id:
@@ -123,7 +137,7 @@ func on_Operator_option_selected(id):
 			OperatorLabel.text = "=="
 		1: 
 			OperatorLabel.text = "!="
-	
+
 
 #change RHS text after selecting from dropdown
 func on_RHS_option_selected(id):
@@ -138,7 +152,7 @@ func on_RHS_option_selected(id):
 			RHS.get_node("Label").text = "Virus"
 		4:
 			RHS.get_node("Label").text = "Key"
-	
+
 
 func on_StepOperator_option_selected(id):
 	match id:
@@ -152,10 +166,11 @@ func on_StepOperator_option_selected(id):
 			StepOperatorLabel.text = "/"
 
 
+
 func _on_StartValue_value_changed(value):
 	loopCount = value
 	LoopCounter.text = "i: " + str(loopCount)
-
+	
 
 func get_code():
 	var code = null
@@ -205,7 +220,7 @@ func check_conditions():
 			if object:
 				objectName = object.name.rstrip("0123456789")
 				if objectName.substr(0, 3) == "Key":
-					objectName = objectName.rstrip("RGBrgb")
+					objectName = objectName.rstrip("RGB")
 			if objectName == "Obstacle" or is_wall(dir):
 				objectName = "Blocked"
 		elif LHSLabel.text == "Tile":

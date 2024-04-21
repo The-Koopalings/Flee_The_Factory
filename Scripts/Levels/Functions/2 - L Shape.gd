@@ -3,7 +3,7 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 onready var TextBox = get_node("TextBox")
 signal levelComplete
 var level_win = false
@@ -13,9 +13,9 @@ var level_win = false
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check = []
 var progress_check_arr = []
 onready var progress_check_FBA = []
+var has_tutorial = false
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -35,7 +35,7 @@ var robotStartOrientation = PEP.Orientation.DOWN
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Functions/2 - L Shape.txt")
+	DialogueManager.add_dialogue(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,7 +45,7 @@ func _process(delta):
 		
 		if level_win:
 			emit_signal("levelComplete")
-			$AcceptDialog.popup()
+			$PopupMenu.visible = true
 			level_win = false
 
 

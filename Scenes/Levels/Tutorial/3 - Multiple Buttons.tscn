@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Robot.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Level_Components/Puzzle_Elements/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Background.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Level_Components/TextBox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/TextBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/Interact.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateLeft.tscn" type="PackedScene" id=11]
@@ -40,7 +40,7 @@ script = ExtResource( 16 )
 
 [node name="IDE" parent="." instance=ExtResource( 9 )]
 
-[node name="Counter" parent="IDE/Main" index="4"]
+[node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 9
 
 [node name="CodeBlockBar" parent="." instance=ExtResource( 2 )]
@@ -53,14 +53,14 @@ maxBlocks = 9
 
 [node name="Interact" parent="CodeBlockBar" instance=ExtResource( 10 )]
 
-[node name="AcceptDialog" parent="." instance=ExtResource( 12 )]
-
 [node name="TextBox" parent="." instance=ExtResource( 8 )]
+
+[node name="PopupMenu" parent="." instance=ExtResource( 12 )]
 
 [connection signal="interact" from="Grid/Robot" to="Grid/Button1" method="_on_Robot_interact"]
 [connection signal="interact" from="Grid/Robot" to="Grid/Button2" method="_on_Robot_interact"]
-[connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button2_buttonPressed"]
 [connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button1_buttonPressed"]
+[connection signal="buttonPressed" from="Grid/Button2" to="." method="_on_Button2_buttonPressed"]
 
 [editable path="IDE"]
-[editable path="IDE/Main"]
+[editable path="IDE/Scopes/Main/Main"]

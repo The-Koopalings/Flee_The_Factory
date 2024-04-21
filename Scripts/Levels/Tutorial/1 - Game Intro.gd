@@ -3,7 +3,7 @@ extends Node2D
 ##UNIVERSAL LEVEL VARIABLES 
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
-onready var MainFBA = get_node("IDE/Main/FunctionBlockArea")
+onready var MainFBA = "MainFBA"
 onready var TextBox = get_node("TextBox")
 signal levelComplete
 var level_win = false
@@ -13,9 +13,9 @@ var level_win = false
 var btn_pressed = false
 
 signal dialogue_progress
-var progress_check = [false, false]    # So signal is only emitted the first time the check is passed
 var progress_check_arr = [["Forward"], ["Forward", "Forward", "Forward", "Interact"]]
 onready var progress_check_FBA = [MainFBA, MainFBA]
+var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
 ##LEVEL CONFIGURATION VARIABLES
@@ -33,10 +33,10 @@ var robotStartOrientation = PEP.Orientation.RIGHT
 
 func _ready():
 	PEP.loadLevel(self)
-	DialogueManager.add_dialogue(self, "Tutorial/1 - Game Intro.txt")
+	DialogueManager.add_dialogue(self)
 	
-	$IDE/IDE_Arrow.visible = false
-	$IDE/Run_Arrow.visible = false
+#	$IDE/IDE_Arrow/IDE_Arrow.visible = false
+#	$IDE/Run_Arrow/Run_Arrow.visible = false
 
 
 func _process(delta):
@@ -47,7 +47,7 @@ func _process(delta):
 		
 		if level_win:
 			emit_signal("levelComplete")
-			$AcceptDialog.popup()
+			$PopupMenu.visible = true
 			level_win = false
 
 #Handles all button presses

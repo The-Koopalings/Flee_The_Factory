@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Stage_Select/LevelButton.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 1 )
+
+[node name="Button1" type="Button"]
+margin_right = 200.0
+margin_bottom = 200.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 2 )
+text = "1"
+script = ExtResource( 2 )

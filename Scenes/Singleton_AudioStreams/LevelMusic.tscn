@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Singletons/LevelMusic.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Music/650556__stephiequeen__communicate-song-loop.ogg" type="AudioStream" id=2]
+
+[node name="LevelMusic" type="AudioStreamPlayer"]
+stream = ExtResource( 2 )
+volume_db = 3.0
+bus = "Music"
+script = ExtResource( 1 )

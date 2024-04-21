@@ -28,12 +28,25 @@ _global_script_class_icons={
 "GitAPI": "",
 "GutHookScript": "",
 "GutTest": ""
+"base": "Resource",
+"class": "SavableGameStats",
+"language": "GDScript",
+"path": "res://Resources/SavableGameStats.gd"
+}, {
+"base": "Resource",
+"class": "SavableSettings",
+"language": "GDScript",
+"path": "res://Resources/SavableSettings.gd"
+} ]
+_global_script_class_icons={
+"SavableGameStats": "",
+"SavableSettings": ""
 }
 
 [application]
 
 config/name="Flee The Factory"
-run/main_scene="res://Scenes/Levels/ProofOfConcept.tscn"
+run/main_scene="res://Scenes/Start_Menu/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -41,6 +54,14 @@ config/icon="res://icon.png"
 GameStats="*res://Scripts/Singletons/GameStats.gd"
 PEP="*res://Scripts/Singletons/PuzzleElementPlacement.gd"
 DialogueManager="*res://Scripts/Singletons/DialogueManager.gd"
+SceneSwapper="*res://Scripts/Singletons/SceneSwapper.gd"
+GlobalWE="*res://Scenes/Level_Components/Level_Elements/WorldEnvironment.tscn"
+SettingsMenu="*res://Scenes/Level_Components/Level_Elements/SettingsMenu.tscn"
+ButtonPress="*res://Scenes/Singleton_AudioStreams/ButtonPress.tscn"
+ButtonPress3="*res://Scenes/Singleton_AudioStreams/ButtonPress3.tscn"
+ButtonPress2="*res://Scenes/Singleton_AudioStreams/ButtonPress2.tscn"
+NonLevelMusic="*res://Scenes/Singleton_AudioStreams/NonLevelMusic.tscn"
+LevelMusic="*res://Scenes/Singleton_AudioStreams/LevelMusic.tscn"
 
 [display]
 

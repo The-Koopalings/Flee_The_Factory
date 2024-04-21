@@ -8,7 +8,7 @@ var tileX
 var tileY
 var color
 
-var openDoorTexture = preload("res://Assets/Placeholders/Open_Door.png")
+var openDoorTexture = preload("res://Assets/Objects/Doors/finalDoor_open.png")
 
 
 func _ready():
@@ -24,18 +24,33 @@ func set_color():
 	
 	match color:
 		"R":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Red_Door.png"))
-			$Sprite.set_scale(Vector2(0.25,0.25))
+			$Sprite.set_texture(load("res://Assets/Objects/Doors/redDoor.png"))
+			$Sprite.set_scale(Vector2(0.85,0.85))
 		"G":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Green_Door.png"))
-			$Sprite.set_scale(Vector2(0.25,0.25))
+			$Sprite.set_texture(load("res://Assets/Objects/Doors/greenDoor.png"))
+			$Sprite.set_scale(Vector2(0.85,0.85))
 		"B":
-			$Sprite.set_texture(load("res://Assets/Placeholders/Blue_Door.png"))
-			$Sprite.set_scale(Vector2(0.25,0.25))
+			$Sprite.set_texture(load("res://Assets/Objects/Doors/blueDoor.png"))
+			$Sprite.set_scale(Vector2(0.85,0.85))
+		_:
+			color = ""
 	
 
 func _on_level_levelComplete():
-	$Sprite.set_texture(openDoorTexture)
+	#Only applicable to exit door, prevents unopened doors to change texture upon level completion
+	if color == "":
+		$SoundUnlock.play()
+		$Sprite.set_texture(openDoorTexture)
+		get_node("WCLs").visible = false
 	
-	#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
-	$Sprite.set_scale(Vector2(1,1)) 
+		var root = get_tree().root
+		var levelPath = root.get_child(root.get_child_count() - 1).filename
+		GameStats.set_level_completed(levelPath)
+		
+		#Make sure For loop's i increments properly, only if the last code block in the loop opened the exit door
+		var IDE = get_node(PEP.get_path_to_grandpibling(self, "IDE"))
+		if IDE.is_loop() and IDE.code.size() == 0:
+			IDE.currentNode.increment_loopCount()
+	
+		#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
+		$Sprite.set_scale(Vector2(1,1)) 

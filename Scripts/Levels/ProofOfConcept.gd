@@ -4,6 +4,7 @@ extends Node2D
 onready var Grid = get_node("Grid")
 onready var CodeBlockBar = get_node("CodeBlockBar")
 signal levelComplete
+var progress_check_FBA = []
 ##UNIVERSAL LEVEL VARIABLES 
 
 ##UNIQUE LEVEL VARIABLES

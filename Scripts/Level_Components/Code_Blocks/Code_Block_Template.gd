@@ -9,16 +9,18 @@ signal stopDrag(globalPos)
 signal doubleClick(code_block)
 
 func _ready():
-	var status = 0
 	$Highlight.visible = false
+	parent = self.get_parent()
+	startPos = parent.global_position
+	connections()
 	
+
+func connections():
+	var status = 0
 	#If codeblock is in IDE, connect to the FunctionBlockArea
 	var node = get_node("../..")
 	if node.name == "FunctionBlockArea":
 		status += connect("stopDrag", node, "_on_CodeBlock_stop_drag") 
-		
-	parent = self.get_parent()
-	startPos = parent.global_position
 	
 	#Get IDE node from PEP
 	var IDE = get_node(PEP.get_path_to_grandpibling(self, "IDE"))
@@ -26,7 +28,9 @@ func _ready():
 	IDE.connect("executed", self, "_on_IDE_executed") 
 	
 	# Connect double click signal to all function blocks
-	for scope in IDE.get_children():
+	
+	for scope in IDE.get_node("Scopes").get_children():
+		scope = scope.get_child(0)
 		if scope.name == "Run_Button":
 			continue
 		#Connect to IfBlock
@@ -43,6 +47,7 @@ func _ready():
 	if status != 0:
 		printerr("Something went wrong trying to connect signals in ", name)
 	
+
 func _process(_delta):
 	if dragging:
 		var mousePos = get_viewport().get_mouse_position()

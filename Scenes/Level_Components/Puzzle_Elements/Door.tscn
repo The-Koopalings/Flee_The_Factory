@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/Door.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Objects/Decoration/10.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Objects/Doors/finalDoor_closed.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Level_Components/Puzzle_Elements/WCLs.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sounds/johnj_science_fiction_door_open_air_pressure_release.mp3" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 40 )
 
 [node name="Door" type="StaticBody2D"]
+scale = Vector2( 1, 0.822 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Like Key, will be added in order of appearance in scene tree, & color is denoted by the 5th letter/4th index using R, G, or B. Colored doors can be unlocked with keys.
@@ -15,14 +18,14 @@ Use factors of 48 to center an object's position on a tile"
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 5, 5 )
+scale = Vector2( 0.85, 0.85 )
 texture = ExtResource( 2 )
 
 [node name="Highlight" type="ReferenceRect" parent="."]
-margin_left = -40.0
-margin_top = -40.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = -45.0
+margin_top = -45.0
+margin_right = 45.0
+margin_bottom = 45.0
 mouse_filter = 2
 border_width = 4.0
 editor_only = false
@@ -30,3 +33,12 @@ editor_only = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
 shape = SubResource( 1 )
+
+[node name="WCLs" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+
+[node name="SoundUnlock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "SoundEffects"

@@ -20,19 +20,19 @@ func connect_to_LoopBlock():
 		loopBlockName = name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
 	
 	loopBlockNumber = loopBlockName.trim_prefix("Loop")
-
-	var loopBlockNode = get_node(PEP.get_path_to_grandpibling(self, "IDE/" + loopBlockName)) 
 	
-	if loopBlockNode:
-		status = loopBlockNode.connect("ChosenLoop", self, "on_loop_type_selected")
-		if status != 0:
-			printerr("Something went wrong trying to connect signals in ", name)
+	#Wait for loops to be initialized
+	while get_node_or_null(PEP.get_path_to_grandpibling(self, "IDE/Scopes/" + loopBlockName + "/" + loopBlockName)) == null:
+		yield(get_tree().create_timer(0.001, false), "timeout") 
+	
+	var loopBlockNode = get_node(PEP.get_path_to_grandpibling(self, "IDE/Scopes/" + loopBlockName + "/" + loopBlockName)) 
+	status = loopBlockNode.connect("ChosenLoop", self, "on_loop_type_selected")
+	if status != 0:
+		printerr("Something went wrong trying to connect signals in ", name)
 
-		#Change sprite texture if Loop type has already been selected
-		type = loopBlockNode.get_node("HighlightControl/ChooseLoopType/Label").text.rstrip("0123456789")
-		on_loop_type_selected(type)
-	else:
-		printerr("Unable to get loopBlockNode in ", name)
+	#Change sprite texture if Loop type has already been selected
+	type = loopBlockNode.get_node("HighlightControl/ChooseLoopType/Label").text.rstrip("0123456789")	
+	on_loop_type_selected(type)
 		
 
 
@@ -40,9 +40,13 @@ func connect_to_LoopBlock():
 #type is either For or While (anything else does nothing)
 func on_loop_type_selected(type: String):
 	self.type = type
-	 
+
 	#Example path: "res://Assets/Objects/While1.png"
 	$Sprite.texture = load("res://Assets/Objects/" + type + loopBlockNumber + ".png")
+	if type == "While":
+		$Sprite.set_scale(Vector2(0.8,0.8))
+	elif type == "For":
+		$Sprite.set_scale(Vector2(0.221, 0.292))
 	
 
 
