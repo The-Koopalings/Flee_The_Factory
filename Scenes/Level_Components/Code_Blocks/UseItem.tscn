@@ -6,10 +6,9 @@
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Use_Item.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 29.5, 28.5 )
+extents = Vector2( 23.5, 23 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 24
 font_data = ExtResource( 2 )
 
 [node name="UseItem" type="Area2D"]
@@ -19,13 +18,15 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 1 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -0.5, -1 )
+position = Vector2( 0.5, 1 )
+scale = Vector2( 0.391667, 0.413793 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -36,17 +37,19 @@ __meta__ = {
 [node name="SelectSlotNum" type="MenuButton" parent="."]
 margin_left = -18.0
 margin_top = 3.0
-margin_right = 21.0
-margin_bottom = 24.0
+margin_right = 19.0
+margin_bottom = 23.0
 
 [node name="Label" type="Label" parent="SelectSlotNum"]
-margin_top = -4.0
-margin_right = 40.0
-margin_bottom = 25.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+margin_top = 0.25
+margin_right = 38.0
+margin_bottom = 20.25
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 1
 valign = 1
 
 [connection signal="input_event" from="." to="." method="_on_Area2D_input_event"]
+
+[editable path="CodeBlock"]

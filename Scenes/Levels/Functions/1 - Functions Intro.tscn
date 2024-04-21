@@ -79,3 +79,4 @@ position = Vector2( 0, -918 )
 [editable path="IDE"]
 [editable path="IDE/Scopes/Main/Main"]
 [editable path="IDE/F1"]
+[editable path="CodeBlockBar/Call_F1"]
