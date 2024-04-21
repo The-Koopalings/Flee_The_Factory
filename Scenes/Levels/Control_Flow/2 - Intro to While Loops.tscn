@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Levels/Control_Flow/2 - Intro to While Loops.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/LoopBlock.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/Grid.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateLeft.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/RotateRight.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/Arrow.tscn" type="PackedScene" id=18]
 
 [node name="2 - Intro to While Loops" type="Node2D"]
 script = ExtResource( 1 )
@@ -70,6 +71,11 @@ maxBlocks = 1
 [node name="TextBox" parent="." instance=ExtResource( 11 )]
 
 [node name="PopupMenu" parent="." instance=ExtResource( 3 )]
+
+[node name="Loop_Arrow" parent="." instance=ExtResource( 18 )]
+visible = false
+position = Vector2( 1400, 600 )
+rotation = 1.5708
 
 [editable path="IDE"]
 [editable path="IDE/Scopes/Main/Main"]
