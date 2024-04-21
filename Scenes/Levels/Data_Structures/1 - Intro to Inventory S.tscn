@@ -74,5 +74,6 @@ texture = ExtResource( 2 )
 
 [node name="PopupMenu" parent="." instance=ExtResource( 19 )]
 
+[editable path="Inventory"]
 [editable path="IDE"]
 [editable path="IDE/Scopes/Main/Main"]

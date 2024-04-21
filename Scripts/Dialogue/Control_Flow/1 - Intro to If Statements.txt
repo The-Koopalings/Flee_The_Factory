@@ -2,7 +2,10 @@ Hmmm... I think this floor warrants a new concept. Have you ever heard of [color
 Explain more about control flow.
 
 IDE
-Explain If-Else block.
+HIGHLIGHT_IF_BLOCK
+Explain If block.
+HIGHLIGHT_ELSE_BLOCK
+Explain Else block
 
 CODE_BLOCK
 HIGHLIGHT_CALL_IF1
