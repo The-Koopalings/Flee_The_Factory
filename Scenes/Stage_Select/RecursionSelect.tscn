@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/Placeholders/Koopa Troopa.jpg" type="Texture" id=2]
+[ext_resource path="res://Assets/Backgrounds/stageSelect1.5.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Stage_Select/BackButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Stage_Select/Stages.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Stage_Select/LevelButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Themes/RecursionSelect.tres" type="Theme" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -17,7 +18,7 @@ script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
-scale = Vector2( 1.8, 1.8 )
+scale = Vector2( 1.44, 1.44 )
 texture = ExtResource( 2 )
 
 [node name="Title" type="Label" parent="."]
@@ -35,9 +36,13 @@ valign = 1
 [node name="BackButton" parent="." instance=ExtResource( 3 )]
 
 [node name="Button1" parent="." instance=ExtResource( 5 )]
+theme = ExtResource( 6 )
 
 [node name="Button2" parent="." instance=ExtResource( 5 )]
+theme = ExtResource( 6 )
 
 [node name="Button3" parent="." instance=ExtResource( 5 )]
+theme = ExtResource( 6 )
 
 [node name="Button4" parent="." instance=ExtResource( 5 )]
+theme = ExtResource( 6 )
