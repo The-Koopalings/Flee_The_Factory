@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Assets/Objects/13/Skillicon13_35.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Objects/13/Skillicon13_32.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/LevelControl.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/Objects/13/Skillicon13_17.png" type="Texture" id=4]
