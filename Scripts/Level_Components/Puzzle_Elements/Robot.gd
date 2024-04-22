@@ -20,7 +20,7 @@ var moving = false
 var direction = ''
 
 onready var animation_tree = get_node("AnimationTree")
-onready var animation_mode = animation_tree.get("parameters/playback")
+#onready var animation_mode = animation_tree.get("parameters/playback")
 
 var deadRobotTexture = preload("res://Assets/Robby/death.png")
 
@@ -60,7 +60,7 @@ func move(dir):
 		#position += vector_position
 		start_position = position
 		#Update grid coordinates
-		animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
+		#animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
 		match dir:
 			"ui_right":
 				tileX += 1
@@ -107,7 +107,7 @@ func _process(delta):
 #		var facing = 'idle_' + direction
 #		$AnimationPlayer.play(facing)
 		$SoundMove.stop()
-		animation_mode.travel("Idle")
+		#animation_mode.travel("Idle")
 		emit_signal("animationFinished") #Allows code execution to continue if front is blocked, doesn't work if put in move() for some reason?
 	else:
 		var walking = 'walk_' + direction
@@ -135,7 +135,7 @@ func _process(delta):
 
 		else:
 			moving = false
-			animation_mode.travel("Idle")
+			#animation_mode.travel("Idle")
 			var facing = 'idle_' + direction
 			$AnimationPlayer.play(facing)
 			emit_signal("animationFinished")
