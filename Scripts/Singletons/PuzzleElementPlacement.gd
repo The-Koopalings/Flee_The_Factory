@@ -247,7 +247,7 @@ func init_code_blocks_bar():
 		code_block_template.connections()
 		if block.BLOCK_TYPE == "CALL":
 			var call_name = block.name.trim_prefix("Call_")
-			var texture = load("res://Assets/Objects/" + call_name + ".png")
+			var texture = load("res://Assets/Objects/Code_Blocks/" + call_name + ".png")
 			block.get_node("Sprite").set_texture(texture)
 			#In case of Restart, allows Call_Loop code blocks to reconnect to pre-Restart IDE sections
 			if block.name.begins_with("Call_Loop"):

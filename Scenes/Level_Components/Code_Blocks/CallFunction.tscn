@@ -15,8 +15,8 @@ position = Vector2( 0, 0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.500001, 1 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 0.5, 0.999998 )
+scale = Vector2( 0.435185, 0.444444 )
 texture = ExtResource( 2 )
 
 [node name="CodeBlock" parent="." instance=ExtResource( 3 )]
