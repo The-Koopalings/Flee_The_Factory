@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 29.5, 28.5 )
+extents = Vector2( 26, 26 )
 
 [node name="CodeBlock" type="Area2D"]
 script = ExtResource( 1 )
@@ -19,14 +19,14 @@ __meta__ = {
 }
 
 [node name="Highlight" type="ReferenceRect" parent="."]
-margin_left = -27.0
-margin_top = -27.0
-margin_right = 28.0
-margin_bottom = 28.0
+margin_left = -25.0
+margin_top = -25.0
+margin_right = 25.0
+margin_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-border_width = 4.0
+border_width = 2.0
 editor_only = false
 
 [node name="Arrow" type="Sprite" parent="."]
