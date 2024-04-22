@@ -11,7 +11,7 @@ func _ready():
 	$Clickable/BorderRight.visible = true
 	
 	if self.name.begins_with("F"):
-		$Label.text = self.name		
+		$Label.text = self.name.replace("F", "FUNC")
 
 func get_code():
 	var code = codeArea.get_children()
