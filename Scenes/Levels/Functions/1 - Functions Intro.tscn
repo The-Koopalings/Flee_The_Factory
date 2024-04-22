@@ -79,3 +79,4 @@ texture = ExtResource( 16 )
 [editable path="IDE"]
 [editable path="IDE/Scopes/Main/Main"]
 [editable path="IDE/F1"]
+[editable path="CodeBlockBar/Call_F1"]

@@ -234,7 +234,7 @@ func init_WCLs():
 
 #Set position of code blocks on CodeBlockBar
 func init_code_blocks_bar():
-	var x = 90
+	var x = 145
 	var y = 1008
 	
 	var blocks = CodeBlockBar.get_children()
@@ -253,7 +253,7 @@ func init_code_blocks_bar():
 			if block.name.begins_with("Call_Loop"):
 				block.connect_to_LoopBlock()
 		
-		x += 110
+		x += 96
 		
 	print("CODE BLOCKS: ", blocks)
 	print(DEBUG_buffer)
@@ -455,31 +455,8 @@ func init_progress_check_FBA():
 			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/ForConditional")
 		elif scopeType == "While":
 			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/WhileConditional")
-		
-		
-		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
-#		var scope = level.progress_check_FBA[i].get_parent().name
-#
-#		var itself = level.progress_check_FBA[i].name
-#
-#		if scope == "Main" or scope.begins_with("F"):
-#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/FunctionBlockArea")
-#		elif itself == "If" or scope.begins_with("Loop"):
-#			#For If conditional checks + Loop type selection checks
-#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/" + itself)
-#		else:
-#			#For checking Ifs & Loops
-#			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
-#			if higherScope.begins_with("If"):
-#				#Should account for If & Else FBAs
-#				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/" + scope + "/FunctionBlockArea")
-#			elif higherScope.begins_with("Loop"):
-#				if itself == "FunctionBlockArea":
-#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
-#				elif itself == "ForConditional" or itself == "WhileConditional":
-#					#For While & For Loop conditional checks
-#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/" + itself)
 	
+
 func init_inventory():
 	level.get_node("Inventory").set_position(Vector2(865, 43))
 	

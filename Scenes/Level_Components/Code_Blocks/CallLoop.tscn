@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Scenes/Level_Components/Code_Blocks/CodeBlock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Call_Loop.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Objects/Loop1.PNG" type="Texture" id=3]
+[ext_resource path="res://Assets/Objects/Code_Blocks/Loop1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 29.5, 28.5 )
+extents = Vector2( 23.5, 23.5 )
 
 [node name="Call_Loop1" type="Area2D"]
 script = ExtResource( 2 )
@@ -14,12 +14,12 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.5, -0.5 )
+position = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 8.9407e-07, 4.47035e-07 )
-scale = Vector2( 0.220588, 0.291667 )
+position = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 3 )
 
 [node name="CodeBlock" parent="." instance=ExtResource( 1 )]
