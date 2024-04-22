@@ -170,7 +170,6 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 5
-frame = 16
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 

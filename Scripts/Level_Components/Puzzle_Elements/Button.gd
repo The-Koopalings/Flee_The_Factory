@@ -14,8 +14,10 @@ signal buttonPressed(name)
 
 func _ready():
 	$Highlight.visible = false
+	$AnimationPlayer.play("Stable")
 
 func _on_Robot_interact(x, y):
 	if x == tileX and y == tileY:
 		$SoundPressed.play()
+		$AnimationPlayer.play("Interact")
 		emit_signal("buttonPressed", name)
