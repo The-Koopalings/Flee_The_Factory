@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.92, 1 )
+scale = Vector2( 0.42, 0.43 )
 texture = ExtResource( 2 )
 
 [node name="CodeBlock" parent="." instance=ExtResource( 3 )]
