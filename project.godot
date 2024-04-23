@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Flee The Factory"
-run/main_scene="res://Scenes/Start_Menu/StartMenu.tscn"
+run/main_scene="res://Scenes/Levels/Control_Flow/3 - Intro to For Loops.tscn"
 config/icon="res://icon.png"
 
 [autoload]

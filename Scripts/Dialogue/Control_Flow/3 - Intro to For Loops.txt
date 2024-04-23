@@ -1,32 +1,33 @@
-FOREEEEEEEEEEEE!
-Haha just kidding, we're not playing golf right now! Unfortunately, I do get played. All the time. :(
+FORE! Haha just kidding, we're not playing golf right now!
 
 IDE
-Anyways, let's learn about [color=yellow]for loops[/color]. These work very [color=red]differently[/color] from [color=yellow]while loops[/color]!
-Click the [color=yellow]"Loop1" text[/color] and [color=yellow]select[/color] the [color=yellow]for loop[/color] option.
+Anyways, let's learn about [color=yellow]for loops[/color]. 
+Click on [color=yellow]Loop1[/color] and change it into a [color=yellow]For[/color] loop.
 ;
 
-[color=yellow]For loops[/color], as you can guess from the name, are a type of loop that allows users to specify the amount of times it can loop.
-In [color=yellow]for loops[/color] we can specify the [color=yellow]start value[/color], [color=yellow]stop value[/color], and the [color=yellow]step value[/color] (AKA how much the value changes with each iteration of the loop).
-In our case, the [color=yellow]value[/color] I keep talking about is the [color=yellow]i[/color] at the [color=yellow]bottom of the for loop[/color], which I'll sometimes call the [color=yellow]loop counter[/color].
-Now let's code!
+Just like [color=yellow]While[/color] loops, [color=yellow]For[/color] loops will continue looping as long as the condition is true.
+The difference is how the [color=purple]condition[/color] works in [color=yellow]For[/color] Loops.
+[color=yellow]For loops[/color] are sometimes thought of as [color=yellow]counting[/color] loops because they will run for a specific number of times and count its progress the whole way.
+Do you see the [color=yellow]i[/color] in the [color=yellow]for loop[/color]? That's the counter!
+In the [color=purple]condition[/color] we can specify what value [color=yellow]i[/color] [color=green]starts[/color] at, what value [color=yellow]i[/color] [color=red]stops[/color] at, and how much [color=yellow]i[/color] changes each [color=blue]step[/color] (or each iteration of the loop).
+
+Lets try setting the [color=purple]conditions[/color] of the [color=yellow]for loop.[/color]                                                                                                                 Hmmm... but first I need to know [color=purple]how many times[/color] the [color=yellow]for[/color] loop is going to run
+I know! See how there's [color=yellow]4 buttons[/color] ahead of me? I should have the loop run [color=yellow]4 times[/color] then, once for each button!
+First let's keep the [color=green]start[/color] at [color=yellow]0[/color]. It is [wave amp=50.0 freq=5.0 connected=1][color=yellow]standard practice[/color][/wave] to start counting from 0 because of how numbers work inside of computers. 
+In later puzzles you can use whatever number you want to, just make sure you do your math correctly!
+Next, let's set [color=red]stop[/color] to [color=yellow]4[/color] and the [color=blue]step[/color] to [color=yellow]+1[/color]                                                                                                                         You can change the number values by either clicking the boxes they are in and typing the number, or by using the arrows next to each box.
+;
+For later rooms, you can also click on the [color=yellow]+[/color](addition) to change it to [color=yellow]*[/color] (multiply) , [color=yellow]/[/color] (divide), or [color=yellow]-[/color] (subtract).
+
 
 CODE_BLOCK
-First let's place [color=yellow]2 Forward[/color] code blocks and [color=yellow]1 Interact[/color] code block into the [color=yellow]for loop[/color].
+Now let's place 2 [color=yellow]Forward[/color] code blocks and 1 [color=yellow]Interact[/color] code block into the [color=yellow]For loop[/color].
 ;
-
-Now let's set the [color=yellow]conditions[/color] (AKA start, stop, and step values) for the [color=yellow]for loop counter[/color].
-See how there's [color=yellow]4 buttons[/color] ahead of me? I want to [color=yellow]repeat[/color] the code blocks in the loop [color=yellow]4 times[/color].
-First let's keep the [color=yellow]start counter at 0[/color]. It is [color=yellow]standard practice to start at 0[/color] instead of 1 due to the way indexes work in Arrays. However, this is a topic we will learn later.
-Next, let's set [color=yellow]stop to 4[/color] and the [color=yellow]step to +1[/color]. You can change the number values by either clicking the boxes they are in and typing the number, or by using the arrows next to each box. You can also click on [color=yellow]+ or addition[/color] to change it to multiply (*), divide (/), or subtract (-) for later rooms.
-;
-
-We chose these numbers so that the loop will execute [color=yellow]4 times[/color]. It is important to note that i will increase from by 1 each time it executes (or iterates) and stop once it reaches 4 (or until the exit door opens).
 
 Finally, let's [color=yellow]call the for loop in Main[/color].
 ;
 
-Press [color=yellow]Run[/color] to see me go, go, go!
+Press [color=yellow]Run[/color] to see me go, go, go!                                                                     Watch [color=yellow]i[/color] carefully as I run the code.                                                                The loop should [color=green]run[/color] when [color=yellow]i[/color] is equal to [color=green]0[/color], [color=green]1[/color], [color=green]2[/color], and [color=green]3[/color].                                      But it will [color=red]stop[/color] once [color=yellow]i[/color] is [color=red]4[/color].
 ;
 
-HOORIZZY! You have now learned the basics of control flow. As a fun challenge, try replaying this level using a [color=yellow]while loop[/color] instead!
+HOORAH! You have now learned the basics of control flow. As a fun challenge, try replaying this level using a [color=yellow]while loop[/color] instead!
