@@ -41,7 +41,7 @@ func _on_level_levelComplete():
 	if color == "":
 		$SoundUnlock.play()
 		$Sprite.set_texture(openDoorTexture)
-		get_node("WCLs").visible = false
+#		get_node("WCLs").visible = false
 	
 		var root = get_tree().root
 		var levelPath = root.get_child(root.get_child_count() - 1).filename

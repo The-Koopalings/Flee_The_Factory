@@ -74,8 +74,9 @@ maxBlocks = 1
 
 [node name="Loop_Arrow" parent="." instance=ExtResource( 18 )]
 visible = false
-position = Vector2( 1400, 600 )
+position = Vector2( 1350, 600 )
 rotation = 1.5708
+scale = Vector2( 2, 2 )
 
 [editable path="IDE"]
 [editable path="IDE/Scopes/Main/Main"]

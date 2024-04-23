@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Code_Block_Template.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/Arrow.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 28.8889, 28.8889 )
@@ -20,11 +20,11 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Arrow" type="Sprite" parent="."]
+[node name="Arrow" parent="." instance=ExtResource( 2 )]
 visible = false
-position = Vector2( 0, -80 )
+position = Vector2( 0, -70 )
 rotation = 3.14159
-texture = ExtResource( 2 )
+scale = Vector2( 1.2, 1.2 )
 
 [node name="Highlight" type="ReferenceRect" parent="."]
 margin_left = -27.0
