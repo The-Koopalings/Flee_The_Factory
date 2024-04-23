@@ -9,7 +9,6 @@
 extents = Vector2( 28, 40 )
 
 [node name="Door" type="StaticBody2D"]
-scale = Vector2( 1, 0.822 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Like Key, will be added in order of appearance in scene tree, & color is denoted by the 5th letter/4th index using R, G, or B. Colored doors can be unlocked with keys.
@@ -18,7 +17,7 @@ Use factors of 48 to center an object's position on a tile"
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.85, 0.85 )
+scale = Vector2( 0.85, 0.699 )
 texture = ExtResource( 2 )
 
 [node name="Highlight" type="ReferenceRect" parent="."]

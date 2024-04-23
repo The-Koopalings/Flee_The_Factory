@@ -19,7 +19,7 @@ var start_position = Vector2.ZERO
 var moving = false
 var direction = ''
 
-onready var animation_tree = get_node("AnimationTree")
+#onready var animation_tree = get_node("AnimationTree")
 #onready var animation_mode = animation_tree.get("parameters/playback")
 
 var deadRobotTexture = preload("res://Assets/Robby/death.png")
@@ -89,10 +89,10 @@ func move(dir):
 		#In case Robert hits the border, he can't get stuck there
 		if tileX > tileXMax or tileY > tileYMax or tileX < 0 or tileY < 0:
 			moving = false
-			animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
+			#animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
 	else:
 		moving = false
-		animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
+		#animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
 		
 		#animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
 	# Clamp position to window

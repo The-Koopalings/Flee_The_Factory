@@ -13,7 +13,7 @@ func _ready():
 
 func turn_on():
 	print(name + " got turnt on")
-	set_texture(load("res://Assets/Placeholders/OnWCL.png"))
+	set_texture(load("res://Assets/Objects/OnWCL.png"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

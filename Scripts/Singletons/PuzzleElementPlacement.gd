@@ -201,32 +201,32 @@ func init_WCLs():
 	var wclCount = wcls.get_child_count()
 	
 	if wclCount == 1:
-		return
+		positions.push_back(Vector2(0, -25))
 	elif wclCount == 2:
-		positions.push_back(Vector2(-10, 0))
-		positions.push_back(Vector2(10, 0))
+		positions.push_back(Vector2(-10, -25))
+		positions.push_back(Vector2(10, -25))
 	elif wclCount == 3:
-		positions.push_back(Vector2(-15, 0))
-		positions.push_back(Vector2(0, 0))
-		positions.push_back(Vector2(15, 0))
+		positions.push_back(Vector2(-30, -25))
+		positions.push_back(Vector2(0, -25))
+		positions.push_back(Vector2(30, -25))
 	elif wclCount == 4:
-		positions.push_back(Vector2(-10, -10))
-		positions.push_back(Vector2(10, -10))
-		positions.push_back(Vector2(-10, 10))
-		positions.push_back(Vector2(10, 10))
+		positions.push_back(Vector2(-30, -25))
+		positions.push_back(Vector2(-10, -25))
+		positions.push_back(Vector2(10, -25))
+		positions.push_back(Vector2(30, -25))
 	elif wclCount == 5:
-		positions.push_back(Vector2(-15, -10))
-		positions.push_back(Vector2(0, -10))
-		positions.push_back(Vector2(15, -10))
-		positions.push_back(Vector2(-10, 10))
-		positions.push_back(Vector2(10, 10))
+		positions.push_back(Vector2(-30, -25))
+		positions.push_back(Vector2(0, -25))
+		positions.push_back(Vector2(30, -25))
+		positions.push_back(Vector2(-31, 21))
+		positions.push_back(Vector2(30, 20))
 	elif wclCount == 6:
-		positions.push_back(Vector2(-15, -10))
-		positions.push_back(Vector2(0, -10))
-		positions.push_back(Vector2(15, -10))
-		positions.push_back(Vector2(-15, 10))
-		positions.push_back(Vector2(0, 10))
-		positions.push_back(Vector2(15, 10))
+		positions.push_back(Vector2(-30, -25))
+		positions.push_back(Vector2(-10, -25))
+		positions.push_back(Vector2(10, -25))
+		positions.push_back(Vector2(30, -25))
+		positions.push_back(Vector2(-31, 21))
+		positions.push_back(Vector2(30, 20))
 	
 	for wcl in wclChildren:
 		wcl.position = positions.pop_front()
