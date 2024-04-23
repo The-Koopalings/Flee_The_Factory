@@ -20,8 +20,8 @@ var b3_pressed = false
 var b4_pressed = false
 
 signal dialogue_progress
-var progress_check_arr = [["For"], ["Forward", "Forward", "Interact"], [0, 4, "+", 1], ["Call_Loop1"]]
-onready var progress_check_FBA = [Loop_Block, Loop_FBA, For_Block, MainFBA]
+var progress_check_arr = [["For"], [0, 4, "+", 1], ["Forward", "Forward", "Interact"], ["Call_Loop1"]]
+onready var progress_check_FBA = [Loop_Block, For_Block, Loop_FBA, MainFBA]
 var has_tutorial = true
 ##UNIQUE LEVEL VARIABLES
 
