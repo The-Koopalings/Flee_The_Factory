@@ -56,13 +56,6 @@ margin_bottom = 1316.0
 [node name="Counter" parent="IDE/F1" index="2"]
 maxBlocks = 3
 
-[node name="_F1_Arrow" type="Sprite" parent="IDE"]
-visible = false
-position = Vector2( -106, -110 )
-rotation = 1.5708
-scale = Vector2( 2, 2 )
-texture = ExtResource( 16 )
-
 [node name="CodeBlockBar" parent="." instance=ExtResource( 8 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 6 )]
@@ -75,6 +68,13 @@ position = Vector2( 0, -918 )
 [node name="TextBox" parent="." instance=ExtResource( 7 )]
 
 [node name="PopupMenu" parent="." instance=ExtResource( 9 )]
+
+[node name="F1_Arrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1334, 600 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 16 )
 
 [editable path="IDE"]
 [editable path="IDE/Scopes/Main/Main"]

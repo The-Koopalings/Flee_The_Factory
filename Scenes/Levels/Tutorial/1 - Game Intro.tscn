@@ -36,33 +36,6 @@ script = ExtResource( 12 )
 [node name="Counter" parent="IDE/Scopes/Main/Main" index="2"]
 maxBlocks = 4
 
-[node name="IDE_Arrow" type="Sprite" parent="IDE"]
-visible = false
-position = Vector2( -104, -125 )
-rotation = 1.5708
-scale = Vector2( 2, 2 )
-texture = ExtResource( 13 )
-
-[node name="Run_Arrow" type="Sprite" parent="IDE"]
-visible = false
-position = Vector2( 120, 290 )
-rotation = 3.14159
-scale = Vector2( 2, 2 )
-texture = ExtResource( 13 )
-
-[node name="Clear_All_Arrow" type="Sprite" parent="IDE"]
-visible = false
-position = Vector2( 350, 290 )
-rotation = 3.14159
-scale = Vector2( 2, 2 )
-texture = ExtResource( 13 )
-
-[node name="Clear_Code_Arrow" parent="IDE" instance=ExtResource( 15 )]
-visible = false
-position = Vector2( 350, -210 )
-rotation = 1.5708
-z_index = 4
-
 [node name="CodeBlockBar" parent="." instance=ExtResource( 8 )]
 
 [node name="Forward" parent="CodeBlockBar" instance=ExtResource( 11 )]
@@ -72,6 +45,53 @@ z_index = 4
 [node name="TextBox" parent="." instance=ExtResource( 5 )]
 
 [node name="PopupMenu" parent="." instance=ExtResource( 14 )]
+
+[node name="IDE_Arrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1336, 475 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Run_Arrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1560, 880 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Clear_All_Arrow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1790, 880 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+texture = ExtResource( 13 )
+
+[node name="Clear_Code_Arrow" parent="." instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 1790, 380 )
+rotation = 1.5708
+z_index = 4
+
+[node name="Settings_Arrow" parent="." instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 130, 50 )
+rotation = 4.71239
+
+[node name="Restart_Arrow" parent="." instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 130, 130 )
+rotation = 4.71239
+
+[node name="DoubleSpeed_Arrow" parent="." instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 110, 800 )
+rotation = 3.14159
+
+[node name="Help_Arrow" parent="." instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 130, 210 )
+rotation = 4.71239
 
 [connection signal="interact" from="Grid/Robot" to="Grid/Button" method="_on_Robot_interact"]
 [connection signal="buttonPressed" from="Grid/Button" to="." method="_on_Button_buttonPressed"]
