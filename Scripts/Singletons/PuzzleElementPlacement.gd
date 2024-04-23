@@ -201,32 +201,32 @@ func init_WCLs():
 	var wclCount = wcls.get_child_count()
 	
 	if wclCount == 1:
-		return
+		positions.push_back(Vector2(0, -25))
 	elif wclCount == 2:
-		positions.push_back(Vector2(-10, 0))
-		positions.push_back(Vector2(10, 0))
+		positions.push_back(Vector2(-10, -25))
+		positions.push_back(Vector2(10, -25))
 	elif wclCount == 3:
-		positions.push_back(Vector2(-15, 0))
-		positions.push_back(Vector2(0, 0))
-		positions.push_back(Vector2(15, 0))
+		positions.push_back(Vector2(-30, -25))
+		positions.push_back(Vector2(0, -25))
+		positions.push_back(Vector2(30, -25))
 	elif wclCount == 4:
-		positions.push_back(Vector2(-10, -10))
-		positions.push_back(Vector2(10, -10))
-		positions.push_back(Vector2(-10, 10))
-		positions.push_back(Vector2(10, 10))
+		positions.push_back(Vector2(-30, -25))
+		positions.push_back(Vector2(-10, -25))
+		positions.push_back(Vector2(10, -25))
+		positions.push_back(Vector2(30, -25))
 	elif wclCount == 5:
-		positions.push_back(Vector2(-15, -10))
-		positions.push_back(Vector2(0, -10))
-		positions.push_back(Vector2(15, -10))
-		positions.push_back(Vector2(-10, 10))
-		positions.push_back(Vector2(10, 10))
+		positions.push_back(Vector2(-30, -25))
+		positions.push_back(Vector2(0, -25))
+		positions.push_back(Vector2(30, -25))
+		positions.push_back(Vector2(-31, 21))
+		positions.push_back(Vector2(30, 20))
 	elif wclCount == 6:
-		positions.push_back(Vector2(-15, -10))
-		positions.push_back(Vector2(0, -10))
-		positions.push_back(Vector2(15, -10))
-		positions.push_back(Vector2(-15, 10))
-		positions.push_back(Vector2(0, 10))
-		positions.push_back(Vector2(15, 10))
+		positions.push_back(Vector2(-30, -25))
+		positions.push_back(Vector2(-10, -25))
+		positions.push_back(Vector2(10, -25))
+		positions.push_back(Vector2(30, -25))
+		positions.push_back(Vector2(-31, 21))
+		positions.push_back(Vector2(30, 20))
 	
 	for wcl in wclChildren:
 		wcl.position = positions.pop_front()
@@ -234,7 +234,7 @@ func init_WCLs():
 
 #Set position of code blocks on CodeBlockBar
 func init_code_blocks_bar():
-	var x = 90
+	var x = 145
 	var y = 1008
 	
 	var blocks = CodeBlockBar.get_children()
@@ -247,13 +247,13 @@ func init_code_blocks_bar():
 		code_block_template.connections()
 		if block.BLOCK_TYPE == "CALL":
 			var call_name = block.name.trim_prefix("Call_")
-			var texture = load("res://Assets/Objects/" + call_name + ".png")
+			var texture = load("res://Assets/Objects/Code_Blocks/" + call_name + ".png")
 			block.get_node("Sprite").set_texture(texture)
 			#In case of Restart, allows Call_Loop code blocks to reconnect to pre-Restart IDE sections
 			if block.name.begins_with("Call_Loop"):
 				block.connect_to_LoopBlock()
 		
-		x += 110
+		x += 96
 		
 	print("CODE BLOCKS: ", blocks)
 	print(DEBUG_buffer)
@@ -455,33 +455,10 @@ func init_progress_check_FBA():
 			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/ForConditional")
 		elif scopeType == "While":
 			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/Loop" + num + "/Loop" + num + "/HighlightControl/WhileConditional")
-		
-		
-		#For checking Main & Funcs + to know whether we're checking If or Else FBA 
-#		var scope = level.progress_check_FBA[i].get_parent().name
-#
-#		var itself = level.progress_check_FBA[i].name
-#
-#		if scope == "Main" or scope.begins_with("F"):
-#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/FunctionBlockArea")
-#		elif itself == "If" or scope.begins_with("Loop"):
-#			#For If conditional checks + Loop type selection checks
-#			level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + scope + "/" + itself)
-#		else:
-#			#For checking Ifs & Loops
-#			var higherScope = level.progress_check_FBA[i].get_parent().get_parent().name
-#			if higherScope.begins_with("If"):
-#				#Should account for If & Else FBAs
-#				level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/" + scope + "/FunctionBlockArea")
-#			elif higherScope.begins_with("Loop"):
-#				if itself == "FunctionBlockArea":
-#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/FunctionBlockArea")
-#				elif itself == "ForConditional" or itself == "WhileConditional":
-#					#For While & For Loop conditional checks
-#					level.progress_check_FBA[i] = level.get_node("IDE/Scopes/" + higherScope + "/HighlightControl/" + itself)
 	
+
 func init_inventory():
-	level.get_node("Inventory").set_position(Vector2(865, 43))
+	level.get_node("Inventory").set_position(Vector2(960, 45))
 	
 
 #Get path to a node that's a relative to an ancestor of the current node

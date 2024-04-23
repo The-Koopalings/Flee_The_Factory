@@ -13,4 +13,4 @@ margin_left = 1440.0
 margin_right = 1920.0
 margin_bottom = 960.0
 mouse_filter = 2
-color = Color( 0.0862745, 0.745098, 0.921569, 0.760784 )
+color = Color( 0, 0.0745098, 0.0901961, 0.270588 )

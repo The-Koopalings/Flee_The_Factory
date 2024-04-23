@@ -19,8 +19,8 @@ var start_position = Vector2.ZERO
 var moving = false
 var direction = ''
 
-onready var animation_tree = get_node("AnimationTree")
-onready var animation_mode = animation_tree.get("parameters/playback")
+#onready var animation_tree = get_node("AnimationTree")
+#onready var animation_mode = animation_tree.get("parameters/playback")
 
 var deadRobotTexture = preload("res://Assets/Robby/death.png")
 
@@ -61,7 +61,7 @@ func move(dir):
 		#position += vector_position
 		start_position = position
 		#Update grid coordinates
-		animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
+		#animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
 		match dir:
 			"ui_right":
 				tileX += 1
@@ -90,10 +90,10 @@ func move(dir):
 		#In case Robert hits the border, he can't get stuck there
 		if tileX > tileXMax or tileY > tileYMax or tileX < 0 or tileY < 0:
 			moving = false
-			animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
+			#animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
 	else:
 		moving = false
-		animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
+		#animation_tree.set("parameters/Idle/blend_position", inputs[dir].normalized())
 		
 		#animation_tree.set("parameters/Walk/blend_position", inputs[dir].normalized())
 	# Clamp position to window
@@ -108,7 +108,7 @@ func _process(delta):
 #		var facing = 'idle_' + direction
 #		$AnimationPlayer.play(facing)
 		$SoundMove.stop()
-		animation_mode.travel("Idle")
+		#animation_mode.travel("Idle")
 		emit_signal("animationFinished") #Allows code execution to continue if front is blocked, doesn't work if put in move() for some reason?
 	else:
 		var walking = 'walk_' + direction
@@ -136,7 +136,7 @@ func _process(delta):
 
 		else:
 			moving = false
-			animation_mode.travel("Idle")
+			#animation_mode.travel("Idle")
 			var facing = 'idle_' + direction
 			$AnimationPlayer.play(facing)
 			emit_signal("animationFinished")
@@ -228,6 +228,4 @@ func get_object_in_direction(dir: String):
 #Virus (killed via GameStats)
 func _on_GameStats_robotDied():
 	$SoundDeath.play()
-	#Temporary action just so there's a visual indicator
-	#Should be replaced with some animation or something else to better show Robby dying
-	$Sprite.set_texture(deadRobotTexture) 
+	$AnimationPlayer.play("Dead")

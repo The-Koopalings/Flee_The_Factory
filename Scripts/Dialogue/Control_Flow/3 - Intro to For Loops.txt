@@ -3,7 +3,7 @@ Haha just kidding, we're not playing golf right now! Unfortunately, I do get pla
 
 IDE
 Anyways, let's learn about [color=yellow]for loops[/color]. These work very [color=red]differently[/color] from [color=yellow]while loops[/color]!
-Click the [color=yellow]Loop text[/color] and [color=yellow]select[/color] the [color=yellow]for loop[/color] option.
+Click the [color=yellow]"Loop1" text[/color] and [color=yellow]select[/color] the [color=yellow]for loop[/color] option.
 ;
 
 [color=yellow]For loops[/color], as you can guess from the name, are a type of loop that allows users to specify the amount of times it can loop.

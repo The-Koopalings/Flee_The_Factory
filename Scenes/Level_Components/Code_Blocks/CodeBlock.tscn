@@ -1,39 +1,41 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Code_Blocks/Code_Block_Template.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/Arrow.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 29.5, 28.5 )
+extents = Vector2( 28.8889, 28.8889 )
 
 [node name="CodeBlock" type="Area2D"]
+scale = Vector2( 0.9, 0.9 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1.11111 )
 shape = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Arrow" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 0, -70 )
+rotation = 3.14159
+scale = Vector2( 1.2, 1.2 )
+
 [node name="Highlight" type="ReferenceRect" parent="."]
 margin_left = -27.0
 margin_top = -27.0
 margin_right = 28.0
-margin_bottom = 28.0
+margin_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-border_width = 4.0
+border_width = 3.0
 editor_only = false
-
-[node name="Arrow" type="Sprite" parent="."]
-visible = false
-position = Vector2( 0, -80 )
-rotation = 3.14159
-texture = ExtResource( 2 )
 
 [connection signal="input_event" from="." to="." method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_CodeBlock_mouse_entered"]

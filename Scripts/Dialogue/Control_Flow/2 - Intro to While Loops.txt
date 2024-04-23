@@ -1,9 +1,10 @@
 We're onto our next control flow topic, [color=yellow]loops[/color]!
 
 IDE
+HIGHLIGHT_LOOP_BLOCK
 This is a [color=yellow]loop block[/color]. Essentially, it will continue executing the code (AKA looping through the code) inside of it until a condition is met.
 There are 2 types of loops we will discuss, but for now let's talk about [color=yellow]while loops[/color].
-Now you can [color=yellow]click[/color] the [color=yellow]Loop text[/color] to [color=yellow]select[/color] which [color=yellow]type of loop[/color] you want to use for this level. Please click and select the [color=yellow]while loop[/color].
+Now you can [color=yellow]click[/color] the [color=yellow]"Loop1" text[/color] to [color=yellow]select[/color] which [color=yellow]type of loop[/color] you want to use for this level. Please click and select the [color=yellow]while loop[/color].
 ;
 
 [color=yellow]While loops[/color] are a type of loop that will continue looping [color=yellow]until the condition[/color] you set is [color=red]false[/color].

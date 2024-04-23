@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Assets/Objects/13/Skillicon13_35.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Objects/13/Skillicon13_32.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/LevelControl.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/Objects/13/Skillicon13_17.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/Level_Components/Level_Elements/Arrow.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Objects/13/Skillicon13_09.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
@@ -29,11 +28,6 @@ mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 expand = true
 
-[node name="Arrow" parent="Settings" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 110, 30 )
-rotation = 4.71239
-
 [node name="Restart" type="Button" parent="."]
 margin_left = 25.0
 margin_top = 100.0
@@ -45,11 +39,6 @@ custom_fonts/font = SubResource( 1 )
 icon = ExtResource( 4 )
 icon_align = 1
 expand_icon = true
-
-[node name="Arrow" parent="Restart" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 110, 30 )
-rotation = 4.71239
 
 [node name="DoubleSpeed" type="CheckButton" parent="."]
 margin_left = 3.0
@@ -63,11 +52,6 @@ text = "2x Speed"
 align = 1
 icon_align = 1
 expand_icon = true
-
-[node name="Arrow" parent="DoubleSpeed" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 110, -20 )
-rotation = 3.14159
 
 [node name="Help" type="Button" parent="."]
 margin_left = 25.0
@@ -84,11 +68,6 @@ custom_fonts/font = SubResource( 1 )
 icon = ExtResource( 6 )
 icon_align = 1
 expand_icon = true
-
-[node name="Arrow" parent="Help" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 110, 30 )
-rotation = 4.71239
 
 [connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
