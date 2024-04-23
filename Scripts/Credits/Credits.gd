@@ -23,7 +23,7 @@ func on_BackButton_pressed():
 func run_tween():
 	tween.interpolate_property(
 		$Path2D/PathFollow2D, "unit_offset",
-		0.0, 1.0, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+		0.0, 1.0, 22, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	#run_tween()
