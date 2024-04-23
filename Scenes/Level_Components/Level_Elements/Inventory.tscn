@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/Inventory.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Sounds/zapsplat_multimedia_alert_action_collect_pick_up_point_or_item_79293.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Sounds/zapsplat_household_door_chain_slide_lock_or_unlock_001_12580.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Miscalleous/Inventory/Array.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 42
@@ -18,12 +19,18 @@ font_data = ExtResource( 2 )
 margin_right = 480.0
 margin_bottom = 96.0
 rect_pivot_offset = Vector2( 505, -62 )
+color = Color( 1, 1, 1, 0 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "For variable type: Stack = 0, 1 = Queue, 2 = Array"
 }
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 240, 48 )
+texture = ExtResource( 5 )
+
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
+visible = false
 margin_right = 480.0
 margin_bottom = 96.0
 border_width = 3.2
@@ -88,24 +95,28 @@ align = 1
 valign = 1
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 position = Vector2( 96, 0 )
 points = PoolVector2Array( 0, 0, 0, 96 )
 width = 2.0
 default_color = Color( 1, 0, 0, 1 )
 
 [node name="Line2D2" type="Line2D" parent="."]
+visible = false
 position = Vector2( 192, 0 )
 points = PoolVector2Array( 0, 0, 0, 96 )
 width = 2.0
 default_color = Color( 1, 0, 0, 1 )
 
 [node name="Line2D3" type="Line2D" parent="."]
+visible = false
 position = Vector2( 288, 0 )
 points = PoolVector2Array( 0, 0, 0, 96 )
 width = 2.0
 default_color = Color( 1, 0, 0, 1 )
 
 [node name="Line2D4" type="Line2D" parent="."]
+visible = false
 position = Vector2( 384, 0 )
 points = PoolVector2Array( 0, 0, 0, 96 )
 width = 2.0
