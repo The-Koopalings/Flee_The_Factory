@@ -458,7 +458,7 @@ func init_progress_check_FBA():
 	
 
 func init_inventory():
-	level.get_node("Inventory").set_position(Vector2(865, 43))
+	level.get_node("Inventory").set_position(Vector2(960, 45))
 	
 
 #Get path to a node that's a relative to an ancestor of the current node

@@ -25,16 +25,9 @@ __meta__ = {
 "_editor_description_": "For variable type: Stack = 0, 1 = Queue, 2 = Array"
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Slot" type="Sprite" parent="."]
 position = Vector2( 240, 48 )
 texture = ExtResource( 5 )
-
-[node name="ReferenceRect" type="ReferenceRect" parent="."]
-visible = false
-margin_right = 480.0
-margin_bottom = 96.0
-border_width = 3.2
-editor_only = false
 
 [node name="ItemSlots" type="Control" parent="."]
 margin_right = 40.0
@@ -93,34 +86,6 @@ custom_fonts/font = SubResource( 1 )
 text = "4"
 align = 1
 valign = 1
-
-[node name="Line2D" type="Line2D" parent="."]
-visible = false
-position = Vector2( 96, 0 )
-points = PoolVector2Array( 0, 0, 0, 96 )
-width = 2.0
-default_color = Color( 1, 0, 0, 1 )
-
-[node name="Line2D2" type="Line2D" parent="."]
-visible = false
-position = Vector2( 192, 0 )
-points = PoolVector2Array( 0, 0, 0, 96 )
-width = 2.0
-default_color = Color( 1, 0, 0, 1 )
-
-[node name="Line2D3" type="Line2D" parent="."]
-visible = false
-position = Vector2( 288, 0 )
-points = PoolVector2Array( 0, 0, 0, 96 )
-width = 2.0
-default_color = Color( 1, 0, 0, 1 )
-
-[node name="Line2D4" type="Line2D" parent="."]
-visible = false
-position = Vector2( 384, 0 )
-points = PoolVector2Array( 0, 0, 0, 96 )
-width = 2.0
-default_color = Color( 1, 0, 0, 1 )
 
 [node name="Label" type="Label" parent="."]
 margin_top = -58.0
