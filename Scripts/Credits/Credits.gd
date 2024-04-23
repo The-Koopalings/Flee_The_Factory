@@ -21,9 +21,13 @@ func on_BackButton_pressed():
 	SceneSwapper.change_scene("Start Menu")
 
 func run_tween():
+	#3rd number is how long in seconds the whole pathing should take to finish
+	#Tween.TRANS_BACK = slow down near beginning & end, alt: Tween.TRANS_LINEAR for linear speed throughout
 	tween.interpolate_property(
 		$Path2D/PathFollow2D, "unit_offset",
-		0.0, 1.0, 22, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+		0.0, 1.0, 22, 
+		Tween.TRANS_BACK, 
+		Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	#run_tween()
