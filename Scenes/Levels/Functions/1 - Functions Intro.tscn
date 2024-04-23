@@ -15,7 +15,7 @@
 [ext_resource path="res://Scenes/Level_Components/Level_Elements/IDE.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Level_Components/IDE_Elements/FunctionBlock.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scripts/Levels/Functions/1 - Functions Intro.gd" type="Script" id=15]
-[ext_resource path="res://Assets/Placeholders/Up.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Level_Components/Level_Elements/Arrow.tscn" type="PackedScene" id=16]
 
 [node name="1 - Functions Intro" type="Node2D"]
 script = ExtResource( 15 )
@@ -69,12 +69,11 @@ position = Vector2( 0, -918 )
 
 [node name="PopupMenu" parent="." instance=ExtResource( 9 )]
 
-[node name="F1_Arrow" type="Sprite" parent="."]
+[node name="F1_Arrow" parent="." instance=ExtResource( 16 )]
 visible = false
-position = Vector2( 1334, 600 )
+position = Vector2( 1350, 600 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
-texture = ExtResource( 16 )
 
 [editable path="IDE"]
 [editable path="IDE/Scopes/Main/Main"]
