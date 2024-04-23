@@ -1,30 +1,39 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Credits/Credits.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Backgrounds/Credits.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scenes/Stage_Select/BackButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Music/686610__seth_makes_sounds__bubbglegum-pop-song.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 144
 font_data = ExtResource( 3 )
 
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1002, 3594, 0, 0, 0, 0, 1003, -2114 )
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 84
+font_data = ExtResource( 6 )
+
 [node name="Credits" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = 550.0
-margin_top = 43.0
-margin_right = 1470.0
-margin_bottom = 217.0
+[node name="Credits" type="Label" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 174.0
 custom_fonts/font = SubResource( 1 )
-text = "Credits Yeehaw!"
+text = "Credits"
 align = 1
 
 [node name="CreditsMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = 4.0
+volume_db = 5.0
 bus = "Music"
 
 [node name="Background" type="Sprite" parent="."]
@@ -33,3 +42,121 @@ z_index = -1
 texture = ExtResource( 2 )
 
 [node name="BackButton" parent="." instance=ExtResource( 4 )]
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -110, -2368 )
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 1002, 3594 )
+rotation = -1.56399
+rotate = false
+loop = false
+
+[node name="Credits" type="RichTextLabel" parent="Path2D/PathFollow2D"]
+margin_left = 180.955
+margin_top = -889.251
+margin_right = 2100.96
+margin_bottom = 4763.75
+rect_rotation = 90.0
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = " [center][font=res://Fonts/Bigger_Kimberley.tres]Credits[/font]
+
+[font=res://Fonts/Big_Kimberley.tres]Developers:[/font]
+Henry Chen
+Helena He
+Michelle Lin
+Karen Liu
+
+
+[font=res://Fonts/Big_Kimberley.tres]Artwork:[/font]
+Karen Liu
+CraftPix.net
+
+
+[font=res://Fonts/Big_Kimberley.tres]Public Domain Fonts:[/font]
+Angerpoise Lampshade
+Kimberley
+
+
+[font=res://Fonts/Big_Kimberley.tres]Music:[/font]
+Neon Dreams: A Retro-Futuristic Synthwave Track - Wav Mixdown 
+by Robbnix
+ https://freesound.org/s/685539/
+License: Attribution 4.0 
+
+Communicate Song Loop 
+by StephieQueen AKA S.A. Eversole
+https://freesound.org/s/650556/
+License: Attribution 4.0
+
+Bubbglegum Pop Song 
+by Seth_Makes_Sounds
+https://freesound.org/s/686610/
+License: Creative Commons 0
+
+
+[font=res://Fonts/Big_Kimberley.tres]Sound Effects:[/font]
+Zapsplat.com
+John J from Zapsplat.com
+
+
+[font=res://Fonts/Bigger_Kimberley.tres]Thanks for playing![/font]
+
+
+
+[/center]"
+text = " Credits
+
+Developers:
+Henry Chen
+Helena He
+Michelle Lin
+Karen Liu
+
+
+Artwork:
+Karen Liu
+CraftPix.net
+
+
+Public Domain Fonts:
+Angerpoise Lampshade
+Kimberley
+
+
+Music:
+Neon Dreams: A Retro-Futuristic Synthwave Track - Wav Mixdown 
+by Robbnix
+ https://freesound.org/s/685539/
+License: Attribution 4.0 
+
+Communicate Song Loop 
+by StephieQueen AKA S.A. Eversole
+https://freesound.org/s/650556/
+License: Attribution 4.0
+
+Bubbglegum Pop Song 
+by Seth_Makes_Sounds
+https://freesound.org/s/686610/
+License: Creative Commons 0
+
+
+Sound Effects:
+Zapsplat.com
+John J from Zapsplat.com
+
+
+Thanks for playing!
+
+
+
+"
+scroll_active = false
+scroll_following = true
+
+[node name="Tween" type="Tween" parent="Path2D/PathFollow2D/Credits"]
+playback_speed = 0.25
+playback/speed = 0.25

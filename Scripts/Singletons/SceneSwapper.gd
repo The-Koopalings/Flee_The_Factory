@@ -17,10 +17,13 @@ var scene_order = []
 #Keys: stage name (same as the directory name), value: number of levels it has
 var stageLevelCounts = {}
 
-const X_START = 450
+var X_START = 450
 const Y_START = 400
-const X_SPACE = 300
-const Y_SPACE = 300
+const X_SIZE = 140
+const Y_SIZE = 140
+const X_SPACE = X_SIZE + 40
+const Y_SPACE = Y_SIZE + 100
+
 
 var current_scene = null
 
@@ -85,6 +88,18 @@ func load_lvl_buttons(level_select):
 	var btn_nodes = get_tree().get_nodes_in_group("level_buttons")
 	var btn_count = 0
 	
+	#For getting X_START
+	var space_between_btns = X_SPACE - X_SIZE
+	var offset = 388
+	#Used for getting X_START, get the number of levels per row, the max = 5
+	var level_count_per_row = stageLevelCounts[stage_type] 
+	if level_count_per_row > 5:
+		level_count_per_row = 5
+	
+	#Get the starting x position of the 1st button to allow for centering
+	#Subtract the total x size of the windows + spaces between them from the floor size, then divide by 2
+	#Add the offset so buttons are in the building
+	X_START = ((890 - (X_SIZE * level_count_per_row) - (space_between_btns * (level_count_per_row - 1))) / 2) + offset
 	var x_pos = X_START
 	var y_pos = Y_START
 	
@@ -96,14 +111,17 @@ func load_lvl_buttons(level_select):
 		#If the level is complete, then change button theme (only changes normal texture right now)
 		if GameStats.savableGameStats.levelCompletion[level_path]:
 			btn.set_theme(completedTheme)
-			
+		
+		#Set button size
+		btn.set_size(Vector2(X_SIZE, Y_SIZE))
+		
 		#Set button position
 		btn.rect_position = Vector2(x_pos, y_pos)
 		btn_count += 1
 		
 		x_pos += X_SPACE
 		
-		if btn_count % 6 == 0:
+		if btn_count % 5 == 0:
 			x_pos = X_START
 			y_pos += Y_SPACE
 

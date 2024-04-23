@@ -18,7 +18,8 @@ func set_stages():
 		#Set label on top of everything, messes up posiitons so that needs to be corrected
 		var label = stage.get_node("Label")
 		label.set_as_toplevel(true)
-		var labelPos = label.get_position() + Vector2(100, (200*i) + 80)
+		var stagePos = stage.get_position()
+		var labelPos = label.get_position()  + stagePos - Vector2(0, 50)
 		label.set_position(labelPos)
 		i += 1
 		
@@ -30,14 +31,20 @@ func set_stages():
 #Adds windows based on how many levels there are in the stage, yellow if level is completed, gray if not
 func set_windows(stage, levelCount):
 	var stageName = stage.name.replace("Button", "")
-	var windowSize = Vector2(75, 75)
-	var posx = 450
-	var posy = 15
+	var windowSize = Vector2(65, 65)
+	var spacing = windowSize.x  + 45
+	var spaceBetweenWindows = 45
+	
+	#Get the starting x position of the 1st window to allow for centering
+	#Subtract the total x size of the windows + spaces between them from the button x size, then divide by 2
+	var posx = (stage.get_size().x - (windowSize.x * (levelCount)) - (spaceBetweenWindows * (levelCount - 1))) / 2
+	var posy = 70
 	
 	for i in range(1, levelCount + 1):
 		#Set position & size of window
 		var window = Panel.new()
-		window.set_position(Vector2(posx + (100 * (i - 1)), posy))
+		window.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		window.set_position(Vector2(posx + (spacing * (i-1)), posy))
 		window.set_size(windowSize)
 		
 		#Set theme/color of window
@@ -48,6 +55,7 @@ func set_windows(stage, levelCount):
 			window.set_theme(levelUncompletedTheme)
 		
 		stage.add_child(window)
+		
 	
 
 func _on_FunctionsButton_pressed():

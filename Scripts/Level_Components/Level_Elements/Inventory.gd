@@ -15,25 +15,13 @@ func initialize_inventory():
 	match type:
 		"S":
 			$Label.text = "Stack"
-			$ReferenceRect.set_border_color(Color(1, 0, 0)) #Red
-			$Line2D.set_default_color(Color(1, 0, 0))
-			$Line2D2.set_default_color(Color(1, 0, 0))
-			$Line2D3.set_default_color(Color(1, 0, 0))
-			$Line2D4.set_default_color(Color(1, 0, 0))
+			$Slot.set_texture(load("res://Assets/Miscalleous/Inventory/Stack.png"))
 		"Q":
 			$Label.text = "Queue"
-			$ReferenceRect.set_border_color(Color(0, 1, 0)) #Green
-			$Line2D.set_default_color(Color(0, 1, 0))
-			$Line2D2.set_default_color(Color(0, 1, 0))
-			$Line2D3.set_default_color(Color(0, 1, 0))
-			$Line2D4.set_default_color(Color(0, 1, 0))
+			$Slot.set_texture(load("res://Assets/Miscalleous/Inventory/Queue.png"))
 		"A":
 			$Label.text = "Array"
-			$ReferenceRect.set_border_color(Color(0, 0, 1)) #Blue
-			$Line2D.set_default_color(Color(0, 0, 1))
-			$Line2D2.set_default_color(Color(0, 0, 1))
-			$Line2D3.set_default_color(Color(0, 0, 1))
-			$Line2D4.set_default_color(Color(0, 0, 1))
+			$Slot.set_texture(load("res://Assets/Miscalleous/Inventory/Array.png"))
 	
 
 func on_pickup(slotNum: int):
