@@ -25,8 +25,8 @@ func run_tween():
 	#Tween.TRANS_BACK = slow down near beginning & end, alt: Tween.TRANS_LINEAR for linear speed throughout
 	tween.interpolate_property(
 		$Path2D/PathFollow2D, "unit_offset",
-		0.0, 1.0, 22, 
-		Tween.TRANS_BACK, 
+		0.0, 1.0, 10, 
+		Tween.TRANS_LINEAR, 
 		Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_all_completed")

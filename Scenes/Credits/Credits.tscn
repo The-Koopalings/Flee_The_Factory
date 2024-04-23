@@ -158,5 +158,5 @@ scroll_active = false
 scroll_following = true
 
 [node name="Tween" type="Tween" parent="Path2D/PathFollow2D/Credits"]
-playback_speed = 0.5
-playback/speed = 0.5
+playback_speed = 0.25
+playback/speed = 0.25
