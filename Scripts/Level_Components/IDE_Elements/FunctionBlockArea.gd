@@ -17,8 +17,8 @@ onready var counter = get_node("../Counter")
 var numBlocks = 0
 var rowSize = 7
 var blockSize = 50 
-var xOffset = 30
-var yOffset = 30
+var xOffset = 25
+var yOffset = 25
 
 #To prevent removing a code block if it was dragged out of FBA, but dragged and dropped back into FBA
 var blockToAdd = null

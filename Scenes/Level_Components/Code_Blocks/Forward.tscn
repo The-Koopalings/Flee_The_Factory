@@ -20,8 +20,9 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 2.1, 2.1 )
 texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 50, 50 )
 __meta__ = {
 "_edit_group_": true
 }
