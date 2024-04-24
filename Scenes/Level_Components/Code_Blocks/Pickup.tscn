@@ -6,9 +6,10 @@
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 23, 23.5 )
+extents = Vector2( 25.5, 25.5 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 14
 outline_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
 font_data = ExtResource( 4 )
 
@@ -19,15 +20,13 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 0.5 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.499999, 1 )
-scale = Vector2( 0.391667, 0.413793 )
+scale = Vector2( 0.42, 0.43 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -37,9 +36,9 @@ __meta__ = {
 
 [node name="SelectSlotNum" type="MenuButton" parent="."]
 margin_left = -20.0
-margin_top = 3.0
+margin_top = 4.0
 margin_right = 22.0
-margin_bottom = 23.0
+margin_bottom = 24.0
 mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="SelectSlotNum"]
