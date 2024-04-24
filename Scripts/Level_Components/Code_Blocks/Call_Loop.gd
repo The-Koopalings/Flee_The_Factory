@@ -44,9 +44,9 @@ func on_loop_type_selected(type: String):
 	#Example path: "res://Assets/Objects/While1.png"
 	$Sprite.texture = load("res://Assets/Objects/Code_Blocks/" + type + loopBlockNumber + ".png")
 	if type == "While":
-		$Sprite.set_scale(Vector2(0.326, 0.617))
+		$Sprite.set_scale(Vector2(0.35, 0.35))
 	elif type == "For":
-		$Sprite.set_scale(Vector2(0.28, 0.33))
+		$Sprite.set_scale(Vector2(0.3, 0.3))
 	
 
 

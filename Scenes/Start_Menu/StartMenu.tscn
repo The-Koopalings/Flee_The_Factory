@@ -31,11 +31,6 @@ custom_fonts/font = SubResource( 1 )
 text = "Flee the Factory"
 align = 1
 
-[node name="back" type="Sprite" parent="."]
-position = Vector2( 961, 544 )
-z_index = -97
-texture = ExtResource( 2 )
-
 [node name="StartButton" type="Button" parent="."]
 margin_left = 620.0
 margin_top = 360.0

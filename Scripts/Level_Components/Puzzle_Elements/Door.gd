@@ -41,7 +41,7 @@ func _on_level_levelComplete():
 	if color == "":
 		$SoundUnlock.play()
 		$Sprite.set_texture(openDoorTexture)
-		get_node("WCLs").visible = false
+#		get_node("WCLs").visible = false
 	
 		var root = get_tree().root
 		var levelPath = root.get_child(root.get_child_count() - 1).filename
@@ -52,5 +52,3 @@ func _on_level_levelComplete():
 		if IDE.is_loop() and IDE.code.size() == 0:
 			IDE.currentNode.increment_loopCount()
 	
-		#Rescale since placeholder texture is too big (b/c the door texture is tiny and needs to be scaled
-		$Sprite.set_scale(Vector2(1,1)) 

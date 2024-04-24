@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Fonts/angerpoise lampshade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Level_Components/Level_Elements/SettingsMenu.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Fonts/kimberley bl.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Themes/SettingsMenu.tres" type="Theme" id=4]
+[ext_resource path="res://Assets/Miscalleous/Setting_Menu.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -44,19 +46,27 @@ margin_top = -192.0
 margin_right = 1632.0
 margin_bottom = 888.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 0.25098 )
+color = Color( 0.180392, 0.180392, 0.180392, 0.2 )
 
 [node name="MenuPanel" type="ColorRect" parent="."]
-margin_right = 1082.0
-margin_bottom = 646.0
+visible = false
+margin_left = 136.0
+margin_top = 24.0
+margin_right = 1218.0
+margin_bottom = 670.0
 mouse_filter = 2
-color = Color( 0.964706, 0.517647, 0.937255, 1 )
+theme = ExtResource( 4 )
+color = Color( 0.694118, 0.172549, 0.509804, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 672, 344 )
+texture = ExtResource( 5 )
 
 [node name="Sliders" type="Control" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1075.0
-margin_bottom = 639.0
+margin_left = 128.0
+margin_top = 24.0
+margin_right = 1196.0
+margin_bottom = 656.0
 mouse_filter = 2
 
 [node name="MusicVolume" type="ReferenceRect" parent="Sliders"]
@@ -77,9 +87,11 @@ align = 1
 valign = 1
 
 [node name="HSlider" type="HSlider" parent="Sliders/MusicVolume"]
+modulate = Color( 0.478431, 0.458824, 1, 1 )
 margin_left = 310.0
+margin_top = -1.0
 margin_right = 950.0
-margin_bottom = 90.0
+margin_bottom = 89.0
 value = 50.0
 tick_count = 100
 
@@ -88,6 +100,7 @@ margin_left = 960.0
 margin_top = 25.0
 margin_right = 1020.0
 margin_bottom = 65.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 4 )
 text = "Reset"
 
@@ -110,6 +123,7 @@ align = 1
 valign = 1
 
 [node name="HSlider" type="HSlider" parent="Sliders/SoundEffectsVolume"]
+modulate = Color( 0.478431, 0.458824, 1, 1 )
 margin_left = 310.0
 margin_right = 950.0
 margin_bottom = 90.0
@@ -121,6 +135,7 @@ margin_left = 960.0
 margin_top = 25.0
 margin_right = 1020.0
 margin_bottom = 65.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 4 )
 text = "Reset"
 
@@ -143,6 +158,7 @@ align = 1
 valign = 1
 
 [node name="HSlider" type="HSlider" parent="Sliders/Brightness"]
+modulate = Color( 0.478431, 0.458824, 1, 1 )
 margin_left = 310.0
 margin_right = 950.0
 margin_bottom = 90.0
@@ -154,21 +170,23 @@ margin_left = 960.0
 margin_top = 25.0
 margin_right = 1020.0
 margin_bottom = 65.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 4 )
 text = "Reset"
 
 [node name="Buttons" type="Control" parent="."]
-margin_left = 7.0
-margin_top = 80.0
-margin_right = 1075.0
-margin_bottom = 712.0
+margin_left = 128.0
+margin_top = 104.0
+margin_right = 1196.0
+margin_bottom = 736.0
 mouse_filter = 2
 
 [node name="Continue" type="Button" parent="Buttons"]
-margin_left = 400.0
+margin_left = 401.0
 margin_top = 300.0
-margin_right = 700.0
+margin_right = 701.0
 margin_bottom = 350.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 5 )
 text = "Continue"
 
@@ -177,6 +195,7 @@ margin_left = 400.0
 margin_top = 380.0
 margin_right = 700.0
 margin_bottom = 430.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 7 )
 text = "Exit Level"
 
@@ -185,5 +204,6 @@ margin_left = 400.0
 margin_top = 460.0
 margin_right = 700.0
 margin_bottom = 510.0
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 8 )
 text = "Exit Game"
