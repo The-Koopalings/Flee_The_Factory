@@ -1,1 +1,1 @@
-# Flee_The_Factory
+To play the game, download the .zip file, then extract all from it. Make sure to keep all of the files/folders in the extracted zip file together.
