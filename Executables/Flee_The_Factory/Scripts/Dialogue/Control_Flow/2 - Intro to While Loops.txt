@@ -1,0 +1,38 @@
+Onto our next control flow topic, [color=yellow]loops[/color]!
+Loops will repeatedly execute ALL of the code in it's section (i.e looping through the code) as long as a given condition is met
+
+IDE
+HIGHLIGHT_LOOP_BLOCK
+There are 2 types of loops. [color=yellow]While loops[/color] and [color=yellow]For loops[/color].
+HIGHLIGHT_LOOP_BLOCK
+If you click on the name of a loop, you can change between these two loops.                                                                                                                                                                                                                                                Try it now, change [color=yellow]Loop1[/color] into a [color=yellow]While[/color]
+;
+
+[color=yellow]While loops[/color] keep looping *while* the [color=purple]condition[/color] given is [color=green]true[/color].
+Before each time the loop runs, it will first check the [color=purple]condition[/color]. If it's [color=green]true[/color], it'll keep running the code. If it's [color=red]false[/color], it'll stop and exit the loop.
+
+CODE_BLOCK
+HIGHLIGHT_CALL_LOOP1
+This is a [color=yellow]CALL_LOOP1[/color] code block which you can use to call on Loop1.
+HIGHLIGHT_CALL_LOOP1
+You may have noticed that once you changed the loop to a [color=yellow]"While"[/color], the code block changed to match that.
+
+Now let's set the [color=purple]condition[/color] for the loop...
+We want to keep moving until I am on the tile with the button. So let's make the condition [color=purple](tile != button)[/color]. This means that while the [color=purple]tile I am on is NOT a button[/color], keep executing the loop's code.
+;
+
+Now let's place one [color=yellow]Forward[/color] code block into the [color=yellow]while loop[/color]
+;
+
+Now let's [color=yellow]call the while loop[/color] in [color=yellow]Main[/color] so I can move to the button tile.
+;
+
+So far, with this code, [color=purple]while as I'm not on a button[/color], I will keep [color=yellow]walking forwards[/color].
+
+Finally, make sure to [color=yellow]interact[/color] with the button.
+;
+
+Now let's press [color=yellow]Run[/color] and see me move my little legs.
+;
+
+Wow, what a loop dee loop ride that was! Also, for fun, you can see if you can solve this floor using a [color=purple]condition[/color]!

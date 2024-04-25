@@ -58,6 +58,7 @@ func _process(_delta):
 		if level_win:
 			emit_signal("levelComplete")
 			$PopupMenu.visible = true
+			level_win = false
 
 func _on_Button_buttonPressed(name):
 	match name:

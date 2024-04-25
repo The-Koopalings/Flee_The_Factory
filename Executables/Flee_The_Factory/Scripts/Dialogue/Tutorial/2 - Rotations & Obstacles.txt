@@ -1,0 +1,22 @@
+Not all rooms will contain a straight path to the door! Remember that I will only move forward in the direction that I am facing.
+
+Let's go over the new object on the factory floor.
+HIGHLIGHT_OBSTACLE
+This is called an [color=yellow]Obstacle[/color]. Similar to a Wall, I [color=red]cannot move past[/color] these. We have to navigate our way around these.
+
+CODE_BLOCK
+Now let's go over the 2 new code blocks.
+HIGHLIGHT_ROTATE_LEFT
+This is called [color=yellow]Rotate Left[/color]. This will make me rotate to [color=yellow]my[/color] left.
+HIGHLIGHT_ROTATE_RIGHT
+This is called [color=yellow]Rotate Right[/color]. This will make me rotate to [color=yellow]my[/color] right.
+
+Now, let's [color=yellow]rotate me to the left[/color] so that I no longer face the obstacle.
+;
+Great! Now that I'm facing the correct direction, I can move forward one tile. Let's place [color=yellow]a Forward[/color] code block into Main.
+;
+Oh no! I will be facing another obstacle now. Let's [color=yellow]rotate me to the right[/color] to solve this problem.
+;
+Hooray! I can move [color=yellow]forward and interact[/color] with the button now. Please place the appropriate code blocks into Main and press Run.
+;
+Congrats! We're another step closer to fleeing the factory.
