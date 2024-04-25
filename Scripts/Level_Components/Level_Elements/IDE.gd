@@ -30,16 +30,16 @@ func _ready():
 #Connected to Run_Button
 func _on_RunButton_pressed():
 	#Check that the Run button hasn't been pressed yet
-	if !runPressed:
-		#Play button pressed sound, wait until it's finished to run
-		ButtonPress3.play()
-		yield(get_tree().create_timer(0.5), "timeout")
-		#Run code
-		runPressed = true
-		GameStats.set_game_state(GameStats.State.EXECUTING)
-		print("Scopes: ", scopes)
-		enter_scope(scopes["Main"])
-		run_code()
+	$ButtonContainer/Run_Button.disabled = true
+	#Play button pressed sound, wait until it's finished to run
+	ButtonPress3.play()
+	yield(get_tree().create_timer(0.5), "timeout")
+	#Run code
+	runPressed = true
+	GameStats.set_game_state(GameStats.State.EXECUTING)
+	print("Scopes: ", scopes)
+	enter_scope(scopes["Main"])
+	run_code()
 
 func _on_ClearAllButton_pressed():
 	ButtonPress3.play()
