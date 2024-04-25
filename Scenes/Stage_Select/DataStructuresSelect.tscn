@@ -46,3 +46,5 @@ theme = ExtResource( 6 )
 
 [node name="Button4" parent="." instance=ExtResource( 5 )]
 theme = ExtResource( 6 )
+
+[node name="Button5" parent="." instance=ExtResource( 5 )]
