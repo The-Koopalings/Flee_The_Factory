@@ -41,9 +41,9 @@ script = ExtResource( 1 )
 
 [node name="DoorG" parent="Grid" instance=ExtResource( 10 )]
 
-[node name="DoorR2" parent="Grid" instance=ExtResource( 10 )]
-
 [node name="DoorB" parent="Grid" instance=ExtResource( 10 )]
+
+[node name="DoorR2" parent="Grid" instance=ExtResource( 10 )]
 
 [node name="Door" parent="Grid" instance=ExtResource( 10 )]
 

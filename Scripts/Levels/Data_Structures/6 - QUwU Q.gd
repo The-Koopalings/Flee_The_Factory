@@ -21,14 +21,14 @@ var has_tutorial = false
 ##LEVEL CONFIGURATION VARIABLES
 var tiles = [
 	['X','X','X','X','X','X','X','X','X','X','X'],
-	['X','X','X','R',' ','D','D','B','X','X','X'],
-	['X','X','X','K','X','X','X','D','X','X','X'],
-	['X','X','X','K',' ',' ',' ','D','X','X','X'],
+	['X','X','X',' ',' ','D','D',' ','X','X','X'],
+	['X','X','X','K','X','X','X',' ','X','X','X'],
+	['X','X','R','K',' ','D','D','B','X','X','X'],
 	['X','X','X','K','X','X','X','X','X','X','X'],
 	['X','X','X','D','X','X','X','X','X','X','X'],
 	['X','X','X','X','X','X','X','X','X','X','X'],
 ]
-var robotStartOrientation = PEP.Orientation.DOWN
+var robotStartOrientation = PEP.Orientation.RIGHT
 ##LEVEL CONFIGURATION VARIABLES
 
 func _ready():
