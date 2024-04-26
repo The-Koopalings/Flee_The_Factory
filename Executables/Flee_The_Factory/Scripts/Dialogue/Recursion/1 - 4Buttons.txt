@@ -1,0 +1,21 @@
+You already know that other IDE sections can call functions, but did you know that [color=yellow]functions can call themselves[/color] too??
+With this new concept, I can introduce you to the wonderful world of [color=yellow]recursion[/color]!
+In recursion, functions usually call themselves until a [color=yellow]base case[/color] is met.
+Usually the base case is some sort of [color=yellow]if statement[/color] that is met, but in [color=green]our case[/color], the [color=green]base case[/color] will be [color=green]when the exit door opens[/color].
+So, once the [color=red]exit door opens, recursion stops[/color].
+Now, let's try it out for ourselves!
+
+CODE_BLOCK
+To start, let's [color=yellow]walk me down 2 tiles, interact with the button, and rotate to the left[/color]. Please place the appropriate code blocks into [color=yellow]Func1[/color].
+;
+
+Awesome! Now place a [color=yellow]CALL_F1[/color] code block into [color=yellow]Func1[/color]. This means that [color=yellow]Func1[/color] will now [color=yellow]call itself repeatedly until the base case is fulfilled[/color] (the level is completed).
+;
+
+Finally, let's have [color=yellow]Main call Func1[/color].
+;
+
+Now press [color=yellow]Run[/color] and watch me move it, move it!
+;
+
+Usually recursion would have me re-cursing, but then I got caught and now I have to do some reversing.

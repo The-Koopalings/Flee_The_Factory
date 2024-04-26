@@ -1,0 +1,50 @@
+Hmmm... I think we're going to need to go over something called [color=yellow]control flow[/color] to escape this room.
+
+[color=yellow]Control flow[/color] is all about the order of how code is executed.                                                    It's important for writing code that can work in different scenarios
+
+For this room, let's focus on [color=yellow]IF-Else statements[/color]
+
+IDE
+HIGHLIGHT_IF_BLOCK
+This is the [color=yellow]If[/color] section of the If-Else statement
+HIGHLIGHT_IF_BLOCK
+In the parenthesis is the [color=purple]condition[/color]. If the [color=purple]condition[/color] is true, then the code in this section will run 
+
+HIGHLIGHT_ELSE_BLOCK
+Otherwise, the code in the [color=yellow]Else[/color] section will run
+HIGHLIGHT_ELSE_BLOCK
+You don't always have to have code in the [color=yellow]Else[/color] section, but usually it's pretty helpful 
+
+And that's why they call it an [color=yellow]If-Else statement![/color]                                            But sometimes I'll just call it an [color=yellow]If-statement[/color] if I get lazy
+
+CODE_BLOCK
+HIGHLIGHT_CALL_IF1
+To use an [color=yellow]If-Else statement[/color] in your code, use this code block here!
+
+Ok, onto solving this room...
+I have an idea! There's a little pattern that we can use to get out of here. 
+First let's place 2 [color=yellow]Forward[/color] code blocks into [color=yellow]Func1[/color].
+;
+
+Let's set the [color=purple]condition[/color] of the [color=yellow]If[/color] section to [color=purple](front == blocked)[/color]                          Now, the [color=yellow]If[/color] section runs if the tile in [color=purple]front[/color] of me [color=purple]is blocked[/color] by an [color=yellow]Obstacle[/color] or a [color=yellow]Wall[/color]                                                           								                 Click each bit of text in the [color=purple]condition[/color] to change it to the correct ones.
+;
+
+Keep in mind that [color=purple]==[/color] means [color=yellow]equal to[/color] and that [color=purple]!=[/color] means [color=yellow]not equal to[/color]
+Now, if Robby is facing the wall, he should turn to the right. Otherwise, he should press the button. 
+Let's place a [color=yellow]Rotate Right[/color] into the [color=yellow]If[/color] section 
+;
+And an [color=yellow]Interact[/color] into the [color=yellow]Else[/color] section.
+;
+Now, let's call the [color=yellow]If-statement[/color] in [color=yellow]Func1[/color].
+;
+
+Finally, let's place 2 [color=yellow]F1[/color] blocks into Main
+;
+
+Can you see what's going on here? The [color=yellow]first time we call Func1[/color] in Main, I will walk forwards 2 tiles and face the wall. Since the [color=purple]condition[/color] is [color=green]true[/color], I will [color=yellow]turn right[/color]
+The [color=yellow]next time we call Func1[/color], I will walk fowards 2 tiles again. However, the [color=purple]condition[/color] is now [color=red]false[/color], so this time I [color=yellow]interact[/color] instead.
+
+
+Now run the code!
+;
+Hooray! To be honest, [color=yellow]if[/color] we weren't stuck here, then I don't know what [color=yellow]else[/color] I would be doing.
