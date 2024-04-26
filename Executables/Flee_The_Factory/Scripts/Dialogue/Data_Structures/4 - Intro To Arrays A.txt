@@ -1,0 +1,29 @@
+Oh look, my inventory has changed modes once again! This time it's in [color=blue]"Array"[/color] mode.
+You can tell when my inventory is in [color=blue]Array mode[/color] because it will always be [color=blue]blue[/color] and have the words "Array" above it.
+In this mode, my inventory will act like an array data structure.
+Arrays are a type of data structure that allows you to [color=yellow]choose which index[/color] you want to put an item into or take an item out of.
+So unlike stacks and queues, arrays allow you the freedom of choice. But if you put an item into an [color=yellow]index that already has an item[/color], the array will [color=yellow]overwrite[/color] (AKA delete) the previously stored item, replacing it with the new one.
+So with arrays you have to be careful about where you choose to place items, a worry that wasn't there with stacks or queues.
+
+CODE_BLOCK
+You may have noticed that the [color=yellow]Pickup[/color] and [color=yellow]UseItem[/color] code blocks are slightly different in this mode.
+
+HIGHLIGHT_PICKUP
+In Array mode, you are able to [color=yellow]choose[/color] which index an item is put into with the [color=yellow]Pickup[/color] code block.
+
+HIGHLIGHT_USEITEM
+As well as which index's item to use with the [color=yellow]UseItem[/color] code block.
+
+The ability to choose which index to put an item into or which index's item to use imitates how an array data structure would work.
+
+Keep in mind that when choosing which index to put an item into, you could accidentally discard a previously stored item.
+For example, if there is a [color=red]red Key[/color] in index 0 and you pickup a [color=green]green Key[/color] & put it into index 0, then the [color=red]red Key[/color] will be [color=yellow]discarded[/color]. If you UseItem on index 0, then the [color=green]green Key[/color] will be used, but the [color=red]red Key[/color] is forever lost (until Restart).
+Again, this imitates how a real array would work.
+
+To move to the next room, remember to [color=yellow]be careful[/color] about which [color=yellow]index[/color] you put your items into. If you put one in the same index as another then you might accidentally discard a key you need.
+Also, be mindful and keep track of which key you put into which index. Make sure you don't accidentally use the wrong key on a door!
+Now get us out of here!
+;
+
+Robby... is... free!!!
+
