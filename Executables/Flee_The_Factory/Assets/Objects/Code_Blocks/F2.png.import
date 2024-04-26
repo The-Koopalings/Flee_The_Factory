@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/F2.png-0697e110a3ff2fc6c71d64dfeae09248.stex"
+path="res://.import/F2.png-6999b6e8647fdf3271e995a34f63557e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Objects/Code_Blocks/F2.png"
-dest_files=[ "res://.import/F2.png-0697e110a3ff2fc6c71d64dfeae09248.stex" ]
+source_file="res://Executables/Flee_The_Factory/Assets/Objects/Code_Blocks/F2.png"
+dest_files=[ "res://.import/F2.png-6999b6e8647fdf3271e995a34f63557e.stex" ]
 
 [params]
 
