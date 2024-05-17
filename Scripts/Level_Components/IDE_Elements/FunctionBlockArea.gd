@@ -119,6 +119,7 @@ func add_block(block):
 		var y = yOffset + blockSize * int(numBlocks / rowSize)
 		child.position = Vector2(x, y)
 		numBlocks += 1
+		child.owner = self
 		add_child(child, true)
 		counter.display(numBlocks)
 		print("FBA global position: ", global_position)

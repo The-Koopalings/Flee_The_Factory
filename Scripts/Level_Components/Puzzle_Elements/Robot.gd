@@ -8,8 +8,8 @@ onready var start_x = grid.start_x
 onready var start_y = grid.start_y
 onready var end_x = grid.end_x
 onready var end_y = grid.end_y
-var tileX
-var tileY
+var tileX = 0
+var tileY = 0
 export var tileXMax = 10 #accounting for first column being 0
 export var tileYMax = 6  #accounting for first row being 0
 
@@ -36,6 +36,7 @@ onready var ray = $RayCast2D
 var inputs = {"ui_right": Vector2.RIGHT, "ui_left": Vector2.LEFT, "ui_up": Vector2.UP, "ui_down": Vector2.DOWN}
 
 func _ready():
+	#ray.set_enabled(true)
 	pass
 	
 #Event handler for movement via keyboard	
@@ -53,7 +54,7 @@ func move(dir):
 	ray.position = Vector2.ZERO
 	ray.cast_to = vector_position
 	ray.force_raycast_update()
-	
+
 	if !ray.is_colliding():
 		$SoundMove.play()
 		moving = true
@@ -214,10 +215,10 @@ func get_direction(fromWhere: String = "Front"):
 #Returns the object/node in the specified direction of the Robot
 func get_object_in_direction(dir: String):
 	ray.set_collide_with_areas(true)
-	ray.position = inputs[dir] * 48
+	ray.position = inputs[dir] * tile_size/2
 	ray.cast_to = inputs[dir] * tile_size 
 	ray.force_raycast_update()
-	
+	print("Ray collides from ", ray.position, " up to: ", ray.position+ray.cast_to)
 	if ray.is_colliding():
 #		print(ray.get_collider())
 		return ray.get_collider()

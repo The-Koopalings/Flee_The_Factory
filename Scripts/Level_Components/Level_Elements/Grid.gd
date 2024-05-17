@@ -8,6 +8,8 @@ var start_y = 192
 var end_x = 1248
 var end_y = 864
 
+func _ready():
+	pass
 # Draw bounds of grid (Deprecated, Replaced in PEP)
 func _draw():
 	"""

@@ -9,6 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "EditorVCSInterface",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Reference",
+"class": "GutHookScript",
+"language": "GDScript",
+"path": "res://addons/gut/hook_script.gd"
+}, {
+"base": "Node",
+"class": "GutTest",
+"language": "GDScript",
+"path": "res://addons/gut/test.gd"
+} ]
+_global_script_class_icons={
+"GitAPI": "",
+"GutHookScript": "",
+"GutTest": ""
 "base": "Resource",
 "class": "SavableGameStats",
 "language": "GDScript",
@@ -35,8 +54,8 @@ config/windows_native_icon="res://Assets/Robby/bby.ico"
 
 [autoload]
 
-PEP="*res://Scripts/Singletons/PuzzleElementPlacement.gd"
 GameStats="*res://Scripts/Singletons/GameStats.gd"
+PEP="*res://Scripts/Singletons/PuzzleElementPlacement.gd"
 DialogueManager="*res://Scripts/Singletons/DialogueManager.gd"
 SceneSwapper="*res://Scripts/Singletons/SceneSwapper.gd"
 GlobalWE="*res://Scenes/Level_Components/Level_Elements/WorldEnvironment.tscn"
@@ -55,9 +74,18 @@ window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 
+[editor]
+
+version_control_autoload_on_startup=true
+version_control_plugin_name="GitAPI"
+
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+
+[gdnative]
+
+singletons=[  ]
 
 [gui]
 

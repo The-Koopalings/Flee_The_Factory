@@ -14,7 +14,7 @@ func _ready():
 func connect_to_LoopBlock():
 	var status = 0
 	
-	if get_parent().name == "CodeBlockBar":
+	if get_parent() and get_parent().name == "CodeBlockBar":
 		loopBlockName = name.trim_prefix("Call_")
 	else:
 		loopBlockName = name.trim_prefix("Call_").rstrip("0123456789").trim_suffix("_")
